@@ -10,6 +10,10 @@
 
     <style>
 
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             margin: 0;
             font-family: Georgia, "Times New Roman", serif;
@@ -19,17 +23,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 30px 15px;
         }
 
         .contenedor {
-            width: 90%;
+            width: 100%;
             max-width: 900px;
             text-align: center;
         }
 
         h1 {
             font-size: 48px;
-            margin-bottom: 10px;
+            margin: 0 0 10px;
             letter-spacing: 1px;
         }
 
@@ -46,16 +51,41 @@
             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
-        #numeroPregunta {
-            color: #625b51;
-            font-size: 16px;
-            margin-bottom: 25px;
+        /* PROGRESO */
+
+        .zona-progreso {
+            margin-bottom: 30px;
         }
+
+        .texto-progreso {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 15px;
+            color: #625b51;
+        }
+
+        .barra {
+            width: 100%;
+            height: 12px;
+            background: #eee8dc;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .barra-progreso {
+            height: 100%;
+            width: 0%;
+            background: #8f8678;
+            transition: width 0.4s ease;
+        }
+
+        /* PREGUNTA */
 
         #pregunta {
             font-size: 25px;
             line-height: 1.4;
-            margin-bottom: 30px;
+            margin: 25px 0 30px;
         }
 
         .opciones {
@@ -69,6 +99,7 @@
             border: none;
             border-radius: 12px;
             background: #eee8dc;
+            color: #2d2a26;
             font-family: Georgia, "Times New Roman", serif;
             font-size: 18px;
             cursor: pointer;
@@ -84,40 +115,74 @@
             cursor: default;
         }
 
+        .opcion.correcta {
+            background: #dce8d8;
+        }
+
+        .opcion.incorrecta {
+            background: #ead8d5;
+        }
+
+        /* FEEDBACK */
+
         #feedback {
             margin-top: 25px;
             font-size: 18px;
             line-height: 1.6;
+            text-align: left;
         }
 
-        #siguiente,
-        #reiniciar,
-        #volver {
+        .correcto {
+            color: #3f6841;
+        }
+
+        .incorrecto {
+            color: #8a4038;
+        }
+
+        /* BOTONES */
+
+        .boton {
             margin-top: 25px;
             padding: 13px 26px;
             border: none;
             border-radius: 10px;
             background: #ddd5c8;
+            color: #2d2a26;
             font-family: Georgia, "Times New Roman", serif;
             font-size: 16px;
             cursor: pointer;
         }
 
-        #siguiente:hover,
-        #reiniciar:hover,
-        #volver:hover {
+        .boton:hover {
             background: #cfc5b5;
         }
 
+        /* RESULTADO */
+
         #resultado {
-            font-size: 21px;
-            line-height: 1.6;
+            display: none;
         }
 
         .nota {
-            font-size: 38px;
+            font-size: 48px;
             margin: 25px 0;
         }
+
+        .mensaje-final {
+            font-size: 20px;
+            line-height: 1.6;
+        }
+
+        /* INICIO */
+
+        .introduccion {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* MÓVIL */
 
         @media (max-width: 700px) {
 
@@ -159,50 +224,115 @@
 
         <div class="panel" id="actividad">
 
-            <p id="numeroPregunta">
-                Pregunta 1 de 20
-            </p>
+            <div class="introduccion" id="introduccion">
+
+                <strong>¿Preparado?</strong>
+
+                <br>
+
+                Vas a responder 20 preguntas sobre la estructura
+                de las palabras.
+
+            </div>
+
+
+            <!-- PROGRESO -->
+
+            <div class="zona-progreso">
+
+                <div class="texto-progreso">
+
+                    <span id="numeroPregunta">
+                        Pregunta 1 de 20
+                    </span>
+
+                    <span id="porcentaje">
+                        0%
+                    </span>
+
+                </div>
+
+                <div class="barra">
+
+                    <div
+                        class="barra-progreso"
+                        id="barraProgreso">
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PREGUNTA -->
 
             <h2 id="pregunta"></h2>
 
-            <div class="opciones" id="opciones"></div>
+
+            <!-- OPCIONES -->
+
+            <div
+                class="opciones"
+                id="opciones">
+            </div>
+
+
+            <!-- FEEDBACK -->
 
             <div id="feedback"></div>
 
+
+            <!-- SIGUIENTE -->
+
             <button
+                class="boton"
                 id="siguiente"
                 onclick="siguientePregunta()"
-                style="display: none;">
+                style="display:none;">
+
                 Siguiente →
+
             </button>
 
         </div>
 
 
-        <!-- RESULTADO FINAL -->
+        <!-- RESULTADO -->
 
-        <div class="panel" id="resultado" style="display: none;">
+        <div
+            class="panel"
+            id="resultado">
 
             <h2>🎉 Actividad terminada</h2>
 
-            <p>Has completado las 20 preguntas.</p>
+            <div
+                class="nota"
+                id="notaFinal">
+            </div>
 
-            <div class="nota" id="notaFinal"></div>
+            <div
+                class="mensaje-final"
+                id="mensajeFinal">
+            </div>
 
-            <p id="mensajeFinal"></p>
 
             <button
-                id="reiniciar"
+                class="boton"
                 onclick="reiniciarActividad()">
+
                 🔄 Intentar de nuevo
+
             </button>
 
             <br>
 
+
             <button
-                id="volver"
+                class="boton"
                 onclick="window.location.href='morfologia.html'">
+
                 ← Volver a Morfología
+
             </button>
 
         </div>
@@ -212,60 +342,104 @@
 
     <script>
 
+        /* ================================
+           BANCO DE PREGUNTAS
+        ================================= */
+
         const preguntas = [
 
             {
                 pregunta: "¿Cuál es el lexema de «panadero»?",
-                opciones: ["pan-", "-ader-", "-o", "panadero"],
+                opciones: [
+                    "pan-",
+                    "-ader-",
+                    "-o",
+                    "panadero"
+                ],
                 correcta: 0,
-                explicacion: "El lexema es «pan-», porque aporta el significado léxico fundamental relacionado con «pan»."
+                explicacion: "«pan-» es el lexema porque aporta el significado léxico fundamental."
             },
 
             {
                 pregunta: "En «niñas», ¿qué morfema indica el género femenino?",
-                opciones: ["niñ-", "-a", "-s", "ninguno"],
+                opciones: [
+                    "niñ-",
+                    "-a",
+                    "-s",
+                    "ninguno"
+                ],
                 correcta: 1,
                 explicacion: "El morfema flexivo «-a» indica género femenino."
             },
 
             {
                 pregunta: "En «niñas», ¿qué morfema indica el número plural?",
-                opciones: ["niñ-", "-a", "-s", "niñas"],
+                opciones: [
+                    "niñ-",
+                    "-a",
+                    "-s",
+                    "niñas"
+                ],
                 correcta: 2,
                 explicacion: "El morfema flexivo «-s» indica número plural."
             },
 
             {
                 pregunta: "¿Cuál es el lexema de «florista»?",
-                opciones: ["flor-", "-ista", "-a", "florista"],
+                opciones: [
+                    "flor-",
+                    "-ista",
+                    "-a",
+                    "florista"
+                ],
                 correcta: 0,
                 explicacion: "«flor-» es el lexema porque contiene el significado léxico fundamental."
             },
 
             {
                 pregunta: "En «florista», ¿qué elemento es un sufijo derivativo?",
-                opciones: ["flor-", "-ista", "-a", "ninguno"],
+                opciones: [
+                    "flor-",
+                    "-ista",
+                    "-a",
+                    "ninguno"
+                ],
                 correcta: 1,
-                explicacion: "«-ista» es un sufijo derivativo que permite formar una nueva palabra a partir de «flor»."
+                explicacion: "«-ista» es un sufijo derivativo que permite formar una nueva palabra."
             },
 
             {
                 pregunta: "En «casitas», ¿qué elemento aporta el significado diminutivo?",
-                opciones: ["cas-", "-a", "-it-", "-s"],
+                opciones: [
+                    "cas-",
+                    "-a",
+                    "-it-",
+                    "-s"
+                ],
                 correcta: 2,
                 explicacion: "«-it-» forma parte del sufijo apreciativo diminutivo «-ito/-ita»."
             },
 
             {
                 pregunta: "En «gatitos», ¿qué morfema indica el número plural?",
-                opciones: ["gat-", "-it-", "-o-", "-s"],
+                opciones: [
+                    "gat-",
+                    "-it-",
+                    "-o-",
+                    "-s"
+                ],
                 correcta: 3,
                 explicacion: "El morfema «-s» indica número plural."
             },
 
             {
                 pregunta: "¿Cuál es el lexema de «panadería»?",
-                opciones: ["pan-", "-ader-", "-ía", "panadería"],
+                opciones: [
+                    "pan-",
+                    "-ader-",
+                    "-ía",
+                    "panadería"
+                ],
                 correcta: 0,
                 explicacion: "«pan-» es el lexema y aporta el significado léxico fundamental."
             },
@@ -296,7 +470,12 @@
 
             {
                 pregunta: "En «inútil», ¿qué elemento funciona como prefijo?",
-                opciones: ["in-", "util-", "-il", "útil"],
+                opciones: [
+                    "in-",
+                    "util-",
+                    "-il",
+                    "útil"
+                ],
                 correcta: 0,
                 explicacion: "«in-» es un prefijo derivativo situado delante del lexema."
             },
@@ -315,14 +494,24 @@
 
             {
                 pregunta: "En «perrito», ¿qué elemento aporta el significado diminutivo?",
-                opciones: ["perr-", "-it-", "-o", "-s"],
+                opciones: [
+                    "perr-",
+                    "-it-",
+                    "-o",
+                    "-s"
+                ],
                 correcta: 1,
                 explicacion: "«-it-» forma parte del sufijo apreciativo diminutivo «-ito»."
             },
 
             {
                 pregunta: "En «caserón», ¿qué elemento aporta un valor aumentativo?",
-                opciones: ["cas-", "-er-", "-ón", "-o"],
+                opciones: [
+                    "cas-",
+                    "-er-",
+                    "-ón",
+                    "-o"
+                ],
                 correcta: 2,
                 explicacion: "«-ón» es un sufijo apreciativo aumentativo."
             },
@@ -364,7 +553,7 @@
             },
 
             {
-                pregunta: "¿Cuál de estas palabras presenta un prefijo y un lexema?",
+                pregunta: "¿Cuál de estas palabras presenta un prefijo?",
                 opciones: [
                     "releer",
                     "mesas",
@@ -372,7 +561,7 @@
                     "niñas"
                 ],
                 correcta: 0,
-                explicacion: "«releer» contiene el prefijo «re-» y el lexema relacionado con «leer»."
+                explicacion: "«releer» contiene el prefijo «re-»."
             },
 
             {
@@ -402,54 +591,152 @@
         ];
 
 
+        /* ================================
+           VARIABLES
+        ================================= */
+
+        let preguntasMezcladas = [];
+
         let preguntaActual = 0;
+
         let puntuacion = 0;
+
         let respondida = false;
 
+
+        /* ================================
+           MEZCLAR PREGUNTAS
+        ================================= */
+
+        function mezclarPreguntas() {
+
+            preguntasMezcladas = [...preguntas];
+
+            for (
+                let i = preguntasMezcladas.length - 1;
+                i > 0;
+                i--
+            ) {
+
+                const j =
+                    Math.floor(Math.random() * (i + 1));
+
+                [
+                    preguntasMezcladas[i],
+                    preguntasMezcladas[j]
+                ] = [
+                    preguntasMezcladas[j],
+                    preguntasMezcladas[i]
+                ];
+
+            }
+
+        }
+
+
+        /* ================================
+           MOSTRAR PREGUNTA
+        ================================= */
 
         function mostrarPregunta() {
 
             respondida = false;
 
-            const pregunta = preguntas[preguntaActual];
+            const pregunta =
+                preguntasMezcladas[preguntaActual];
 
-            document.getElementById("numeroPregunta").textContent =
+
+            document.getElementById(
+                "numeroPregunta"
+            ).textContent =
                 "Pregunta " +
                 (preguntaActual + 1) +
                 " de " +
-                preguntas.length;
+                preguntasMezcladas.length;
 
-            document.getElementById("pregunta").textContent =
+
+            const porcentaje =
+                Math.round(
+                    (preguntaActual /
+                    preguntasMezcladas.length) * 100
+                );
+
+
+            document.getElementById(
+                "porcentaje"
+            ).textContent =
+                porcentaje + "%";
+
+
+            document.getElementById(
+                "barraProgreso"
+            ).style.width =
+                porcentaje + "%";
+
+
+            document.getElementById(
+                "pregunta"
+            ).textContent =
                 pregunta.pregunta;
 
-            document.getElementById("feedback").textContent = "";
 
-            document.getElementById("siguiente").style.display = "none";
-
-            const contenedorOpciones =
-                document.getElementById("opciones");
-
-            contenedorOpciones.innerHTML = "";
+            document.getElementById(
+                "feedback"
+            ).innerHTML = "";
 
 
-            pregunta.opciones.forEach((opcion, indice) => {
+            document.getElementById(
+                "siguiente"
+            ).style.display =
+                "none";
 
-                const boton = document.createElement("button");
 
-                boton.className = "opcion";
+            const contenedor =
+                document.getElementById(
+                    "opciones"
+                );
 
-                boton.textContent = opcion;
 
-                boton.onclick = function() {
-                    comprobarRespuesta(indice);
-                };
+            contenedor.innerHTML = "";
 
-                contenedorOpciones.appendChild(boton);
 
-            });
+            pregunta.opciones.forEach(
+                (opcion, indice) => {
+
+                    const boton =
+                        document.createElement(
+                            "button"
+                        );
+
+                    boton.className =
+                        "opcion";
+
+                    boton.textContent =
+                        opcion;
+
+                    boton.onclick =
+                        function() {
+
+                            comprobarRespuesta(
+                                indice
+                            );
+
+                        };
+
+
+                    contenedor.appendChild(
+                        boton
+                    );
+
+                }
+            );
 
         }
 
+
+        /* ================================
+           COMPROBAR RESPUESTA
+        ================================= */
 
         function comprobarRespuesta(indice) {
 
@@ -459,47 +746,110 @@
 
             respondida = true;
 
-            const pregunta = preguntas[preguntaActual];
+
+            const pregunta =
+                preguntasMezcladas[
+                    preguntaActual
+                ];
+
 
             const botones =
-                document.querySelectorAll(".opcion");
-
-            botones.forEach(boton => {
-                boton.disabled = true;
-            });
+                document.querySelectorAll(
+                    ".opcion"
+                );
 
 
-            if (indice === pregunta.correcta) {
+            botones.forEach(
+                (boton, posicion) => {
+
+                    boton.disabled = true;
+
+
+                    if (
+                        posicion ===
+                        pregunta.correcta
+                    ) {
+
+                        boton.classList.add(
+                            "correcta"
+                        );
+
+                    }
+
+                }
+            );
+
+
+            if (
+                indice ===
+                pregunta.correcta
+            ) {
 
                 puntuacion++;
 
-                document.getElementById("feedback").innerHTML =
-                    "✅ <strong>¡Correcto!</strong><br>" +
+
+                botones[indice]
+                    .classList.add(
+                        "correcta"
+                    );
+
+
+                document.getElementById(
+                    "feedback"
+                ).innerHTML =
+                    "<div class='correcto'>" +
+                    "✅ <strong>¡Correcto!</strong>" +
+                    "</div>" +
+                    "<br>" +
                     pregunta.explicacion;
 
             } else {
 
-                document.getElementById("feedback").innerHTML =
-                    "❌ <strong>No es correcto.</strong><br>" +
+                botones[indice]
+                    .classList.add(
+                        "incorrecta"
+                    );
+
+
+                document.getElementById(
+                    "feedback"
+                ).innerHTML =
+                    "<div class='incorrecto'>" +
+                    "❌ <strong>No es correcto.</strong>" +
+                    "</div>" +
+                    "<br>" +
                     "La respuesta correcta es: «" +
-                    pregunta.opciones[pregunta.correcta] +
-                    "».<br>" +
+                    pregunta.opciones[
+                        pregunta.correcta
+                    ] +
+                    "»." +
+                    "<br><br>" +
                     pregunta.explicacion;
 
             }
 
 
-            document.getElementById("siguiente").style.display =
+            document.getElementById(
+                "siguiente"
+            ).style.display =
                 "inline-block";
 
         }
 
 
+        /* ================================
+           SIGUIENTE PREGUNTA
+        ================================= */
+
         function siguientePregunta() {
 
             preguntaActual++;
 
-            if (preguntaActual < preguntas.length) {
+
+            if (
+                preguntaActual <
+                preguntasMezcladas.length
+            ) {
 
                 mostrarPregunta();
 
@@ -512,48 +862,87 @@
         }
 
 
+        /* ================================
+           RESULTADO
+        ================================= */
+
         function mostrarResultado() {
 
-            document.getElementById("actividad").style.display =
+            document.getElementById(
+                "actividad"
+            ).style.display =
                 "none";
 
-            document.getElementById("resultado").style.display =
+
+            document.getElementById(
+                "resultado"
+            ).style.display =
                 "block";
 
 
+            document.getElementById(
+                "barraProgreso"
+            ).style.width =
+                "100%";
+
+
+            document.getElementById(
+                "porcentaje"
+            ).textContent =
+                "100%";
+
+
             const nota =
-                (puntuacion / preguntas.length) * 10;
+                (
+                    puntuacion /
+                    preguntasMezcladas.length
+                ) * 10;
 
-            document.getElementById("notaFinal").textContent =
-                nota.toFixed(1) + " / 10";
+
+            document.getElementById(
+                "notaFinal"
+            ).textContent =
+                nota.toFixed(1) +
+                " / 10";
 
 
-            let mensaje = "";
+            let mensaje;
+
 
             if (nota >= 9) {
 
-                mensaje = "🏆 ¡Excelente! Dominas la estructura de la palabra.";
+                mensaje =
+                    "🏆 ¡Excelente! Dominas la estructura de la palabra.";
 
             } else if (nota >= 7) {
 
-                mensaje = "👏 ¡Muy bien! Tienes un buen dominio de los contenidos.";
+                mensaje =
+                    "👏 ¡Muy bien! Tienes un buen dominio de los contenidos.";
 
             } else if (nota >= 5) {
 
-                mensaje = "👍 Aprobado. Conviene seguir practicando.";
+                mensaje =
+                    "👍 Has aprobado, pero todavía puedes mejorar.";
 
             } else {
 
-                mensaje = "📚 Necesitas repasar los contenidos y volver a intentarlo.";
+                mensaje =
+                    "📚 Necesitas repasar los contenidos y volver a intentarlo.";
 
             }
 
 
-            document.getElementById("mensajeFinal").textContent =
+            document.getElementById(
+                "mensajeFinal"
+            ).textContent =
                 mensaje;
 
         }
 
+
+        /* ================================
+           REINICIAR
+        ================================= */
 
         function reiniciarActividad() {
 
@@ -561,16 +950,31 @@
 
             puntuacion = 0;
 
-            document.getElementById("resultado").style.display =
+            mezclarPreguntas();
+
+
+            document.getElementById(
+                "resultado"
+            ).style.display =
                 "none";
 
-            document.getElementById("actividad").style.display =
+
+            document.getElementById(
+                "actividad"
+            ).style.display =
                 "block";
+
 
             mostrarPregunta();
 
         }
 
+
+        /* ================================
+           INICIAR
+        ================================= */
+
+        mezclarPreguntas();
 
         mostrarPregunta();
 
