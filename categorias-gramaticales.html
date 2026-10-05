@@ -4,7 +4,12 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Categorías gramaticales · Docere et Delectare</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#f4efe5;color:#2d2a26;min-height:100vh;padding:30px 15px}.contenedor{width:100%;max-width:1000px;margin:auto}.panel{background:#fff;padding:40px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.12);text-align:center}h1{font-size:44px;margin:0 0 10px}.subtitulo{color:#625b51;font-size:19px;margin-bottom:28px}.intro{font-size:18px;line-height:1.6;max-width:820px;margin:0 auto 28px}.perfil{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;background:#f7f4ee;border-radius:12px;color:#625b51;font-size:15px}.alias{font-weight:bold;color:#2d2a26}.cambiar{border:0;background:none;text-decoration:underline;cursor:pointer;font:inherit;color:#625b51}#actividad,#resultado{display:none}.progreso-texto{display:flex;justify-content:space-between;color:#625b51;font-size:15px;margin:20px 0 8px}.barra{height:12px;background:#eee8dc;border-radius:20px;overflow:hidden}.progreso{height:100%;width:0;background:#8f8678;transition:.3s}.etiqueta{display:inline-block;padding:8px 15px;border-radius:20px;background:#eee8dc;color:#625b51;margin:25px 0 10px;font-size:14px}#pregunta{font-size:24px;line-height:1.5;margin:15px 0 25px}.opciones{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.opcion,.boton{padding:15px;border:0;border-radius:12px;background:#eee8dc;font:inherit;font-size:17px;cursor:pointer}.opcion:hover:not(:disabled),.boton:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.12)}.correcta{background:#dce8d8!important}.incorrecta{background:#ead8d5!important}.campo{width:100%;max-width:700px;padding:13px;margin:8px auto;border:2px solid #ddd5c8;border-radius:10px;font:inherit;font-size:17px;display:block}.campo:focus{outline:none;border-color:#9b9183}.etiqueta-campo{display:block;margin-top:16px;font-weight:bold}.feedback{margin-top:22px;padding:18px;border-radius:12px;background:#f7f4ee;text-align:left;line-height:1.6}.exito{background:#e2eee0}.error{background:#f0dfdc}#feedback:empty{display:none}#siguiente{display:none;margin-top:20px;background:#bcb1a0;color:#fff}.resultado-nota{font-size:44px;font-weight:bold;margin:20px}.boton{display:inline-block;margin:20px 5px;text-decoration:none;color:#2d2a26}.boton-principal{background:#bcb1a0;color:#fff}#perfilModal{display:none;position:fixed;inset:0;background:rgba(45,42,38,.55);align-items:center;justify-content:center;padding:20px;z-index:10}.modal{background:#fff;max-width:500px;width:100%;padding:30px;border-radius:18px;text-align:center}.modal p{line-height:1.5;color:#625b51}.modal input{width:100%;padding:13px;border:2px solid #ddd5c8;border-radius:10px;font:inherit}.modal button{margin-top:15px;padding:12px 25px;border:0;border-radius:10px;background:#bcb1a0;color:#fff;font:inherit;cursor:pointer}@media(max-width:700px){h1{font-size:36px}.panel{padding:25px}.opciones{grid-template-columns:1fr}.perfil{flex-direction:column}}
+*{box-sizing:border-box}body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#f4efe5;color:#2d2a26;min-height:100vh;padding:30px 15px}.contenedor{width:100%;max-width:1000px;margin:auto}.panel{background:#fff;padding:40px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.12);text-align:center}h1{font-size:44px;margin:0 0 10px}.subtitulo{color:#625b51;font-size:19px;margin-bottom:28px}.intro{font-size:18px;line-height:1.6;max-width:820px;margin:0 auto 28px}.perfil{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;background:#f7f4ee;border-radius:12px;color:#625b51;font-size:15px}.alias{font-weight:bold;color:#2d2a26}.cambiar{border:0;background:none;text-decoration:underline;cursor:pointer;font:inherit;color:#625b51}#actividad,#resultado{display:none}.progreso-texto{display:flex;justify-content:space-between;color:#625b51;font-size:15px;margin:20px 0 8px}.barra{height:12px;background:#eee8dc;border-radius:20px;overflow:hidden}.progreso{height:100%;width:0;background:#8f8678;transition:.3s}.etiqueta{display:inline-block;padding:8px 15px;border-radius:20px;background:#eee8dc;color:#625b51;margin:25px 0 10px;font-size:14px}#pregunta{font-size:24px;line-height:1.5;margin:15px 0 25px}.opciones{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.opcion,.boton{padding:15px;border:0;border-radius:12px;background:#eee8dc;font:inherit;font-size:17px;cursor:pointer}.opcion:hover:not(:disabled),.boton:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.12)}.correcta{background:#dce8d8!important}.incorrecta{background:#ead8d5!important}.campo{width:100%;max-width:700px;padding:13px;margin:8px auto;border:2px solid #ddd5c8;border-radius:10px;font:inherit;font-size:17px;display:block}.campo:focus{outline:none;border-color:#9b9183}.etiqueta-campo{display:block;margin-top:16px;font-weight:bold}.feedback{margin-top:22px;padding:18px;border-radius:12px;background:#f7f4ee;text-align:left;line-height:1.6}.exito{background:#e2eee0}.error{background:#f0dfdc}#feedback:empty{display:none}#siguiente{display:none;margin-top:20px;background:#bcb1a0;color:#fff}.resultado-nota{font-size:44px;font-weight:bold;margin:20px}.boton{display:inline-block;margin:20px 5px;text-decoration:none;color:#2d2a26}.boton-principal{background:#bcb1a0;color:#fff}#perfilModal{display:none;position:fixed;inset:0;background:rgba(45,42,38,.55);align-items:center;justify-content:center;padding:20px;z-index:10}.modal{background:#fff;max-width:500px;width:100%;padding:30px;border-radius:18px;text-align:center}.modal p{line-height:1.5;color:#625b51}.modal input{width:100%;padding:13px;border:2px solid #ddd5c8;border-radius:10px;font:inherit}.modal button{margin-top:15px;padding:12px 25px;border:0;border-radius:10px;background:#bcb1a0;color:#fff;font:inherit;cursor:pointer}.secciones{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:760px;margin:25px auto 10px}
+.seccion-btn{padding:15px;border:2px solid #ddd5c8;border-radius:12px;background:#fff;font:inherit;font-size:17px;color:#2d2a26;cursor:pointer;transition:.2s}
+.seccion-btn:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.10)}
+.seccion-btn.activa{background:#eee8dc;border-color:#bcb1a0}
+.descripcion-seccion{min-height:28px;color:#625b51;margin:10px auto 12px;line-height:1.5}
+@media(max-width:700px){h1{font-size:36px}.panel{padding:25px}.opciones{grid-template-columns:1fr}.perfil{flex-direction:column}.secciones{grid-template-columns:1fr}}
 
 
 /* Control global de navegación */
@@ -18,9 +23,18 @@
 <div class="contenedor"><div class="panel">
 <section id="inicio">
 <h1>🔤 Categorías gramaticales</h1><div class="subtitulo">Lengua Castellana y Literatura · 4.º ESO</div>
-<p class="intro">Practica la <strong>identificación, clasificación y análisis de las categorías gramaticales</strong> en palabras y en contextos reales. Las actividades aumentan progresivamente de dificultad.</p>
+<p class="intro">Trabaja las categorías gramaticales mediante cinco tipos de desafío: reconocer, analizar, transformar, detectar errores y resolver retos de mayor dificultad.</p>
 <div class="perfil"><span>Jugador/a: <span id="aliasInicio" class="alias">—</span></span><button class="cambiar" onclick="abrirPerfil()">Cambiar alias</button></div>
-<button class="boton boton-principal" onclick="iniciar()">▶ Empezar partida</button><a class="boton" href="morfologia.html">← Morfología</a>
+<div class="secciones">
+<button class="seccion-btn" onclick="elegirSeccion('identifica')">🔎 Identifica</button>
+<button class="seccion-btn" onclick="elegirSeccion('analiza')">🧩 Analiza</button>
+<button class="seccion-btn" onclick="elegirSeccion('transforma')">🔄 Transforma</button>
+<button class="seccion-btn" onclick="elegirSeccion('error')">🧠 Detecta el error</button>
+<button class="seccion-btn" onclick="elegirSeccion('reto')">🏆 Reto final</button>
+</div>
+<p id="descripcionSeccion" class="descripcion-seccion">Selecciona una sección para comenzar.</p>
+<button id="botonEmpezar" class="boton boton-principal" onclick="iniciar()">▶ Empezar</button>
+<a class="boton" href="morfologia.html">← Morfología</a>
 </section>
 <section id="actividad">
 <div class="perfil"><span>Jugador/a: <span id="aliasActividad" class="alias">—</span></span><button class="cambiar" onclick="abrirPerfil()">Cambiar alias</button></div>
@@ -84,10 +98,45 @@ const A=[
 {n:6,t:'mcq',q:'¿Cuál es el análisis correcto?',o:['En «aquella casa», aquella es determinante; en «prefiero aquella», aquella es pronombre.','En ambos casos aquella es pronombre.','En ambos casos aquella es determinante.','Aquella siempre es adjetivo.'],r:'En «aquella casa», aquella es determinante; en «prefiero aquella», aquella es pronombre.',e:'La presencia o ausencia del sustantivo determina el análisis en estos contextos.'},
 {n:6,t:'text',q:'Corrige la afirmación: «En “corre rápido”, rápido es siempre un adjetivo porque tiene forma de adjetivo».',r:['en ese contexto funciona como adverbio','rápido funciona como adverbio','es adverbio porque modifica al verbo'],e:'La categoría se determina en el contexto: aquí rápido modifica al verbo corre.'},
 {n:6,t:'mcq',q:'¿Qué conjunto contiene exclusivamente palabras que pueden funcionar como determinantes en ciertos contextos?',o:['este, mi, algún','yo, ellos, quién','muy, aquí, ayer','y, pero, aunque'],r:'este, mi, algún',e:'Este, mi y algún pueden acompañar a sustantivos como determinantes.'},
-{n:6,t:'mcq',q:'¿Qué conjunto contiene exclusivamente palabras que pueden funcionar como pronombres?',o:['yo, ellos, quién','mi, este, algún','muy, cerca, ayer','y, porque, aunque'],r:'yo, ellos, quién',e:'Yo, ellos y quién pueden sustituir o representar un grupo nominal.'}
+{n:6,t:'mcq',q:'¿Qué conjunto contiene exclusivamente palabras que pueden funcionar como pronombres?',o:['yo, ellos, quién','mi, este, algún','muy, cerca, ayer','y, porque, aunque'],r:'yo, ellos, quién',e:'Yo, ellos y quién pueden sustituir o representar un grupo nominal.'},
+{n:2,t:'mcq',q:'¿Qué categoría gramatical es <b>ellos</b>?',o:['Pronombre','Determinante','Adjetivo','Adverbio'],r:'Pronombre',e:'Ellos es un pronombre personal.'},
+{n:2,t:'mcq',q:'¿Qué categoría gramatical es <b>desde</b>?',o:['Preposición','Conjunción','Adverbio','Pronombre'],r:'Preposición',e:'Desde es una preposición.'},
+{n:2,t:'mcq',q:'¿Qué categoría gramatical es <b>demasiado</b> en «trabaja demasiado»?',o:['Adverbio','Determinante','Adjetivo','Pronombre'],r:'Adverbio',e:'Demasiado modifica al verbo trabaja.'},
+{n:2,t:'mcq',q:'¿Qué categoría gramatical es <b>aquella</b> en «aquella montaña»?',o:['Determinante','Pronombre','Adverbio','Sustantivo'],r:'Determinante',e:'Acompaña al sustantivo montaña.'},
+
+{n:3,t:'text',q:'Transforma «Este libro me gusta» para que <b>este</b> funcione como pronombre.',r:['este me gusta','prefiero este','este me encanta'],e:'Al eliminar el sustantivo y mantener este de forma independiente, funciona como pronombre.'},
+{n:3,t:'text',q:'Transforma «Tengo muchos libros» para que <b>muchos</b> funcione como pronombre.',r:['muchos llegaron','muchos vinieron','muchos faltaron'],e:'Muchos funciona como pronombre cuando aparece sin acompañar a un sustantivo.'},
+{n:3,t:'text',q:'Completa una oración en la que <b>rápido</b> funcione como adverbio.',r:['corre rapido','corrió rapido','entrena rapido','entrena rápido','corre rápido','corrió rápido'],e:'Rápido funciona como adverbio cuando modifica al verbo.'},
+{n:3,t:'mcq',q:'¿Qué transformación convierte el determinante <b>algún</b> en un pronombre?',o:['Algún día llegará. → Alguno llegará.','Algún día llegará. → Algún día.','Algún día llegará. → Un día llegará.','Algún día llegará. → Llegará algún día.'],r:'Algún día llegará. → Alguno llegará.',e:'Alguno aparece sin sustantivo y funciona como pronombre.'},
+
+{n:4,t:'mcq',q:'Un alumno afirma: «En “mi casa”, mi es pronombre». ¿Qué debes corregir?',o:['Es determinante posesivo porque acompaña a casa.','Es adverbio porque expresa posesión.','Es sustantivo porque nombra una relación.','Es conjunción porque une palabras.'],r:'Es determinante posesivo porque acompaña a casa.',e:'Los posesivos que acompañan a un sustantivo funcionan como determinantes.'},
+{n:4,t:'mcq',q:'Un alumno afirma: «En “ellos llegaron”, ellos es determinante». ¿Es correcto?',o:['No; es pronombre porque aparece sin sustantivo.','Sí; todos los personales son determinantes.','Sí; acompaña al sustantivo omitido.','No; es adverbio.'],r:'No; es pronombre porque aparece sin sustantivo.',e:'Ellos sustituye a un grupo nominal y funciona como pronombre personal.'},
+{n:4,t:'mcq',q:'Un alumno analiza «muy» en «muy cansado» como adjetivo. ¿Cuál es la corrección?',o:['Es adverbio y modifica al adjetivo cansado.','Es determinante y acompaña a cansado.','Es pronombre y sustituye a cansado.','Es sustantivo.'],r:'Es adverbio y modifica al adjetivo cansado.',e:'Muy es un adverbio de cantidad.'},
+{n:4,t:'text',q:'Corrige esta afirmación: «En “aquella casa”, aquella es un pronombre porque señala una realidad».',r:['es determinante porque acompaña a casa','determinante'],e:'Es un determinante demostrativo porque acompaña al sustantivo casa.'},
+
+{n:5,t:'analysis',q:'Analiza: «<b>Nosotros</b> entrenamos <b>mucho</b>».',f:['Nosotros','mucho'],r:[['pronombre'],['adverbio']],e:'Nosotros es pronombre personal y mucho es adverbio porque modifica al verbo entrenamos.'},
+{n:5,t:'analysis',q:'Analiza: «<b>Algunas</b> jugadoras llegaron <b>ayer</b>».',f:['Algunas','ayer'],r:[['determinante'],['adverbio']],e:'Algunas acompaña a jugadoras; ayer expresa tiempo y funciona como adverbio.'},
+{n:5,t:'analysis',q:'Analiza: «El equipo consiguió una victoria <b>importante</b>».',f:['importante'],r:[['adjetivo']],e:'Importante es un adjetivo porque califica al sustantivo victoria.'},
+{n:5,t:'analysis',q:'Analiza: «<b>Quién</b> ha llamado <b>hoy</b>?».',f:['Quién','hoy'],r:[['pronombre'],['adverbio']],e:'Quién es un pronombre interrogativo y hoy es un adverbio temporal.'},
+
+{n:6,t:'mcq',q:'¿Cuál es el análisis correcto de «<b>muchos</b>» en «muchos entrenamientos» y «muchos llegaron tarde»?',o:['Determinante en la primera; pronombre en la segunda.','Pronombre en la primera; determinante en la segunda.','Adjetivo en ambas.','Adverbio en ambas.'],r:'Determinante en la primera; pronombre en la segunda.',e:'En la primera acompaña a entrenamientos; en la segunda aparece de forma independiente.'},
+{n:6,t:'mcq',q:'¿Cuál es el análisis correcto de «<b>que</b>» en «El atleta que ganó» y «Espero que ganes»?',o:['Pronombre en la primera; conjunción en la segunda.','Conjunción en ambas.','Pronombre en ambas.','Determinante en ambas.'],r:'Pronombre en la primera; conjunción en la segunda.',e:'En la primera introduce una subordinada relativa y tiene valor pronominal; en la segunda enlaza dos oraciones.'},
+{n:6,t:'text',q:'Justifica por qué <b>este</b> es determinante en «este ejercicio» y pronombre en «prefiero este».',r:['en el primero acompaña al sustantivo y en el segundo aparece solo','acompaña al sustantivo en el primero y sustituye al sustantivo en el segundo'],e:'La presencia del sustantivo distingue ambos usos.'},
+{n:6,t:'mcq',q:'Un análisis completo debe tener en cuenta principalmente...',o:['la categoría y el contexto en que aparece la palabra.','solo la forma de la palabra.','solo su longitud.','el número de letras.'],r:'la categoría y el contexto en que aparece la palabra.',e:'El contexto es esencial para interpretar correctamente palabras con usos diferentes.'}
 ];
 
-let partida=[],i=0,puntos=0,respondida=false;
+A.forEach(a=>{if(a.n<=2)a.s='identifica';else if(a.n===3)a.s='transforma';else if(a.n===4)a.s='error';else if(a.n===5)a.s='analiza';else a.s='reto';});
+
+let partida=[],i=0,puntos=0,respondida=false,seccionActual='';
+
+const DESCRIPCIONES={
+  identifica:'Reconoce la categoría gramatical de palabras y expresiones. Empieza por los casos más directos y avanza hacia ejemplos con contexto.',
+  analiza:'Analiza palabras indicando su categoría y, cuando corresponda, sus rasgos o subcategoría.',
+  transforma:'Modifica las oraciones para comprobar cómo cambia el comportamiento gramatical de una palabra.',
+  error:'Detecta análisis incorrectos, corrígelos y explica qué debería decirse.',
+  reto:'Resuelve actividades integradas de mayor dificultad que combinan identificación, análisis y razonamiento.'
+};
+
 function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
 function ok(v,r){return (Array.isArray(r)?r:[r]).some(x=>norm(v)===norm(x))}
 function mix(a){return [...a].sort(()=>Math.random()-.5)}
@@ -96,17 +145,52 @@ function player(){let x=localStorage.getItem('docerePlayerId');if(!x){x=crypto.r
 function mostrarAlias(){document.getElementById('aliasInicio').textContent=alias()||'Sin alias';document.getElementById('aliasActividad').textContent=alias()||'Sin alias'}
 function abrirPerfil(){document.getElementById('aliasInput').value=alias();document.getElementById('perfilModal').style.display='flex';setTimeout(()=>document.getElementById('aliasInput').focus(),50)}
 function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias()}
-function iniciar(){if(!alias()){abrirPerfil();return}crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
-function crear(){let usados=JSON.parse(localStorage.getItem('categoriasUsadas')||'[]'),sel=[];for(let n=1;n<=6;n++){let p=A.map((a,j)=>({a,j})).filter(x=>x.a.n===n&&!usados.includes(x.j));if(p.length<3)p=A.map((a,j)=>({a,j})).filter(x=>x.a.n===n);sel=sel.concat(mix(p).slice(0,n<=3?4:n<=4?3:3).map(x=>x.j))}localStorage.setItem('categoriasUsadas',JSON.stringify(usados.concat(sel).slice(-36)));partida=mix(sel).slice(0,20).map(x=>A[x])}
-function mostrar(){respondida=false;let a=partida[i];document.getElementById('numero').textContent='Actividad '+(i+1)+' de 20';document.getElementById('aciertos').textContent=puntos+' aciertos';document.getElementById('barra').style.width=Math.max(5,(i+1)/20*100)+'%';document.getElementById('feedback').innerHTML='';document.getElementById('siguiente').style.display='none';let h='<div class="etiqueta">Nivel '+a.n+' · Categorías gramaticales</div><div id="pregunta">'+a.q+'</div>';if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button class="opcion" onclick="mcq(this,'+JSON.stringify(x)+')">'+x+'</button>').join('')+'</div>';if(a.t==='text')h+='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button class="boton boton-principal" onclick="texto()">Comprobar</button>';if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Escribe tu respuesta">');h+='<button class="boton boton-principal" onclick="analisis()">Comprobar</button>'}document.getElementById('contenido').innerHTML=h}
+function elegirSeccion(s){
+  seccionActual=s;
+  document.querySelectorAll('.seccion-btn').forEach(b=>b.classList.remove('activa'));
+  const mapa={identifica:'Identifica',analiza:'Analiza',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
+  document.querySelectorAll('.seccion-btn').forEach(b=>{if(b.textContent.includes(mapa[s]))b.classList.add('activa')});
+  document.getElementById('descripcionSeccion').textContent=DESCRIPCIONES[s];
+  document.getElementById('botonEmpezar').textContent='▶ Empezar · '+mapa[s];
+}
+function iniciar(){
+  if(!seccionActual){elegirSeccion('identifica');}
+  if(!alias()){abrirPerfil();return}
+  crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()
+}
+function crear(){
+  let usados=JSON.parse(localStorage.getItem('categoriasUsadas')||'[]');
+  let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&!usados.includes(x.j));
+  if(disponibles.length<12) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual);
+  const sel=mix(disponibles).slice(0,12).map(x=>x.j);
+  localStorage.setItem('categoriasUsadas',JSON.stringify(usados.concat(sel).slice(-48)));
+  partida=sel.map(x=>A[x]);
+}
+function mostrar(){
+  respondida=false;
+  let a=partida[i];
+  const total=partida.length;
+  document.getElementById('numero').textContent='Actividad '+(i+1)+' de '+total;
+  document.getElementById('aciertos').textContent=puntos+' aciertos';
+  document.getElementById('barra').style.width=Math.max(8,(i+1)/total*100)+'%';
+  document.getElementById('feedback').innerHTML='';
+  document.getElementById('siguiente').style.display='none';
+  let nombres={identifica:'Identifica',analiza:'Analiza',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
+  let h='<div class="etiqueta">'+nombres[seccionActual]+' · Nivel '+a.n+'</div><div id="pregunta">'+a.q+'</div>';
+  if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button class="opcion" onclick="mcq(this,'+JSON.stringify(x)+')">'+x+'</button>').join('')+'</div>';
+  if(a.t==='text')h+='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button class="boton boton-principal" onclick="texto()">Comprobar</button>';
+  if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Escribe tu respuesta">');h+='<button class="boton boton-principal" onclick="analisis()">Comprobar</button>'}
+  document.getElementById('contenido').innerHTML=h
+}
 function feedback(b,e){let f=document.getElementById('feedback');f.className='feedback '+(b?'exito':'error');f.innerHTML=(b?'<strong>✓ Correcto.</strong> ':'<strong>✗ No es correcto.</strong> ')+e;document.getElementById('siguiente').style.display='inline-block'}
 function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=norm(v)===norm(a.r);document.querySelectorAll('.opcion').forEach(x=>{x.disabled=true;if(norm(x.textContent)===norm(a.r))x.classList.add('correcta')});if(!b)btn.classList.add('incorrecta');else puntos++;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
 function texto(){if(respondida)return;let v=document.getElementById('respuesta').value;if(!v.trim())return;respondida=true;let a=partida[i],b=ok(v,a.r);if(b)puntos++;document.getElementById('respuesta').disabled=true;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
 function analisis(){if(respondida)return;let a=partida[i],cs=[...document.querySelectorAll('.analisis')];if(cs.some(x=>!x.value.trim()))return;respondida=true;let b=true;cs.forEach((x,j)=>{let z=ok(x.value,a.r[j]);if(!z){b=false;x.classList.add('incorrecta')}else x.classList.add('correcta');x.disabled=true});if(b)puntos++;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
-function siguiente(){if(i<19){i++;mostrar()}else resultado()}
-function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=(puntos/20*10).toFixed(1).replace('.0','');document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de 20 actividades.';let h=JSON.parse(localStorage.getItem('docereProgreso')||'[]');h.push({playerId:player(),alias:alias(),bloque:'Categorías gramaticales',nota,aciertos:puntos,fecha:new Date().toISOString()});localStorage.setItem('docereProgreso',JSON.stringify(h.slice(-50)))}
+function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
+function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let total=partida.length,nota=(puntos/total*10).toFixed(1).replace('.0','');document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+total+' actividades.';let h=JSON.parse(localStorage.getItem('docereProgreso')||'[]');h.push({playerId:player(),alias:alias(),bloque:'Categorías gramaticales · '+seccionActual,nota,aciertos:puntos,fecha:new Date().toISOString()});localStorage.setItem('docereProgreso',JSON.stringify(h.slice(-50)))}
 function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
-mostrarAlias();if(!alias())setTimeout(abrirPerfil,300);
+
+mostrarAlias();elegirSeccion('identifica');if(!alias())setTimeout(abrirPerfil,300);
 
 function irInicio(){
     const actividad=document.getElementById("actividad");
