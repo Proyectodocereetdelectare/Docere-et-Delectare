@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Morfología · Docere et Delectare</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f4efe5;
+            color: #2d2a26;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 52px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitulo {
+            font-size: 20px;
+            margin-bottom: 45px;
+            color: #625b51;
+        }
+
+        .panel {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-size: 26px;
+        }
+
+        .temas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .tema {
+            padding: 30px 15px;
+            border: none;
+            border-radius: 14px;
+            background: #eee8dc;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+            text-decoration: none;
+            color: #2d2a26;
+            display: block;
+        }
+
+        .tema:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        .icono {
+            display: block;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .volver {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #ddd5c8;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #2d2a26;
+        }
+
+        .volver:hover {
+            background: #cfc5b5;
+        }
+
+        @media (max-width: 700px) {
+
+            h1 {
+                font-size: 38px;
+            }
+
+            .temas {
+                grid-template-columns: 1fr;
+            }
+
+            .panel {
+                padding: 25px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>Morfología</h1>
+
+        <div class="subtitulo">
+            Lengua Castellana y Literatura · 4.º ESO
+        </div>
+
+        <div class="panel">
+
+            <h2>¿Qué quieres practicar?</h2>
+
+            <div class="temas">
+
+                <a class="tema" href="estructura-palabra.html">
+                    <span class="icono">🧩</span>
+                    Estructura de la palabra
+                </a>
+
+                <a class="tema" href="#">
+                    <span class="icono">🌱</span>
+                    Formación de palabras
+                </a>
+
+                <a class="tema" href="#">
+                    <span class="icono">🔤</span>
+                    Categorías gramaticales
+                </a>
+
+                <a class="tema" href="#">
+                    <span class="icono">⚙️</span>
+                    El verbo
+                </a>
+
+            </div>
+
+            <a class="volver" href="index.html">
+                ← Volver al inicio
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
