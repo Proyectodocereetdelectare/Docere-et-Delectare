@@ -128,7 +128,7 @@ const DESCRIPCIONES={
 };
 
 function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
-function ok(v,r){return (Array.isArray(r)?r:[r]).some(x=>norm(v)===norm(x))}
+function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>norm(v)===norm(x))}
 function mix(a){return [...a].sort(()=>Math.random()-.5)}
 function alias(){return localStorage.getItem('docereAlias')||''}
 function player(){let x=localStorage.getItem('docerePlayerId');if(!x){x=crypto.randomUUID?crypto.randomUUID():'player-'+Date.now()+'-'+Math.random().toString(36).slice(2);localStorage.setItem('docerePlayerId',x)}return x}
