@@ -787,7 +787,7 @@ opciones: [
 "Son dos infijos"
 ],
 correcta: 1,
-explicacion: "La presentación presenta sueñ- y soñ- como alomorfos del mismo lexema."
+explicacion: "sueñ- y soñ- son dos formas diferentes de un mismo lexema; por eso son alomorfos."
 },
 
 {
@@ -800,7 +800,7 @@ opciones: [
 "Son sufijos"
 ],
 correcta: 0,
-explicacion: "Son variantes del mismo morfema de negación."
+explicacion: "im-, in- e i- son variantes de un mismo morfema de negación; según el contexto, el morfema adopta una forma diferente."
 }
 
 ];
@@ -906,8 +906,8 @@ tipo: "clasificacion",
 pregunta: "Clasifica «OMS».",
 palabra: "OMS",
 categorias: ["Sigla", "Acrónimo"],
-correcta: "Acrónimo",
-explicacion: "La presentación incluye OMS como ejemplo de acrónimo."
+correcta: "Sigla",
+explicacion: "OMS es una sigla porque se forma con las iniciales de «Organización Mundial de la Salud» y se pronuncia letra por letra: «o-ene-ese»."
 },
 
 {
@@ -915,8 +915,8 @@ tipo: "clasificacion",
 pregunta: "Clasifica «EE UU».",
 palabra: "EE UU",
 categorias: ["Sigla", "Acrónimo"],
-correcta: "Acrónimo",
-explicacion: "La presentación incluye EE UU dentro de la explicación de la acronimia."
+correcta: "Sigla",
+explicacion: "EE. UU. es una sigla porque se forma con las iniciales de «Estados Unidos» y se pronuncia letra por letra: «e-e-u-u»."
 },
 
 {
@@ -929,7 +929,7 @@ opciones: [
 "orilla"
 ],
 correcta: 2,
-explicacion: "reblandecer es el ejemplo de parasíntesis presentado en los materiales."
+explicacion: "reblandecer es parasintética porque incorpora elementos delante y detrás del lexema y, al eliminar el prefijo, *blandecer no existe como palabra independiente."
 },
 
 {
@@ -1110,7 +1110,7 @@ geo: ["tierra"],
 logia: ["estudio"],
 tipo: ["compuesto culto", "compuesta"]
 },
-explicacion: "geo- significa tierra y -logía se relaciona con estudio. La presentación considera geología un compuesto culto."
+explicacion: "geo- significa tierra y -logía se relaciona con estudio. geología es un compuesto culto: combina los formantes grecolatinos geo- («tierra») y -logía («estudio»)."
 },
 
 {
@@ -1286,7 +1286,7 @@ opciones: [
 "Que contiene un infijo"
 ],
 correcta: 1,
-explicacion: "La presentación establece ese criterio para reconocer la parasíntesis."
+explicacion: "Para reconocer la parasíntesis hay que comprobar que aparecen elementos a ambos lados del lexema y que, al eliminar el prefijo, la forma resultante no existe como palabra independiente."
 },
 
 {
@@ -1299,7 +1299,7 @@ opciones: [
 "geo- / -logía"
 ],
 correcta: 0,
-explicacion: "La presentación utiliza sueñ- y soñ- como ejemplo de alomorfos."
+explicacion: "sueñ- y soñ- son dos formas diferentes de un mismo lexema; por eso son alomorfos."
 },
 
 {
@@ -1329,6 +1329,45 @@ opciones: [
 ],
 correcta: 1,
 explicacion: "rojiblanco se forma mediante la unión de dos lexemas."
+},
+
+{
+tipo: "mcq",
+pregunta: "¿Cuál de estas afirmaciones distingue correctamente una sigla de un acrónimo?",
+opciones: [
+"Una sigla se pronuncia normalmente letra por letra; un acrónimo puede pronunciarse como una palabra",
+"Una sigla siempre tiene dos letras; un acrónimo siempre tiene más de tres",
+"Una sigla siempre es una palabra derivada; un acrónimo siempre es una palabra compuesta",
+"No existe ninguna diferencia entre ambos"
+],
+correcta: 0,
+explicacion: "La diferencia se aprecia en la pronunciación: las siglas suelen leerse letra por letra, como «ONG» («o-ene-ge»), mientras que los acrónimos pueden pronunciarse como palabras, como «ONU» («onu»)."
+},
+
+{
+tipo: "mcq",
+pregunta: "¿Por qué «ONG» es una sigla?",
+opciones: [
+"Porque se pronuncia como una palabra: «ong»",
+"Porque se forma con iniciales y se pronuncia letra por letra: «o-ene-ge»",
+"Porque contiene un prefijo y un sufijo",
+"Porque une dos lexemas"
+],
+correcta: 1,
+explicacion: "ONG procede de «Organización No Gubernamental» y se pronuncia letra por letra: «o-ene-ge». Por eso es una sigla."
+},
+
+{
+tipo: "mcq",
+pregunta: "¿Por qué «ONU» puede considerarse un acrónimo?",
+opciones: [
+"Porque se pronuncia como una palabra: «onu»",
+"Porque se pronuncia letra por letra: «o-ene-u»",
+"Porque contiene dos sufijos",
+"Porque está formada por un único lexema"
+],
+correcta: 0,
+explicacion: "ONU procede de «Organización de las Naciones Unidas» y se pronuncia como una palabra: «onu». Por eso funciona como acrónimo."
 },
 
 {
@@ -1758,7 +1797,6 @@ function construirInterfaz(actividad) {
 
         texto.textContent =
             "Selecciona la categoría correcta:";
-
         contenedor.appendChild(texto);
 
 
