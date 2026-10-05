@@ -516,7 +516,7 @@ onclick="iniciarBloque('clasifica')">
 
 <span class="descripcion">
 Simples, derivadas, compuestas,
-parasintéticas, siglas y acrónimos
+parasintéticas, acronimia y formantes grecolatinos
 </span>
 
 </button>
@@ -943,167 +943,73 @@ const identifica = [
 
 const clasifica = [
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica la palabra.",
-palabra: "orilla",
-categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
-correcta: "Simple",
-explicacion: "Está formada por un único lexema."
-},
+/* NIVEL 1 · RECONOCE */
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica la palabra.",
-palabra: "revivir",
-categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
-correcta: "Derivada",
-explicacion: "Se forma mediante el prefijo derivativo re-."
-},
+{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «orilla».",palabra:"orilla",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es una palabra simple: está formada por un único lexema."},
+{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «lápices».",palabra:"lápices",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es simple: contiene un único lexema y morfemas flexivos de número."},
+{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «revivir».",palabra:"revivir",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Derivada",explicacion:"Se forma añadiendo el prefijo derivativo re- al lexema viv-."},
+{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «rojiblanco».",palabra:"rojiblanco",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Compuesta",explicacion:"Se forma mediante la unión de dos lexemas: rojo + blanco."},
+{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «reblandecer».",palabra:"reblandecer",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Parasintética",explicacion:"Presenta elementos delante y detrás del lexema y *blandecer no existe en castellano."},
+{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «sencillas».",palabra:"sencillas",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es simple: está formada por un único lexema acompañado de morfemas flexivos."},
+{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «vivencia».",palabra:"vivencia",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Derivada",explicacion:"Se forma mediante el sufijo derivativo -encia sobre el lexema viv-."},
+{nivel:1,tipo:"mcq",pregunta:"¿Qué procedimiento consiste en unir dos o más lexemas?",opciones:["Derivación","Composición","Flexión","Acronimia"],correcta:1,explicacion:"La composición forma palabras nuevas mediante la unión de dos o más lexemas."},
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica la palabra.",
-palabra: "vivencia",
-categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
-correcta: "Derivada",
-explicacion: "Se forma mediante un sufijo derivativo."
-},
+/* NIVEL 2 · CLASIFICA Y DISTINGUE */
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica la palabra.",
-palabra: "rojiblanco",
-categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
-correcta: "Compuesta",
-explicacion: "Une dos lexemas: rojo + blanco."
-},
+{nivel:2,tipo:"mcq",pregunta:"¿Qué procedimiento aparece en «convivencia»?",opciones:["Derivación","Composición","Parasíntesis","Flexión"],correcta:0,explicacion:"La palabra se forma mediante afijos derivativos: con- y -encia, sobre el lexema viv-."},
+{nivel:2,tipo:"mcq",pregunta:"¿Qué procedimiento aparece en «vivencia»?",opciones:["Composición","Derivación","Acronimia","Parasíntesis"],correcta:1,explicacion:"Vivencia se forma mediante un sufijo derivativo añadido al lexema viv-."},
+{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «escribiré».",palabra:"escribiré",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es simple: contiene un único lexema; la terminación verbal aporta información flexiva."},
+{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «con-viv-encia».",palabra:"convivencia",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Derivada",explicacion:"Presenta afijos derivativos alrededor del lexema viv-."},
+{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «rojo + blanco > rojiblanco».",palabra:"rojiblanco",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Compuesta",explicacion:"La composición une los lexemas rojo y blanco."},
+{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «a-tornill-ar».",palabra:"atornillar",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Parasintética",explicacion:"La presentación utiliza atornillar como ejemplo de formación parasintética, con elementos a ambos lados del lexema tornill-."},
+{nivel:2,tipo:"mcq",pregunta:"¿Cuál de estas palabras es simple?",opciones:["orilla","revivir","rojiblanco","reblandecer"],correcta:0,explicacion:"Orilla está formada por un único lexema."},
+{nivel:2,tipo:"mcq",pregunta:"¿Cuál de estas palabras es compuesta?",opciones:["vivencia","revivir","rojiblanco","orilla"],correcta:2,explicacion:"Rojiblanco se forma mediante la unión de dos lexemas."},
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica la palabra.",
-palabra: "reblandecer",
-categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
-correcta: "Parasintética",
-explicacion: "Presenta elementos delante y detrás del lexema y *blandecer no existe en castellano."
-},
+/* NIVEL 3 · APLICA CRITERIOS */
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica la palabra.",
-palabra: "lápices",
-categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
-correcta: "Simple",
-explicacion: "Tiene un único lexema acompañado de morfemas flexivos."
-},
+{nivel:3,tipo:"texto",pregunta:"Escribe el procedimiento de formación de «revivir».",palabra:"revivir",soluciones:["derivación","derivada"],explicacion:"Revivir se forma mediante derivación, al añadir el prefijo re- al lexema viv-."},
+{nivel:3,tipo:"texto",pregunta:"Escribe el procedimiento de formación de «rojiblanco».",palabra:"rojiblanco",soluciones:["composición","compuesta"],explicacion:"Rojiblanco se forma por composición: rojo + blanco."},
+{nivel:3,tipo:"texto",pregunta:"Escribe el procedimiento de formación de «reblandecer».",palabra:"reblandecer",soluciones:["parasíntesis","parasintesis","parasintética","parasintetica"],explicacion:"Reblandecer es parasintética: presenta afijos delante y detrás del lexema y *blandecer no existe en castellano."},
+{nivel:3,tipo:"clasificacion",pregunta:"Clasifica «EE UU» según el procedimiento explicado en la presentación.",palabra:"EE UU",categorias:["Acrónimo","Palabra derivada","Palabra compuesta","Palabra simple"],correcta:"Acrónimo",explicacion:"La presentación incluye EE UU como ejemplo dentro de la acronimia y explica la duplicación de iniciales cuando los términos de origen están en plural."},
+{nivel:3,tipo:"clasificacion",pregunta:"Clasifica «OMS» según el procedimiento explicado en la presentación.",palabra:"OMS",categorias:["Acrónimo","Palabra derivada","Palabra compuesta","Palabra simple"],correcta:"Acrónimo",explicacion:"La presentación presenta OMS como ejemplo de acrónimo formado a partir de las iniciales de Organización Mundial de la Salud."},
+{nivel:3,tipo:"mcq",pregunta:"¿Qué rasgo permite reconocer una palabra simple?",opciones:["Tiene dos lexemas","Tiene un lexema y puede llevar morfemas flexivos","Siempre lleva un prefijo","Tiene necesariamente un sufijo"],correcta:1,explicacion:"Las palabras simples están formadas solo por un lexema, que puede ir acompañado de afijos flexivos."},
+{nivel:3,tipo:"mcq",pregunta:"¿Qué rasgo diferencia la composición de la derivación?",opciones:["La composición une dos o más lexemas; la derivación añade afijos derivativos","La composición siempre usa prefijos","La derivación une dos lexemas","No existe diferencia"],correcta:0,explicacion:"La composición une lexemas; la derivación añade afijos derivativos a un lexema."},
+{nivel:3,tipo:"texto",pregunta:"Escribe qué procedimiento aparece en «vivencia» y enuncia el elemento derivativo.",palabra:"vivencia",soluciones:["derivación, -encia","derivación -encia","derivada, -encia","derivada -encia"],explicacion:"Vivencia es derivada y presenta el sufijo derivativo -encia."},
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica la palabra.",
-palabra: "sacacorchos",
-categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
-correcta: "Compuesta",
-explicacion: "Está formada mediante la unión de varios constituyentes léxicos."
-},
+/* NIVEL 4 · JUSTIFICA */
 
-{
-tipo: "mcq",
-pregunta: "¿Qué procedimiento consiste en añadir prefijos o sufijos derivativos a un lexema?",
-opciones: [
-"Composición",
-"Derivación",
-"Flexión",
-"Acronimia"
-],
-correcta: 1,
-explicacion: "La derivación consiste en añadir afijos derivativos al lexema."
-},
+{nivel:4,tipo:"texto",pregunta:"Justifica por qué «lápices» es una palabra simple. Indica qué tipo de elementos acompañan al lexema.",palabra:"lápices",soluciones:["simple, flexivos","simple, morfemas flexivos","simple; flexivos","simple flexivos"],explicacion:"Lápices es simple porque contiene un único lexema. Los elementos añadidos son morfemas flexivos."},
+{nivel:4,tipo:"texto",pregunta:"Explica por qué «rojiblanco» es una palabra compuesta.",palabra:"rojiblanco",soluciones:["compuesta, dos lexemas","compuesta, rojo y blanco","composición, dos lexemas","composición, rojo y blanco"],explicacion:"Es compuesta porque une dos lexemas: rojo + blanco."},
+{nivel:4,tipo:"texto",pregunta:"Explica por qué «reblandecer» es parasintética.",palabra:"reblandecer",soluciones:["parasintética, afijos delante y detrás, blandecer no existe","parasintetica, afijos delante y detrás, blandecer no existe","parasíntesis, afijos delante y detrás, blandecer no existe","parasintesis, afijos delante y detrás, blandecer no existe"],explicacion:"Cumple los dos requisitos indicados en la presentación: presenta afijos delante y detrás del lexema y, al eliminar el afijo inicial, *blandecer no existe en castellano."},
+{nivel:4,tipo:"mcq",pregunta:"Un alumno afirma: «Lápices es derivada porque tiene -es». ¿Qué respuesta es correcta?",opciones:["Sí, porque -es siempre es derivativo","No: -es es un morfema flexivo y la palabra sigue siendo simple","Sí, porque toda palabra con un sufijo es derivada","No, porque lápices es compuesta"],correcta:1,explicacion:"Los morfemas flexivos no forman palabras nuevas. En lápices, la palabra es simple y -es aporta información de número."},
+{nivel:4,tipo:"mcq",pregunta:"Un alumno afirma: «Rojiblanco es derivada porque tiene una terminación». ¿Qué respuesta es correcta?",opciones:["Sí, cualquier terminación convierte una palabra en derivada","No: la característica relevante es que une dos lexemas","Sí, porque blanco es un sufijo","No, porque es simple"],correcta:1,explicacion:"Rojiblanco es compuesta porque se forma mediante la unión de dos lexemas."},
+{nivel:4,tipo:"mcq",pregunta:"¿Qué comprobación se utiliza para justificar la parasíntesis de «reblandecer»?",opciones:["Comprobar que tiene un lexema","Comprobar que *blandecer no existe al eliminar el prefijo","Comprobar que contiene dos lexemas","Comprobar que termina en -er"],correcta:1,explicacion:"La presentación establece como segundo requisito que, si se elimina el afijo situado delante del lexema, la palabra resultante no exista en castellano."},
+{nivel:4,tipo:"texto",pregunta:"Relaciona «sencillas» con el procedimiento y los elementos que presenta.",palabra:"sencillas",soluciones:["simple, lexema y flexivos","simple lexema y flexivos","simple, un lexema y flexivos","simple un lexema y flexivos"],explicacion:"Sencillas es un ejemplo de palabra simple formada por un lexema acompañado de morfemas flexivos."},
+{nivel:4,tipo:"mcq",pregunta:"¿Cuál de estas opciones contiene dos procedimientos diferentes?",opciones:["orilla y lápices","revivir y vivencia","rojiblanco y revivir","escribiré y sencillas"],correcta:2,explicacion:"Rojiblanco es compuesta y revivir es derivada."},
 
-{
-tipo: "mcq",
-pregunta: "¿Qué procedimiento consiste en unir dos o más lexemas?",
-opciones: [
-"Derivación",
-"Flexión",
-"Composición",
-"Alomorfia"
-],
-correcta: 2,
-explicacion: "La composición une dos o más lexemas."
-},
+/* NIVEL 5 · FORMANTES Y ACRONIMIA */
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica «OMS».",
-palabra: "OMS",
-categorias: ["Sigla", "Acrónimo"],
-correcta: "Sigla",
-explicacion: "OMS es una sigla porque se forma con las iniciales de «Organización Mundial de la Salud» y se pronuncia letra por letra: «o-ene-ese»."
-},
+{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante bio-?",opciones:["vida","tierra","luz","agua"],correcta:0,explicacion:"Bio- significa «vida»."},
+{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante geo-?",opciones:["agua","tierra","piel","corazón"],correcta:1,explicacion:"Geo- significa «tierra»."},
+{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante tele-?",opciones:["lejos","luz","temor o aversión","estudio"],correcta:0,explicacion:"Tele- significa «lejos»."},
+{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante cardio-?",opciones:["piel","corazón","agua","escribir"],correcta:1,explicacion:"Cardio- significa «corazón»."},
+{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante foto-?",opciones:["luz","tierra","vida","lejos"],correcta:0,explicacion:"Foto- significa «luz»."},
+{nivel:5,tipo:"clasificacion",pregunta:"Clasifica «geología» según su procedimiento de formación.",palabra:"geología",categorias:["Compuesto culto","Derivada","Simple","Parasintética"],correcta:"Compuesto culto",explicacion:"La presentación explica que geología está formada por formantes de origen grecolatino y constituye un compuesto culto."},
+{nivel:5,tipo:"clasificacion",pregunta:"Clasifica «telescopio» según su procedimiento de formación.",palabra:"telescopio",categorias:["Compuesto culto","Derivada","Simple","Parasintética"],correcta:"Compuesto culto",explicacion:"Telescopio es un compuesto culto formado con formantes de origen grecolatino."},
+{nivel:5,tipo:"mcq",pregunta:"¿Qué diferencia destaca la presentación entre los formantes grecolatinos y los lexemas?",opciones:["Los formantes grecolatinos no existen como palabras independientes en castellano","Los formantes grecolatinos siempre son sufijos","Los lexemas no tienen significado","Los formantes grecolatinos solo aparecen al final"],correcta:0,explicacion:"Son raíces cultas que no existen como palabras independientes en castellano."},
 
-{
-tipo: "clasificacion",
-pregunta: "Clasifica «EE UU».",
-palabra: "EE UU",
-categorias: ["Sigla", "Acrónimo"],
-correcta: "Sigla",
-explicacion: "EE. UU. es una sigla porque se forma con las iniciales de «Estados Unidos» y se pronuncia letra por letra: «e-e-u-u»."
-},
+/* NIVEL 6 · INTEGRA Y RAZONA */
 
-{
-tipo: "mcq",
-pregunta: "¿Cuál de estas palabras es parasintética?",
-opciones: [
-"revivir",
-"rojiblanco",
-"reblandecer",
-"orilla"
-],
-correcta: 2,
-explicacion: "reblandecer es parasintética porque incorpora elementos delante y detrás del lexema y, al eliminar el prefijo, *blandecer no existe como palabra independiente."
-},
-
-{
-tipo: "mcq",
-pregunta: "¿Cuál de estas palabras es compuesta?",
-opciones: [
-"revivir",
-"vivencia",
-"rojiblanco",
-"orilla"
-],
-correcta: 2,
-explicacion: "rojiblanco se forma mediante la unión de dos lexemas."
-},
-
-{
-tipo: "mcq",
-pregunta: "¿Cuál de estas palabras es derivada?",
-opciones: [
-"orilla",
-"revivir",
-"rojiblanco",
-"reblandecer"
-],
-correcta: 1,
-explicacion: "revivir incorpora el prefijo derivativo re-."
-},
-
-{
-tipo: "mcq",
-pregunta: "¿Cuál de estas palabras es simple?",
-opciones: [
-"orilla",
-"revivir",
-"rojiblanco",
-"reblandecer"
-],
-correcta: 0,
-explicacion: "orilla está formada por un único lexema."
-}
+{nivel:6,tipo:"texto",pregunta:"Explica qué tipo de formación presenta «geología» y qué caracteriza a sus elementos.",palabra:"geología",soluciones:["compuesto culto, formantes grecolatinos","compuesto culto formantes grecolatinos","compuesto culto, raíces cultas","compuesto culto raíces cultas"],explicacion:"Geología es un compuesto culto formado por formantes de origen grecolatino, también llamados raíces cultas, que no existen como palabras independientes en castellano."},
+{nivel:6,tipo:"texto",pregunta:"Explica la diferencia entre «rojiblanco» y «geología» atendiendo a los elementos que se unen.",soluciones:["rojiblanco, dos lexemas; geología, formantes grecolatinos","rojiblanco dos lexemas geología formantes grecolatinos","rojiblanco, lexemas; geología, raíces cultas","rojiblanco lexemas geología raíces cultas"],explicacion:"Rojiblanco es un compuesto formado por lexemas del español; geología es un compuesto culto formado por raíces cultas de origen grecolatino."},
+{nivel:6,tipo:"mcq",pregunta:"¿Cuál de estas afirmaciones es correcta?",opciones:["Geología es derivada porque geo- es un prefijo","Geología es un compuesto culto porque combina formantes grecolatinos","Rojiblanco es un compuesto culto","Reblandecer es compuesto porque contiene dos lexemas"],correcta:1,explicacion:"La presentación considera geología un compuesto culto porque sus elementos son formantes de origen grecolatino."},
+{nivel:6,tipo:"mcq",pregunta:"¿Cuál de estas opciones reúne correctamente palabra y procedimiento?",opciones:["revivir — composición","rojiblanco — composición","reblandecer — derivación simple","geología — palabra simple"],correcta:1,explicacion:"Rojiblanco es un compuesto formado por la unión de rojo y blanco."},
+{nivel:6,tipo:"mcq",pregunta:"¿Cuál es la afirmación correcta sobre la acronimia en la presentación?",opciones:["OMS aparece como ejemplo de acrónimo y EE UU muestra la duplicación de iniciales en términos plurales","OMS es una palabra derivada","EE UU es un compuesto formado por dos lexemas","La acronimia consiste en añadir un sufijo a un lexema"],correcta:0,explicacion:"La presentación define la acronimia como formación a partir de iniciales u otras letras de varios términos; incluye OMS y explica EE UU para términos de origen en plural."},
+{nivel:6,tipo:"texto",pregunta:"Explica por qué los formantes grecolatinos no deben identificarse simplemente con prefijos y sufijos derivativos.",soluciones:["porque pueden formar palabras sin un lexema","porque no son simples afijos y pueden formar palabras sin lexema","pueden formar palabras sin necesidad de lexema","no son simples afijos derivativos y pueden formar palabras sin lexema"],explicacion:"La presentación señala que no se consideran simples afijos derivativos porque pueden formar palabras sin necesidad de que haya un lexema."},
+{nivel:6,tipo:"clasificacion",pregunta:"Clasifica «herbívoro» según la terminología de la presentación.",palabra:"herbívoro",categorias:["Compuesto culto","Derivada","Simple","Parasintética"],correcta:"Compuesto culto",explicacion:"La presentación considera compuestos cultos las palabras constituidas por un lexema y una raíz culta, como herbívoro/a."},
+{nivel:6,tipo:"mcq",pregunta:"¿Qué conjunto está formado únicamente por ejemplos de la presentación?",opciones:["orilla, revivir, rojiblanco, reblandecer","geología, telescopio, herbívoro, OMS","A y B","Ninguno"],correcta:2,explicacion:"Todos los términos de las opciones A y B aparecen como ejemplos en los materiales."}
 
 ];
-
 
 /* =====================================================
    BANCO: ANALIZA
@@ -1567,9 +1473,12 @@ identifica: [
 ],
 
 clasifica: [
-    ["clasificacion", 4],
-    ["mcq", 4],
-    ["clasificacion", 2]
+    [1, 4],
+    [2, 4],
+    [3, 4],
+    [4, 3],
+    [5, 3],
+    [6, 2]
 ],
 
 analiza: [
@@ -1583,6 +1492,7 @@ reto: [
     ["mcq", 2],
     ["texto", 2]
 ]
+
 
 };
 
@@ -1685,6 +1595,64 @@ function crearPartida(tipo) {
                         [...usadas, ...Array.from(indicesSeleccionados)]
                     )
                 ).slice(-22)
+            )
+        );
+
+        return seleccion;
+    }
+
+    /* Clasifica también progresa por niveles y evita repetir
+       inmediatamente las mismas actividades. */
+    if (tipo === "clasifica") {
+
+        const usadas =
+            JSON.parse(
+                localStorage.getItem("clasificaUsadas") || "[]"
+            );
+
+        const seleccion = [];
+        const indicesSeleccionados = new Set();
+
+        configuracion.clasifica.forEach(
+            ([nivel, cantidad]) => {
+
+                let candidatos =
+                    banco
+                        .map((actividad, indice) => ({actividad, indice}))
+                        .filter(item =>
+                            item.actividad.nivel === nivel &&
+                            !usadas.includes(item.indice)
+                        );
+
+                if (candidatos.length < cantidad) {
+                    candidatos =
+                        banco
+                            .map((actividad, indice) => ({actividad, indice}))
+                            .filter(item =>
+                                item.actividad.nivel === nivel &&
+                                !indicesSeleccionados.has(item.indice)
+                            );
+                }
+
+                candidatos = mezclar(candidatos);
+
+                candidatos
+                    .slice(0, cantidad)
+                    .forEach(item => {
+                        seleccion.push(item.actividad);
+                        indicesSeleccionados.add(item.indice);
+                    });
+            }
+        );
+
+        localStorage.setItem(
+            "clasificaUsadas",
+            JSON.stringify(
+                Array.from(
+                    new Set(
+                        [...usadas, ...Array.from(indicesSeleccionados)]
+                    )
+                ).slice(-24)
             )
         );
 
