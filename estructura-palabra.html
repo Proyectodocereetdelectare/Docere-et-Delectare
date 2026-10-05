@@ -703,7 +703,7 @@ onclick="volverMenu()">
 <div id="perfilModal">
     <div class="modal-contenido">
         <h2>👋 ¡Hola!</h2>
-        <p>Escribe un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni introducir ningún dato personal.</p>
+        <p>Escribe un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni introducir ningún dato personal. Tu progreso se asocia a un identificador anónimo generado automáticamente en este dispositivo.</p>
         <input id="aliasInput" class="perfil-input" maxlength="20" autocomplete="off" placeholder="Tu nombre o alias">
         <br>
         <button class="boton boton-principal" onclick="guardarPerfil()">
@@ -759,6 +759,21 @@ function comparar(respuesta, soluciones) {
    PERFIL Y PROGRESO
 ===================================================== */
 
+function obtenerPlayerId() {
+    let id = localStorage.getItem("docerePlayerId");
+
+    if (!id) {
+        id = crypto.randomUUID
+            ? crypto.randomUUID()
+            : "p_" + Date.now() + "_" +
+              Math.random().toString(36).slice(2, 12);
+
+        localStorage.setItem("docerePlayerId", id);
+    }
+
+    return id;
+}
+
 function obtenerAlias() {
     return localStorage.getItem("docereAlias") || "";
 }
@@ -775,6 +790,13 @@ function guardarProgreso(progreso) {
         "docereProgreso",
         JSON.stringify(progreso)
     );
+}
+
+function limpiarAlias(alias) {
+    return alias
+        .replace(/[<>]/g, "")
+        .trim()
+        .slice(0, 20);
 }
 
 function abrirPerfil(forzar) {
@@ -794,21 +816,28 @@ function abrirPerfil(forzar) {
 
 function guardarPerfil() {
     const input = document.getElementById("aliasInput");
-    const alias = input.value.trim();
+    const alias = limpiarAlias(input.value);
 
     if (!alias) {
         input.focus();
         return;
     }
 
-    localStorage.setItem(
-        "docereAlias",
-        alias.replace(/[<>]/g, "")
-    );
+    // El alias es solo el nombre visible.
+    // La identidad anónima real es un ID aleatorio del dispositivo.
+    obtenerPlayerId();
+
+    localStorage.setItem("docereAlias", alias);
 
     document.getElementById("perfilModal").style.display = "none";
 
     actualizarAliasInterfaz();
+
+    if (window.bloquePendiente) {
+        const pendiente = window.bloquePendiente;
+        window.bloquePendiente = null;
+        iniciarBloque(pendiente);
+    }
 }
 
 function actualizarAliasInterfaz() {
@@ -824,6 +853,7 @@ function asegurarPerfil() {
         return false;
     }
 
+    obtenerPlayerId();
     actualizarAliasInterfaz();
     return true;
 }
@@ -2559,6 +2589,7 @@ function mostrarResultado() {
     }
 
     progreso.historial.unshift({
+        playerId: obtenerPlayerId(),
         alias: obtenerAlias(),
         bloque: nombres[bloqueActual],
         nota: notaFinal,
