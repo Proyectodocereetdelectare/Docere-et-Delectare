@@ -47,6 +47,10 @@ h2 {
     margin-top: 0;
 }
 
+h3 {
+    margin-top: 25px;
+}
+
 .subtitulo {
     color: #625b51;
     font-size: 19px;
@@ -95,10 +99,6 @@ h2 {
     line-height: 1.5;
 }
 
-.bloque.deshabilitado {
-    opacity: 0.55;
-}
-
 .boton {
     margin-top: 25px;
     padding: 13px 25px;
@@ -114,13 +114,14 @@ h2 {
     background: #cfc5b5;
 }
 
+.boton-principal {
+    background: #bcb1a0;
+    color: white;
+}
+
 #actividad,
 #resultado {
     display: none;
-}
-
-.cabecera-actividad {
-    margin-bottom: 25px;
 }
 
 .progreso-texto {
@@ -136,7 +137,7 @@ h2 {
     background: #eee8dc;
     border-radius: 20px;
     overflow: hidden;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
 .progreso {
@@ -146,26 +147,26 @@ h2 {
     transition: width 0.3s;
 }
 
-.etiqueta-actividad {
+.etiqueta {
     display: inline-block;
-    background: #eee8dc;
     padding: 8px 15px;
     border-radius: 20px;
-    font-size: 14px;
+    background: #eee8dc;
+    color: #625b51;
     margin-bottom: 15px;
+    font-size: 14px;
 }
 
 #pregunta {
-    font-size: 25px;
+    font-size: 24px;
     line-height: 1.5;
-    margin-bottom: 25px;
+    margin: 20px 0;
 }
 
 .palabra {
     font-size: 36px;
     font-weight: bold;
     margin: 20px 0 30px;
-    letter-spacing: 1px;
 }
 
 .opciones {
@@ -175,7 +176,7 @@ h2 {
 }
 
 .opcion {
-    padding: 19px;
+    padding: 18px;
     border: none;
     border-radius: 13px;
     background: #eee8dc;
@@ -202,22 +203,79 @@ h2 {
     background: #ead8d5 !important;
 }
 
-#feedback {
-    margin-top: 25px;
+.campo {
+    width: 100%;
+    max-width: 650px;
+    padding: 14px;
+    margin: 8px auto;
+    border: 2px solid #ddd5c8;
+    border-radius: 10px;
+    font-family: Georgia, "Times New Roman", serif;
     font-size: 17px;
-    line-height: 1.6;
-    text-align: left;
-    background: #f7f4ee;
+    display: block;
+}
+
+.campo:focus {
+    outline: none;
+    border-color: #9b9183;
+}
+
+.etiqueta-campo {
+    display: block;
+    margin-top: 18px;
+    font-weight: bold;
+}
+
+.segmentacion {
+    font-size: 18px;
+    color: #625b51;
+    margin: 10px 0 20px;
+}
+
+.feedback {
+    margin-top: 25px;
     padding: 18px;
     border-radius: 12px;
+    background: #f7f4ee;
+    text-align: left;
+    line-height: 1.6;
+}
+
+.exito {
+    background: #e2eee0;
+}
+
+.error {
+    background: #f0dfdc;
+}
+
+.lista-clasificacion {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.clasificacion-btn {
+    padding: 15px;
+    border: 2px solid #ddd5c8;
+    background: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+}
+
+.clasificacion-btn:hover {
+    background: #eee8dc;
 }
 
 #siguiente {
     display: none;
 }
 
-#resultado h2 {
-    margin-bottom: 10px;
+#resultado {
+    text-align: center;
 }
 
 #nota {
@@ -229,13 +287,18 @@ h2 {
 #mensaje {
     font-size: 20px;
     line-height: 1.6;
-    margin-bottom: 20px;
 }
 
 .separador {
     height: 1px;
     background: #e5dfd4;
     margin: 30px 0;
+}
+
+.pequeno {
+    color: #625b51;
+    font-size: 14px;
+    margin-top: 10px;
 }
 
 @media (max-width: 700px) {
@@ -249,7 +312,8 @@ h2 {
     }
 
     .bloques,
-    .opciones {
+    .opciones,
+    .lista-clasificacion {
         grid-template-columns: 1fr;
     }
 
@@ -273,9 +337,9 @@ h2 {
 <div class="contenedor">
 
 
-<!-- ================================================= -->
-<!-- MENÚ -->
-<!-- ================================================= -->
+<!-- =====================================================
+     MENÚ
+===================================================== -->
 
 <div class="panel" id="menu">
 
@@ -289,8 +353,8 @@ Lengua Castellana y Literatura · 4.º ESO
 
 <div class="introduccion">
 
-Aprende a reconocer, clasificar y analizar las palabras
-y sus elementos.
+Practica la estructura y formación de las palabras
+mediante actividades progresivas y variadas.
 
 </div>
 
@@ -298,69 +362,61 @@ y sus elementos.
 <div class="bloques">
 
 
-<!-- IDENTIFICA -->
-
 <button class="bloque"
-onclick="iniciarActividad('identifica')">
+onclick="iniciarBloque('identifica')">
 
 <span class="icono">🔎</span>
 
-<strong>1. Identifica</strong>
+<strong>Identifica</strong>
 
 <span class="descripcion">
 Lexemas, morfemas, afijos,
-flexivos, derivativos, alomorfos e infijos
+alomorfos e infijos
 </span>
 
 </button>
 
 
-<!-- CLASIFICA -->
-
 <button class="bloque"
-onclick="iniciarActividad('clasifica')">
+onclick="iniciarBloque('clasifica')">
 
 <span class="icono">🏷️</span>
 
-<strong>2. Clasifica</strong>
+<strong>Clasifica</strong>
 
 <span class="descripcion">
-Palabras simples, derivadas,
-compuestas, parasintéticas, siglas y acrónimos
+Simples, derivadas, compuestas,
+parasintéticas, siglas y acrónimos
 </span>
 
 </button>
 
 
-<!-- ANALIZA -->
-
 <button class="bloque"
-onclick="iniciarActividad('analiza')">
+onclick="iniciarBloque('analiza')">
 
 <span class="icono">🧩</span>
 
-<strong>3. Analiza</strong>
+<strong>Analiza</strong>
 
 <span class="descripcion">
-Descomposición morfológica
+Segmentación, constituyentes
 y formantes grecolatinos
 </span>
 
 </button>
 
 
-<!-- RETO -->
-
 <button class="bloque"
-onclick="iniciarActividad('reto')">
+onclick="iniciarBloque('reto')">
 
 <span class="icono">🏆</span>
 
-<strong>4. Reto final</strong>
+<strong>Reto final</strong>
 
 <span class="descripcion">
-Mezcla todos los contenidos
-y aumenta la dificultad
+Análisis y aplicación de todos
+los contenidos
 </span>
 
 </button>
@@ -380,16 +436,16 @@ onclick="volverMorfologia()">
 
 
 
-<!-- ================================================= -->
-<!-- ACTIVIDAD -->
-<!-- ================================================= -->
+<!-- =====================================================
+     ACTIVIDAD
+===================================================== -->
 
 <div class="panel" id="actividad">
 
 <div class="progreso-texto">
 
 <span id="numeroPregunta">
-Pregunta 1
+Actividad 1 de 20
 </span>
 
 <span id="porcentaje">
@@ -408,12 +464,8 @@ id="barraProgreso">
 </div>
 
 
-<div class="cabecera-actividad">
-
-<div class="etiqueta-actividad"
-id="nombreActividad">
-</div>
-
+<div class="etiqueta"
+id="etiquetaActividad">
 </div>
 
 
@@ -423,13 +475,18 @@ id="nombreActividad">
 class="palabra">
 </div>
 
-
-<div class="opciones"
-id="opciones">
-</div>
-
+<div id="contenidoActividad"></div>
 
 <div id="feedback"></div>
+
+
+<button class="boton boton-principal"
+id="comprobar"
+onclick="comprobar()">
+
+Comprobar
+
+</button>
 
 
 <button class="boton"
@@ -455,14 +512,13 @@ onclick="volverMenu()">
 
 
 
-<!-- ================================================= -->
-<!-- RESULTADO -->
-<!-- ================================================= -->
+<!-- =====================================================
+     RESULTADO
+===================================================== -->
 
-<div class="panel"
-id="resultado">
+<div class="panel" id="resultado">
 
-<h2>🎉 Actividad terminada</h2>
+<h2>🎉 ¡Actividad terminada!</h2>
 
 <div id="nota"></div>
 
@@ -470,10 +526,10 @@ id="resultado">
 
 <div class="separador"></div>
 
-<button class="boton"
-onclick="repetirActividad()">
+<button class="boton boton-principal"
+onclick="repetirBloque()">
 
-🔄 Repetir
+🔄 Nueva partida
 
 </button>
 
@@ -495,18 +551,52 @@ onclick="volverMenu()">
 
 
 /* =====================================================
-   BANCO DE PREGUNTAS
+   UTILIDADES
 ===================================================== */
+
+function mezclar(array) {
+
+    return [...array].sort(
+        () => Math.random() - 0.5
+    );
+
+}
+
+
+function normalizar(texto) {
+
+    return texto
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[+\-_|/]/g, "")
+        .replace(/\s+/g, "")
+        .trim();
+
+}
+
+
+function comparar(respuesta, soluciones) {
+
+    const r = normalizar(respuesta);
+
+    return soluciones.some(
+        s => r === normalizar(s)
+    );
+
+}
 
 
 /* =====================================================
-   1. IDENTIFICA
+   BANCO: IDENTIFICA
+   NIVEL 1
 ===================================================== */
 
 const identifica = [
 
 {
-pregunta: "¿Qué es el morfema?",
+tipo: "mcq",
+pregunta: "¿Qué es un morfema?",
 opciones: [
 "La mínima unidad lingüística con significado",
 "El significado central de una familia léxica",
@@ -514,11 +604,11 @@ opciones: [
 "Una sílaba sin significado"
 ],
 correcta: 0,
-explicacion:
-"El morfema es la mínima unidad lingüística con significado."
+explicacion: "El morfema es la mínima unidad lingüística con significado."
 },
 
 {
+tipo: "mcq",
 pregunta: "¿Qué elemento aporta el significado central de una familia léxica?",
 opciones: [
 "El lexema",
@@ -527,51 +617,25 @@ opciones: [
 "El artículo"
 ],
 correcta: 0,
-explicacion:
-"Los lexemas aportan el significado central y común a los términos de una familia léxica."
+explicacion: "Los lexemas aportan el significado central y común a los términos de una familia léxica."
 },
 
 {
-pregunta: "En «libros», ¿qué elemento funciona como lexema?",
+tipo: "mcq",
+pregunta: "¿Cuál es un morfema flexivo?",
 opciones: [
-"libr-",
-"-o",
-"-s",
-"libros"
-],
-correcta: 0,
-explicacion:
-"«libr-» aporta el significado léxico central."
-},
-
-{
-pregunta: "En «niñas», ¿qué elemento indica el género?",
-opciones: [
-"niñ-",
-"-a",
-"-s",
-"niñas"
-],
-correcta: 1,
-explicacion:
-"«-a» es el morfema flexivo que indica género femenino."
-},
-
-{
-pregunta: "En «libros», ¿qué elemento indica el número?",
-opciones: [
-"libr-",
-"-o",
-"-s",
-"libro"
+"re- en «releer»",
+"-ero en «minero»",
+"-s en «libros»",
+"im- en «imposible»"
 ],
 correcta: 2,
-explicacion:
-"«-s» es el morfema flexivo que indica número plural."
+explicacion: "«-s» indica número plural."
 },
 
 {
-pregunta: "¿Cuál de estos elementos es un afijo derivativo?",
+tipo: "mcq",
+pregunta: "¿Cuál es un afijo derivativo?",
 opciones: [
 "-s en «casas»",
 "re- en «releer»",
@@ -579,750 +643,724 @@ opciones: [
 "-o en «libro»"
 ],
 correcta: 1,
-explicacion:
-"«re-» es un afijo derivativo y, concretamente, un prefijo."
+explicacion: "«re-» es un prefijo derivativo."
 },
 
 {
-pregunta: "¿Cuál de estos elementos es un sufijo?",
+tipo: "mcq",
+pregunta: "¿Dónde se sitúa un prefijo?",
 opciones: [
-"im- en «imposible»",
-"re- en «releer»",
-"-eza en «belleza»",
-"-s en «casas»"
-],
-correcta: 2,
-explicacion:
-"«-eza» aparece detrás del lexema y es un sufijo derivativo."
-},
-
-{
-pregunta: "¿Cuál de estos elementos es un prefijo?",
-opciones: [
-"-ero",
-"re-",
-"-eza",
-"-s"
-],
-correcta: 1,
-explicacion:
-"«re-» se sitúa delante del lexema y es un prefijo."
-},
-
-{
-pregunta: "¿Cuál de estos es un morfema flexivo?",
-opciones: [
-"re- en «revivir»",
-"-ero en «minero»",
-"-s en «libros»",
-"im- en «impar»"
-],
-correcta: 2,
-explicacion:
-"«-s» indica número plural, por lo que es un morfema flexivo."
-},
-
-{
-pregunta: "En los verbos, los morfemas flexivos pueden indicar...",
-opciones: [
-"Tiempo, modo, número y persona",
-"Solo género",
-"Solo número",
-"Únicamente significado léxico"
+"Delante del lexema",
+"Detrás del lexema",
+"Siempre entre dos lexemas",
+"Solo al final"
 ],
 correcta: 0,
-explicacion:
-"Los morfemas flexivos verbales indican tiempo, modo, número y persona."
+explicacion: "Los prefijos se sitúan delante del lexema."
 },
 
 {
+tipo: "mcq",
+pregunta: "¿Dónde se sitúa un sufijo?",
+opciones: [
+"Delante del lexema",
+"Detrás del lexema",
+"Siempre al principio",
+"Fuera de la palabra"
+],
+correcta: 1,
+explicacion: "Los sufijos aparecen detrás del lexema."
+},
+
+{
+tipo: "mcq",
 pregunta: "¿Qué es un alomorfo?",
 opciones: [
 "Una variante de un mismo morfema",
 "Un lexema independiente",
-"Un tipo de sufijo",
-"Una palabra compuesta"
+"Un tipo de palabra compuesta",
+"Un morfema exclusivamente flexivo"
 ],
 correcta: 0,
-explicacion:
-"Un alomorfo es una variante de un morfema."
+explicacion: "Un alomorfo es una variante de un morfema."
 },
 
 {
+tipo: "mcq",
+pregunta: "¿Qué es un infijo?",
+opciones: [
+"Un elemento de enlace situado en el interior de una palabra",
+"Un prefijo derivativo",
+"Un morfema de plural",
+"El lexema"
+],
+correcta: 0,
+explicacion: "El infijo es un elemento de enlace situado en el interior de una palabra que no aporta significado."
+},
+
+
+/* SEGMENTACIÓN */
+
+{
+tipo: "segmentacion",
+pregunta: "Segmenta la palabra e identifica sus constituyentes.",
+palabra: "niñas",
+soluciones: [
+"niñ- + -a + -s",
+"niñ + a + s"
+],
+respuesta: "niñ- + -a + -s",
+explicacion: "niñ- es el lexema; -a indica género y -s indica número."
+},
+
+{
+tipo: "segmentacion",
+pregunta: "Segmenta la palabra.",
+palabra: "libros",
+soluciones: [
+"libr- + -o + -s",
+"libr + o + s"
+],
+respuesta: "libr- + -o + -s",
+explicacion: "libr- es el lexema; -o y -s son morfemas flexivos."
+},
+
+{
+tipo: "segmentacion",
+pregunta: "Segmenta la palabra.",
+palabra: "releer",
+soluciones: [
+"re- + le- + -er",
+"re + le + er"
+],
+respuesta: "re- + le- + -er",
+explicacion: "re- es un prefijo derivativo y le- constituye el lexema verbal."
+},
+
+
+/* IDENTIFICACIÓN */
+
+{
+tipo: "texto",
+pregunta: "Escribe el lexema de la palabra «panadero».",
+palabra: "panadero",
+soluciones: ["pan", "pan-"],
+explicacion: "El lexema es pan-."
+},
+
+{
+tipo: "texto",
+pregunta: "Escribe el prefijo de «imposible».",
+palabra: "imposible",
+soluciones: ["im", "im-"],
+explicacion: "im- es un prefijo derivativo de negación."
+},
+
+{
+tipo: "texto",
+pregunta: "Escribe el sufijo derivativo de «belleza».",
+palabra: "belleza",
+soluciones: ["eza", "-eza"],
+explicacion: "-eza es un sufijo derivativo."
+},
+
+{
+tipo: "mcq",
+pregunta: "En «panecillo», ¿qué función cumple «-ec-»?",
+opciones: [
+"Lexema",
+"Prefijo",
+"Elemento de enlace o infijo",
+"Morfema de plural"
+],
+correcta: 2,
+explicacion: "En «panecillo», -ec- funciona como elemento de enlace."
+},
+
+{
+tipo: "mcq",
 pregunta: "¿Qué relación existe entre «sueñ-» y «soñ-»?",
 opciones: [
 "Son dos lexemas sin relación",
 "Son alomorfos",
-"Uno es un sufijo y otro un prefijo",
+"Uno es un prefijo",
 "Son dos infijos"
 ],
 correcta: 1,
-explicacion:
-"Según la presentación, «sueñ-» y «soñ-» son alomorfos distintos del mismo lexema."
+explicacion: "La presentación presenta sueñ- y soñ- como alomorfos del mismo lexema."
 },
 
 {
-pregunta: "¿Cuál de estas series muestra variantes de un mismo morfema de negación?",
+tipo: "mcq",
+pregunta: "¿Qué relación existe entre «im-», «in-» e «i-»?",
 opciones: [
-"im- / in- / i-",
-"-s / -a / -o",
-"re- / con- / des-",
-"-ero / -eza / -ción"
+"Son variantes de un mismo morfema de negación",
+"Son tres lexemas",
+"Son morfemas flexivos",
+"Son sufijos"
 ],
 correcta: 0,
-explicacion:
-"im-, in- e i- pueden funcionar como variantes del morfema de negación."
-},
-
-{
-pregunta: "¿Qué es un infijo?",
-opciones: [
-"Un elemento de enlace situado en el interior de una palabra",
-"Un prefijo que modifica el significado",
-"Un morfema que indica plural",
-"El lexema de una palabra"
-],
-correcta: 0,
-explicacion:
-"El infijo es un elemento de enlace situado en el interior de una palabra que no aporta significado."
-},
-
-{
-pregunta: "En «panecillo», ¿qué función cumple «-ec-»?",
-opciones: [
-"Es un lexema",
-"Es un prefijo",
-"Es un elemento de enlace o infijo",
-"Es un morfema de plural"
-],
-correcta: 2,
-explicacion:
-"En «panecillo», «-ec-» funciona como elemento de enlace y no aporta significado."
+explicacion: "Son variantes del mismo morfema de negación."
 }
 
 ];
 
 
 /* =====================================================
-   2. CLASIFICA
+   BANCO: CLASIFICA
 ===================================================== */
 
 const clasifica = [
 
 {
-pregunta: "¿Qué tipo de palabra es «orilla»?",
-opciones: [
-"Simple",
-"Derivada",
-"Compuesta",
-"Parasintética"
-],
-correcta: 0,
-explicacion:
-"Las palabras simples están formadas únicamente por un lexema, con posibles afijos flexivos."
+tipo: "clasificacion",
+pregunta: "Clasifica la palabra.",
+palabra: "orilla",
+categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
+correcta: "Simple",
+explicacion: "Está formada por un único lexema."
 },
 
 {
-pregunta: "¿Qué tipo de palabra es «lápices»?",
-opciones: [
-"Simple",
-"Derivada",
-"Compuesta",
-"Parasintética"
-],
-correcta: 0,
-explicacion:
-"«lápices» tiene un único lexema y morfemas flexivos."
+tipo: "clasificacion",
+pregunta: "Clasifica la palabra.",
+palabra: "revivir",
+categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
+correcta: "Derivada",
+explicacion: "Se forma mediante el prefijo derivativo re-."
 },
 
 {
-pregunta: "¿Qué tipo de palabra es «revivir»?",
+tipo: "clasificacion",
+pregunta: "Clasifica la palabra.",
+palabra: "vivencia",
+categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
+correcta: "Derivada",
+explicacion: "Se forma mediante un sufijo derivativo."
+},
+
+{
+tipo: "clasificacion",
+pregunta: "Clasifica la palabra.",
+palabra: "rojiblanco",
+categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
+correcta: "Compuesta",
+explicacion: "Une dos lexemas: rojo + blanco."
+},
+
+{
+tipo: "clasificacion",
+pregunta: "Clasifica la palabra.",
+palabra: "reblandecer",
+categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
+correcta: "Parasintética",
+explicacion: "Presenta elementos delante y detrás del lexema y *blandecer no existe en castellano."
+},
+
+{
+tipo: "clasificacion",
+pregunta: "Clasifica la palabra.",
+palabra: "lápices",
+categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
+correcta: "Simple",
+explicacion: "Tiene un único lexema acompañado de morfemas flexivos."
+},
+
+{
+tipo: "clasificacion",
+pregunta: "Clasifica la palabra.",
+palabra: "sacacorchos",
+categorias: ["Simple", "Derivada", "Compuesta", "Parasintética"],
+correcta: "Compuesta",
+explicacion: "Está formada mediante la unión de varios constituyentes léxicos."
+},
+
+{
+tipo: "mcq",
+pregunta: "¿Qué procedimiento consiste en añadir prefijos o sufijos derivativos a un lexema?",
 opciones: [
-"Simple",
-"Derivada",
-"Compuesta",
-"Parasintética"
+"Composición",
+"Derivación",
+"Flexión",
+"Acronimia"
 ],
 correcta: 1,
-explicacion:
-"Se forma añadiendo el prefijo derivativo «re-» al lexema «viv-»."
+explicacion: "La derivación consiste en añadir afijos derivativos al lexema."
 },
 
 {
-pregunta: "¿Qué tipo de palabra es «vivencia»?",
+tipo: "mcq",
+pregunta: "¿Qué procedimiento consiste en unir dos o más lexemas?",
 opciones: [
-"Simple",
-"Derivada",
-"Compuesta",
-"Parasintética"
-],
-correcta: 1,
-explicacion:
-"«vivencia» se forma mediante un sufijo derivativo añadido al lexema."
-},
-
-{
-pregunta: "¿Qué tipo de palabra es «rojiblanco»?",
-opciones: [
-"Simple",
-"Derivada",
-"Compuesta",
-"Parasintética"
+"Derivación",
+"Flexión",
+"Composición",
+"Alomorfia"
 ],
 correcta: 2,
-explicacion:
-"Se forma mediante la unión de dos lexemas: rojo + blanco."
+explicacion: "La composición une dos o más lexemas."
 },
 
 {
-pregunta: "¿Qué tipo de palabra es «reblandecer»?",
-opciones: [
-"Simple",
-"Derivada",
-"Compuesta",
-"Parasintética"
-],
-correcta: 3,
-explicacion:
-"Es parasintética porque presenta afijos a ambos lados del lexema y la forma resultante sin el prefijo no existe en castellano."
+tipo: "clasificacion",
+pregunta: "Clasifica «OMS».",
+palabra: "OMS",
+categorias: ["Sigla", "Acrónimo"],
+correcta: "Acrónimo",
+explicacion: "La presentación incluye OMS como ejemplo de acrónimo."
 },
 
 {
-pregunta: "¿Cuál de estas palabras es simple?",
-opciones: [
-"revivir",
-"orilla",
-"rojiblanco",
-"reblandecer"
-],
-correcta: 1,
-explicacion:
-"«orilla» está formada por un único lexema."
+tipo: "clasificacion",
+pregunta: "Clasifica «EE UU».",
+palabra: "EE UU",
+categorias: ["Sigla", "Acrónimo"],
+correcta: "Acrónimo",
+explicacion: "La presentación incluye EE UU dentro de la explicación de la acronimia."
 },
 
 {
-pregunta: "¿Cuál de estas palabras es derivada?",
-opciones: [
-"revivir",
-"orilla",
-"rojiblanco",
-"reblandecer"
-],
-correcta: 0,
-explicacion:
-"«revivir» se forma añadiendo el prefijo derivativo «re-»."
-},
-
-{
-pregunta: "¿Cuál de estas palabras es compuesta?",
-opciones: [
-"lápices",
-"vivencia",
-"rojiblanco",
-"reblandecer"
-],
-correcta: 2,
-explicacion:
-"«rojiblanco» une dos lexemas: rojo + blanco."
-},
-
-{
+tipo: "mcq",
 pregunta: "¿Cuál de estas palabras es parasintética?",
 opciones: [
 "revivir",
-"orilla",
+"rojiblanco",
 "reblandecer",
-"rojiblanco"
+"orilla"
 ],
 correcta: 2,
-explicacion:
-"«reblandecer» presenta simultáneamente elementos delante y detrás del lexema."
+explicacion: "reblandecer es el ejemplo de parasíntesis presentado en los materiales."
 },
 
 {
-pregunta: "Según la presentación, ¿qué procedimiento forma palabras mediante la unión de dos o más lexemas?",
+tipo: "mcq",
+pregunta: "¿Cuál de estas palabras es compuesta?",
 opciones: [
-"Derivación",
-"Composición",
-"Flexión",
-"Alomorfia"
+"revivir",
+"vivencia",
+"rojiblanco",
+"orilla"
 ],
-correcta: 1,
-explicacion:
-"La composición consiste en formar palabras nuevas mediante la unión de dos o más lexemas."
+correcta: 2,
+explicacion: "rojiblanco se forma mediante la unión de dos lexemas."
 },
 
 {
-pregunta: "Según la presentación, ¿qué procedimiento consiste en añadir prefijos o sufijos derivativos al lexema?",
+tipo: "mcq",
+pregunta: "¿Cuál de estas palabras es derivada?",
 opciones: [
-"Composición",
-"Derivación",
-"Acronimia",
-"Flexión"
-],
-correcta: 1,
-explicacion:
-"La derivación consiste en añadir afijos derivativos al lexema."
-},
-
-{
-pregunta: "¿Cuál de estos ejemplos corresponde a la acronimia presentada en los materiales?",
-opciones: [
-"OMS",
 "orilla",
 "revivir",
-"rojiblanco"
+"rojiblanco",
+"reblandecer"
 ],
-correcta: 0,
-explicacion:
-"La presentación explica la acronimia y utiliza «OMS» como ejemplo."
+correcta: 1,
+explicacion: "revivir incorpora el prefijo derivativo re-."
 },
 
 {
-pregunta: "¿Qué procedimiento está presente en «EE UU», según la presentación?",
+tipo: "mcq",
+pregunta: "¿Cuál de estas palabras es simple?",
 opciones: [
-"Acronimia",
-"Derivación",
-"Composición léxica",
-"Flexión"
+"orilla",
+"revivir",
+"rojiblanco",
+"reblandecer"
 ],
 correcta: 0,
-explicacion:
-"La presentación señala que cuando los términos están en plural pueden duplicarse las iniciales: EE UU."
-},
-
-{
-pregunta: "¿Cuál de estas clasificaciones es correcta?",
-opciones: [
-"revivir → derivada",
-"rojiblanco → simple",
-"orilla → compuesta",
-"reblandecer → simple"
-],
-correcta: 0,
-explicacion:
-"«revivir» es una palabra derivada porque incorpora el prefijo «re-»."
+explicacion: "orilla está formada por un único lexema."
 }
 
 ];
 
 
 /* =====================================================
-   3. ANALIZA
+   BANCO: ANALIZA
 ===================================================== */
 
 const analiza = [
 
 {
-pregunta: "¿Qué elemento es el lexema en «re-viv-ir»?",
-opciones: [
-"re-",
-"viv-",
-"-ir",
-"re-viv-"
+tipo: "analisis",
+pregunta: "Realiza un análisis completo.",
+palabra: "relectura",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 1,
-explicacion:
-"«viv-» es el lexema, que aporta el significado léxico central."
+soluciones: {
+segmentacion: ["re- + lect- + -ura", "re + lect + ura"],
+lexema: ["lect", "lect-"],
+derivativos: ["re- + -ura", "re + ura"],
+tipo: ["derivada"]
+},
+explicacion: "re- es un prefijo derivativo, lect- es el lexema y -ura es un sufijo derivativo. Es una palabra derivada."
 },
 
 {
-pregunta: "En «re-viv-ir», ¿qué función cumple «re-»?",
-opciones: [
-"Lexema",
-"Prefijo derivativo",
-"Infijo",
-"Morfema flexivo"
+tipo: "analisis",
+pregunta: "Realiza un análisis completo.",
+palabra: "desigualdad",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 1,
-explicacion:
-"«re-» es un prefijo derivativo situado delante del lexema."
+soluciones: {
+segmentacion: ["des- + igual + -dad", "des + igual + dad"],
+lexema: ["igual"],
+derivativos: ["des- + -dad", "des + dad"],
+tipo: ["derivada"]
+},
+explicacion: "des- es prefijo, igual es el lexema y -dad es sufijo derivativo."
 },
 
 {
-pregunta: "En «libro-s», ¿qué función cumple «-s»?",
-opciones: [
-"Sufijo derivativo",
-"Prefijo",
-"Morfema flexivo de número",
-"Lexema"
+tipo: "analisis",
+pregunta: "Realiza un análisis completo.",
+palabra: "inutilidad",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 2,
-explicacion:
-"«-s» indica número plural y, por tanto, es un morfema flexivo."
+soluciones: {
+segmentacion: ["in- + util + -idad", "in + util + idad"],
+lexema: ["util", "útil"],
+derivativos: ["in- + -idad", "in + idad"],
+tipo: ["derivada"]
+},
+explicacion: "in- es un prefijo derivativo, útil es el lexema y -idad es un sufijo derivativo."
 },
 
 {
-pregunta: "¿Qué significa el formante «cardio-»?",
-opciones: [
-"Vida",
-"Corazón",
-"Tierra",
-"Agua"
+tipo: "analisis",
+pregunta: "Realiza un análisis completo.",
+palabra: "panecillos",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["especial", "Elemento especial"],
+["tipo", "Tipo de elemento"]
 ],
-correcta: 1,
-explicacion:
-"«cardio-» es un formante de origen grecolatino relacionado con el corazón."
+soluciones: {
+segmentacion: ["pan- + -ec- + -ill- + -o + -s", "pan + ec + ill + o + s"],
+lexema: ["pan", "pan-"],
+especial: ["ec", "-ec", "-ec-"],
+tipo: ["infijo", "elemento de enlace"]
+},
+explicacion: "pan- es el lexema; -ec- funciona como elemento de enlace o infijo."
 },
 
 {
-pregunta: "¿Qué significa «bio-»?",
-opciones: [
-"Vida",
-"Luz",
-"Piel",
-"Lejos"
+tipo: "analisis",
+pregunta: "Realiza un análisis completo.",
+palabra: "reblandecer",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 0,
-explicacion:
-"«bio-» procede de una raíz griega relacionada con la vida."
+soluciones: {
+segmentacion: ["re- + bland- + -ec- + -er", "re + bland + ec + er"],
+lexema: ["bland", "bland-"],
+derivativos: ["re- + -ec-", "re + ec"],
+tipo: ["parasintética", "parasintetica"]
+},
+explicacion: "reblandecer presenta afijos delante y detrás del lexema y *blandecer no existe en castellano."
 },
 
 {
-pregunta: "¿Qué significa «geo-»?",
-opciones: [
-"Agua",
-"Tierra",
-"Corazón",
-"Temor"
+tipo: "analisis",
+pregunta: "Realiza un análisis completo.",
+palabra: "niñas",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["flexivos", "Morfemas flexivos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 1,
-explicacion:
-"«geo-» significa tierra."
+soluciones: {
+segmentacion: ["niñ- + -a + -s", "niñ + a + s"],
+lexema: ["niñ", "niñ-"],
+flexivos: ["-a + -s", "a + s"],
+tipo: ["simple"]
+},
+explicacion: "niñ- es el lexema; -a indica género y -s número."
 },
 
 {
-pregunta: "¿Qué significa «tele-»?",
-opciones: [
-"Lejos",
-"Luz",
-"Vida",
-"Piel"
+tipo: "analisis",
+pregunta: "Analiza los constituyentes de «geología».",
+palabra: "geología",
+campos: [
+["segmentacion", "Formantes"],
+["geo", "Significado de geo-"],
+["logia", "Significado de -logía"],
+["tipo", "Tipo de formación"]
 ],
-correcta: 0,
-explicacion:
-"«tele-» significa «lejos»."
+soluciones: {
+segmentacion: ["geo- + -logía", "geo + logia"],
+geo: ["tierra"],
+logia: ["estudio"],
+tipo: ["compuesto culto", "compuesta"]
+},
+explicacion: "geo- significa tierra y -logía se relaciona con estudio. La presentación considera geología un compuesto culto."
 },
 
 {
-pregunta: "¿Qué significa «hidro-»?",
-opciones: [
-"Agua",
-"Tierra",
-"Corazón",
-"Escribir"
+tipo: "analisis",
+pregunta: "Analiza los formantes de «telescopio».",
+palabra: "telescopio",
+campos: [
+["segmentacion", "Formantes"],
+["tele", "Significado de tele-"],
+["scopio", "Significado de -scopio"],
+["tipo", "Tipo de formación"]
 ],
-correcta: 0,
-explicacion:
-"«hidro-» es un formante relacionado con el agua."
+soluciones: {
+segmentacion: ["tele- + -scopio", "tele + scopio"],
+tele: ["lejos"],
+scopio: ["observar", "observación"],
+tipo: ["compuesto culto", "compuesta"]
+},
+explicacion: "tele- significa lejos y -scopio se relaciona con observar."
 },
 
 {
-pregunta: "¿Qué significa «foto-»?",
-opciones: [
-"Luz",
-"Piel",
-"Vida",
-"Lejos"
+tipo: "analisis",
+pregunta: "Analiza los constituyentes de «cardiopatía».",
+palabra: "cardiopatía",
+campos: [
+["segmentacion", "Formantes"],
+["cardio", "Significado de cardio-"],
+["tipo", "Tipo de formación"]
 ],
-correcta: 0,
-explicacion:
-"«foto-» significa luz."
+soluciones: {
+segmentacion: ["cardio- + -patía", "cardio + patia"],
+cardio: ["corazón"],
+tipo: ["compuesto culto", "compuesta"]
+},
+explicacion: "cardio- es un formante relacionado con el corazón."
 },
 
 {
-pregunta: "¿Qué significa «derma-»?",
-opciones: [
-"Temor",
-"Escribir",
-"Piel",
-"Agua"
+tipo: "analisis",
+pregunta: "Analiza «libros».",
+palabra: "libros",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["flexivos", "Morfemas flexivos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 2,
-explicacion:
-"«derma-» es un formante relacionado con la piel."
+soluciones: {
+segmentacion: ["libr- + -o + -s", "libr + o + s"],
+lexema: ["libr", "libr-"],
+flexivos: ["-o + -s", "o + s"],
+tipo: ["simple"]
+},
+explicacion: "libr- es el lexema; -o indica género y -s número."
 },
 
 {
-pregunta: "¿Qué significa «fobia-»?",
-opciones: [
-"Estudio",
-"Temor o aversión",
-"Observar",
-"Tierra"
+tipo: "analisis",
+pregunta: "Analiza «desafortunado».",
+palabra: "desafortunado",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 1,
-explicacion:
-"«fobia-» expresa temor o aversión."
+soluciones: {
+segmentacion: ["des- + afortun- + -ad- + -o", "des + afortun + ad + o"],
+lexema: ["afortun", "afortun-"],
+derivativos: ["des- + -ad-", "des + ad"],
+tipo: ["derivada"]
 },
-
-{
-pregunta: "¿Qué significa «-logía»?",
-opciones: [
-"Observar",
-"Escribir",
-"Estudio",
-"Agua"
-],
-correcta: 2,
-explicacion:
-"«-logía» es un formante relacionado con el estudio."
-},
-
-{
-pregunta: "En «geología», ¿qué significan «geo-» y «-logía»?",
-opciones: [
-"Tierra + estudio",
-"Vida + luz",
-"Agua + piel",
-"Lejos + observar"
-],
-correcta: 0,
-explicacion:
-"«geo-» significa tierra y «-logía» se relaciona con estudio."
-},
-
-{
-pregunta: "¿Por qué «geología» es un ejemplo de compuesto culto?",
-opciones: [
-"Porque está formada por dos formantes de origen grecolatino",
-"Porque tiene dos morfemas flexivos",
-"Porque es una palabra parasintética",
-"Porque contiene un infijo"
-],
-correcta: 0,
-explicacion:
-"La presentación considera compuestos cultos las palabras constituidas con formantes de origen grecolatino."
-},
-
-{
-pregunta: "En «telescopio», ¿qué idea aporta «tele-»?",
-opciones: [
-"Lejos",
-"Tierra",
-"Vida",
-"Piel"
-],
-correcta: 0,
-explicacion:
-"«tele-» significa «lejos»."
-},
-
-{
-pregunta: "Según los materiales, ¿cómo deben entenderse los formantes grecolatinos?",
-opciones: [
-"Como raíces cultas que no son simplemente afijos derivativos",
-"Como morfemas exclusivamente flexivos",
-"Como lexemas independientes del castellano",
-"Como infijos"
-],
-correcta: 0,
-explicacion:
-"Los materiales explican que son raíces cultas y que no deben considerarse simplemente afijos derivativos."
+explicacion: "La palabra contiene un prefijo y un sufijo derivativos."
 }
 
 ];
 
 
 /* =====================================================
-   4. RETO FINAL
+   BANCO: RETO FINAL
 ===================================================== */
 
 const reto = [
 
 {
-pregunta: "¿Cuál es el análisis correcto de «revivir»?",
-opciones: [
-"re- + viv- → prefijo derivativo + lexema",
-"re- + viv- + -s → prefijo + lexema + plural",
-"roj- + blanc- → dos lexemas",
-"a- + tornill- + -ar → parasíntesis"
+tipo: "analisis",
+pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+palabra: "desigualdades",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["flexivos", "Morfemas flexivos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 0,
-explicacion:
-"«revivir» contiene el prefijo derivativo «re-» y el lexema «viv-»."
+soluciones: {
+segmentacion: ["des- + igual + -dad + -es", "des + igual + dad + es"],
+lexema: ["igual"],
+derivativos: ["des- + -dad", "des + dad"],
+flexivos: ["-es", "es"],
+tipo: ["derivada"]
+},
+explicacion: "des- y -dad son derivativos; -es es flexivo de número."
 },
 
 {
+tipo: "analisis",
+pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+palabra: "reblandecer",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["tipo", "Tipo de palabra"]
+],
+soluciones: {
+segmentacion: ["re- + bland- + -ec- + -er", "re + bland + ec + er"],
+lexema: ["bland", "bland-"],
+derivativos: ["re- + -ec-", "re + ec"],
+tipo: ["parasintética", "parasintetica"]
+},
+explicacion: "Es parasintética porque presenta elementos a ambos lados del lexema y *blandecer no existe."
+},
+
+{
+tipo: "analisis",
+pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+palabra: "geología",
+campos: [
+["segmentacion", "Formantes"],
+["geo", "Significado de geo-"],
+["logia", "Significado de -logía"],
+["tipo", "Tipo de formación"]
+],
+soluciones: {
+segmentacion: ["geo- + -logía", "geo + logia"],
+geo: ["tierra"],
+logia: ["estudio"],
+tipo: ["compuesto culto", "compuesta"]
+},
+explicacion: "geo- significa tierra y -logía se relaciona con estudio."
+},
+
+{
+tipo: "analisis",
+pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+palabra: "panecillos",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["especial", "Elemento especial"],
+["flexivos", "Morfemas finales"],
+["tipo", "Elemento especial"]
+],
+soluciones: {
+segmentacion: ["pan- + -ec- + -ill- + -o + -s", "pan + ec + ill + o + s"],
+lexema: ["pan", "pan-"],
+especial: ["ec", "-ec", "-ec-"],
+flexivos: ["-o + -s", "o + s"],
+tipo: ["infijo", "elemento de enlace"]
+},
+explicacion: "pan- es el lexema; -ec- es un elemento de enlace o infijo."
+},
+
+{
+tipo: "mcq",
+pregunta: "Un alumno afirma: «reblandecer es derivada porque tiene un prefijo y un sufijo». ¿Qué debemos añadir para justificar que es parasintética?",
+opciones: [
+"Que tiene dos lexemas",
+"Que al eliminar el prefijo, *blandecer no existe",
+"Que tiene un morfema de plural",
+"Que contiene un infijo"
+],
+correcta: 1,
+explicacion: "La presentación establece ese criterio para reconocer la parasíntesis."
+},
+
+{
+tipo: "mcq",
+pregunta: "¿Cuál de estas parejas contiene dos alomorfos del mismo lexema?",
+opciones: [
+"sueñ- / soñ-",
+"re- / -ura",
+"pan- / -ec-",
+"geo- / -logía"
+],
+correcta: 0,
+explicacion: "La presentación utiliza sueñ- y soñ- como ejemplo de alomorfos."
+},
+
+{
+tipo: "texto",
+pregunta: "¿Qué significa el formante «cardio-»?",
+palabra: "cardiopatía",
+soluciones: ["corazon", "corazón"],
+explicacion: "cardio- es un formante relacionado con el corazón."
+},
+
+{
+tipo: "texto",
+pregunta: "¿Qué significa «geo-» en «geología»?",
+palabra: "geología",
+soluciones: ["tierra"],
+explicacion: "geo- significa tierra."
+},
+
+{
+tipo: "mcq",
 pregunta: "¿Cuál es el análisis correcto de «rojiblanco»?",
 opciones: [
-"Prefijo + lexema",
+"Un lexema con dos morfemas flexivos",
 "Dos lexemas unidos",
-"Lexema + sufijo",
-"Prefijo + lexema + sufijo"
+"Un prefijo y un lexema",
+"Un prefijo, un lexema y un sufijo"
 ],
 correcta: 1,
-explicacion:
-"«rojiblanco» procede de la unión de los lexemas «rojo» y «blanco»."
+explicacion: "rojiblanco se forma mediante la unión de dos lexemas."
 },
 
 {
-pregunta: "¿Qué hace que «reblandecer» sea parasintética?",
+tipo: "mcq",
+pregunta: "¿Qué diferencia fundamental hay entre un morfema flexivo y uno derivativo?",
 opciones: [
-"Solo contiene un lexema",
-"Contiene dos lexemas",
-"Presenta elementos delante y detrás del lexema y *blandecer no existe",
-"Contiene un morfema de plural"
-],
-correcta: 2,
-explicacion:
-"La presentación establece como condición que haya afijos a ambos lados del lexema y que, al eliminar el prefijo, la palabra resultante no exista."
-},
-
-{
-pregunta: "¿Qué relación existe entre «im-», «in-» e «i-»?",
-opciones: [
-"Son alomorfos de un mismo morfema de negación",
-"Son tres lexemas",
-"Son morfemas flexivos",
-"Son tres sufijos"
+"El flexivo expresa valores gramaticales y el derivativo puede modificar o matizar el significado",
+"El derivativo siempre indica plural",
+"El flexivo siempre es un prefijo",
+"No existe diferencia"
 ],
 correcta: 0,
-explicacion:
-"Son distintas realizaciones de un mismo morfema de negación."
+explicacion: "Los flexivos expresan valores gramaticales; los derivativos son afijos no flexivos."
 },
 
 {
-pregunta: "¿Qué elemento encontramos en «panecillo»?",
-opciones: [
-"Un infijo o elemento de enlace",
-"Un segundo lexema",
-"Un morfema de plural",
-"Un prefijo"
+tipo: "analisis",
+pregunta: "🏆 Reto de examen: analiza «inutilidad».",
+palabra: "inutilidad",
+campos: [
+["segmentacion", "Segmentación"],
+["lexema", "Lexema"],
+["derivativos", "Afijos derivativos"],
+["tipo", "Tipo de palabra"]
 ],
-correcta: 0,
-explicacion:
-"«panecillo» presenta un elemento de enlace en su interior: «-ec-»."
+soluciones: {
+segmentacion: ["in- + util + -idad", "in + util + idad"],
+lexema: ["util", "útil"],
+derivativos: ["in- + -idad", "in + idad"],
+tipo: ["derivada"]
 },
-
-{
-pregunta: "¿Cuál de estas parejas está correctamente relacionada?",
-opciones: [
-"cardio- → corazón",
-"geo- → agua",
-"hidro- → tierra",
-"tele- → vida"
-],
-correcta: 0,
-explicacion:
-"«cardio-» significa corazón."
-},
-
-{
-pregunta: "¿Cuál de estas parejas está correctamente relacionada?",
-opciones: [
-"bio- → piel",
-"derma- → piel",
-"foto- → agua",
-"fobia- → estudio"
-],
-correcta: 1,
-explicacion:
-"«derma-» es un formante relacionado con la piel."
-},
-
-{
-pregunta: "¿Cuál es el procedimiento de formación de «revivir»?",
-opciones: [
-"Composición",
-"Derivación",
-"Parasíntesis",
-"Acronimia"
-],
-correcta: 1,
-explicacion:
-"Se forma mediante la adición de un prefijo derivativo al lexema."
-},
-
-{
-pregunta: "¿Cuál es el procedimiento de formación de «rojiblanco»?",
-opciones: [
-"Derivación",
-"Composición",
-"Parasíntesis",
-"Flexión"
-],
-correcta: 1,
-explicacion:
-"Se unen dos lexemas: rojo + blanco."
-},
-
-{
-pregunta: "¿Cuál es el procedimiento de formación de «reblandecer»?",
-opciones: [
-"Derivación simple",
-"Composición",
-"Parasíntesis",
-"Acronimia"
-],
-correcta: 2,
-explicacion:
-"Es una palabra parasintética."
-},
-
-{
-pregunta: "¿Cuál de estas afirmaciones es correcta?",
-opciones: [
-"Los lexemas aportan el significado central",
-"Los morfemas flexivos siempre crean palabras nuevas",
-"Los infijos siempre aportan significado",
-"Los prefijos son morfemas flexivos"
-],
-correcta: 0,
-explicacion:
-"Los lexemas aportan el significado central y común de una familia léxica."
-},
-
-{
-pregunta: "¿Qué significa «geo-» en «geología»?",
-opciones: [
-"Vida",
-"Tierra",
-"Luz",
-"Corazón"
-],
-correcta: 1,
-explicacion:
-"«geo-» significa tierra."
-},
-
-{
-pregunta: "¿Qué tipo de palabra es «lápices»?",
-opciones: [
-"Simple",
-"Derivada",
-"Compuesta",
-"Parasintética"
-],
-correcta: 0,
-explicacion:
-"«lápices» contiene un lexema acompañado de morfemas flexivos."
-},
-
-{
-pregunta: "¿Cuál de estas opciones identifica correctamente el elemento «-s» de «paredes»?",
-opciones: [
-"Prefijo derivativo",
-"Sufijo derivativo",
-"Morfema flexivo de número",
-"Lexema"
-],
-correcta: 2,
-explicacion:
-"En «paredes», el morfema «-s» expresa número plural."
-},
-
-{
-pregunta: "¿Cuál de estas afirmaciones sobre los formantes grecolatinos es correcta?",
-opciones: [
-"Son raíces cultas que no existen como palabras independientes en castellano",
-"Son siempre morfemas flexivos",
-"Son siempre infijos",
-"Son lexemas independientes"
-],
-correcta: 0,
-explicacion:
-"Los materiales los presentan como raíces cultas procedentes del griego o del latín que no funcionan como palabras independientes en castellano."
+explicacion: "in- es prefijo derivativo; útil es el lexema y -idad es sufijo derivativo."
 }
 
 ];
@@ -1332,15 +1370,49 @@ explicacion:
    VARIABLES
 ===================================================== */
 
-let actividadActual = "";
+let bloqueActual = "";
 
-let preguntasActuales = [];
+let actividadesActuales = [];
 
-let preguntaActual = 0;
+let actividadActual = 0;
 
 let puntuacion = 0;
 
 let respondida = false;
+
+
+/* =====================================================
+   CONFIGURACIÓN DE CADA PARTIDA
+===================================================== */
+
+const configuracion = {
+
+identifica: [
+    ["mcq", 4],
+    ["segmentacion", 2],
+    ["texto", 2],
+    ["mcq", 2]
+],
+
+clasifica: [
+    ["clasificacion", 4],
+    ["mcq", 4],
+    ["clasificacion", 2]
+],
+
+analiza: [
+    ["segmentacion", 2],
+    ["analisis", 6],
+    ["mcq", 2]
+],
+
+reto: [
+    ["analisis", 6],
+    ["mcq", 2],
+    ["texto", 2]
+]
+
+};
 
 
 /* =====================================================
@@ -1361,33 +1433,117 @@ reto: "🏆 Reto final"
 
 
 /* =====================================================
-   INICIAR ACTIVIDAD
+   CREAR PARTIDA
 ===================================================== */
 
-function iniciarActividad(tipo) {
+function crearPartida(tipo) {
 
-    actividadActual = tipo;
+    let banco;
 
-    if (tipo === "identifica") {
-        preguntasActuales = [...identifica];
+    if (tipo === "identifica") banco = identifica;
+    if (tipo === "clasifica") banco = clasifica;
+    if (tipo === "analiza") banco = analiza;
+    if (tipo === "reto") banco = reto;
+
+
+    const seleccion = [];
+
+    const usados = new Set();
+
+
+    configuracion[tipo].forEach(
+        ([tipoActividad, cantidad]) => {
+
+            const candidatos =
+                mezclar(
+                    banco.filter(
+                        actividad =>
+                            actividad.tipo === tipoActividad
+                    )
+                );
+
+
+            let contador = 0;
+
+
+            for (
+                let i = 0;
+                i < candidatos.length &&
+                contador < cantidad;
+                i++
+            ) {
+
+                const actividad =
+                    candidatos[i];
+
+
+                const indice =
+                    banco.indexOf(actividad);
+
+
+                if (!usados.has(indice)) {
+
+                    usados.add(indice);
+
+                    seleccion.push(actividad);
+
+                    contador++;
+
+                }
+
+            }
+
+        }
+    );
+
+
+    /*
+       Si algún tipo no dispone de suficientes
+       ejercicios, completamos hasta 20.
+    */
+
+    if (seleccion.length < 20) {
+
+        const restantes =
+            mezclar(
+                banco.filter(
+                    actividad =>
+                        !seleccion.includes(actividad)
+                )
+            );
+
+
+        while (
+            seleccion.length < 20 &&
+            restantes.length > 0
+        ) {
+
+            seleccion.push(
+                restantes.shift()
+            );
+
+        }
+
     }
 
-    if (tipo === "clasifica") {
-        preguntasActuales = [...clasifica];
-    }
 
-    if (tipo === "analiza") {
-        preguntasActuales = [...analiza];
-    }
+    return seleccion.slice(0, 20);
 
-    if (tipo === "reto") {
-        preguntasActuales = [...reto];
-    }
+}
 
-    preguntasActuales =
-        mezclar(preguntasActuales);
 
-    preguntaActual = 0;
+/* =====================================================
+   INICIAR BLOQUE
+===================================================== */
+
+function iniciarBloque(tipo) {
+
+    bloqueActual = tipo;
+
+    actividadesActuales =
+        crearPartida(tipo);
+
+    actividadActual = 0;
 
     puntuacion = 0;
 
@@ -1400,52 +1556,37 @@ function iniciarActividad(tipo) {
     document.getElementById("actividad")
         .style.display = "block";
 
-    document.getElementById("nombreActividad")
-        .textContent = nombres[tipo];
-
-    mostrarPregunta();
+    mostrarActividad();
 
 }
 
 
 /* =====================================================
-   MEZCLAR
+   MOSTRAR ACTIVIDAD
 ===================================================== */
 
-function mezclar(array) {
-
-    return [...array].sort(
-        () => Math.random() - 0.5
-    );
-
-}
-
-
-/* =====================================================
-   MOSTRAR PREGUNTA
-===================================================== */
-
-function mostrarPregunta() {
+function mostrarActividad() {
 
     respondida = false;
 
-    const pregunta =
-        preguntasActuales[preguntaActual];
 
-
-    document.getElementById("numeroPregunta")
-        .textContent =
-        "Pregunta " +
-        (preguntaActual + 1) +
-        " de " +
-        preguntasActuales.length;
+    const actividad =
+        actividadesActuales[actividadActual];
 
 
     const porcentaje =
         Math.round(
-            (preguntaActual /
-            preguntasActuales.length) * 100
+            (actividadActual /
+            actividadesActuales.length) * 100
         );
+
+
+    document.getElementById("numeroPregunta")
+        .textContent =
+        "Actividad " +
+        (actividadActual + 1) +
+        " de " +
+        actividadesActuales.length;
 
 
     document.getElementById("porcentaje")
@@ -1458,51 +1599,291 @@ function mostrarPregunta() {
         porcentaje + "%";
 
 
+    document.getElementById("etiquetaActividad")
+        .textContent =
+        nombres[bloqueActual];
+
+
     document.getElementById("pregunta")
         .textContent =
-        pregunta.pregunta;
+        actividad.pregunta;
 
 
     document.getElementById("palabra")
-        .textContent = "";
+        .textContent =
+        actividad.palabra || "";
 
 
     document.getElementById("feedback")
         .innerHTML = "";
 
 
-    document.getElementById("siguiente")
-        .style.display = "none";
+    document.getElementById("comprobar")
+        .style.display =
+        "inline-block";
 
+
+    document.getElementById("siguiente")
+        .style.display =
+        "none";
+
+
+    construirInterfaz(actividad);
+
+}
+
+
+/* =====================================================
+   CONSTRUIR INTERFAZ
+===================================================== */
+
+function construirInterfaz(actividad) {
 
     const contenedor =
-        document.getElementById("opciones");
+        document.getElementById(
+            "contenidoActividad"
+        );
 
 
     contenedor.innerHTML = "";
 
 
-    pregunta.opciones.forEach(
-        (opcion, indice) => {
+    /* TEST */
 
-            const boton =
-                document.createElement("button");
+    if (actividad.tipo === "mcq") {
 
-            boton.className = "opcion";
+        const div =
+            document.createElement("div");
 
-            boton.textContent = opcion;
+        div.className = "opciones";
 
-            boton.onclick =
-                function() {
+        actividad.opciones.forEach(
+            (opcion, indice) => {
 
-                    comprobarRespuesta(indice);
+                const boton =
+                    document.createElement("button");
+
+                boton.className = "opcion";
+
+                boton.textContent = opcion;
+
+                boton.dataset.indice =
+                    indice;
+
+                boton.onclick = function() {
+
+                    seleccionarMCQ(
+                        indice,
+                        div
+                    );
 
                 };
 
-            contenedor.appendChild(boton);
+                div.appendChild(boton);
 
-        }
-    );
+            }
+        );
+
+        contenedor.appendChild(div);
+
+    }
+
+
+    /* TEXTO */
+
+    if (actividad.tipo === "texto") {
+
+        const input =
+            document.createElement("input");
+
+        input.className = "campo";
+
+        input.id = "respuestaTexto";
+
+        input.placeholder =
+            "Escribe tu respuesta...";
+
+        contenedor.appendChild(input);
+
+        setTimeout(
+            () => input.focus(),
+            100
+        );
+
+    }
+
+
+    /* SEGMENTACIÓN */
+
+    if (actividad.tipo === "segmentacion") {
+
+        const texto =
+            document.createElement("p");
+
+        texto.className =
+            "segmentacion";
+
+        texto.textContent =
+            "Escribe la segmentación de la palabra.";
+
+        contenedor.appendChild(texto);
+
+
+        const input =
+            document.createElement("input");
+
+        input.className = "campo";
+
+        input.id = "respuestaTexto";
+
+        input.placeholder =
+            "Ejemplo: re- + lect- + -ura";
+
+        contenedor.appendChild(input);
+
+        setTimeout(
+            () => input.focus(),
+            100
+        );
+
+    }
+
+
+    /* CLASIFICACIÓN */
+
+    if (actividad.tipo === "clasificacion") {
+
+        const texto =
+            document.createElement("p");
+
+        texto.textContent =
+            "Selecciona la categoría correcta:";
+
+        contenedor.appendChild(texto);
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "lista-clasificacion";
+
+
+        actividad.categorias.forEach(
+            categoria => {
+
+                const boton =
+                    document.createElement("button");
+
+                boton.className =
+                    "clasificacion-btn";
+
+                boton.textContent =
+                    categoria;
+
+                boton.dataset.valor =
+                    categoria;
+
+                boton.onclick = function() {
+
+                    document
+                        .querySelectorAll(
+                            ".clasificacion-btn"
+                        )
+                        .forEach(
+                            b =>
+                                b.style.background =
+                                "white"
+                        );
+
+                    boton.style.background =
+                        "#eee8dc";
+
+                    window.respuestaClasificacion =
+                        categoria;
+
+                };
+
+                div.appendChild(boton);
+
+            }
+        );
+
+
+        contenedor.appendChild(div);
+
+    }
+
+
+    /* ANÁLISIS COMPLETO */
+
+    if (actividad.tipo === "analisis") {
+
+        actividad.campos.forEach(
+            campo => {
+
+                const etiqueta =
+                    document.createElement("label");
+
+                etiqueta.className =
+                    "etiqueta-campo";
+
+                etiqueta.textContent =
+                    campo[1];
+
+                contenedor.appendChild(
+                    etiqueta
+                );
+
+
+                const input =
+                    document.createElement("input");
+
+                input.className = "campo";
+
+                input.dataset.campo =
+                    campo[0];
+
+                input.placeholder =
+                    "Escribe aquí...";
+
+                contenedor.appendChild(
+                    input
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   SELECCIONAR TEST
+===================================================== */
+
+function seleccionarMCQ(indice, contenedor) {
+
+    window.respuestaMCQ = indice;
+
+    contenedor
+        .querySelectorAll(".opcion")
+        .forEach(
+            boton => {
+
+                boton.style.background =
+                    "#eee8dc";
+
+            }
+        );
+
+
+    contenedor
+        .querySelectorAll(".opcion")
+        [indice]
+        .style.background =
+        "#d9d0c2";
 
 }
 
@@ -1511,65 +1892,215 @@ function mostrarPregunta() {
    COMPROBAR
 ===================================================== */
 
-function comprobarRespuesta(indice) {
+function comprobar() {
 
     if (respondida) {
         return;
     }
 
+
+    const actividad =
+        actividadesActuales[actividadActual];
+
+
+    let correcto = false;
+
+    let explicacion =
+        actividad.explicacion || "";
+
+
+    /* TEST */
+
+    if (actividad.tipo === "mcq") {
+
+        if (
+            window.respuestaMCQ === undefined
+        ) {
+
+            mostrarAviso(
+                "Selecciona una respuesta antes de comprobar."
+            );
+
+            return;
+
+        }
+
+
+        correcto =
+            window.respuestaMCQ ===
+            actividad.correcta;
+
+    }
+
+
+    /* TEXTO */
+
+    if (
+        actividad.tipo === "texto" ||
+        actividad.tipo === "segmentacion"
+    ) {
+
+        const input =
+            document.getElementById(
+                "respuestaTexto"
+            );
+
+
+        if (!input.value.trim()) {
+
+            mostrarAviso(
+                "Escribe una respuesta antes de comprobar."
+            );
+
+            return;
+
+        }
+
+
+        correcto =
+            comparar(
+                input.value,
+                actividad.soluciones
+            );
+
+    }
+
+
+    /* CLASIFICACIÓN */
+
+    if (actividad.tipo === "clasificacion") {
+
+        if (
+            !window.respuestaClasificacion
+        ) {
+
+            mostrarAviso(
+                "Selecciona una categoría antes de comprobar."
+            );
+
+            return;
+
+        }
+
+
+        correcto =
+            window.respuestaClasificacion ===
+            actividad.correcta;
+
+    }
+
+
+    /* ANÁLISIS */
+
+    if (actividad.tipo === "analisis") {
+
+        const inputs =
+            document.querySelectorAll(
+                "[data-campo]"
+            );
+
+
+        let total = inputs.length;
+
+        let aciertos = 0;
+
+        let respuestasCompletas = true;
+
+
+        inputs.forEach(
+            input => {
+
+                const valor =
+                    input.value.trim();
+
+
+                if (!valor) {
+
+                    respuestasCompletas =
+                        false;
+
+                    return;
+
+                }
+
+
+                const clave =
+                    input.dataset.campo;
+
+
+                const soluciones =
+                    actividad.soluciones[clave] || [];
+
+
+                if (
+                    comparar(
+                        valor,
+                        soluciones
+                    )
+                ) {
+
+                    aciertos++;
+
+                }
+
+            }
+        );
+
+
+        if (!respuestasCompletas) {
+
+            mostrarAviso(
+                "Completa todos los apartados antes de comprobar."
+            );
+
+            return;
+
+        }
+
+
+        correcto =
+            aciertos === total;
+
+
+        if (!correcto) {
+
+            explicacion +=
+                "<br><br><strong>" +
+                aciertos +
+                " de " +
+                total +
+                " apartados correctos.</strong>";
+
+        }
+
+    }
+
+
     respondida = true;
 
 
-    const pregunta =
-        preguntasActuales[preguntaActual];
-
-
-    const botones =
-        document.querySelectorAll(".opcion");
-
-
-    botones.forEach(
-        (boton, posicion) => {
-
-            boton.disabled = true;
-
-            if (
-                posicion === pregunta.correcta
-            ) {
-
-                boton.classList.add("correcta");
-
-            }
-
-        }
-    );
-
-
-    if (
-        indice === pregunta.correcta
-    ) {
+    if (correcto) {
 
         puntuacion++;
 
-        document.getElementById("feedback")
-            .innerHTML =
-            "✅ <strong>¡Correcto!</strong><br><br>" +
-            pregunta.explicacion;
+        mostrarFeedback(
+            true,
+            explicacion
+        );
 
     } else {
 
-        botones[indice]
-            .classList.add("incorrecta");
-
-        document.getElementById("feedback")
-            .innerHTML =
-            "❌ <strong>No es correcto.</strong><br><br>" +
-            "La respuesta correcta es: <strong>" +
-            pregunta.opciones[pregunta.correcta] +
-            "</strong><br><br>" +
-            pregunta.explicacion;
+        mostrarFeedback(
+            false,
+            obtenerSolucion(actividad, explicacion)
+        );
 
     }
+
+
+    document.getElementById("comprobar")
+        .style.display =
+        "none";
 
 
     document.getElementById("siguiente")
@@ -1580,20 +2111,163 @@ function comprobarRespuesta(indice) {
 
 
 /* =====================================================
+   SOLUCIÓN
+===================================================== */
+
+function obtenerSolucion(
+    actividad,
+    explicacion
+) {
+
+    let texto = "";
+
+
+    if (actividad.tipo === "mcq") {
+
+        texto =
+            "La respuesta correcta es: <strong>" +
+            actividad.opciones[
+                actividad.correcta
+            ] +
+            "</strong>";
+
+    }
+
+
+    if (
+        actividad.tipo === "texto" ||
+        actividad.tipo === "segmentacion"
+    ) {
+
+        texto =
+            "Una respuesta válida es: <strong>" +
+            actividad.soluciones[0] +
+            "</strong>";
+
+    }
+
+
+    if (actividad.tipo === "clasificacion") {
+
+        texto =
+            "La clasificación correcta es: <strong>" +
+            actividad.correcta +
+            "</strong>";
+
+    }
+
+
+    if (actividad.tipo === "analisis") {
+
+        texto =
+            "<strong>Solución:</strong><br>";
+
+        actividad.campos.forEach(
+            campo => {
+
+                const soluciones =
+                    actividad.soluciones[
+                        campo[0]
+                    ];
+
+
+                if (soluciones) {
+
+                    texto +=
+                        "<br><strong>" +
+                        campo[1] +
+                        ":</strong> " +
+                        soluciones[0];
+
+                }
+
+            }
+        );
+
+    }
+
+
+    return texto +
+        "<br><br>" +
+        explicacion;
+
+}
+
+
+/* =====================================================
+   FEEDBACK
+===================================================== */
+
+function mostrarFeedback(
+    correcto,
+    texto
+) {
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    feedback.className =
+        correcto
+            ? "feedback exito"
+            : "feedback error";
+
+
+    feedback.innerHTML =
+        correcto
+            ? "✅ <strong>¡Correcto!</strong><br><br>" +
+              texto
+            : "❌ <strong>Hay algún error.</strong><br><br>" +
+              texto;
+
+}
+
+
+/* =====================================================
+   AVISO
+===================================================== */
+
+function mostrarAviso(texto) {
+
+    const feedback =
+        document.getElementById(
+            "feedback"
+        );
+
+
+    feedback.className =
+        "feedback";
+
+
+    feedback.innerHTML =
+        "⚠️ " + texto;
+
+}
+
+
+/* =====================================================
    SIGUIENTE
 ===================================================== */
 
 function siguientePregunta() {
 
-    preguntaActual++;
+    actividadActual++;
 
 
     if (
-        preguntaActual <
-        preguntasActuales.length
+        actividadActual <
+        actividadesActuales.length
     ) {
 
-        mostrarPregunta();
+        window.respuestaMCQ =
+            undefined;
+
+        window.respuestaClasificacion =
+            undefined;
+
+        mostrarActividad();
 
     } else {
 
@@ -1614,6 +2288,7 @@ function mostrarResultado() {
         .style.display =
         "none";
 
+
     document.getElementById("resultado")
         .style.display =
         "block";
@@ -1622,7 +2297,7 @@ function mostrarResultado() {
     const nota =
         (
             puntuacion /
-            preguntasActuales.length
+            actividadesActuales.length
         ) * 10;
 
 
@@ -1638,28 +2313,28 @@ function mostrarResultado() {
     if (nota >= 9) {
 
         mensaje =
-            "🏆 ¡Excelente! Dominas muy bien estos contenidos.";
+            "🏆 ¡Excelente! Dominas muy bien la estructura de la palabra.";
 
     }
 
     else if (nota >= 7) {
 
         mensaje =
-            "👏 ¡Muy bien! Tienes un buen dominio de la estructura de la palabra.";
+            "👏 ¡Muy bien! Tienes un buen dominio de estos contenidos.";
 
     }
 
     else if (nota >= 5) {
 
         mensaje =
-            "👍 Has aprobado. Conviene repasar algunos conceptos.";
+            "👍 Has aprobado. Conviene seguir practicando algunos contenidos.";
 
     }
 
     else {
 
         mensaje =
-            "📚 Necesitas repasar este contenido y volver a intentarlo.";
+            "📚 Necesitas repasar y volver a practicar.";
 
     }
 
@@ -1675,9 +2350,17 @@ function mostrarResultado() {
    REPETIR
 ===================================================== */
 
-function repetirActividad() {
+function repetirBloque() {
 
-    iniciarActividad(actividadActual);
+    window.respuestaMCQ =
+        undefined;
+
+    window.respuestaClasificacion =
+        undefined;
+
+    iniciarBloque(
+        bloqueActual
+    );
 
 }
 
@@ -1692,9 +2375,11 @@ function volverMenu() {
         .style.display =
         "none";
 
+
     document.getElementById("resultado")
         .style.display =
         "none";
+
 
     document.getElementById("menu")
         .style.display =
