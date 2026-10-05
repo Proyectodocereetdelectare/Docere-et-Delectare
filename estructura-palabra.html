@@ -489,8 +489,7 @@ Lengua Castellana y Literatura
 
 <div class="introduccion">
 
-Practica la estructura y formación de las palabras
-mediante actividades progresivas y variadas.
+Practica la estructura interna de las palabras mediante actividades progresivas y variadas.
 
 </div>
 
@@ -519,11 +518,11 @@ onclick="iniciarBloque('clasifica')">
 
 <span class="icono">🏷️</span>
 
-<strong>Clasifica</strong>
+<strong>Clasifica elementos</strong>
 
 <span class="descripcion">
-Simples, derivadas, compuestas,
-parasintéticas, acronimia y formantes grecolatinos
+Distingue lexemas, morfemas flexivos,
+afijos derivativos, interfijos y alomorfos
 </span>
 
 </button>
@@ -949,73 +948,54 @@ const identifica = [
 ===================================================== */
 
 const clasifica = [
-
-/* NIVEL 1 · RECONOCE */
-
-{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «orilla».",palabra:"orilla",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es una palabra simple: está formada por un único lexema."},
-{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «lápices».",palabra:"lápices",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es simple: contiene un único lexema y morfemas flexivos de número."},
-{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «revivir».",palabra:"revivir",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Derivada",explicacion:"Se forma añadiendo el prefijo derivativo re- al lexema viv-."},
-{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «rojiblanco».",palabra:"rojiblanco",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Compuesta",explicacion:"Se forma mediante la unión de dos lexemas: rojo + blanco."},
-{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «reblandecer».",palabra:"reblandecer",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Parasintética",explicacion:"Presenta elementos delante y detrás del lexema y *blandecer no existe en castellano."},
-{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «sencillas».",palabra:"sencillas",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es simple: está formada por un único lexema acompañado de morfemas flexivos."},
-{nivel:1,tipo:"clasificacion",pregunta:"Clasifica «vivencia».",palabra:"vivencia",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Derivada",explicacion:"Se forma mediante el sufijo derivativo -encia sobre el lexema viv-."},
-{nivel:1,tipo:"mcq",pregunta:"¿Qué procedimiento consiste en unir dos o más lexemas?",opciones:["Derivación","Composición","Flexión","Acronimia"],correcta:1,explicacion:"La composición forma palabras nuevas mediante la unión de dos o más lexemas."},
-
-/* NIVEL 2 · CLASIFICA Y DISTINGUE */
-
-{nivel:2,tipo:"mcq",pregunta:"¿Qué procedimiento aparece en «convivencia»?",opciones:["Derivación","Composición","Parasíntesis","Flexión"],correcta:0,explicacion:"La palabra se forma mediante afijos derivativos: con- y -encia, sobre el lexema viv-."},
-{nivel:2,tipo:"mcq",pregunta:"¿Qué procedimiento aparece en «vivencia»?",opciones:["Composición","Derivación","Acronimia","Parasíntesis"],correcta:1,explicacion:"Vivencia se forma mediante un sufijo derivativo añadido al lexema viv-."},
-{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «escribiré».",palabra:"escribiré",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Simple",explicacion:"Es simple: contiene un único lexema; la terminación verbal aporta información flexiva."},
-{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «con-viv-encia».",palabra:"convivencia",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Derivada",explicacion:"Presenta afijos derivativos alrededor del lexema viv-."},
-{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «rojo + blanco > rojiblanco».",palabra:"rojiblanco",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Compuesta",explicacion:"La composición une los lexemas rojo y blanco."},
-{nivel:2,tipo:"clasificacion",pregunta:"Clasifica «a-tornill-ar».",palabra:"atornillar",categorias:["Simple","Derivada","Compuesta","Parasintética"],correcta:"Parasintética",explicacion:"Atornillar presenta formación parasintética, con elementos derivativos a ambos lados del lexema tornill-."},
-{nivel:2,tipo:"mcq",pregunta:"¿Cuál de estas palabras es simple?",opciones:["orilla","revivir","rojiblanco","reblandecer"],correcta:0,explicacion:"Orilla está formada por un único lexema."},
-{nivel:2,tipo:"mcq",pregunta:"¿Cuál de estas palabras es compuesta?",opciones:["vivencia","revivir","rojiblanco","orilla"],correcta:2,explicacion:"Rojiblanco se forma mediante la unión de dos lexemas."},
-
-/* NIVEL 3 · APLICA CRITERIOS */
-
-{nivel:3,tipo:"texto",pregunta:"Escribe el procedimiento de formación de «revivir».",palabra:"revivir",soluciones:["derivación","derivada"],explicacion:"Revivir se forma mediante derivación, al añadir el prefijo re- al lexema viv-."},
-{nivel:3,tipo:"texto",pregunta:"Escribe el procedimiento de formación de «rojiblanco».",palabra:"rojiblanco",soluciones:["composición","compuesta"],explicacion:"Rojiblanco se forma por composición: rojo + blanco."},
-{nivel:3,tipo:"texto",pregunta:"Escribe el procedimiento de formación de «reblandecer».",palabra:"reblandecer",soluciones:["parasíntesis","parasintesis","parasintética","parasintetica"],explicacion:"Reblandecer es parasintética: presenta afijos delante y detrás del lexema y *blandecer no existe en castellano."},
-{nivel:3,tipo:"clasificacion",pregunta:"Clasifica «EE UU» según su procedimiento de formación.",palabra:"EE UU",categorias:["Acrónimo","Palabra derivada","Palabra compuesta","Palabra simple"],correcta:"Acrónimo",explicacion:"EE UU es un caso de acronimia en el que se duplican las iniciales cuando los términos de origen están en plural."},
-{nivel:3,tipo:"clasificacion",pregunta:"Clasifica «OMS» según su procedimiento de formación.",palabra:"OMS",categorias:["Acrónimo","Palabra derivada","Palabra compuesta","Palabra simple"],correcta:"Acrónimo",explicacion:"OMS es un acrónimo formado a partir de las iniciales de Organización Mundial de la Salud."},
-{nivel:3,tipo:"mcq",pregunta:"¿Qué rasgo permite reconocer una palabra simple?",opciones:["Tiene dos lexemas","Tiene un lexema y puede llevar morfemas flexivos","Siempre lleva un prefijo","Tiene necesariamente un sufijo"],correcta:1,explicacion:"Las palabras simples están formadas solo por un lexema, que puede ir acompañado de afijos flexivos."},
-{nivel:3,tipo:"mcq",pregunta:"¿Qué rasgo diferencia la composición de la derivación?",opciones:["La composición une dos o más lexemas; la derivación añade afijos derivativos","La composición siempre usa prefijos","La derivación une dos lexemas","No existe diferencia"],correcta:0,explicacion:"La composición une lexemas; la derivación añade afijos derivativos a un lexema."},
-{nivel:3,tipo:"texto",pregunta:"Escribe qué procedimiento aparece en «vivencia» y enuncia el elemento derivativo.",palabra:"vivencia",soluciones:["derivación, -encia","derivación -encia","derivada, -encia","derivada -encia"],explicacion:"Vivencia es derivada y presenta el sufijo derivativo -encia."},
-
-/* NIVEL 4 · JUSTIFICA */
-
-{nivel:4,tipo:"texto",pregunta:"Justifica por qué «lápices» es una palabra simple. Indica qué tipo de elementos acompañan al lexema.",palabra:"lápices",soluciones:["simple, flexivos","simple, morfemas flexivos","simple; flexivos","simple flexivos","lexema y afijos flexivos","lexema y morfemas flexivos","un lexema y afijos flexivos","un lexema y morfemas flexivos","simple, lexema y afijos flexivos","simple lexema y afijos flexivos"],explicacion:"Lápices es simple porque contiene un único lexema. Los elementos añadidos son morfemas flexivos."},
-{nivel:4,tipo:"texto",pregunta:"Explica por qué «rojiblanco» es una palabra compuesta.",palabra:"rojiblanco",soluciones:["compuesta, dos lexemas","compuesta, rojo y blanco","composición, dos lexemas","composición, rojo y blanco"],explicacion:"Es compuesta porque une dos lexemas: rojo + blanco."},
-{nivel:4,tipo:"texto",pregunta:"Explica por qué «reblandecer» es parasintética.",palabra:"reblandecer",soluciones:["parasintética, afijos delante y detrás, blandecer no existe","parasintetica, afijos delante y detrás, blandecer no existe","parasíntesis, afijos delante y detrás, blandecer no existe","parasintesis, afijos delante y detrás, blandecer no existe","unión de prefijo y sufijo simultáneamente","union de prefijo y sufijo simultaneamente","prefijo y sufijo simultáneamente","prefijo y sufijo simultaneamente","afijos delante y detrás del lexema","afijos delante y detras del lexema"],explicacion:"Cumple los dos requisitos: presenta elementos derivativos a ambos lados del lexema y, al eliminar el elemento inicial, *blandecer no existe en castellano. Decir que se unen un prefijo y un sufijo simultáneamente expresa correctamente la idea esencial."},
-{nivel:4,tipo:"mcq",pregunta:"Un alumno afirma: «Lápices es derivada porque tiene -es». ¿Qué respuesta es correcta?",opciones:["Sí, porque -es siempre es derivativo","No: -es es un morfema flexivo y la palabra sigue siendo simple","Sí, porque toda palabra con un sufijo es derivada","No, porque lápices es compuesta"],correcta:1,explicacion:"Los morfemas flexivos no forman palabras nuevas. En lápices, la palabra es simple y -es aporta información de número."},
-{nivel:4,tipo:"mcq",pregunta:"Un alumno afirma: «Rojiblanco es derivada porque tiene una terminación». ¿Qué respuesta es correcta?",opciones:["Sí, cualquier terminación convierte una palabra en derivada","No: la característica relevante es que une dos lexemas","Sí, porque blanco es un sufijo","No, porque es simple"],correcta:1,explicacion:"Rojiblanco es compuesta porque se forma mediante la unión de dos lexemas."},
-{nivel:4,tipo:"mcq",pregunta:"¿Qué comprobación se utiliza para justificar la parasíntesis de «reblandecer»?",opciones:["Comprobar que tiene un lexema","Comprobar que *blandecer no existe al eliminar el prefijo","Comprobar que contiene dos lexemas","Comprobar que termina en -er"],correcta:1,explicacion:"Un criterio para reconocer esta formación es que, si se elimina el afijo situado delante del lexema, la palabra resultante no exista en castellano."},
-{nivel:4,tipo:"texto",pregunta:"Relaciona «sencillas» con el procedimiento y los elementos que presenta.",palabra:"sencillas",soluciones:["simple, lexema y flexivos","simple lexema y flexivos","simple, un lexema y flexivos","simple un lexema y flexivos"],explicacion:"Sencillas es un ejemplo de palabra simple formada por un lexema acompañado de morfemas flexivos."},
-{nivel:4,tipo:"mcq",pregunta:"¿Cuál de estas opciones contiene dos procedimientos diferentes?",opciones:["orilla y lápices","revivir y vivencia","rojiblanco y revivir","escribiré y sencillas"],correcta:2,explicacion:"Rojiblanco es compuesta y revivir es derivada."},
-
-/* NIVEL 5 · FORMANTES Y ACRONIMIA */
-
-{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante bio-?",opciones:["vida","tierra","luz","agua"],correcta:0,explicacion:"Bio- significa «vida»."},
-{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante geo-?",opciones:["agua","tierra","piel","corazón"],correcta:1,explicacion:"Geo- significa «tierra»."},
-{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante tele-?",opciones:["lejos","luz","temor o aversión","estudio"],correcta:0,explicacion:"Tele- significa «lejos»."},
-{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante cardio-?",opciones:["piel","corazón","agua","escribir"],correcta:1,explicacion:"Cardio- significa «corazón»."},
-{nivel:5,tipo:"mcq",pregunta:"¿Qué significa el formante foto-?",opciones:["luz","tierra","vida","lejos"],correcta:0,explicacion:"Foto- significa «luz»."},
-{nivel:5,tipo:"clasificacion",pregunta:"Clasifica «geología» según su procedimiento de formación.",palabra:"geología",categorias:["Compuesto culto","Derivada","Simple","Parasintética"],correcta:"Compuesto culto",explicacion:"Geología está formada por formantes de origen grecolatino y constituye un compuesto culto."},
-{nivel:5,tipo:"clasificacion",pregunta:"Clasifica «telescopio» según su procedimiento de formación.",palabra:"telescopio",categorias:["Compuesto culto","Derivada","Simple","Parasintética"],correcta:"Compuesto culto",explicacion:"Telescopio es un compuesto culto formado con formantes de origen grecolatino."},
-{nivel:5,tipo:"mcq",pregunta:"¿Qué diferencia hay entre los formantes grecolatinos y los lexemas?",opciones:["Los formantes grecolatinos no existen como palabras independientes en castellano","Los formantes grecolatinos siempre son sufijos","Los lexemas no tienen significado","Los formantes grecolatinos solo aparecen al final"],correcta:0,explicacion:"Son raíces cultas que no existen como palabras independientes en castellano."},
-
-/* NIVEL 6 · INTEGRA Y RAZONA */
-
-{nivel:6,tipo:"texto",pregunta:"Explica qué tipo de formación presenta «geología» y qué caracteriza a sus elementos.",palabra:"geología",soluciones:["compuesto culto, formantes grecolatinos","compuesto culto formantes grecolatinos","compuesto culto, raíces cultas","compuesto culto raíces cultas"],explicacion:"Geología es un compuesto culto formado por formantes de origen grecolatino, también llamados raíces cultas, que no existen como palabras independientes en castellano."},
-{nivel:6,tipo:"texto",pregunta:"Explica la diferencia entre «rojiblanco» y «geología» atendiendo a los elementos que se unen.",soluciones:["rojiblanco, dos lexemas; geología, formantes grecolatinos","rojiblanco dos lexemas geología formantes grecolatinos","rojiblanco, lexemas; geología, raíces cultas","rojiblanco lexemas geología raíces cultas"],explicacion:"Rojiblanco es un compuesto formado por lexemas del español; geología es un compuesto culto formado por raíces cultas de origen grecolatino."},
-{nivel:6,tipo:"mcq",pregunta:"¿Cuál de estas afirmaciones es correcta?",opciones:["Geología es derivada porque geo- es un prefijo","Geología es un compuesto culto porque combina formantes grecolatinos","Rojiblanco es un compuesto culto","Reblandecer es compuesto porque contiene dos lexemas"],correcta:1,explicacion:"Geología es un compuesto culto porque sus elementos son formantes de origen grecolatino."},
-{nivel:6,tipo:"mcq",pregunta:"¿Cuál de estas opciones reúne correctamente palabra y procedimiento?",opciones:["revivir — composición","rojiblanco — composición","reblandecer — derivación simple","geología — palabra simple"],correcta:1,explicacion:"Rojiblanco es un compuesto formado por la unión de rojo y blanco."},
-{nivel:6,tipo:"mcq",pregunta:"¿Cuál es la afirmación correcta sobre la acronimia?",opciones:["OMS aparece como ejemplo de acrónimo y EE UU muestra la duplicación de iniciales en términos plurales","OMS es una palabra derivada","EE UU es un compuesto formado por dos lexemas","La acronimia consiste en añadir un sufijo a un lexema"],correcta:0,explicacion:"La acronimia puede formarse a partir de iniciales u otras letras de varios términos; OMS es un ejemplo y EE UU muestra la duplicación de iniciales en términos de origen plural."},
-{nivel:6,tipo:"texto",pregunta:"Explica por qué los formantes grecolatinos no deben identificarse simplemente con prefijos y sufijos derivativos.",soluciones:["porque pueden formar palabras sin un lexema","porque no son simples afijos y pueden formar palabras sin lexema","pueden formar palabras sin necesidad de lexema","no son simples afijos derivativos y pueden formar palabras sin lexema"],explicacion:"Los formantes grecolatinos no se consideran simples afijos derivativos porque pueden formar palabras sin necesidad de que haya un lexema."},
-{nivel:6,tipo:"clasificacion",pregunta:"Clasifica «herbívoro» según su procedimiento de formación.",palabra:"herbívoro",categorias:["Compuesto culto","Derivada","Simple","Parasintética"],correcta:"Compuesto culto",explicacion:"Herbívoro/a es un compuesto culto formado con elementos de origen grecolatino."},
-{nivel:6,tipo:"mcq",pregunta:"¿Qué conjunto reúne únicamente palabras que ejemplifican los procedimientos trabajados?",opciones:["orilla, revivir, rojiblanco, reblandecer","geología, telescopio, herbívoro, OMS","A y B","Ninguno"],correcta:2,explicacion:"Todos los términos de las opciones A y B ejemplifican procedimientos de formación de palabras trabajados en este bloque."}
-
+{nivel:1,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un lexema?",opciones:["libr- en «libros»","-s en «libros»","re- en «revivir»","-ura en «blancura»"],correcta:0,explicacion:"El lexema aporta el significado léxico central."},
+{nivel:1,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un morfema flexivo?",opciones:["-s en «libros»","re- en «revivir»","-eza en «belleza»","-ura en «blancura»"],correcta:0,explicacion:"-s expresa número plural y es un morfema flexivo."},
+{nivel:1,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un afijo derivativo?",opciones:["re- en «revivir»","-s en «libros»","-a en «rápida»","-es en «paredes»"],correcta:0,explicacion:"re- es un prefijo derivativo."},
+{nivel:1,tipo:"mcq",pregunta:"¿Dónde se sitúa un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Entre dos lexemas necesariamente","Solo al final"],correcta:0,explicacion:"Los prefijos se sitúan delante del lexema."},
+{nivel:1,tipo:"mcq",pregunta:"¿Dónde se sitúa un sufijo?",opciones:["Detrás del lexema","Delante del lexema","Siempre entre dos lexemas","Solo en verbos"],correcta:0,explicacion:"Los sufijos se sitúan detrás del lexema."},
+{nivel:1,tipo:"mcq",pregunta:"¿Qué es un alomorfo?",opciones:["Una variante de un morfema","Un morfema exclusivamente flexivo","Un sufijo sin significado","Un lexema compuesto"],correcta:0,explicacion:"Un alomorfo es una variante de un mismo morfema."},
+{nivel:1,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Elemento de enlace o interfijo","Lexema","Morfema de número","Prefijo"],correcta:0,explicacion:"-ec- funciona como elemento de enlace y no aporta significado."},
+{nivel:1,tipo:"mcq",pregunta:"En «lápices», ¿qué tipo de elemento es «-es»?",opciones:["Morfema flexivo","Lexema","Prefijo derivativo","Interfijo"],correcta:0,explicacion:"-es expresa número plural y es flexivo."},
+{nivel:2,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un lexema?",opciones:["libr- en «libros»","-s en «libros»","re- en «revivir»","-ura en «blancura»"],correcta:0,explicacion:"El lexema aporta el significado léxico central."},
+{nivel:2,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un morfema flexivo?",opciones:["-s en «libros»","re- en «revivir»","-eza en «belleza»","-ura en «blancura»"],correcta:0,explicacion:"-s expresa número plural y es un morfema flexivo."},
+{nivel:2,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un afijo derivativo?",opciones:["re- en «revivir»","-s en «libros»","-a en «rápida»","-es en «paredes»"],correcta:0,explicacion:"re- es un prefijo derivativo."},
+{nivel:2,tipo:"mcq",pregunta:"¿Dónde se sitúa un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Entre dos lexemas necesariamente","Solo al final"],correcta:0,explicacion:"Los prefijos se sitúan delante del lexema."},
+{nivel:2,tipo:"mcq",pregunta:"¿Dónde se sitúa un sufijo?",opciones:["Detrás del lexema","Delante del lexema","Siempre entre dos lexemas","Solo en verbos"],correcta:0,explicacion:"Los sufijos se sitúan detrás del lexema."},
+{nivel:2,tipo:"mcq",pregunta:"¿Qué es un alomorfo?",opciones:["Una variante de un morfema","Un morfema exclusivamente flexivo","Un sufijo sin significado","Un lexema compuesto"],correcta:0,explicacion:"Un alomorfo es una variante de un mismo morfema."},
+{nivel:2,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Elemento de enlace o interfijo","Lexema","Morfema de número","Prefijo"],correcta:0,explicacion:"-ec- funciona como elemento de enlace y no aporta significado."},
+{nivel:2,tipo:"mcq",pregunta:"En «lápices», ¿qué tipo de elemento es «-es»?",opciones:["Morfema flexivo","Lexema","Prefijo derivativo","Interfijo"],correcta:0,explicacion:"-es expresa número plural y es flexivo."},
+{nivel:3,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un lexema?",opciones:["libr- en «libros»","-s en «libros»","re- en «revivir»","-ura en «blancura»"],correcta:0,explicacion:"El lexema aporta el significado léxico central."},
+{nivel:3,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un morfema flexivo?",opciones:["-s en «libros»","re- en «revivir»","-eza en «belleza»","-ura en «blancura»"],correcta:0,explicacion:"-s expresa número plural y es un morfema flexivo."},
+{nivel:3,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un afijo derivativo?",opciones:["re- en «revivir»","-s en «libros»","-a en «rápida»","-es en «paredes»"],correcta:0,explicacion:"re- es un prefijo derivativo."},
+{nivel:3,tipo:"mcq",pregunta:"¿Dónde se sitúa un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Entre dos lexemas necesariamente","Solo al final"],correcta:0,explicacion:"Los prefijos se sitúan delante del lexema."},
+{nivel:3,tipo:"mcq",pregunta:"¿Dónde se sitúa un sufijo?",opciones:["Detrás del lexema","Delante del lexema","Siempre entre dos lexemas","Solo en verbos"],correcta:0,explicacion:"Los sufijos se sitúan detrás del lexema."},
+{nivel:3,tipo:"mcq",pregunta:"¿Qué es un alomorfo?",opciones:["Una variante de un morfema","Un morfema exclusivamente flexivo","Un sufijo sin significado","Un lexema compuesto"],correcta:0,explicacion:"Un alomorfo es una variante de un mismo morfema."},
+{nivel:3,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Elemento de enlace o interfijo","Lexema","Morfema de número","Prefijo"],correcta:0,explicacion:"-ec- funciona como elemento de enlace y no aporta significado."},
+{nivel:3,tipo:"mcq",pregunta:"En «lápices», ¿qué tipo de elemento es «-es»?",opciones:["Morfema flexivo","Lexema","Prefijo derivativo","Interfijo"],correcta:0,explicacion:"-es expresa número plural y es flexivo."},
+{nivel:4,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un lexema?",opciones:["libr- en «libros»","-s en «libros»","re- en «revivir»","-ura en «blancura»"],correcta:0,explicacion:"El lexema aporta el significado léxico central."},
+{nivel:4,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un morfema flexivo?",opciones:["-s en «libros»","re- en «revivir»","-eza en «belleza»","-ura en «blancura»"],correcta:0,explicacion:"-s expresa número plural y es un morfema flexivo."},
+{nivel:4,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un afijo derivativo?",opciones:["re- en «revivir»","-s en «libros»","-a en «rápida»","-es en «paredes»"],correcta:0,explicacion:"re- es un prefijo derivativo."},
+{nivel:4,tipo:"mcq",pregunta:"¿Dónde se sitúa un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Entre dos lexemas necesariamente","Solo al final"],correcta:0,explicacion:"Los prefijos se sitúan delante del lexema."},
+{nivel:4,tipo:"mcq",pregunta:"¿Dónde se sitúa un sufijo?",opciones:["Detrás del lexema","Delante del lexema","Siempre entre dos lexemas","Solo en verbos"],correcta:0,explicacion:"Los sufijos se sitúan detrás del lexema."},
+{nivel:4,tipo:"mcq",pregunta:"¿Qué es un alomorfo?",opciones:["Una variante de un morfema","Un morfema exclusivamente flexivo","Un sufijo sin significado","Un lexema compuesto"],correcta:0,explicacion:"Un alomorfo es una variante de un mismo morfema."},
+{nivel:4,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Elemento de enlace o interfijo","Lexema","Morfema de número","Prefijo"],correcta:0,explicacion:"-ec- funciona como elemento de enlace y no aporta significado."},
+{nivel:4,tipo:"mcq",pregunta:"En «lápices», ¿qué tipo de elemento es «-es»?",opciones:["Morfema flexivo","Lexema","Prefijo derivativo","Interfijo"],correcta:0,explicacion:"-es expresa número plural y es flexivo."},
+{nivel:5,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un lexema?",opciones:["libr- en «libros»","-s en «libros»","re- en «revivir»","-ura en «blancura»"],correcta:0,explicacion:"El lexema aporta el significado léxico central."},
+{nivel:5,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un morfema flexivo?",opciones:["-s en «libros»","re- en «revivir»","-eza en «belleza»","-ura en «blancura»"],correcta:0,explicacion:"-s expresa número plural y es un morfema flexivo."},
+{nivel:5,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un afijo derivativo?",opciones:["re- en «revivir»","-s en «libros»","-a en «rápida»","-es en «paredes»"],correcta:0,explicacion:"re- es un prefijo derivativo."},
+{nivel:5,tipo:"mcq",pregunta:"¿Dónde se sitúa un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Entre dos lexemas necesariamente","Solo al final"],correcta:0,explicacion:"Los prefijos se sitúan delante del lexema."},
+{nivel:5,tipo:"mcq",pregunta:"¿Dónde se sitúa un sufijo?",opciones:["Detrás del lexema","Delante del lexema","Siempre entre dos lexemas","Solo en verbos"],correcta:0,explicacion:"Los sufijos se sitúan detrás del lexema."},
+{nivel:5,tipo:"mcq",pregunta:"¿Qué es un alomorfo?",opciones:["Una variante de un morfema","Un morfema exclusivamente flexivo","Un sufijo sin significado","Un lexema compuesto"],correcta:0,explicacion:"Un alomorfo es una variante de un mismo morfema."},
+{nivel:5,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Elemento de enlace o interfijo","Lexema","Morfema de número","Prefijo"],correcta:0,explicacion:"-ec- funciona como elemento de enlace y no aporta significado."},
+{nivel:5,tipo:"mcq",pregunta:"En «lápices», ¿qué tipo de elemento es «-es»?",opciones:["Morfema flexivo","Lexema","Prefijo derivativo","Interfijo"],correcta:0,explicacion:"-es expresa número plural y es flexivo."},
+{nivel:6,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un lexema?",opciones:["libr- en «libros»","-s en «libros»","re- en «revivir»","-ura en «blancura»"],correcta:0,explicacion:"El lexema aporta el significado léxico central."},
+{nivel:6,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un morfema flexivo?",opciones:["-s en «libros»","re- en «revivir»","-eza en «belleza»","-ura en «blancura»"],correcta:0,explicacion:"-s expresa número plural y es un morfema flexivo."},
+{nivel:6,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un afijo derivativo?",opciones:["re- en «revivir»","-s en «libros»","-a en «rápida»","-es en «paredes»"],correcta:0,explicacion:"re- es un prefijo derivativo."},
+{nivel:6,tipo:"mcq",pregunta:"¿Dónde se sitúa un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Entre dos lexemas necesariamente","Solo al final"],correcta:0,explicacion:"Los prefijos se sitúan delante del lexema."},
+{nivel:6,tipo:"mcq",pregunta:"¿Dónde se sitúa un sufijo?",opciones:["Detrás del lexema","Delante del lexema","Siempre entre dos lexemas","Solo en verbos"],correcta:0,explicacion:"Los sufijos se sitúan detrás del lexema."},
+{nivel:6,tipo:"mcq",pregunta:"¿Qué es un alomorfo?",opciones:["Una variante de un morfema","Un morfema exclusivamente flexivo","Un sufijo sin significado","Un lexema compuesto"],correcta:0,explicacion:"Un alomorfo es una variante de un mismo morfema."},
+{nivel:6,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Elemento de enlace o interfijo","Lexema","Morfema de número","Prefijo"],correcta:0,explicacion:"-ec- funciona como elemento de enlace y no aporta significado."},
+{nivel:6,tipo:"mcq",pregunta:"En «lápices», ¿qué tipo de elemento es «-es»?",opciones:["Morfema flexivo","Lexema","Prefijo derivativo","Interfijo"],correcta:0,explicacion:"-es expresa número plural y es flexivo."}
 ];
 
 /* =====================================================
