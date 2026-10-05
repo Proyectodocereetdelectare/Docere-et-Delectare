@@ -1,163 +1,581 @@
-const preguntas = [
+<!DOCTYPE html>
+<html lang="es">
 
-    {
-        pregunta: "¿Cuál es el lexema de «niñas»?",
-        opciones: ["niñ-", "-a", "-s", "niñas"],
-        correcta: 0,
-        explicacion: "«niñ-» es el lexema porque aporta el significado léxico fundamental."
-    },
+<head>
 
-    {
-        pregunta: "En «niñas», ¿qué morfema indica género femenino?",
-        opciones: ["niñ-", "-a", "-s", "ninguno"],
-        correcta: 1,
-        explicacion: "El morfema «-a» indica género femenino."
-    },
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {
-        pregunta: "En «niñas», ¿qué morfema indica número plural?",
-        opciones: ["niñ-", "-a", "-s", "niñas"],
-        correcta: 2,
-        explicacion: "El morfema «-s» indica número plural."
-    },
+    <title>Estructura de la palabra · Docere et Delectare</title>
 
-    {
-        pregunta: "¿Cuál es el lexema de «panadero»?",
-        opciones: ["pan-", "-ader-", "-o", "panadero"],
-        correcta: 0,
-        explicacion: "«pan-» es el lexema y contiene el significado léxico fundamental."
-    },
+    <style>
 
-    {
-        pregunta: "En «panadero», ¿qué elemento es un morfema derivativo?",
-        opciones: ["pan-", "-ader-", "-o", "panadero"],
-        correcta: 1,
-        explicacion: "«-ader-» participa en la formación de una nueva palabra a partir de «pan»."
-    },
+        body {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            background: #f4efe5;
+            color: #2d2a26;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-    {
-        pregunta: "En «casitas», ¿qué elemento aporta el significado diminutivo?",
-        opciones: ["cas-", "-a-", "-it-", "-s"],
-        correcta: 2,
-        explicacion: "«-it-» es un morfema derivativo diminutivo."
-    },
+        .contenedor {
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+        }
 
-    {
-        pregunta: "En «gatitos», ¿qué morfema indica plural?",
-        opciones: ["gat-", "-it-", "-o-", "-s"],
-        correcta: 3,
-        explicacion: "El morfema «-s» indica que la palabra está en plural."
-    },
+        h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
 
-    {
-        pregunta: "¿Cuál es el lexema de «florista»?",
-        opciones: ["flor-", "-ist-", "-a", "florista"],
-        correcta: 0,
-        explicacion: "«flor-» es el lexema porque aporta el significado léxico principal."
-    },
+        .subtitulo {
+            font-size: 20px;
+            margin-bottom: 35px;
+            color: #625b51;
+        }
 
-    {
-        pregunta: "En «florista», ¿qué elemento permite formar una nueva palabra a partir de «flor»?",
-        opciones: ["flor-", "-ist-", "-a", "ninguno"],
-        correcta: 1,
-        explicacion: "«-ist-» es un elemento derivativo que permite formar «florista»."
-    },
+        .panel {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
 
-    {
-        pregunta: "¿Cuál es el lexema de «desagradable»?",
-        opciones: ["des-", "agrad-", "-able", "desagradable"],
-        correcta: 1,
-        explicacion: "«agrad-» es el lexema relacionado con el significado de «agradar»."
-    },
+        #numeroPregunta {
+            color: #625b51;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
 
-    {
-        pregunta: "En «inútil», ¿qué elemento es un prefijo?",
-        opciones: ["in-", "util-", "-il", "útil"],
-        correcta: 0,
-        explicacion: "«in-» es un prefijo que se sitúa delante del lexema."
-    },
+        #pregunta {
+            font-size: 25px;
+            line-height: 1.4;
+            margin-bottom: 30px;
+        }
 
-    {
-        pregunta: "En «releer», ¿qué elemento funciona como prefijo?",
-        opciones: ["re-", "le-", "-er", "leer"],
-        correcta: 0,
-        explicacion: "«re-» es un prefijo que indica repetición."
-    },
+        .opciones {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
 
-    {
-        pregunta: "En «panadería», ¿cuál es el lexema?",
-        opciones: ["pan-", "-ader-", "-ía", "panadería"],
-        correcta: 0,
-        explicacion: "«pan-» es el lexema de «panadería»."
-    },
+        .opcion {
+            padding: 20px;
+            border: none;
+            border-radius: 12px;
+            background: #eee8dc;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-    {
-        pregunta: "En «submarino», ¿qué elemento es un prefijo?",
-        opciones: ["sub-", "mar-", "-ino", "marino"],
-        correcta: 0,
-        explicacion: "«sub-» es un prefijo que aparece delante del lexema «mar-»."
-    },
+        .opcion:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
+        }
 
-    {
-        pregunta: "En «caserón», ¿qué elemento aporta un valor aumentativo?",
-        opciones: ["cas-", "-er-", "-ón", "ninguno"],
-        correcta: 2,
-        explicacion: "«-ón» funciona como sufijo apreciativo aumentativo."
-    },
+        .opcion:disabled {
+            cursor: default;
+        }
 
-    {
-        pregunta: "En «zapatero», ¿cuál es el lexema?",
-        opciones: ["zap-", "zapat-", "-er-", "-o"],
-        correcta: 1,
-        explicacion: "«zapat-» es el lexema. «-er-» participa en la derivación y «-o» indica género masculino."
-    },
+        #feedback {
+            margin-top: 25px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
 
-    {
-        pregunta: "¿Qué tipo de morfema es «-s» en «libros»?",
-        opciones: [
-            "Lexema",
-            "Morfema derivativo",
-            "Morfema flexivo",
-            "Prefijo"
-        ],
-        correcta: 2,
-        explicacion: "«-s» es un morfema flexivo porque indica número plural."
-    },
+        #siguiente,
+        #reiniciar,
+        #volver {
+            margin-top: 25px;
+            padding: 13px 26px;
+            border: none;
+            border-radius: 10px;
+            background: #ddd5c8;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 16px;
+            cursor: pointer;
+        }
 
-    {
-        pregunta: "¿Qué tipo de morfema es «des-» en «deshacer»?",
-        opciones: [
-            "Lexema",
-            "Morfema derivativo prefijo",
-            "Morfema flexivo",
-            "Morfema derivativo sufijo"
-        ],
-        correcta: 1,
-        explicacion: "«des-» es un morfema derivativo prefijo porque se coloca delante del lexema."
-    },
+        #siguiente:hover,
+        #reiniciar:hover,
+        #volver:hover {
+            background: #cfc5b5;
+        }
 
-    {
-        pregunta: "¿Qué tipo de morfema es «-ito» en «perrito»?",
-        opciones: [
-            "Morfema flexivo",
-            "Lexema",
-            "Morfema derivativo apreciativo",
-            "Prefijo"
-        ],
-        correcta: 2,
-        explicacion: "«-ito» es un sufijo derivativo apreciativo diminutivo."
-    },
+        #resultado {
+            font-size: 21px;
+            line-height: 1.6;
+        }
 
-    {
-        pregunta: "¿Cuál de estas palabras contiene un prefijo?",
-        opciones: [
-            "panadero",
-            "releer",
-            "florista",
-            "casita"
-        ],
-        correcta: 1,
-        explicacion: "«releer» contiene el prefijo «re-»."
-    }
+        .nota {
+            font-size: 38px;
+            margin: 25px 0;
+        }
 
-];
+        @media (max-width: 700px) {
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .panel {
+                padding: 25px;
+            }
+
+            .opciones {
+                grid-template-columns: 1fr;
+            }
+
+            #pregunta {
+                font-size: 21px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <div class="contenedor">
+
+        <h1>🧩 Desmonta la palabra</h1>
+
+        <div class="subtitulo">
+            Estructura de la palabra · 4.º ESO
+        </div>
+
+
+        <!-- ACTIVIDAD -->
+
+        <div class="panel" id="actividad">
+
+            <p id="numeroPregunta">
+                Pregunta 1 de 20
+            </p>
+
+            <h2 id="pregunta"></h2>
+
+            <div class="opciones" id="opciones"></div>
+
+            <div id="feedback"></div>
+
+            <button
+                id="siguiente"
+                onclick="siguientePregunta()"
+                style="display: none;">
+                Siguiente →
+            </button>
+
+        </div>
+
+
+        <!-- RESULTADO FINAL -->
+
+        <div class="panel" id="resultado" style="display: none;">
+
+            <h2>🎉 Actividad terminada</h2>
+
+            <p>Has completado las 20 preguntas.</p>
+
+            <div class="nota" id="notaFinal"></div>
+
+            <p id="mensajeFinal"></p>
+
+            <button
+                id="reiniciar"
+                onclick="reiniciarActividad()">
+                🔄 Intentar de nuevo
+            </button>
+
+            <br>
+
+            <button
+                id="volver"
+                onclick="window.location.href='morfologia.html'">
+                ← Volver a Morfología
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const preguntas = [
+
+            {
+                pregunta: "¿Cuál es el lexema de «panadero»?",
+                opciones: ["pan-", "-ader-", "-o", "panadero"],
+                correcta: 0,
+                explicacion: "El lexema es «pan-», porque aporta el significado léxico fundamental relacionado con «pan»."
+            },
+
+            {
+                pregunta: "En «niñas», ¿qué morfema indica el género femenino?",
+                opciones: ["niñ-", "-a", "-s", "ninguno"],
+                correcta: 1,
+                explicacion: "El morfema flexivo «-a» indica género femenino."
+            },
+
+            {
+                pregunta: "En «niñas», ¿qué morfema indica el número plural?",
+                opciones: ["niñ-", "-a", "-s", "niñas"],
+                correcta: 2,
+                explicacion: "El morfema flexivo «-s» indica número plural."
+            },
+
+            {
+                pregunta: "¿Cuál es el lexema de «florista»?",
+                opciones: ["flor-", "-ista", "-a", "florista"],
+                correcta: 0,
+                explicacion: "«flor-» es el lexema porque contiene el significado léxico fundamental."
+            },
+
+            {
+                pregunta: "En «florista», ¿qué elemento es un sufijo derivativo?",
+                opciones: ["flor-", "-ista", "-a", "ninguno"],
+                correcta: 1,
+                explicacion: "«-ista» es un sufijo derivativo que permite formar una nueva palabra a partir de «flor»."
+            },
+
+            {
+                pregunta: "En «casitas», ¿qué elemento aporta el significado diminutivo?",
+                opciones: ["cas-", "-a", "-it-", "-s"],
+                correcta: 2,
+                explicacion: "«-it-» forma parte del sufijo apreciativo diminutivo «-ito/-ita»."
+            },
+
+            {
+                pregunta: "En «gatitos», ¿qué morfema indica el número plural?",
+                opciones: ["gat-", "-it-", "-o-", "-s"],
+                correcta: 3,
+                explicacion: "El morfema «-s» indica número plural."
+            },
+
+            {
+                pregunta: "¿Cuál es el lexema de «panadería»?",
+                opciones: ["pan-", "-ader-", "-ía", "panadería"],
+                correcta: 0,
+                explicacion: "«pan-» es el lexema y aporta el significado léxico fundamental."
+            },
+
+            {
+                pregunta: "¿Qué tipo de morfema es «des-» en «deshacer»?",
+                opciones: [
+                    "Lexema",
+                    "Prefijo derivativo",
+                    "Morfema flexivo",
+                    "Sufijo derivativo"
+                ],
+                correcta: 1,
+                explicacion: "«des-» es un prefijo derivativo porque se sitúa delante del lexema."
+            },
+
+            {
+                pregunta: "¿Qué tipo de morfema es «re-» en «releer»?",
+                opciones: [
+                    "Lexema",
+                    "Sufijo derivativo",
+                    "Prefijo derivativo",
+                    "Morfema flexivo"
+                ],
+                correcta: 2,
+                explicacion: "«re-» es un prefijo derivativo que expresa repetición."
+            },
+
+            {
+                pregunta: "En «inútil», ¿qué elemento funciona como prefijo?",
+                opciones: ["in-", "util-", "-il", "útil"],
+                correcta: 0,
+                explicacion: "«in-» es un prefijo derivativo situado delante del lexema."
+            },
+
+            {
+                pregunta: "¿Qué tipo de morfema es «-s» en «libros»?",
+                opciones: [
+                    "Lexema",
+                    "Morfema derivativo",
+                    "Morfema flexivo",
+                    "Prefijo"
+                ],
+                correcta: 2,
+                explicacion: "«-s» es un morfema flexivo que indica número plural."
+            },
+
+            {
+                pregunta: "En «perrito», ¿qué elemento aporta el significado diminutivo?",
+                opciones: ["perr-", "-it-", "-o", "-s"],
+                correcta: 1,
+                explicacion: "«-it-» forma parte del sufijo apreciativo diminutivo «-ito»."
+            },
+
+            {
+                pregunta: "En «caserón», ¿qué elemento aporta un valor aumentativo?",
+                opciones: ["cas-", "-er-", "-ón", "-o"],
+                correcta: 2,
+                explicacion: "«-ón» es un sufijo apreciativo aumentativo."
+            },
+
+            {
+                pregunta: "¿Cuál de estas palabras contiene un prefijo derivativo?",
+                opciones: [
+                    "panadero",
+                    "releer",
+                    "florista",
+                    "casita"
+                ],
+                correcta: 1,
+                explicacion: "«releer» contiene el prefijo derivativo «re-»."
+            },
+
+            {
+                pregunta: "¿Cuál de estas palabras contiene un sufijo derivativo?",
+                opciones: [
+                    "libros",
+                    "niñas",
+                    "florista",
+                    "mesas"
+                ],
+                correcta: 2,
+                explicacion: "«florista» contiene el sufijo derivativo «-ista»."
+            },
+
+            {
+                pregunta: "¿Cuál de estos elementos es un morfema flexivo?",
+                opciones: [
+                    "re-",
+                    "-ista",
+                    "-s en «casas»",
+                    "-ito"
+                ],
+                correcta: 2,
+                explicacion: "La «-s» de «casas» es un morfema flexivo porque indica número plural."
+            },
+
+            {
+                pregunta: "¿Cuál de estas palabras presenta un prefijo y un lexema?",
+                opciones: [
+                    "releer",
+                    "mesas",
+                    "florista",
+                    "niñas"
+                ],
+                correcta: 0,
+                explicacion: "«releer» contiene el prefijo «re-» y el lexema relacionado con «leer»."
+            },
+
+            {
+                pregunta: "¿Cuál es el lexema de «marinero»?",
+                opciones: [
+                    "mar-",
+                    "-iner-",
+                    "-o",
+                    "marinero"
+                ],
+                correcta: 0,
+                explicacion: "«mar-» es el lexema porque aporta el significado léxico relacionado con «mar»."
+            },
+
+            {
+                pregunta: "¿Qué tipo de morfema es «-mente» en «rápidamente»?",
+                opciones: [
+                    "Prefijo derivativo",
+                    "Sufijo derivativo",
+                    "Morfema flexivo",
+                    "Lexema"
+                ],
+                correcta: 1,
+                explicacion: "«-mente» es un sufijo derivativo que permite formar adverbios a partir de adjetivos."
+            }
+
+        ];
+
+
+        let preguntaActual = 0;
+        let puntuacion = 0;
+        let respondida = false;
+
+
+        function mostrarPregunta() {
+
+            respondida = false;
+
+            const pregunta = preguntas[preguntaActual];
+
+            document.getElementById("numeroPregunta").textContent =
+                "Pregunta " +
+                (preguntaActual + 1) +
+                " de " +
+                preguntas.length;
+
+            document.getElementById("pregunta").textContent =
+                pregunta.pregunta;
+
+            document.getElementById("feedback").textContent = "";
+
+            document.getElementById("siguiente").style.display = "none";
+
+            const contenedorOpciones =
+                document.getElementById("opciones");
+
+            contenedorOpciones.innerHTML = "";
+
+
+            pregunta.opciones.forEach((opcion, indice) => {
+
+                const boton = document.createElement("button");
+
+                boton.className = "opcion";
+
+                boton.textContent = opcion;
+
+                boton.onclick = function() {
+                    comprobarRespuesta(indice);
+                };
+
+                contenedorOpciones.appendChild(boton);
+
+            });
+
+        }
+
+
+        function comprobarRespuesta(indice) {
+
+            if (respondida) {
+                return;
+            }
+
+            respondida = true;
+
+            const pregunta = preguntas[preguntaActual];
+
+            const botones =
+                document.querySelectorAll(".opcion");
+
+            botones.forEach(boton => {
+                boton.disabled = true;
+            });
+
+
+            if (indice === pregunta.correcta) {
+
+                puntuacion++;
+
+                document.getElementById("feedback").innerHTML =
+                    "✅ <strong>¡Correcto!</strong><br>" +
+                    pregunta.explicacion;
+
+            } else {
+
+                document.getElementById("feedback").innerHTML =
+                    "❌ <strong>No es correcto.</strong><br>" +
+                    "La respuesta correcta es: «" +
+                    pregunta.opciones[pregunta.correcta] +
+                    "».<br>" +
+                    pregunta.explicacion;
+
+            }
+
+
+            document.getElementById("siguiente").style.display =
+                "inline-block";
+
+        }
+
+
+        function siguientePregunta() {
+
+            preguntaActual++;
+
+            if (preguntaActual < preguntas.length) {
+
+                mostrarPregunta();
+
+            } else {
+
+                mostrarResultado();
+
+            }
+
+        }
+
+
+        function mostrarResultado() {
+
+            document.getElementById("actividad").style.display =
+                "none";
+
+            document.getElementById("resultado").style.display =
+                "block";
+
+
+            const nota =
+                (puntuacion / preguntas.length) * 10;
+
+            document.getElementById("notaFinal").textContent =
+                nota.toFixed(1) + " / 10";
+
+
+            let mensaje = "";
+
+            if (nota >= 9) {
+
+                mensaje = "🏆 ¡Excelente! Dominas la estructura de la palabra.";
+
+            } else if (nota >= 7) {
+
+                mensaje = "👏 ¡Muy bien! Tienes un buen dominio de los contenidos.";
+
+            } else if (nota >= 5) {
+
+                mensaje = "👍 Aprobado. Conviene seguir practicando.";
+
+            } else {
+
+                mensaje = "📚 Necesitas repasar los contenidos y volver a intentarlo.";
+
+            }
+
+
+            document.getElementById("mensajeFinal").textContent =
+                mensaje;
+
+        }
+
+
+        function reiniciarActividad() {
+
+            preguntaActual = 0;
+
+            puntuacion = 0;
+
+            document.getElementById("resultado").style.display =
+                "none";
+
+            document.getElementById("actividad").style.display =
+                "block";
+
+            mostrarPregunta();
+
+        }
+
+
+        mostrarPregunta();
+
+    </script>
+
+</body>
+
+</html>
