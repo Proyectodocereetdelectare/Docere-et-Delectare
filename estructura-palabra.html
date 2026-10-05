@@ -3,982 +3,1331 @@
 
 <head>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Estructura de la palabra · Docere et Delectare</title>
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>Estructura de la palabra · Docere et Delectare</title>
 
-        * {
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            margin: 0;
-            font-family: Georgia, "Times New Roman", serif;
-            background: #f4efe5;
-            color: #2d2a26;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 15px;
-        }
+* {
+    box-sizing: border-box;
+}
 
-        .contenedor {
-            width: 100%;
-            max-width: 900px;
-            text-align: center;
-        }
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #f4efe5;
+    color: #2d2a26;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
 
-        h1 {
-            font-size: 48px;
-            margin: 0 0 10px;
-            letter-spacing: 1px;
-        }
+.contenedor {
+    width: 100%;
+    max-width: 950px;
+    text-align: center;
+}
 
-        .subtitulo {
-            font-size: 20px;
-            margin-bottom: 35px;
-            color: #625b51;
-        }
+h1 {
+    font-size: 46px;
+    margin: 0 0 10px;
+}
 
-        .panel {
-            background: white;
-            padding: 40px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
+.subtitulo {
+    font-size: 20px;
+    color: #625b51;
+    margin-bottom: 35px;
+}
 
-        /* PROGRESO */
+.panel {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
 
-        .zona-progreso {
-            margin-bottom: 30px;
-        }
+h2 {
+    margin-top: 0;
+}
 
-        .texto-progreso {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 15px;
-            color: #625b51;
-        }
+.introduccion {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
 
-        .barra {
-            width: 100%;
-            height: 12px;
-            background: #eee8dc;
-            border-radius: 20px;
-            overflow: hidden;
-        }
+.bloques {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
 
-        .barra-progreso {
-            height: 100%;
-            width: 0%;
-            background: #8f8678;
-            transition: width 0.4s ease;
-        }
+.bloque {
+    border: none;
+    border-radius: 15px;
+    padding: 25px 18px;
+    background: #eee8dc;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
 
-        /* PREGUNTA */
+.bloque:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
 
-        #pregunta {
-            font-size: 25px;
-            line-height: 1.4;
-            margin: 25px 0 30px;
-        }
+.icono {
+    display: block;
+    font-size: 35px;
+    margin-bottom: 12px;
+}
 
-        .opciones {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
+.descripcion {
+    display: block;
+    font-size: 14px;
+    color: #625b51;
+    margin-top: 8px;
+    line-height: 1.4;
+}
 
-        .opcion {
-            padding: 20px;
-            border: none;
-            border-radius: 12px;
-            background: #eee8dc;
-            color: #2d2a26;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+.boton {
+    margin-top: 25px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 10px;
+    background: #ddd5c8;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    cursor: pointer;
+}
 
-        .opcion:hover:not(:disabled) {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 12px rgba(0,0,0,0.15);
-        }
+.boton:hover {
+    background: #cfc5b5;
+}
 
-        .opcion:disabled {
-            cursor: default;
-        }
+#actividad,
+#resultado {
+    display: none;
+}
 
-        .opcion.correcta {
-            background: #dce8d8;
-        }
+.progreso-texto {
+    display: flex;
+    justify-content: space-between;
+    color: #625b51;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
 
-        .opcion.incorrecta {
-            background: #ead8d5;
-        }
+.barra {
+    height: 12px;
+    background: #eee8dc;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 30px;
+}
 
-        /* FEEDBACK */
+.progreso {
+    height: 100%;
+    width: 0%;
+    background: #8f8678;
+    transition: width 0.3s;
+}
 
-        #feedback {
-            margin-top: 25px;
-            font-size: 18px;
-            line-height: 1.6;
-            text-align: left;
-        }
+#pregunta {
+    font-size: 25px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
 
-        .correcto {
-            color: #3f6841;
-        }
+.opciones {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
 
-        .incorrecto {
-            color: #8a4038;
-        }
+.opcion {
+    padding: 20px;
+    border: none;
+    border-radius: 12px;
+    background: #eee8dc;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    cursor: pointer;
+}
 
-        /* BOTONES */
+.opcion:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+}
 
-        .boton {
-            margin-top: 25px;
-            padding: 13px 26px;
-            border: none;
-            border-radius: 10px;
-            background: #ddd5c8;
-            color: #2d2a26;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 16px;
-            cursor: pointer;
-        }
+.opcion:disabled {
+    cursor: default;
+}
 
-        .boton:hover {
-            background: #cfc5b5;
-        }
+.correcta {
+    background: #dce8d8 !important;
+}
 
-        /* RESULTADO */
+.incorrecta {
+    background: #ead8d5 !important;
+}
 
-        #resultado {
-            display: none;
-        }
+#feedback {
+    margin-top: 25px;
+    font-size: 17px;
+    line-height: 1.6;
+    text-align: left;
+}
 
-        .nota {
-            font-size: 48px;
-            margin: 25px 0;
-        }
+#nota {
+    font-size: 48px;
+    margin: 25px;
+}
 
-        .mensaje-final {
-            font-size: 20px;
-            line-height: 1.6;
-        }
+#mensaje {
+    font-size: 20px;
+    line-height: 1.6;
+}
 
-        /* INICIO */
+@media (max-width: 700px) {
 
-        .introduccion {
-            font-size: 18px;
-            line-height: 1.6;
-            margin-bottom: 25px;
-        }
+    h1 {
+        font-size: 35px;
+    }
 
-        /* MÓVIL */
+    .panel {
+        padding: 25px;
+    }
 
-        @media (max-width: 700px) {
+    .bloques,
+    .opciones {
+        grid-template-columns: 1fr;
+    }
 
-            h1 {
-                font-size: 36px;
-            }
+    #pregunta {
+        font-size: 21px;
+    }
 
-            .panel {
-                padding: 25px;
-            }
+}
 
-            .opciones {
-                grid-template-columns: 1fr;
-            }
-
-            #pregunta {
-                font-size: 21px;
-            }
-
-        }
-
-    </style>
+</style>
 
 </head>
 
 
 <body>
 
-    <div class="contenedor">
+<div class="contenedor">
 
-        <h1>🧩 Desmonta la palabra</h1>
 
-        <div class="subtitulo">
-            Estructura de la palabra · 4.º ESO
-        </div>
+<h1>🧩 Estructura de la palabra</h1>
 
+<div class="subtitulo">
+Lengua Castellana y Literatura · 4.º ESO
+</div>
 
-        <!-- ACTIVIDAD -->
 
-        <div class="panel" id="actividad">
+<!-- ========================= -->
+<!-- MENÚ PRINCIPAL -->
+<!-- ========================= -->
 
-            <div class="introduccion" id="introduccion">
+<div class="panel" id="menu">
 
-                <strong>¿Preparado?</strong>
+<h2>¿Qué quieres practicar?</h2>
 
-                <br>
+<div class="introduccion">
 
-                Vas a responder 20 preguntas sobre la estructura
-                de las palabras.
+Explora los cuatro bloques de la estructura
+y formación de las palabras.
 
-            </div>
+</div>
 
 
-            <!-- PROGRESO -->
+<div class="bloques">
 
-            <div class="zona-progreso">
 
-                <div class="texto-progreso">
+<button class="bloque"
+onclick="iniciarBloque(0)">
 
-                    <span id="numeroPregunta">
-                        Pregunta 1 de 20
-                    </span>
+<span class="icono">🧱</span>
 
-                    <span id="porcentaje">
-                        0%
-                    </span>
+<strong>1. Estructura de la palabra</strong>
 
-                </div>
+<span class="descripcion">
 
-                <div class="barra">
+Lexema, morfemas, afijos,
+alomorfos e infijos.
 
-                    <div
-                        class="barra-progreso"
-                        id="barraProgreso">
-                    </div>
+</span>
 
-                </div>
+</button>
 
-            </div>
 
+<button class="bloque"
+onclick="iniciarBloque(1)">
 
-            <!-- PREGUNTA -->
+<span class="icono">🌱</span>
 
-            <h2 id="pregunta"></h2>
+<strong>2. Derivación y composición</strong>
 
+<span class="descripcion">
 
-            <!-- OPCIONES -->
+Palabras simples,
+derivadas y compuestas.
 
-            <div
-                class="opciones"
-                id="opciones">
-            </div>
+</span>
 
+</button>
 
-            <!-- FEEDBACK -->
 
-            <div id="feedback"></div>
+<button class="bloque"
+onclick="iniciarBloque(2)">
 
+<span class="icono">🧬</span>
 
-            <!-- SIGUIENTE -->
+<strong>3. Parasíntesis y acronimia</strong>
 
-            <button
-                class="boton"
-                id="siguiente"
-                onclick="siguientePregunta()"
-                style="display:none;">
+<span class="descripcion">
 
-                Siguiente →
+Palabras parasintéticas
+y acrónimos.
 
-            </button>
+</span>
 
-        </div>
+</button>
 
 
-        <!-- RESULTADO -->
+<button class="bloque"
+onclick="iniciarBloque(3)">
 
-        <div
-            class="panel"
-            id="resultado">
+<span class="icono">🏛️</span>
 
-            <h2>🎉 Actividad terminada</h2>
+<strong>4. Formantes grecolatinos</strong>
 
-            <div
-                class="nota"
-                id="notaFinal">
-            </div>
+<span class="descripcion">
 
-            <div
-                class="mensaje-final"
-                id="mensajeFinal">
-            </div>
-
-
-            <button
-                class="boton"
-                onclick="reiniciarActividad()">
-
-                🔄 Intentar de nuevo
-
-            </button>
-
-            <br>
-
-
-            <button
-                class="boton"
-                onclick="window.location.href='morfologia.html'">
-
-                ← Volver a Morfología
-
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <script>
-
-        /* ================================
-           BANCO DE PREGUNTAS
-        ================================= */
-
-        const preguntas = [
-
-            {
-                pregunta: "¿Cuál es el lexema de «panadero»?",
-                opciones: [
-                    "pan-",
-                    "-ader-",
-                    "-o",
-                    "panadero"
-                ],
-                correcta: 0,
-                explicacion: "«pan-» es el lexema porque aporta el significado léxico fundamental."
-            },
-
-            {
-                pregunta: "En «niñas», ¿qué morfema indica el género femenino?",
-                opciones: [
-                    "niñ-",
-                    "-a",
-                    "-s",
-                    "ninguno"
-                ],
-                correcta: 1,
-                explicacion: "El morfema flexivo «-a» indica género femenino."
-            },
-
-            {
-                pregunta: "En «niñas», ¿qué morfema indica el número plural?",
-                opciones: [
-                    "niñ-",
-                    "-a",
-                    "-s",
-                    "niñas"
-                ],
-                correcta: 2,
-                explicacion: "El morfema flexivo «-s» indica número plural."
-            },
-
-            {
-                pregunta: "¿Cuál es el lexema de «florista»?",
-                opciones: [
-                    "flor-",
-                    "-ista",
-                    "-a",
-                    "florista"
-                ],
-                correcta: 0,
-                explicacion: "«flor-» es el lexema porque contiene el significado léxico fundamental."
-            },
-
-            {
-                pregunta: "En «florista», ¿qué elemento es un sufijo derivativo?",
-                opciones: [
-                    "flor-",
-                    "-ista",
-                    "-a",
-                    "ninguno"
-                ],
-                correcta: 1,
-                explicacion: "«-ista» es un sufijo derivativo que permite formar una nueva palabra."
-            },
-
-            {
-                pregunta: "En «casitas», ¿qué elemento aporta el significado diminutivo?",
-                opciones: [
-                    "cas-",
-                    "-a",
-                    "-it-",
-                    "-s"
-                ],
-                correcta: 2,
-                explicacion: "«-it-» forma parte del sufijo apreciativo diminutivo «-ito/-ita»."
-            },
-
-            {
-                pregunta: "En «gatitos», ¿qué morfema indica el número plural?",
-                opciones: [
-                    "gat-",
-                    "-it-",
-                    "-o-",
-                    "-s"
-                ],
-                correcta: 3,
-                explicacion: "El morfema «-s» indica número plural."
-            },
-
-            {
-                pregunta: "¿Cuál es el lexema de «panadería»?",
-                opciones: [
-                    "pan-",
-                    "-ader-",
-                    "-ía",
-                    "panadería"
-                ],
-                correcta: 0,
-                explicacion: "«pan-» es el lexema y aporta el significado léxico fundamental."
-            },
-
-            {
-                pregunta: "¿Qué tipo de morfema es «des-» en «deshacer»?",
-                opciones: [
-                    "Lexema",
-                    "Prefijo derivativo",
-                    "Morfema flexivo",
-                    "Sufijo derivativo"
-                ],
-                correcta: 1,
-                explicacion: "«des-» es un prefijo derivativo porque se sitúa delante del lexema."
-            },
-
-            {
-                pregunta: "¿Qué tipo de morfema es «re-» en «releer»?",
-                opciones: [
-                    "Lexema",
-                    "Sufijo derivativo",
-                    "Prefijo derivativo",
-                    "Morfema flexivo"
-                ],
-                correcta: 2,
-                explicacion: "«re-» es un prefijo derivativo que expresa repetición."
-            },
-
-            {
-                pregunta: "En «inútil», ¿qué elemento funciona como prefijo?",
-                opciones: [
-                    "in-",
-                    "util-",
-                    "-il",
-                    "útil"
-                ],
-                correcta: 0,
-                explicacion: "«in-» es un prefijo derivativo situado delante del lexema."
-            },
-
-            {
-                pregunta: "¿Qué tipo de morfema es «-s» en «libros»?",
-                opciones: [
-                    "Lexema",
-                    "Morfema derivativo",
-                    "Morfema flexivo",
-                    "Prefijo"
-                ],
-                correcta: 2,
-                explicacion: "«-s» es un morfema flexivo que indica número plural."
-            },
-
-            {
-                pregunta: "En «perrito», ¿qué elemento aporta el significado diminutivo?",
-                opciones: [
-                    "perr-",
-                    "-it-",
-                    "-o",
-                    "-s"
-                ],
-                correcta: 1,
-                explicacion: "«-it-» forma parte del sufijo apreciativo diminutivo «-ito»."
-            },
-
-            {
-                pregunta: "En «caserón», ¿qué elemento aporta un valor aumentativo?",
-                opciones: [
-                    "cas-",
-                    "-er-",
-                    "-ón",
-                    "-o"
-                ],
-                correcta: 2,
-                explicacion: "«-ón» es un sufijo apreciativo aumentativo."
-            },
-
-            {
-                pregunta: "¿Cuál de estas palabras contiene un prefijo derivativo?",
-                opciones: [
-                    "panadero",
-                    "releer",
-                    "florista",
-                    "casita"
-                ],
-                correcta: 1,
-                explicacion: "«releer» contiene el prefijo derivativo «re-»."
-            },
-
-            {
-                pregunta: "¿Cuál de estas palabras contiene un sufijo derivativo?",
-                opciones: [
-                    "libros",
-                    "niñas",
-                    "florista",
-                    "mesas"
-                ],
-                correcta: 2,
-                explicacion: "«florista» contiene el sufijo derivativo «-ista»."
-            },
-
-            {
-                pregunta: "¿Cuál de estos elementos es un morfema flexivo?",
-                opciones: [
-                    "re-",
-                    "-ista",
-                    "-s en «casas»",
-                    "-ito"
-                ],
-                correcta: 2,
-                explicacion: "La «-s» de «casas» es un morfema flexivo porque indica número plural."
-            },
-
-            {
-                pregunta: "¿Cuál de estas palabras presenta un prefijo?",
-                opciones: [
-                    "releer",
-                    "mesas",
-                    "florista",
-                    "niñas"
-                ],
-                correcta: 0,
-                explicacion: "«releer» contiene el prefijo «re-»."
-            },
-
-            {
-                pregunta: "¿Cuál es el lexema de «marinero»?",
-                opciones: [
-                    "mar-",
-                    "-iner-",
-                    "-o",
-                    "marinero"
-                ],
-                correcta: 0,
-                explicacion: "«mar-» es el lexema porque aporta el significado léxico relacionado con «mar»."
-            },
-
-            {
-                pregunta: "¿Qué tipo de morfema es «-mente» en «rápidamente»?",
-                opciones: [
-                    "Prefijo derivativo",
-                    "Sufijo derivativo",
-                    "Morfema flexivo",
-                    "Lexema"
-                ],
-                correcta: 1,
-                explicacion: "«-mente» es un sufijo derivativo que permite formar adverbios a partir de adjetivos."
-            }
-
-        ];
-
-
-        /* ================================
-           VARIABLES
-        ================================= */
-
-        let preguntasMezcladas = [];
-
-        let preguntaActual = 0;
-
-        let puntuacion = 0;
-
-        let respondida = false;
-
-
-        /* ================================
-           MEZCLAR PREGUNTAS
-        ================================= */
-
-        function mezclarPreguntas() {
-
-            preguntasMezcladas = [...preguntas];
-
-            for (
-                let i = preguntasMezcladas.length - 1;
-                i > 0;
-                i--
-            ) {
-
-                const j =
-                    Math.floor(Math.random() * (i + 1));
-
-                [
-                    preguntasMezcladas[i],
-                    preguntasMezcladas[j]
-                ] = [
-                    preguntasMezcladas[j],
-                    preguntasMezcladas[i]
-                ];
-
-            }
+Raíces cultas y
+compuestos cultos.
+
+</span>
+
+</button>
+
+
+<button class="bloque"
+onclick="iniciarRetoGlobal()">
+
+<span class="icono">🎯</span>
+
+<strong>Reto global</strong>
+
+<span class="descripcion">
+
+Preguntas mezcladas
+de los cuatro bloques.
+
+</span>
+
+</button>
+
+
+</div>
+
+
+<button class="boton"
+onclick="volverMorfologia()">
+
+← Volver a Morfología
+
+</button>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- ACTIVIDAD -->
+<!-- ========================= -->
+
+<div class="panel" id="actividad">
+
+
+<div class="progreso-texto">
+
+<span id="numeroPregunta">
+Pregunta 1 de 8
+</span>
+
+<span id="porcentaje">
+0%
+</span>
+
+</div>
+
+
+<div class="barra">
+
+<div class="progreso"
+id="barraProgreso">
+</div>
+
+</div>
+
+
+<h2 id="tituloBloque"></h2>
+
+<div id="pregunta"></div>
+
+
+<div class="opciones"
+id="opciones">
+</div>
+
+
+<div id="feedback"></div>
+
+
+<button class="boton"
+id="siguiente"
+onclick="siguientePregunta()"
+style="display:none;">
+
+Siguiente →
+
+</button>
+
+
+</div>
+
+
+<!-- ========================= -->
+<!-- RESULTADO -->
+<!-- ========================= -->
+
+<div class="panel"
+id="resultado">
+
+<h2>🎉 Actividad terminada</h2>
+
+<div id="nota"></div>
+
+<div id="mensaje"></div>
+
+
+<button class="boton"
+onclick="volverMenu()">
+
+← Volver a los bloques
+
+</button>
+
+
+<button class="boton"
+onclick="repetirActividad()">
+
+🔄 Repetir
+
+</button>
+
+</div>
+
+
+</div>
+
+
+<script>
+
+
+/* =====================================
+   PREGUNTAS
+===================================== */
+
+
+const bancos = [
+
+
+/* =====================================
+   BLOQUE 1
+===================================== */
+
+[
+
+{
+pregunta: "¿Qué es el lexema de una palabra?",
+opciones: [
+"El elemento que aporta el significado léxico",
+"El elemento que siempre indica plural",
+"Un tipo de prefijo",
+"Una palabra compuesta"
+],
+correcta: 0,
+explicacion:
+"El lexema es el elemento que contiene el significado léxico fundamental de la palabra."
+},
+
+{
+pregunta: "En «niñas», ¿cuál es el lexema?",
+opciones: [
+"niñ-",
+"-a",
+"-s",
+"niñas"
+],
+correcta: 0,
+explicacion:
+"«niñ-» contiene el significado léxico fundamental."
+},
+
+{
+pregunta: "En «niñas», ¿qué morfema indica género?",
+opciones: [
+"niñ-",
+"-a",
+"-s",
+"ninguno"
+],
+correcta: 1,
+explicacion:
+"«-a» es el morfema flexivo que indica género femenino."
+},
+
+{
+pregunta: "En «libros», ¿qué morfema indica número?",
+opciones: [
+"libr-",
+"-o",
+"-s",
+"libro"
+],
+correcta: 2,
+explicacion:
+"«-s» indica número plural."
+},
+
+{
+pregunta: "¿Cuál de estos es un afijo derivativo?",
+opciones: [
+"-s en «casas»",
+"re- en «releer»",
+"-o en «niño»",
+"-a en «niña»"
+],
+correcta: 1,
+explicacion:
+"«re-» es un prefijo derivativo."
+},
+
+{
+pregunta: "¿Qué característica tiene un morfema flexivo?",
+opciones: [
+"Forma siempre una palabra nueva",
+"Puede expresar género o número",
+"Siempre aparece delante del lexema",
+"Es siempre un sufijo derivativo"
+],
+correcta: 1,
+explicacion:
+"Los morfemas flexivos expresan valores gramaticales como género y número."
+},
+
+{
+pregunta: "¿Qué es un infijo?",
+opciones: [
+"Un elemento de enlace sin significado",
+"Un lexema",
+"Un prefijo",
+"Un morfema de género"
+],
+correcta: 0,
+explicacion:
+"El infijo funciona como elemento de enlace y carece de significado."
+},
+
+{
+pregunta: "¿Qué son los alomorfos?",
+opciones: [
+"Variantes de un mismo morfema",
+"Palabras compuestas",
+"Prefijos latinos",
+"Lexemas independientes"
+],
+correcta: 0,
+explicacion:
+"Los alomorfos son variantes que puede presentar un mismo morfema."
+}
+
+],
+
+
+/* =====================================
+   BLOQUE 2
+===================================== */
+
+[
+
+{
+pregunta: "¿Qué es una palabra simple?",
+opciones: [
+"La formada por un único lexema sin derivación",
+"La formada por dos lexemas",
+"La formada mediante un prefijo y un sufijo",
+"La formada por iniciales"
+],
+correcta: 0,
+explicacion:
+"Las palabras simples no se forman mediante procedimientos derivativos o compositivos."
+},
+
+{
+pregunta: "¿Cuál de estas palabras es derivada?",
+opciones: [
+"pan",
+"panadero",
+"mesa",
+"sol"
+],
+correcta: 1,
+explicacion:
+"«panadero» se forma a partir de «pan» mediante derivación."
+},
+
+{
+pregunta: "¿Cuál de estas palabras es compuesta?",
+opciones: [
+"pan",
+"panadero",
+"sacacorchos",
+"florista"
+],
+correcta: 2,
+explicacion:
+"«sacacorchos» combina dos elementos léxicos."
+},
+
+{
+pregunta: "¿Qué procedimiento consiste en añadir un afijo a un lexema?",
+opciones: [
+"Composición",
+"Derivación",
+"Acronimia",
+"Parasíntesis"
+],
+correcta: 1,
+explicacion:
+"La derivación consiste en formar palabras mediante la adición de afijos."
+},
+
+{
+pregunta: "¿Qué procedimiento utiliza dos o más lexemas?",
+opciones: [
+"Derivación",
+"Composición",
+"Flexión",
+"Acronimia"
+],
+correcta: 1,
+explicacion:
+"La composición combina dos o más lexemas."
+},
+
+{
+pregunta: "¿Cuál es una palabra simple?",
+opciones: [
+"flor",
+"florista",
+"parabrisas",
+"deshacer"
+],
+correcta: 0,
+explicacion:
+"«flor» es una palabra simple."
+},
+
+{
+pregunta: "¿Cuál es una palabra derivada?",
+opciones: [
+"mar",
+"marinero",
+"lavaplatos",
+"sol"
+],
+correcta: 1,
+explicacion:
+"«marinero» se forma mediante derivación a partir de «mar»."
+},
+
+{
+pregunta: "¿Cuál de estas palabras está formada por composición?",
+opciones: [
+"panadero",
+"releer",
+"sacacorchos",
+"florista"
+],
+correcta: 2,
+explicacion:
+"«sacacorchos» combina elementos léxicos mediante composición."
+}
+
+],
+
+
+/* =====================================
+   BLOQUE 3
+===================================== */
+
+[
+
+{
+pregunta: "¿Qué es una palabra parasintética?",
+opciones: [
+"Una palabra formada exclusivamente por flexión",
+"Una palabra formada mediante un procedimiento parasintético",
+"Una palabra simple",
+"Una abreviatura"
+],
+correcta: 1,
+explicacion:
+"La parasíntesis es un procedimiento de formación de palabras diferente de la simple derivación."
+},
+
+{
+pregunta: "¿Cuál de estas palabras aparece como ejemplo de parasíntesis?",
+opciones: [
+"pan",
+"a-tornill-ar",
+"flor",
+"mesa"
+],
+correcta: 1,
+explicacion:
+"«a-tornill-ar» aparece en los materiales como ejemplo de formación parasintética."
+},
+
+{
+pregunta: "¿Qué característica presenta la parasíntesis?",
+opciones: [
+"Puede implicar elementos a ambos lados del lexema",
+"Solo utiliza morfemas flexivos",
+"Siempre utiliza dos lexemas",
+"Solo utiliza iniciales"
+],
+correcta: 0,
+explicacion:
+"En los ejemplos de los materiales aparecen elementos a ambos lados del lexema."
+},
+
+{
+pregunta: "¿Qué es un morfema discontinuo?",
+opciones: [
+"Un morfema que aparece dividido alrededor del lexema",
+"Un lexema independiente",
+"Un acrónimo",
+"Un sufijo flexivo"
+],
+correcta: 0,
+explicacion:
+"En la formación parasintética puede hablarse de morfemas discontinuos."
+},
+
+{
+pregunta: "¿Qué es un acrónimo?",
+opciones: [
+"Una palabra simple",
+"Una formación creada a partir de elementos de varias palabras",
+"Un morfema flexivo",
+"Un sufijo"
+],
+correcta: 1,
+explicacion:
+"Los acrónimos se forman a partir de elementos de varias palabras."
+},
+
+{
+pregunta: "¿Cuál de estos ejemplos aparece en los materiales como acrónimo o formación por iniciales?",
+opciones: [
+"OMS",
+"panadero",
+"florista",
+"casita"
+],
+correcta: 0,
+explicacion:
+"OMS aparece como ejemplo de formación mediante iniciales."
+},
+
+{
+pregunta: "¿Cuál de estas opciones NO corresponde a la parasíntesis?",
+opciones: [
+"a-tornill-ar",
+"re-bland-ec-er",
+"una palabra formada solo mediante flexión",
+"formación mediante elementos alrededor del lexema"
+],
+correcta: 2,
+explicacion:
+"La flexión por sí sola no constituye un procedimiento parasintético."
+},
+
+{
+pregunta: "¿Qué procedimiento debemos distinguir de la parasíntesis?",
+opciones: [
+"La composición",
+"La puntuación",
+"La concordancia",
+"La acentuación"
+],
+correcta: 0,
+explicacion:
+"La parasíntesis es uno de los procedimientos de formación de palabras y debe distinguirse de otros como la composición."
+}
+
+],
+
+
+/* =====================================
+   BLOQUE 4
+===================================== */
+
+[
+
+{
+pregunta: "¿Qué son los formantes de origen grecolatino?",
+opciones: [
+"Raíces cultas utilizadas en la formación de palabras",
+"Morfemas exclusivamente flexivos",
+"Palabras simples",
+"Signos de puntuación"
+],
+correcta: 0,
+explicacion:
+"Los materiales presentan los formantes grecolatinos como elementos cultos utilizados en la formación de palabras."
+},
+
+{
+pregunta: "¿Qué significa el formante «bio»?",
+opciones: [
+"Tierra",
+"Vida",
+"Agua",
+"Luz"
+],
+correcta: 1,
+explicacion:
+"«bio» significa «vida»."
+},
+
+{
+pregunta: "¿Qué significa «geo»?",
+opciones: [
+"Tierra",
+"Vida",
+"Lejos",
+"Agua"
+],
+correcta: 0,
+explicacion:
+"«geo» significa «tierra»."
+},
+
+{
+pregunta: "¿Qué significa «foto»?",
+opciones: [
+"Agua",
+"Luz",
+"Piel",
+"Corazón"
+],
+correcta: 1,
+explicacion:
+"«foto» significa «luz»."
+},
+
+{
+pregunta: "¿Qué significa «tele»?",
+opciones: [
+"Lejos",
+"Agua",
+"Tierra",
+"Escribir"
+],
+correcta: 0,
+explicacion:
+"«tele» significa «lejos»."
+},
+
+{
+pregunta: "¿Qué significa «hidro»?",
+opciones: [
+"Vida",
+"Agua",
+"Luz",
+"Temor"
+],
+correcta: 1,
+explicacion:
+"«hidro» significa «agua»."
+},
+
+{
+pregunta: "¿Qué significa «cardio»?",
+opciones: [
+"Piel",
+"Corazón",
+"Tierra",
+"Lejos"
+],
+correcta: 1,
+explicacion:
+"«cardio» significa «corazón»."
+},
+
+{
+pregunta: "¿Qué significa «fobia»?",
+opciones: [
+"Estudio",
+"Observar",
+"Temor o aversión",
+"Escribir"
+],
+correcta: 2,
+explicacion:
+"«fobia» expresa temor o aversión."
+}
+
+]
+
+];
+
+
+const nombresBloques = [
+
+"🧱 Estructura de la palabra",
+
+"🌱 Derivación y composición",
+
+"🧬 Parasíntesis y acronimia",
+
+"🏛️ Formantes grecolatinos",
+
+"🎯 Reto global"
+
+];
+
+
+let preguntasActuales = [];
+
+let preguntaActual = 0;
+
+let puntuacion = 0;
+
+let bloqueSeleccionado = 0;
+
+let respondida = false;
+
+
+/* =====================================
+   MEZCLAR
+===================================== */
+
+function mezclar(array) {
+
+    return [...array].sort(
+        () => Math.random() - 0.5
+    );
+
+}
+
+
+/* =====================================
+   INICIAR BLOQUE
+===================================== */
+
+function iniciarBloque(numero) {
+
+    bloqueSeleccionado = numero;
+
+    preguntasActuales =
+        mezclar(bancos[numero]);
+
+    preguntaActual = 0;
+
+    puntuacion = 0;
+
+    document.getElementById("menu")
+        .style.display = "none";
+
+    document.getElementById("resultado")
+        .style.display = "none";
+
+    document.getElementById("actividad")
+        .style.display = "block";
+
+    document.getElementById("tituloBloque")
+        .textContent =
+        nombresBloques[numero];
+
+    mostrarPregunta();
+
+}
+
+
+/* =====================================
+   RETO GLOBAL
+===================================== */
+
+function iniciarRetoGlobal() {
+
+    bloqueSeleccionado = 4;
+
+    preguntasActuales =
+        mezclar([
+            ...bancos[0],
+            ...bancos[1],
+            ...bancos[2],
+            ...bancos[3]
+        ]);
+
+    preguntaActual = 0;
+
+    puntuacion = 0;
+
+    document.getElementById("menu")
+        .style.display = "none";
+
+    document.getElementById("resultado")
+        .style.display = "none";
+
+    document.getElementById("actividad")
+        .style.display = "block";
+
+    document.getElementById("tituloBloque")
+        .textContent =
+        "🎯 Reto global";
+
+    mostrarPregunta();
+
+}
+
+
+/* =====================================
+   MOSTRAR PREGUNTA
+===================================== */
+
+function mostrarPregunta() {
+
+    respondida = false;
+
+    const pregunta =
+        preguntasActuales[preguntaActual];
+
+
+    document.getElementById("numeroPregunta")
+        .textContent =
+        "Pregunta " +
+        (preguntaActual + 1) +
+        " de " +
+        preguntasActuales.length;
+
+
+    const porcentaje =
+        Math.round(
+            (preguntaActual /
+            preguntasActuales.length) * 100
+        );
+
+
+    document.getElementById("porcentaje")
+        .textContent =
+        porcentaje + "%";
+
+
+    document.getElementById("barraProgreso")
+        .style.width =
+        porcentaje + "%";
+
+
+    document.getElementById("pregunta")
+        .textContent =
+        pregunta.pregunta;
+
+
+    document.getElementById("feedback")
+        .innerHTML = "";
+
+
+    document.getElementById("siguiente")
+        .style.display =
+        "none";
+
+
+    const contenedor =
+        document.getElementById("opciones");
+
+
+    contenedor.innerHTML = "";
+
+
+    pregunta.opciones.forEach(
+        (opcion, indice) => {
+
+            const boton =
+                document.createElement("button");
+
+            boton.className = "opcion";
+
+            boton.textContent = opcion;
+
+            boton.onclick =
+                function() {
+
+                    comprobarRespuesta(indice);
+
+                };
+
+            contenedor.appendChild(boton);
 
         }
+    );
+
+}
 
 
-        /* ================================
-           MOSTRAR PREGUNTA
-        ================================= */
+/* =====================================
+   COMPROBAR
+===================================== */
 
-        function mostrarPregunta() {
+function comprobarRespuesta(indice) {
 
-            respondida = false;
+    if (respondida) {
+        return;
+    }
 
-            const pregunta =
-                preguntasMezcladas[preguntaActual];
-
-
-            document.getElementById(
-                "numeroPregunta"
-            ).textContent =
-                "Pregunta " +
-                (preguntaActual + 1) +
-                " de " +
-                preguntasMezcladas.length;
+    respondida = true;
 
 
-            const porcentaje =
-                Math.round(
-                    (preguntaActual /
-                    preguntasMezcladas.length) * 100
-                );
+    const pregunta =
+        preguntasActuales[preguntaActual];
 
 
-            document.getElementById(
-                "porcentaje"
-            ).textContent =
-                porcentaje + "%";
+    const botones =
+        document.querySelectorAll(".opcion");
 
 
-            document.getElementById(
-                "barraProgreso"
-            ).style.width =
-                porcentaje + "%";
+    botones.forEach(
+        (boton, posicion) => {
 
-
-            document.getElementById(
-                "pregunta"
-            ).textContent =
-                pregunta.pregunta;
-
-
-            document.getElementById(
-                "feedback"
-            ).innerHTML = "";
-
-
-            document.getElementById(
-                "siguiente"
-            ).style.display =
-                "none";
-
-
-            const contenedor =
-                document.getElementById(
-                    "opciones"
-                );
-
-
-            contenedor.innerHTML = "";
-
-
-            pregunta.opciones.forEach(
-                (opcion, indice) => {
-
-                    const boton =
-                        document.createElement(
-                            "button"
-                        );
-
-                    boton.className =
-                        "opcion";
-
-                    boton.textContent =
-                        opcion;
-
-                    boton.onclick =
-                        function() {
-
-                            comprobarRespuesta(
-                                indice
-                            );
-
-                        };
-
-
-                    contenedor.appendChild(
-                        boton
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* ================================
-           COMPROBAR RESPUESTA
-        ================================= */
-
-        function comprobarRespuesta(indice) {
-
-            if (respondida) {
-                return;
-            }
-
-            respondida = true;
-
-
-            const pregunta =
-                preguntasMezcladas[
-                    preguntaActual
-                ];
-
-
-            const botones =
-                document.querySelectorAll(
-                    ".opcion"
-                );
-
-
-            botones.forEach(
-                (boton, posicion) => {
-
-                    boton.disabled = true;
-
-
-                    if (
-                        posicion ===
-                        pregunta.correcta
-                    ) {
-
-                        boton.classList.add(
-                            "correcta"
-                        );
-
-                    }
-
-                }
-            );
-
+            boton.disabled = true;
 
             if (
-                indice ===
-                pregunta.correcta
+                posicion === pregunta.correcta
             ) {
 
-                puntuacion++;
-
-
-                botones[indice]
-                    .classList.add(
-                        "correcta"
-                    );
-
-
-                document.getElementById(
-                    "feedback"
-                ).innerHTML =
-                    "<div class='correcto'>" +
-                    "✅ <strong>¡Correcto!</strong>" +
-                    "</div>" +
-                    "<br>" +
-                    pregunta.explicacion;
-
-            } else {
-
-                botones[indice]
-                    .classList.add(
-                        "incorrecta"
-                    );
-
-
-                document.getElementById(
-                    "feedback"
-                ).innerHTML =
-                    "<div class='incorrecto'>" +
-                    "❌ <strong>No es correcto.</strong>" +
-                    "</div>" +
-                    "<br>" +
-                    "La respuesta correcta es: «" +
-                    pregunta.opciones[
-                        pregunta.correcta
-                    ] +
-                    "»." +
-                    "<br><br>" +
-                    pregunta.explicacion;
-
-            }
-
-
-            document.getElementById(
-                "siguiente"
-            ).style.display =
-                "inline-block";
-
-        }
-
-
-        /* ================================
-           SIGUIENTE PREGUNTA
-        ================================= */
-
-        function siguientePregunta() {
-
-            preguntaActual++;
-
-
-            if (
-                preguntaActual <
-                preguntasMezcladas.length
-            ) {
-
-                mostrarPregunta();
-
-            } else {
-
-                mostrarResultado();
+                boton.classList.add("correcta");
 
             }
 
         }
+    );
 
 
-        /* ================================
-           RESULTADO
-        ================================= */
+    if (
+        indice === pregunta.correcta
+    ) {
 
-        function mostrarResultado() {
+        puntuacion++;
 
-            document.getElementById(
-                "actividad"
-            ).style.display =
-                "none";
+        document.getElementById("feedback")
+            .innerHTML =
+            "✅ <strong>¡Correcto!</strong><br><br>" +
+            pregunta.explicacion;
 
+    } else {
 
-            document.getElementById(
-                "resultado"
-            ).style.display =
-                "block";
+        botones[indice]
+            .classList.add("incorrecta");
 
+        document.getElementById("feedback")
+            .innerHTML =
+            "❌ <strong>No es correcto.</strong><br><br>" +
+            "La respuesta correcta es: <strong>" +
+            pregunta.opciones[pregunta.correcta] +
+            "</strong><br><br>" +
+            pregunta.explicacion;
 
-            document.getElementById(
-                "barraProgreso"
-            ).style.width =
-                "100%";
-
-
-            document.getElementById(
-                "porcentaje"
-            ).textContent =
-                "100%";
+    }
 
 
-            const nota =
-                (
-                    puntuacion /
-                    preguntasMezcladas.length
-                ) * 10;
+    document.getElementById("siguiente")
+        .style.display =
+        "inline-block";
+
+}
 
 
-            document.getElementById(
-                "notaFinal"
-            ).textContent =
-                nota.toFixed(1) +
-                " / 10";
+/* =====================================
+   SIGUIENTE
+===================================== */
+
+function siguientePregunta() {
+
+    preguntaActual++;
 
 
-            let mensaje;
-
-
-            if (nota >= 9) {
-
-                mensaje =
-                    "🏆 ¡Excelente! Dominas la estructura de la palabra.";
-
-            } else if (nota >= 7) {
-
-                mensaje =
-                    "👏 ¡Muy bien! Tienes un buen dominio de los contenidos.";
-
-            } else if (nota >= 5) {
-
-                mensaje =
-                    "👍 Has aprobado, pero todavía puedes mejorar.";
-
-            } else {
-
-                mensaje =
-                    "📚 Necesitas repasar los contenidos y volver a intentarlo.";
-
-            }
-
-
-            document.getElementById(
-                "mensajeFinal"
-            ).textContent =
-                mensaje;
-
-        }
-
-
-        /* ================================
-           REINICIAR
-        ================================= */
-
-        function reiniciarActividad() {
-
-            preguntaActual = 0;
-
-            puntuacion = 0;
-
-            mezclarPreguntas();
-
-
-            document.getElementById(
-                "resultado"
-            ).style.display =
-                "none";
-
-
-            document.getElementById(
-                "actividad"
-            ).style.display =
-                "block";
-
-
-            mostrarPregunta();
-
-        }
-
-
-        /* ================================
-           INICIAR
-        ================================= */
-
-        mezclarPreguntas();
+    if (
+        preguntaActual <
+        preguntasActuales.length
+    ) {
 
         mostrarPregunta();
 
-    </script>
+    } else {
+
+        mostrarResultado();
+
+    }
+
+}
+
+
+/* =====================================
+   RESULTADO
+===================================== */
+
+function mostrarResultado() {
+
+    document.getElementById("actividad")
+        .style.display =
+        "none";
+
+    document.getElementById("resultado")
+        .style.display =
+        "block";
+
+
+    document.getElementById("barraProgreso")
+        .style.width =
+        "100%";
+
+
+    document.getElementById("porcentaje")
+        .textContent =
+        "100%";
+
+
+    const nota =
+        (
+            puntuacion /
+            preguntasActuales.length
+        ) * 10;
+
+
+    document.getElementById("nota")
+        .textContent =
+        nota.toFixed(1) +
+        " / 10";
+
+
+    let mensaje;
+
+
+    if (nota >= 9) {
+
+        mensaje =
+            "🏆 ¡Excelente! Dominas muy bien estos contenidos.";
+
+    }
+
+    else if (nota >= 7) {
+
+        mensaje =
+            "👏 ¡Muy bien! Tienes un buen dominio del tema.";
+
+    }
+
+    else if (nota >= 5) {
+
+        mensaje =
+            "👍 Has aprobado. Conviene seguir practicando.";
+
+    }
+
+    else {
+
+        mensaje =
+            "📚 Necesitas repasar este bloque y volver a intentarlo.";
+
+    }
+
+
+    document.getElementById("mensaje")
+        .textContent =
+        mensaje;
+
+}
+
+
+/* =====================================
+   REPETIR
+===================================== */
+
+function repetirActividad() {
+
+    if (bloqueSeleccionado === 4) {
+
+        iniciarRetoGlobal();
+
+    } else {
+
+        iniciarBloque(
+            bloqueSeleccionado
+        );
+
+    }
+
+}
+
+
+/* =====================================
+   VOLVER AL MENÚ
+===================================== */
+
+function volverMenu() {
+
+    document.getElementById("resultado")
+        .style.display =
+        "none";
+
+    document.getElementById("actividad")
+        .style.display =
+        "none";
+
+    document.getElementById("menu")
+        .style.display =
+        "block";
+
+}
+
+
+/* =====================================
+   VOLVER A MORFOLOGÍA
+===================================== */
+
+function volverMorfologia() {
+
+    window.location.href =
+        "morfologia.html";
+
+}
+
+</script>
 
 </body>
 
