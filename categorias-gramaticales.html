@@ -5,9 +5,16 @@
 <title>Categorías gramaticales · Docere et Delectare</title>
 <style>
 *{box-sizing:border-box}body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#f4efe5;color:#2d2a26;min-height:100vh;padding:30px 15px}.contenedor{width:100%;max-width:1000px;margin:auto}.panel{background:#fff;padding:40px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.12);text-align:center}h1{font-size:44px;margin:0 0 10px}.subtitulo{color:#625b51;font-size:19px;margin-bottom:28px}.intro{font-size:18px;line-height:1.6;max-width:820px;margin:0 auto 28px}.perfil{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;background:#f7f4ee;border-radius:12px;color:#625b51;font-size:15px}.alias{font-weight:bold;color:#2d2a26}.cambiar{border:0;background:none;text-decoration:underline;cursor:pointer;font:inherit;color:#625b51}#actividad,#resultado{display:none}.progreso-texto{display:flex;justify-content:space-between;color:#625b51;font-size:15px;margin:20px 0 8px}.barra{height:12px;background:#eee8dc;border-radius:20px;overflow:hidden}.progreso{height:100%;width:0;background:#8f8678;transition:.3s}.etiqueta{display:inline-block;padding:8px 15px;border-radius:20px;background:#eee8dc;color:#625b51;margin:25px 0 10px;font-size:14px}#pregunta{font-size:24px;line-height:1.5;margin:15px 0 25px}.opciones{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.opcion,.boton{padding:15px;border:0;border-radius:12px;background:#eee8dc;font:inherit;font-size:17px;cursor:pointer}.opcion:hover:not(:disabled),.boton:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.12)}.correcta{background:#dce8d8!important}.incorrecta{background:#ead8d5!important}.campo{width:100%;max-width:700px;padding:13px;margin:8px auto;border:2px solid #ddd5c8;border-radius:10px;font:inherit;font-size:17px;display:block}.campo:focus{outline:none;border-color:#9b9183}.etiqueta-campo{display:block;margin-top:16px;font-weight:bold}.feedback{margin-top:22px;padding:18px;border-radius:12px;background:#f7f4ee;text-align:left;line-height:1.6}.exito{background:#e2eee0}.error{background:#f0dfdc}#feedback:empty{display:none}#siguiente{display:none;margin-top:20px;background:#bcb1a0;color:#fff}.resultado-nota{font-size:44px;font-weight:bold;margin:20px}.boton{display:inline-block;margin:20px 5px;text-decoration:none;color:#2d2a26}.boton-principal{background:#bcb1a0;color:#fff}#perfilModal{display:none;position:fixed;inset:0;background:rgba(45,42,38,.55);align-items:center;justify-content:center;padding:20px;z-index:10}.modal{background:#fff;max-width:500px;width:100%;padding:30px;border-radius:18px;text-align:center}.modal p{line-height:1.5;color:#625b51}.modal input{width:100%;padding:13px;border:2px solid #ddd5c8;border-radius:10px;font:inherit}.modal button{margin-top:15px;padding:12px 25px;border:0;border-radius:10px;background:#bcb1a0;color:#fff;font:inherit;cursor:pointer}@media(max-width:700px){h1{font-size:36px}.panel{padding:25px}.opciones{grid-template-columns:1fr}.perfil{flex-direction:column}}
+
+
+/* Control global de navegación */
+.boton-inicio-global{position:fixed;top:16px;left:16px;z-index:900;padding:10px 16px;border:0;border-radius:12px;background:#fff;color:#625b51;box-shadow:0 4px 14px rgba(0,0,0,.12);font:16px Georgia,"Times New Roman",serif;cursor:pointer;text-decoration:none;transition:.2s}.boton-inicio-global:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.16)}
+@media(max-width:700px){.boton-inicio-global{top:10px;left:10px;padding:9px 12px;font-size:14px}}
 </style>
 </head>
 <body>
+<a class="boton-inicio-global" href="javascript:void(0)" onclick="irInicio()" aria-label="Volver a la página de inicio">⌂ Inicio</a>
+
 <div class="contenedor"><div class="panel">
 <section id="inicio">
 <h1>🔤 Categorías gramaticales</h1><div class="subtitulo">Lengua Castellana y Literatura · 4.º ESO</div>
@@ -100,4 +107,11 @@ function siguiente(){if(i<19){i++;mostrar()}else resultado()}
 function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=(puntos/20*10).toFixed(1).replace('.0','');document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de 20 actividades.';let h=JSON.parse(localStorage.getItem('docereProgreso')||'[]');h.push({playerId:player(),alias:alias(),bloque:'Categorías gramaticales',nota,aciertos:puntos,fecha:new Date().toISOString()});localStorage.setItem('docereProgreso',JSON.stringify(h.slice(-50)))}
 function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 mostrarAlias();if(!alias())setTimeout(abrirPerfil,300);
+
+function irInicio(){
+    const actividad=document.getElementById("actividad");
+    const enPartida=actividad && getComputedStyle(actividad).display!=="none";
+    if(enPartida && !confirm("Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?")) return;
+    window.location.href="index.html";
+}
 </script></body></html>
