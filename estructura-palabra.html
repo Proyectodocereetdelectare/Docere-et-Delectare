@@ -282,6 +282,131 @@ h3 {
     text-align: center;
 }
 
+.perfil-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding: 10px 14px;
+    background: #f7f4ee;
+    border-radius: 12px;
+    color: #625b51;
+    font-size: 15px;
+}
+
+.alias {
+    font-weight: bold;
+    color: #2d2a26;
+}
+
+.cambiar-alias {
+    border: none;
+    background: transparent;
+    color: #625b51;
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+#perfilModal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(45,42,38,0.45);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-contenido {
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.modal-contenido h2 {
+    margin-top: 0;
+}
+
+.modal-contenido p {
+    line-height: 1.6;
+    color: #625b51;
+}
+
+.perfil-input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd5c8;
+    border-radius: 10px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 17px;
+    text-align: center;
+}
+
+.perfil-input:focus {
+    outline: none;
+    border-color: #9b9183;
+}
+
+.estadisticas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin: 25px 0;
+}
+
+.estadistica {
+    background: #f7f4ee;
+    border-radius: 12px;
+    padding: 14px 8px;
+}
+
+.estadistica strong {
+    display: block;
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.estadistica span {
+    color: #625b51;
+    font-size: 13px;
+}
+
+.ranking-local {
+    margin-top: 25px;
+    text-align: left;
+}
+
+.ranking-local table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ranking-local th,
+.ranking-local td {
+    padding: 9px 6px;
+    border-bottom: 1px solid #e5dfd4;
+}
+
+.ranking-local th {
+    color: #625b51;
+    font-size: 14px;
+    text-align: left;
+}
+
+@media (max-width: 700px) {
+    .estadisticas {
+        grid-template-columns: 1fr;
+    }
+}
+
 #nota {
     font-size: 52px;
     font-weight: bold;
@@ -447,6 +572,11 @@ onclick="volverMorfologia()">
 
 <div class="panel" id="actividad">
 
+<div class="perfil-bar">
+    <span>👤 <span class="alias" id="aliasActividad">Invitado</span></span>
+    <button class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
+</div>
+
 <div class="progreso-texto">
 
 <span id="numeroPregunta">
@@ -523,7 +653,27 @@ onclick="volverMenu()">
 
 <div class="panel" id="resultado">
 
+<div class="perfil-bar">
+    <span>👤 <span class="alias" id="aliasResultado">Invitado</span></span>
+    <button class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
+</div>
+
 <h2>🎉 ¡Actividad terminada!</h2>
+
+<div class="estadisticas">
+    <div class="estadistica">
+        <strong id="resultadoPuntos">0</strong>
+        <span>aciertos</span>
+    </div>
+    <div class="estadistica">
+        <strong id="resultadoMejor">0,0</strong>
+        <span>mejor nota</span>
+    </div>
+    <div class="estadistica">
+        <strong id="resultadoPartidas">0</strong>
+        <span>partidas</span>
+    </div>
+</div>
 
 <div id="nota"></div>
 
@@ -589,6 +739,93 @@ function comparar(respuesta, soluciones) {
         s => r === normalizar(s)
     );
 
+}
+
+
+/* =====================================================
+   PERFIL Y PROGRESO
+===================================================== */
+
+function obtenerAlias() {
+    return localStorage.getItem("docereAlias") || "";
+}
+
+function obtenerProgreso() {
+    return JSON.parse(
+        localStorage.getItem("docereProgreso") ||
+        '{"partidas":0,"mejor":0,"puntos":0,"historial":[]}'
+    );
+}
+
+function guardarProgreso(progreso) {
+    localStorage.setItem(
+        "docereProgreso",
+        JSON.stringify(progreso)
+    );
+}
+
+function abrirPerfil(forzar) {
+    const modal = document.getElementById("perfilModal");
+    const input = document.getElementById("aliasInput");
+
+    input.value = obtenerAlias();
+
+    modal.style.display = "flex";
+
+    setTimeout(() => input.focus(), 100);
+
+    if (forzar) {
+        modal.dataset.forzar = "true";
+    }
+}
+
+function guardarPerfil() {
+    const input = document.getElementById("aliasInput");
+    const alias = input.value.trim();
+
+    if (!alias) {
+        input.focus();
+        return;
+    }
+
+    localStorage.setItem(
+        "docereAlias",
+        alias.replace(/[<>]/g, "")
+    );
+
+    document.getElementById("perfilModal").style.display = "none";
+
+    actualizarAliasInterfaz();
+}
+
+function actualizarAliasInterfaz() {
+    const alias = obtenerAlias() || "Invitado";
+
+    document.getElementById("aliasActividad").textContent = alias;
+    document.getElementById("aliasResultado").textContent = alias;
+}
+
+function asegurarPerfil() {
+    if (!obtenerAlias()) {
+        abrirPerfil(false);
+        return false;
+    }
+
+    actualizarAliasInterfaz();
+    return true;
+}
+
+function actualizarEstadisticasResultado() {
+    const progreso = obtenerProgreso();
+
+    document.getElementById("resultadoPuntos").textContent =
+        puntuacion + "/" + actividadesActuales.length;
+
+    document.getElementById("resultadoMejor").textContent =
+        progreso.mejor.toFixed(1).replace(".", ",");
+
+    document.getElementById("resultadoPartidas").textContent =
+        progreso.partidas;
 }
 
 
@@ -1482,6 +1719,11 @@ function crearPartida(tipo) {
 
 function iniciarBloque(tipo) {
 
+    if (!asegurarPerfil()) {
+        window.bloquePendiente = tipo;
+        return;
+    }
+
     bloqueActual = tipo;
 
     window.respuestaMCQ = undefined;
@@ -2290,6 +2532,33 @@ function mostrarResultado() {
     document.getElementById("mensaje")
         .textContent =
         mensaje;
+
+    const notaFinal =
+        Number(nota.toFixed(1));
+
+    const progreso = obtenerProgreso();
+
+    progreso.partidas += 1;
+    progreso.puntos += puntuacion * 10;
+
+    if (notaFinal > progreso.mejor) {
+        progreso.mejor = notaFinal;
+    }
+
+    progreso.historial.unshift({
+        alias: obtenerAlias(),
+        bloque: nombres[bloqueActual],
+        nota: notaFinal,
+        aciertos: puntuacion,
+        fecha: new Date().toISOString()
+    });
+
+    progreso.historial =
+        progreso.historial.slice(0, 10);
+
+    guardarProgreso(progreso);
+
+    actualizarEstadisticasResultado();
 
 }
 
