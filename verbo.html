@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>El verbo · Docere et Delectare</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f4efe5;color:#2d2a26;font-family:Georgia,"Times New Roman",serif}
+.contenedor{max-width:1000px;margin:34px auto;padding:0 22px}
+.panel{background:#fff;border-radius:18px;padding:34px 40px;box-shadow:0 12px 28px rgba(0,0,0,.10);text-align:center}
+h1{font-size:46px;margin:0 0 4px}
+h2{font-size:28px;margin:30px 0 16px}
+.subtitulo{font-size:20px;color:#625b51}
+.introduccion{font-size:18px;line-height:1.6;margin:24px auto;max-width:800px}
+.bloques{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:25px 0}
+.bloque{border:none;border-radius:16px;padding:28px 20px;background:#eee8dc;font-family:Georgia,"Times New Roman",serif;font-size:18px;cursor:pointer;transition:.2s;color:#2d2a26}
+.bloque:hover{transform:translateY(-4px);box-shadow:0 7px 16px rgba(0,0,0,.13)}
+.bloque .icono{display:block;font-size:38px;margin-bottom:12px}
+.bloque strong{display:block}
+.bloque .descripcion{display:block;font-size:14px;color:#625b51;margin-top:10px;line-height:1.5}
+.boton{display:inline-block;border:0;border-radius:12px;background:#e6ded0;color:#2d2a26;padding:12px 20px;font:17px Georgia,"Times New Roman",serif;cursor:pointer;text-decoration:none;margin:6px}
+.boton-principal{background:#bdb09d;color:#fff}
+.perfil{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:#f7f4ee;border-radius:12px;color:#625b51;font-size:15px;margin-bottom:20px}
+.cambiar{border:0;background:none;text-decoration:underline;cursor:pointer;color:#625b51;font:inherit}
+.progreso-texto{display:flex;justify-content:space-between;margin-bottom:7px}
+.barra{height:12px;background:#eee8dc;border-radius:20px;overflow:hidden;margin-bottom:26px}
+.progreso{height:100%;background:#bdb09d;width:0;transition:.25s}
+.etiqueta{display:inline-block;background:#eee8dc;border-radius:20px;padding:9px 15px;margin-bottom:22px;color:#625b51}
+#pregunta{font-size:25px;line-height:1.4;margin:0 auto 25px;max-width:850px}
+.opciones{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:850px;margin:auto}
+.opcion{border:2px solid #e1d8ca;background:#eee8dc;border-radius:14px;padding:17px;font:17px Georgia,"Times New Roman",serif;cursor:pointer;color:#2d2a26}
+.opcion:hover{transform:translateY(-2px)}
+.opcion.correcta{border-color:#8b9d7b;background:#e4ecdf}
+.opcion.incorrecta{border-color:#b27b75;background:#f1dfdd}
+.campo{display:block;width:min(760px,100%);margin:10px auto;padding:13px;border:2px solid #c9bfb0;border-radius:10px;font:17px Georgia,"Times New Roman",serif}
+.etiqueta-campo{display:block;width:min(760px,100%);margin:18px auto 4px;text-align:left;color:#625b51}
+.feedback{margin:20px auto;padding:14px;border-radius:12px;max-width:850px;line-height:1.5}
+.feedback:empty{display:none}
+.feedback.exito{background:#e4ecdf}.feedback.error{background:#f1dfdd}
+.resultado-nota{font-size:48px;font-weight:bold;margin:25px}
+#actividad,#resultado{display:none}
+.boton-inicio-global{position:fixed;top:16px;left:16px;z-index:900;padding:10px 16px;border:0;border-radius:12px;background:#fff;color:#625b51;box-shadow:0 4px 14px rgba(0,0,0,.12);font:16px Georgia,"Times New Roman",serif;cursor:pointer;text-decoration:none}
+#perfilModal{display:none;position:fixed;inset:0;background:rgba(45,42,38,.35);align-items:center;justify-content:center;z-index:1000}
+.modal-contenido{background:#fff;border-radius:18px;padding:32px;max-width:520px;width:90%;text-align:center;box-shadow:0 15px 35px rgba(0,0,0,.2)}
+.pequeno{font-size:13px;color:#777}
+@media(max-width:700px){.contenedor{padding:0 10px}.panel{padding:25px 18px}h1{font-size:36px}.bloques,.opciones{grid-template-columns:1fr}.boton-inicio-global{top:10px;left:10px;padding:9px 12px;font-size:14px}}
+</style>
+</head>
+<body>
+<a class="boton-inicio-global" href="javascript:void(0)" onclick="irInicio()">⌂ Inicio</a>
+<div class="contenedor">
+<section class="panel" id="menu">
+<h1>🔵 El verbo</h1>
+<div class="subtitulo">Lengua Castellana y Literatura · 4.º ESO</div>
+<h2>¿Qué quieres practicar?</h2>
+<div class="introduccion">Practica las formas verbales, su análisis, la conjugación, la transformación de oraciones, la voz pasiva y la corrección de usos verbales.</div>
+<div class="bloques">
+<button class="bloque" onclick="iniciarSeccion('identifica')"><span class="icono">🔎</span><strong>Identifica</strong><span class="descripcion">Reconoce formas verbales y sus características básicas.</span></button>
+<button class="bloque" onclick="iniciarSeccion('analiza')"><span class="icono">🧩</span><strong>Analiza</strong><span class="descripcion">Analiza persona, número, tiempo, modo, forma y otros rasgos.</span></button>
+<button class="bloque" onclick="iniciarSeccion('conjuga')"><span class="icono">⏱️</span><strong>Conjuga</strong><span class="descripcion">Produce formas verbales correctas a partir de una indicación.</span></button>
+<button class="bloque" onclick="iniciarSeccion('transforma')"><span class="icono">🔄</span><strong>Transforma</strong><span class="descripcion">Cambia tiempos, personas y estructuras, incluida la voz pasiva.</span></button>
+<button class="bloque" onclick="iniciarSeccion('error')"><span class="icono">🧠</span><strong>Detecta el error</strong><span class="descripcion">Localiza, corrige y explica errores en formas y usos verbales.</span></button>
+<button class="bloque" onclick="iniciarSeccion('reto')"><span class="icono">🏆</span><strong>Reto final</strong><span class="descripcion">Resuelve actividades integradas de máxima dificultad.</span></button>
+</div>
+<a class="boton" href="morfologia.html">← Volver a Morfología</a>
+</section>
+
+<section class="panel" id="actividad">
+<div class="perfil"><span>👤 <span id="aliasActividad">Invitado</span></span><button class="cambiar" onclick="abrirPerfil(true)">Cambiar alias</button></div>
+<div class="progreso-texto"><span id="numero">Actividad 1 de 12</span><span id="porcentaje">0%</span></div>
+<div class="barra"><div id="barraProgreso" class="progreso"></div></div>
+<div id="etiqueta" class="etiqueta"></div>
+<div id="pregunta"></div>
+<div id="contenido"></div>
+<div id="feedback" class="feedback"></div>
+<button id="siguiente" class="boton boton-principal" onclick="siguiente()" style="display:none">Siguiente →</button>
+<br>
+<button class="boton" onclick="volverMenu()">← Volver a los bloques</button>
+</section>
+
+<section class="panel" id="resultado">
+<h2>🎉 ¡Actividad terminada!</h2>
+<div id="nota" class="resultado-nota">0/10</div>
+<p id="detalle"></p>
+<button class="boton boton-principal" onclick="repetir()">🔄 Nueva partida</button>
+<button class="boton" onclick="volverMenu()">← Volver a los bloques</button>
+</section>
+</div>
+
+<div id="perfilModal">
+<div class="modal-contenido">
+<h2>👋 ¡Hola!</h2>
+<p>Escribe un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni introducir ningún dato personal.</p>
+<input id="aliasInput" class="campo" maxlength="20" autocomplete="off" placeholder="Tu nombre o alias">
+<button class="boton boton-principal" onclick="guardarPerfil()">Continuar →</button>
+<p class="pequeno">Puedes cambiar el alias cuando quieras.</p>
+</div>
+</div>
+
+<script>
+const secciones={identifica:'Identifica',analiza:'Analiza',conjuga:'Conjuga',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
+let seccionActual='',partida=[],i=0,puntos=0,respondida=false;
+
+const A=[
+/* IDENTIFICA */
+{s:'identifica',n:1,t:'mcq',q:'¿Cuál de estas palabras es una <b>forma verbal</b>?',o:['correr','rápidamente','azul','mesa'],r:'correr',e:'Correr es una forma verbal no personal: un infinitivo.'},
+{s:'identifica',n:1,t:'mcq',q:'¿Cuál es una forma verbal <b>personal</b>?',o:['cantando','vivido','cantamos','cantar'],r:'cantamos',e:'Cantamos es una forma personal porque expresa persona y número.'},
+{s:'identifica',n:2,t:'mcq',q:'¿Qué forma es un <b>gerundio</b>?',o:['partido','partiendo','partir','partió'],r:'partiendo',e:'Partiendo es un gerundio.'},
+{s:'identifica',n:2,t:'mcq',q:'¿Qué forma es un <b>participio</b>?',o:['escrito','escribiendo','escribir','escribió'],r:'escrito',e:'Escrito es el participio de escribir.'},
+{s:'identifica',n:3,t:'mcq',q:'En «habíamos terminado», la forma verbal es...',o:['simple','compuesta','no personal','un infinitivo'],r:'compuesta',e:'Habíamos terminado combina una forma de haber con un participio.'},
+{s:'identifica',n:3,t:'mcq',q:'En «entrenábamos», la forma verbal está en...',o:['primera persona del singular','segunda persona del singular','primera persona del plural','tercera persona del plural'],r:'primera persona del plural',e:'Entrenábamos corresponde a nosotros/nosotras.'},
+{s:'identifica',n:4,t:'mcq',q:'En «Si tuviera tiempo, viajaría», ¿qué modo presenta <b>tuviera</b>?',o:['Indicativo','Subjuntivo','Imperativo','Infinitivo'],r:'Subjuntivo',e:'Tuviera es una forma del pretérito imperfecto de subjuntivo.'},
+{s:'identifica',n:4,t:'mcq',q:'En «Mañana competiremos», <b>competiremos</b> expresa...',o:['pasado','presente','futuro','condición'],r:'futuro',e:'Competiremos está en futuro.'},
+{s:'identifica',n:5,t:'mcq',q:'¿Cuál contiene una perífrasis verbal?',o:['El equipo ganó.','El equipo está entrenando.','El equipo entrena.','El equipo entrenó.'],r:'El equipo está entrenando.',e:'Está entrenando combina un verbo auxiliar con un gerundio.'},
+{s:'identifica',n:5,t:'mcq',q:'En «La prueba fue superada por el atleta», la oración está en voz...',o:['activa','pasiva','reflexiva','impersonal'],r:'pasiva',e:'Fue superada es una construcción pasiva con ser + participio.'},
+{s:'identifica',n:6,t:'mcq',q:'En «El informe había sido revisado», ¿qué estructura verbal aparece?',o:['Pasiva con ser + participio','Activa simple','Pasiva refleja','Perífrasis de infinitivo'],r:'Pasiva con ser + participio',e:'Había sido revisado forma una pasiva con ser en tiempo compuesto.'},
+{s:'identifica',n:6,t:'mcq',q:'¿Cuál es una forma no personal del verbo?',o:['habremos','corrieron','habiendo','entrenas'],r:'habiendo',e:'Habiendo es un gerundio compuesto/no personal de haber.'},
+
+/* ANALIZA */
+{s:'analiza',n:1,t:'text',q:'Analiza <b>cantamos</b>: indica persona y número.',r:['1ª plural','primera persona plural','1 persona plural'],e:'Cantamos puede corresponder a la primera persona del plural.'},
+{s:'analiza',n:1,t:'text',q:'Analiza <b>correr</b>: indica su forma no personal.',r:['infinitivo'],e:'Correr es un infinitivo.'},
+{s:'analiza',n:2,t:'text',q:'Analiza <b>partiendo</b>: indica su forma no personal.',r:['gerundio'],e:'Partiendo es un gerundio.'},
+{s:'analiza',n:2,t:'text',q:'Analiza <b>escrito</b>: indica su forma no personal.',r:['participio'],e:'Escrito es un participio.'},
+{s:'analiza',n:3,t:'text',q:'Analiza <b>entrenábamos</b>: indica persona, número, tiempo y modo.',r:['1ª plural pretérito imperfecto indicativo','primera persona plural pretérito imperfecto indicativo','1 persona plural pretérito imperfecto indicativo'],e:'Entrenábamos es primera persona del plural del pretérito imperfecto de indicativo.'},
+{s:'analiza',n:3,t:'text',q:'Analiza <b>hubieras llegado</b>: indica tiempo y modo.',r:['pretérito pluscuamperfecto de subjuntivo','pluscuamperfecto de subjuntivo'],e:'Hubieras llegado es pretérito pluscuamperfecto de subjuntivo.'},
+{s:'analiza',n:4,t:'text',q:'Analiza <b>habremos terminado</b>: indica tiempo, modo y tipo de forma.',r:['futuro perfecto indicativo compuesto','futuro perfecto de indicativo compuesto','futuro compuesto de indicativo'],e:'Habremos terminado es una forma compuesta del futuro perfecto de indicativo.'},
+{s:'analiza',n:4,t:'text',q:'Analiza <b>serán elegidos</b>: indica qué construcción verbal presenta.',r:['pasiva','voz pasiva','pasiva con ser y participio'],e:'Serán elegidos es una construcción de voz pasiva.'},
+{s:'analiza',n:5,t:'text',q:'Analiza <b>estaba estudiando</b>: indica el tipo de construcción verbal.',r:['perífrasis verbal','perifrasis verbal'],e:'Está/estaba + gerundio constituye una perífrasis verbal.'},
+{s:'analiza',n:5,t:'text',q:'Analiza <b>habían sido convocados</b>: indica qué estructura combina.',r:['forma compuesta y pasiva','pasiva compuesta','pasiva con ser y participio'],e:'Combina un tiempo compuesto con una construcción pasiva.'},
+{s:'analiza',n:6,t:'text',q:'Analiza <b>habríamos terminado</b>: indica persona, número, tiempo y modo.',r:['1ª plural condicional compuesto indicativo','primera persona plural condicional compuesto indicativo','1 persona plural condicional compuesto de indicativo'],e:'Habríamos terminado es primera persona del plural del condicional compuesto de indicativo.'},
+{s:'analiza',n:6,t:'text',q:'Analiza <b>fuéramos seleccionados</b>: indica modo, tiempo y voz.',r:['subjuntivo pretérito imperfecto pasiva','pretérito imperfecto de subjuntivo pasiva','imperfecto de subjuntivo pasiva'],e:'Fuéramos seleccionados es una construcción pasiva en pretérito imperfecto de subjuntivo.'},
+
+/* CONJUGA */
+{s:'conjuga',n:1,t:'text',q:'Escribe la forma de <b>cantar</b> en 1.ª persona del singular del presente de indicativo.',r:['canto'],e:'La forma correcta es canto.'},
+{s:'conjuga',n:1,t:'text',q:'Escribe la forma de <b>vivir</b> en 3.ª persona del plural del presente de indicativo.',r:['viven'],e:'La forma correcta es viven.'},
+{s:'conjuga',n:2,t:'text',q:'Escribe la forma de <b>comer</b> en 1.ª persona del plural del pretérito perfecto simple.',r:['comimos'],e:'La forma correcta es comimos.'},
+{s:'conjuga',n:2,t:'text',q:'Escribe la forma de <b>entrenar</b> en 2.ª persona del plural del futuro simple.',r:['entrenareis','entrenaréis'],e:'La forma correcta es entrenaréis.'},
+{s:'conjuga',n:3,t:'text',q:'Escribe la forma de <b>tener</b> en 1.ª persona del singular del pretérito perfecto simple.',r:['tuve'],e:'La forma correcta es tuve.'},
+{s:'conjuga',n:3,t:'text',q:'Escribe la forma de <b>hacer</b> en 3.ª persona del plural del futuro simple.',r:['harán','haran'],e:'La forma correcta es harán.'},
+{s:'conjuga',n:4,t:'text',q:'Escribe la forma de <b>ser</b> en 1.ª persona del plural del pretérito imperfecto de subjuntivo.',r:['fuéramos','fueramos'],e:'Una forma correcta es fuéramos.'},
+{s:'conjuga',n:4,t:'text',q:'Escribe la forma de <b>poder</b> en 2.ª persona del singular del condicional simple.',r:['podrías','podrias'],e:'La forma correcta es podrías.'},
+{s:'conjuga',n:5,t:'text',q:'Completa: «Si nosotros ________ (tener) tiempo, iríamos contigo».',r:['tuviéramos','tuvieramos'],e:'La forma correcta es tuviéramos.'},
+{s:'conjuga',n:5,t:'text',q:'Completa: «Cuando ellos ________ (llegar), empezaremos».',r:['lleguen'],e:'La forma correcta es lleguen.'},
+{s:'conjuga',n:6,t:'text',q:'Escribe la 1.ª persona del plural del futuro perfecto de <b>terminar</b>.',r:['habremos terminado'],e:'La forma correcta es habremos terminado.'},
+{s:'conjuga',n:6,t:'text',q:'Escribe la 1.ª persona del plural del condicional compuesto de <b>salir</b>.',r:['habríamos salido'],e:'La forma correcta es habríamos salido.'},
+
+/* TRANSFORMA */
+{s:'transforma',n:1,t:'mcq',q:'Transforma «El equipo gana el partido» al pretérito perfecto simple.',o:['El equipo ganó el partido.','El equipo ganará el partido.','El equipo ganaba el partido.','El equipo ha ganado el partido.'],r:'El equipo ganó el partido.',e:'Ganó expresa una acción pasada y terminada.'},
+{s:'transforma',n:1,t:'mcq',q:'Transforma «Nosotros entrenamos» a 3.ª persona del plural.',o:['Ellos entrenan.','Ellos entrenaron.','Él entrena.','Vosotros entrenáis.'],r:'Ellos entrenan.',e:'La persona cambia de primera a tercera y se mantiene el presente.'},
+{s:'transforma',n:2,t:'mcq',q:'Transforma «El atleta superó la marca» a voz pasiva.',o:['La marca fue superada por el atleta.','La marca superó al atleta.','El atleta fue superado por la marca.','La marca ha superado al atleta.'],r:'La marca fue superada por el atleta.',e:'El complemento directo pasa a sujeto paciente y el verbo adopta la construcción pasiva.'},
+{s:'transforma',n:2,t:'mcq',q:'Transforma «El entrenador seleccionó a los jugadores» a voz pasiva.',o:['Los jugadores fueron seleccionados por el entrenador.','Los jugadores seleccionaron al entrenador.','El entrenador fue seleccionado por los jugadores.','Los jugadores habían seleccionado.'],r:'Los jugadores fueron seleccionados por el entrenador.',e:'Los jugadores pasa a sujeto paciente.'},
+{s:'transforma',n:3,t:'mcq',q:'Pasa «El equipo ha ganado el torneo» a voz pasiva.',o:['El torneo ha sido ganado por el equipo.','El torneo fue ganado por el equipo.','El equipo ha sido ganado por el torneo.','El torneo gana al equipo.'],r:'El torneo ha sido ganado por el equipo.',e:'Se conserva el tiempo compuesto: ha sido ganado.'},
+{s:'transforma',n:3,t:'mcq',q:'Pasa «La organización entregará los premios» a voz pasiva.',o:['Los premios serán entregados por la organización.','Los premios fueron entregados por la organización.','La organización será entregada por los premios.','Los premios entregarán a la organización.'],r:'Los premios serán entregados por la organización.',e:'El futuro simple de activa se transforma en futuro simple pasivo.'},
+{s:'transforma',n:4,t:'mcq',q:'Cambia «Entrenamos todos los días» para expresar una acción futura.',o:['Entrenaremos todos los días.','Entrenábamos todos los días.','Hemos entrenado todos los días.','Entrenaríamos todos los días.'],r:'Entrenaremos todos los días.',e:'Entrenaremos está en futuro simple.'},
+{s:'transforma',n:4,t:'mcq',q:'Cambia «Cuando lleguemos, empezamos» para expresar una posibilidad o hipótesis.',o:['Cuando llegáramos, empezaríamos.','Cuando llegamos, empezamos.','Cuando llegaremos, empezaremos.','Cuando lleguemos, empezaremos.'],r:'Cuando llegáramos, empezaríamos.',e:'La nueva oración presenta una situación hipotética mediante formas de subjuntivo y condicional.'},
+{s:'transforma',n:5,t:'mcq',q:'Transforma «El jurado había elegido al ganador» a voz pasiva.',o:['El ganador había sido elegido por el jurado.','El ganador fue elegido por el jurado.','El jurado había sido elegido por el ganador.','El ganador ha elegido al jurado.'],r:'El ganador había sido elegido por el jurado.',e:'Se conserva el pluscuamperfecto mediante había sido + participio.'},
+{s:'transforma',n:5,t:'mcq',q:'Transforma «El equipo está preparando el partido» a una construcción pasiva.',o:['El partido está siendo preparado por el equipo.','El partido fue preparado por el equipo.','El equipo está siendo preparado por el partido.','El partido prepara al equipo.'],r:'El partido está siendo preparado por el equipo.',e:'La construcción conserva el valor progresivo: está siendo preparado.'},
+{s:'transforma',n:6,t:'mcq',q:'¿Qué transformación mantiene correctamente el tiempo verbal al pasar a pasiva «Los técnicos habrán revisado el material»?',o:['El material habrá sido revisado por los técnicos.','El material fue revisado por los técnicos.','El material sería revisado por los técnicos.','El material ha sido revisado por los técnicos.'],r:'El material habrá sido revisado por los técnicos.',e:'El futuro perfecto activo se transforma en futuro perfecto pasivo.'},
+{s:'transforma',n:6,t:'mcq',q:'Pasa «Los resultados serían publicados por el comité» a voz activa.',o:['El comité publicaría los resultados.','El comité publicó los resultados.','El comité publicará los resultados.','El comité había publicado los resultados.'],r:'El comité publicaría los resultados.',e:'El condicional simple pasivo corresponde al condicional simple activo.'},
+
+/* ERROR */
+{s:'error',n:1,t:'mcq',q:'Un alumno escribe: «Ayer <b>cantastes</b> muy bien». ¿Cuál es la corrección?',o:['cantaste','cantabas','has cantado','cantarías'],r:'cantaste',e:'La segunda persona del singular del pretérito perfecto simple es cantaste, sin -s final.'},
+{s:'error',n:1,t:'mcq',q:'Un alumno escribe: «Estoy <b>pusiendo</b> la mesa». ¿Cuál es la corrección?',o:['poniendo','pusando','puesto','pusiendo'],r:'poniendo',e:'El gerundio de poner es poniendo.'},
+{s:'error',n:2,t:'mcq',q:'Un alumno escribe: «Ayer <b>andé</b> cinco kilómetros». ¿Qué forma normativa corresponde?',o:['anduve','andaba','andaré','andaría'],r:'anduve',e:'La primera persona del singular del pretérito perfecto simple de andar es anduve.'},
+{s:'error',n:2,t:'mcq',q:'Un alumno escribe: «<b>Habrán terminado</b> ayer». ¿Qué problema presenta?',o:['La forma verbal no concuerda adecuadamente con el valor temporal de ayer.','No es una forma verbal.','Es una pasiva.','Debe escribirse en infinitivo.'],r:'La forma verbal no concuerda adecuadamente con el valor temporal de ayer.',e:'Habrán terminado expresa futuro perfecto; ayer sitúa la acción en el pasado.'},
+{s:'error',n:3,t:'mcq',q:'Un alumno afirma: «En “fue elegido por el jurado”, la oración está en voz activa». ¿Qué debe corregirse?',o:['Está en voz pasiva.','Está en voz reflexiva.','Es una oración impersonal.','Está en infinitivo.'],r:'Está en voz pasiva.',e:'Fue elegido es ser + participio y presenta voz pasiva.'},
+{s:'error',n:3,t:'mcq',q:'Un alumno transforma «El premio fue entregado por Ana» como «El premio entregó a Ana». ¿Qué error comete?',o:['No ha reconstruido correctamente la voz activa: debe ser «Ana entregó el premio».','Ha cambiado correctamente la voz.','Debe usar un gerundio.','Debe usar el futuro.'],r:'No ha reconstruido correctamente la voz activa: debe ser «Ana entregó el premio».',e:'El agente pasa a sujeto y el sujeto paciente pasa a complemento directo.'},
+{s:'error',n:4,t:'mcq',q:'Un alumno afirma: «En “habíamos llegado”, la forma es simple». ¿Qué corrección corresponde?',o:['Es una forma compuesta.','Es una forma no personal.','Es un infinitivo.','Es una pasiva.'],r:'Es una forma compuesta.',e:'Habíamos llegado combina una forma de haber con un participio.'},
+{s:'error',n:4,t:'mcq',q:'Un alumno afirma: «En “estamos entrenando”, entrenando es un infinitivo». ¿Qué debe decir?',o:['Es un gerundio.','Es un participio.','Es un verbo en futuro.','Es un sustantivo.'],r:'Es un gerundio.',e:'Entrenando es el gerundio de entrenar.'},
+{s:'error',n:5,t:'mcq',q:'Un alumno escribe: «Si <b>tendría</b> tiempo, iría». ¿Qué forma corresponde en esta construcción?',o:['tuviera','tendré','tendría','tuve'],r:'tuviera',e:'En esta construcción hipotética se utiliza el imperfecto de subjuntivo: si tuviera tiempo, iría.'},
+{s:'error',n:5,t:'mcq',q:'Un alumno afirma: «En “el partido está siendo preparado”, la oración es activa». ¿Qué debe corregirse?',o:['Es una construcción pasiva.','Es una oración impersonal.','Es una oración reflexiva.','Es activa porque aparece está.'],r:'Es una construcción pasiva.',e:'Está siendo preparado presenta ser + participio y voz pasiva.'},
+{s:'error',n:6,t:'mcq',q:'Un alumno transforma «Los jugadores habían sido convocados» como «Los jugadores habían convocado al entrenador». ¿Qué ha ocurrido?',o:['Ha cambiado indebidamente el sujeto paciente por sujeto agente.','Ha mantenido correctamente la voz.','Ha convertido el verbo en futuro.','Ha creado una oración impersonal.'],r:'Ha cambiado indebidamente el sujeto paciente por sujeto agente.',e:'En activa, el agente debe ser sujeto: «El entrenador había convocado a los jugadores».'},
+{s:'error',n:6,t:'mcq',q:'Un alumno afirma: «En “cuando lleguemos”, lleguemos está en futuro de subjuntivo». ¿Qué corrección corresponde?',o:['Es presente de subjuntivo.','Es futuro de indicativo.','Es pretérito imperfecto de subjuntivo.','Es condicional.'],r:'Es presente de subjuntivo.',e:'Lleguemos es presente de subjuntivo.'},
+
+/* RETO */
+{s:'reto',n:1,t:'mcq',q:'¿Cuál es el análisis correcto de «habían entrenado»?',o:['3.ª plural, pluscuamperfecto de indicativo, forma compuesta.','1.ª plural, imperfecto de subjuntivo, forma simple.','3.ª singular, futuro perfecto, forma compuesta.','Infinitivo compuesto.'],r:'3.ª plural, pluscuamperfecto de indicativo, forma compuesta.',e:'Habían entrenado corresponde a ellos/ellas y es pluscuamperfecto de indicativo.'},
+{s:'reto',n:1,t:'mcq',q:'¿Cuál es la transformación correcta de «El entrenador eligió al capitán»?',o:['El capitán fue elegido por el entrenador.','El capitán ha sido elegido por el entrenador.','El entrenador fue elegido por el capitán.','El capitán sería elegido por el entrenador.'],r:'El capitán fue elegido por el entrenador.',e:'Se conserva el pretérito perfecto simple en la pasiva.'},
+{s:'reto',n:2,t:'text',q:'Analiza <b>habrían terminado</b>: indica persona, número, tiempo y modo.',r:['3ª plural condicional compuesto indicativo','tercera persona plural condicional compuesto indicativo','3 persona plural condicional compuesto de indicativo'],e:'Habrían terminado es tercera persona del plural del condicional compuesto de indicativo.'},
+{s:'reto',n:2,t:'text',q:'Indica la voz y el tiempo de <b>había sido publicado</b>.',r:['pasiva pluscuamperfecto indicativo','voz pasiva pluscuamperfecto de indicativo','pasiva pretérito pluscuamperfecto indicativo'],e:'Es una pasiva en pretérito pluscuamperfecto de indicativo.'},
+{s:'reto',n:3,t:'mcq',q:'En «Cuando hubieron terminado, salieron», ¿qué relación temporal expresa <b>hubieron terminado</b>?',o:['Una acción anterior a otra pasada.','Una acción posterior a otra futura.','Una acción simultánea al presente.','Una condición.'],r:'Una acción anterior a otra pasada.',e:'Hubieron terminado presenta una acción anterior a salieron.'},
+{s:'reto',n:3,t:'mcq',q:'¿Qué opción mantiene el tiempo al pasar «El comité había aprobado el proyecto» a pasiva?',o:['El proyecto había sido aprobado por el comité.','El proyecto fue aprobado por el comité.','El proyecto ha sido aprobado por el comité.','El proyecto sería aprobado por el comité.'],r:'El proyecto había sido aprobado por el comité.',e:'Se conserva el pluscuamperfecto.'},
+{s:'reto',n:4,t:'mcq',q:'¿Cuál es el análisis completo más adecuado de «fuéramos seleccionados»?',o:['1.ª plural, pretérito imperfecto de subjuntivo, voz pasiva.','3.ª plural, pretérito perfecto de indicativo, voz activa.','1.ª plural, futuro de subjuntivo, voz activa.','Infinitivo compuesto.'],r:'1.ª plural, pretérito imperfecto de subjuntivo, voz pasiva.',e:'Fuéramos es 1.ª plural del imperfecto de subjuntivo y seleccionados forma la pasiva.'},
+{s:'reto',n:4,t:'mcq',q:'¿Qué opción contiene una correlación verbal correcta?',o:['Cuando termine el partido, volveremos a casa.','Cuando terminaré el partido, volveremos a casa.','Si tendría tiempo, iría.','Ayer habremos terminado.'],r:'Cuando termine el partido, volveremos a casa.',e:'La subordinada temporal utiliza presente de subjuntivo y la principal, futuro.'},
+{s:'reto',n:5,t:'mcq',q:'¿Cuál de estas formas combina correctamente tiempo compuesto y voz pasiva?',o:['habrán sido convocados','convocarán','habían convocado','están convocando'],r:'habrán sido convocados',e:'Habrá(n) + sido + participio combina tiempo compuesto y voz pasiva.'},
+{s:'reto',n:5,t:'mcq',q:'¿Qué transformación es correcta? «El comité está revisando los resultados» → pasiva.',o:['Los resultados están siendo revisados por el comité.','Los resultados fueron revisados por el comité.','Los resultados están revisando al comité.','El comité está siendo revisado por los resultados.'],r:'Los resultados están siendo revisados por el comité.',e:'Se conserva el valor progresivo mediante está siendo + participio.'},
+{s:'reto',n:6,t:'mcq',q:'Un alumno escribe: «Si <b>habría estudiado</b> más, habría aprobado». ¿Cuál es la corrección?',o:['Si hubiera estudiado más, habría aprobado.','Si habré estudiado más, habría aprobado.','Si estudiaría más, habría aprobado.','Si había estudiado más, habría aprobado.'],r:'Si hubiera estudiado más, habría aprobado.',e:'En la prótasis condicional se utiliza el pluscuamperfecto de subjuntivo.'},
+{s:'reto',n:6,t:'mcq',q:'¿Cuál es la transformación correcta de «Los técnicos habrán revisado el informe» a pasiva?',o:['El informe habrá sido revisado por los técnicos.','El informe fue revisado por los técnicos.','El informe había sido revisado por los técnicos.','Los técnicos habrán sido revisados por el informe.'],r:'El informe habrá sido revisado por los técnicos.',e:'El futuro perfecto activo se transforma en futuro perfecto pasivo.'}
+];
+
+function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
+function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>norm(v)===norm(x))}
+function mix(a){return [...a].sort(()=>Math.random()-.5)}
+function alias(){return localStorage.getItem('docereAlias')||''}
+function player(){let x=localStorage.getItem('docerePlayerId');if(!x){x=crypto.randomUUID?crypto.randomUUID():'player-'+Date.now()+'-'+Math.random().toString(36).slice(2);localStorage.setItem('docerePlayerId',x)}return x}
+function mostrarAlias(){document.getElementById('aliasActividad').textContent=alias()||'Invitado'}
+function abrirPerfil(forzar){document.getElementById('aliasInput').value=alias();document.getElementById('perfilModal').style.display='flex';setTimeout(()=>document.getElementById('aliasInput').focus(),50)}
+function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias();if(seccionActual&&document.getElementById('menu').style.display!=='none')iniciarPartida()}
+function iniciarSeccion(s){seccionActual=s;if(!alias()){abrirPerfil();return}iniciarPartida()}
+function iniciarPartida(){crearPartida();i=0;puntos=0;document.getElementById('menu').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
+function crearPartida(){let usados=JSON.parse(localStorage.getItem('verboUsadas')||'[]');let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&!usados.includes(x.j));if(disponibles.length<12)disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual);let sel=mix(disponibles).slice(0,12).map(x=>x.j);localStorage.setItem('verboUsadas',JSON.stringify(usados.concat(sel).slice(-72)));partida=sel.map(x=>A[x])}
+function mostrar(){respondida=false;let a=partida[i],pct=Math.round((i+1)/partida.length*100);document.getElementById('numero').textContent='Actividad '+(i+1)+' de '+partida.length;document.getElementById('porcentaje').textContent=pct+'%';document.getElementById('barraProgreso').style.width=pct+'%';document.getElementById('etiqueta').textContent=secciones[seccionActual]+' · Nivel '+a.n;document.getElementById('feedback').innerHTML='';document.getElementById('siguiente').style.display='none';document.getElementById('pregunta').innerHTML=a.q;let h='';if(a.t==='mcq')h='<div class="opciones">'+mix(a.o).map(x=>'<button class="opcion" onclick="mcq(this,'+JSON.stringify(x)+')">'+x+'</button>').join('')+'</div>';if(a.t==='text')h='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button class="boton boton-principal" onclick="texto()">Comprobar</button>';document.getElementById('contenido').innerHTML=h}
+function feedback(b,e){let f=document.getElementById('feedback');f.className='feedback '+(b?'exito':'error');f.innerHTML=(b?'<strong>✓ Correcto.</strong> ':'<strong>✗ No es correcto.</strong> ')+e;document.getElementById('siguiente').style.display='inline-block'}
+function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=norm(v)===norm(a.r);document.querySelectorAll('.opcion').forEach(x=>{x.disabled=true;if(norm(x.textContent)===norm(a.r))x.classList.add('correcta')});if(!b)btn.classList.add('incorrecta');else puntos++;feedback(b,a.e)}
+function texto(){if(respondida)return;let v=document.getElementById('respuesta').value;if(!v.trim())return;respondida=true;let a=partida[i],b=ok(v,a.r);if(b)puntos++;document.getElementById('respuesta').disabled=true;feedback(b,a.e)}
+function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
+function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=(puntos/partida.length*10).toFixed(1).replace('.0','');document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+partida.length+' actividades.';let h=JSON.parse(localStorage.getItem('docereProgreso')||'[]');h.push({playerId:player(),alias:alias(),bloque:'El verbo · '+secciones[seccionActual],nota,aciertos:puntos,fecha:new Date().toISOString()});localStorage.setItem('docereProgreso',JSON.stringify(h.slice(-50)))}
+function repetir(){iniciarPartida()}
+function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('menu').style.display='block';seccionActual=''}
+function irInicio(){const en= document.getElementById('actividad').style.display!=='none';if(en&&!confirm('Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?'))return;window.location.href='index.html'}
+mostrarAlias();
+</script>
+</body>
+</html>
