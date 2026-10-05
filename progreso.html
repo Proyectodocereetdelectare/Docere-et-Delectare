@@ -52,7 +52,7 @@ h2{margin-top:0}
 </div>
 <div class="panel">
 <h2>🏆 Clasificación</h2>
-<div class="aviso">La clasificación global entre alumnos se añadirá cuando exista un sistema común de almacenamiento. El alias no requiere cuenta ni datos personales.</div>
+<div class="aviso">La clasificación global será opcional. El alias es solo el nombre visible; cada jugador dispone de un identificador anónimo interno. No se muestran ni se solicitan datos personales. Cuando conectemos un sistema común de almacenamiento, este identificador permitirá mantener separado el progreso de alumnos que utilicen el mismo alias.</div>
 </div>
 <div style="text-align:center">
 <a class="volver" href="index.html">← Volver al inicio</a>
@@ -60,6 +60,13 @@ h2{margin-top:0}
 </div>
 <script>
 function cargar(){
+let playerId = localStorage.getItem("docerePlayerId");
+if (!playerId) {
+    playerId = crypto.randomUUID
+        ? crypto.randomUUID()
+        : "p_" + Date.now() + "_" + Math.random().toString(36).slice(2, 12);
+    localStorage.setItem("docerePlayerId", playerId);
+}
 const alias=localStorage.getItem("docereAlias")||"Invitado";
 const p=JSON.parse(localStorage.getItem("docereProgreso")||'{"partidas":0,"mejor":0,"puntos":0,"historial":[]}');
 document.getElementById("alias").textContent=alias;
