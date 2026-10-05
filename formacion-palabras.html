@@ -117,6 +117,7 @@ function resultado(){document.getElementById('actividad').style.display='none';d
 function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 mostrarAlias();if(!alias())setTimeout(abrirPerfil,300);
 
+window.norm=norm;window.ok=ok;window.mix=mix;window.alias=alias;window.player=player;window.mostrarAlias=mostrarAlias;window.abrirPerfil=abrirPerfil;window.guardarPerfil=guardarPerfil;window.iniciarBloque=iniciarBloque;window.crear=crear;window.mostrar=mostrar;window.feedback=feedback;window.mcq=mcq;window.texto=texto;window.analisis=analisis;window.siguiente=siguiente;window.resultado=resultado;window.repetir=repetir;
 function irInicio(){
     const actividad=document.getElementById("actividad");
     const enPartida=actividad && getComputedStyle(actividad).display!=="none";
