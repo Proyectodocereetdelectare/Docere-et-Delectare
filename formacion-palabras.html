@@ -103,7 +103,9 @@ function mostrar(){respondida=false;let a=partida[i],c=document.getElementById('
 if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+x+'</button>').join('')+'</div>';
 if(a.t==='text'||a.t==='seg')h+=(a.t==='seg'?'<p style="color:#625b51">Separa los elementos con +, guiones o espacios.</p>':'')+'<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button class="boton boton-principal" onclick="texto()">Comprobar</button>';
 if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Escribe tu respuesta">');h+='<button class="boton boton-principal" onclick="analisis()">Comprobar</button>'}
-c.innerHTML=h}
+c.innerHTML=h;
+if(a.t==='mcq')c.querySelectorAll('.opcion').forEach(btn=>btn.addEventListener('click',()=>mcq(btn,btn.dataset.respuesta)));
+}
 function feedback(b,e){let f=document.getElementById('feedback');f.className='feedback '+(b?'exito':'error');f.innerHTML=(b?'<strong>✓ Correcto.</strong> ':'<strong>✗ No es correcto.</strong> ')+e;document.getElementById('siguiente').style.display='inline-block'}
 function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=norm(v)===norm(a.r);document.querySelectorAll('.opcion').forEach(x=>{x.disabled=true;if(norm(x.textContent)===norm(a.r))x.classList.add('correcta')});if(!b)btn.classList.add('incorrecta');else puntos++;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
 function texto(){if(respondida)return;let v=document.getElementById('respuesta').value;if(!v.trim())return;respondida=true;let a=partida[i],b=ok(v,a.r);if(b)puntos++;document.getElementById('respuesta').disabled=true;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
