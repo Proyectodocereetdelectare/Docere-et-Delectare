@@ -216,15 +216,16 @@ function mostrar(){
   document.getElementById('siguiente').style.display='none';
   let nombres={identifica:'Identifica',analiza:'Analiza',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
   let h='<div class="etiqueta">'+nombres[seccionActual]+' · Nivel '+a.n+'</div><div id="pregunta">'+a.q+'</div>';
-  if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button class="opcion" onclick="mcq(this,'+JSON.stringify(x)+')">'+x+'</button>').join('')+'</div>';
+  if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+x+'</button>').join('')+'</div>';
   if(a.t==='text')h+='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button class="boton boton-principal" onclick="texto()">Comprobar</button>';
   if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Categoría y subcategoría">');h+='<button class="boton boton-principal" onclick="analisis()">Comprobar</button>'}
-  document.getElementById('contenido').innerHTML=h
+  document.getElementById('contenido').innerHTML=h;
+  document.querySelectorAll('#contenido .opcion').forEach(btn=>btn.addEventListener('click',()=>mcq(btn,btn.dataset.respuesta)));
 }
 function feedback(b,e){let f=document.getElementById('feedback');f.className='feedback '+(b?'exito':'error');f.innerHTML=(b?'<strong>✓ Correcto.</strong> ':'<strong>✗ No es correcto.</strong> ')+e;document.getElementById('siguiente').style.display='inline-block'}
 function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=norm(v)===norm(a.r);document.querySelectorAll('.opcion').forEach(x=>{x.disabled=true;if(norm(x.textContent)===norm(a.r))x.classList.add('correcta')});if(!b)btn.classList.add('incorrecta');else puntos++;feedback(b,a.e);document.getElementById('porcentaje').textContent=Math.round((i+1)/partida.length*100)+'%'}
 function texto(){if(respondida)return;let v=document.getElementById('respuesta').value;if(!v.trim())return;respondida=true;let a=partida[i],b=ok(v,a.r);if(b)puntos++;document.getElementById('respuesta').disabled=true;feedback(b,a.e)}
-function analisis(){if(respondida)return;let a=partida[i],cs=[...document.querySelectorAll('.analisis')];if(cs.some(x=>!x.value.trim()))return;respondida=true;let b=true;cs.forEach((x,j)=>{let z=ok(x.value,a.r[j]);if(!z){b=false;x.classList.add('incorrecta')}else x.classList.add('correcta');x.disabled=true});if(b)puntos++;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
+function analisis(){if(respondida)return;let a=partida[i],cs=[...document.querySelectorAll('.analisis')];if(cs.some(x=>!x.value.trim()))return;respondida=true;let b=true;cs.forEach((x,j)=>{let z=ok(x.value,a.r[j]);if(!z){b=false;x.classList.add('incorrecta')}else x.classList.add('correcta');x.disabled=true});if(b)puntos++;feedback(b,a.e)}
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let total=partida.length,nota=(puntos/total*10).toFixed(1).replace('.0','');document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+total+' actividades.';let h=JSON.parse(localStorage.getItem('docereProgreso')||'[]');h.push({playerId:player(),alias:alias(),bloque:'Categorías gramaticales · '+seccionActual,nota,aciertos:puntos,fecha:new Date().toISOString()});localStorage.setItem('docereProgreso',JSON.stringify(h.slice(-50)))}
 function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
