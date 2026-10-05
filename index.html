@@ -1,278 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Docere et Delectare</title>
-
-    <style>
-        body {
-            margin: 0;
-            font-family: Georgia, "Times New Roman", serif;
-            background: #f4efe5;
-            color: #2d2a26;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .contenedor {
-            width: 90%;
-            max-width: 900px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 52px;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-
-        .subtitulo {
-            font-size: 20px;
-            margin-bottom: 45px;
-            color: #625b51;
-        }
-
-        .panel {
-            background: white;
-            padding: 40px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-        }
-
-        .panel h2 {
-            margin-top: 0;
-            margin-bottom: 30px;
-            font-size: 26px;
-        }
-
-        .temas {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 18px;
-        }
-
-        .tema {
-            padding: 25px 15px;
-            border: none;
-            border-radius: 14px;
-            background: #eee8dc;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 18px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .tema:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-        }
-
-        .icono {
-            display: block;
-            font-size: 30px;
-            margin-bottom: 10px;
-        }
-
-        /* Pantalla de Morfología */
-
-        #morfologia {
-            display: none;
-        }
-
-        .volver {
-            margin-top: 30px;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 10px;
-            background: #ddd5c8;
-            font-family: Georgia, "Times New Roman", serif;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        .volver:hover {
-            background: #cfc5b5;
-        }
-
-        @media (max-width: 700px) {
-            h1 {
-                font-size: 38px;
-            }
-
-            .temas {
-                grid-template-columns: 1fr;
-            }
-
-            .panel {
-                padding: 25px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Docere et Delectare</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#f4efe5;color:#2d2a26;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:30px 15px}
+.contenedor{width:90%;max-width:900px;text-align:center}
+h1{font-size:52px;margin-bottom:10px;letter-spacing:2px}
+.subtitulo{font-size:20px;margin-bottom:45px;color:#625b51}
+.panel{background:white;padding:40px;border-radius:18px;box-shadow:0 8px 25px rgba(0,0,0,.12)}
+.panel h2{margin-top:0;margin-bottom:30px;font-size:26px}
+.temas{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.tema{padding:25px 15px;border:none;border-radius:14px;background:#eee8dc;font-family:Georgia,"Times New Roman",serif;font-size:18px;cursor:pointer;transition:.2s;text-decoration:none;color:#2d2a26;display:block}
+.tema:hover{transform:translateY(-4px);box-shadow:0 6px 15px rgba(0,0,0,.15)}
+.icono{display:block;font-size:30px;margin-bottom:10px}
+.progreso-link{margin-top:18px;background:#e3ddd2}
+@media(max-width:700px){h1{font-size:38px}.temas{grid-template-columns:1fr}.panel{padding:25px}}
+</style>
 </head>
-
 <body>
-
-    <div class="contenedor">
-
-        <!-- PANTALLA PRINCIPAL -->
-
-        <div id="inicio">
-
-            <h1>Docere et Delectare</h1>
-
-            <div class="subtitulo">
-                Lengua Castellana y Literatura · 4.º ESO
-            </div>
-
-            <div class="panel">
-
-                <h2>¿Qué quieres trabajar hoy?</h2>
-
-                <div class="temas">
-
-                    <a class="tema" href="morfologia.html">
-    <span class="icono">🔤</span>
-    Morfología
-</a>
-                    <button class="tema">
-                        <span class="icono">📐</span>
-                        Sintaxis
-                    </button>
-
-                    <button class="tema">
-                        <span class="icono">📖</span>
-                        Literatura
-                    </button>
-
-                    <button class="tema">
-                        <span class="icono">📝</span>
-                        Comunicación
-                    </button>
-
-                    <button class="tema">
-                        <span class="icono">🔎</span>
-                        Léxico y semántica
-                    </button>
-
-                    <button class="tema">
-                        <span class="icono">✍️</span>
-                        Ortografía
-                    </button>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PANTALLA DE MORFOLOGÍA -->
-
-        <div id="morfologia">
-
-            <h1>Morfología</h1>
-
-            <div class="subtitulo">
-                Lengua Castellana y Literatura · 4.º ESO
-            </div>
-
-            <div class="panel">
-
-                <h2>¿Qué quieres practicar?</h2>
-
-                <div class="temas">
-
-                  <button class="tema" onclick="mostrarEstructura()">
-    <span class="icono">🧩</span>
-    Estructura de la palabra
-</button>
-
-                    <button class="tema">
-                        <span class="icono">🌱</span>
-                        Formación de palabras
-                    </button>
-
-                    <button class="tema">
-                        <span class="icono">🔤</span>
-                        Categorías gramaticales
-                    </button>
-
-                    <button class="tema">
-                        <span class="icono">⚙️</span>
-                        El verbo
-                    </button>
-
-                </div>
-
-                <button class="volver" onclick="volverInicio()">
-                    ← Volver
-                </button>
-
-            </div>
-
-        </div>
-        <!-- PANTALLA DE ESTRUCTURA DE LA PALABRA -->
-
-        <div id="estructura" style="display: none;">
-
-            <h1>Estructura de la palabra</h1>
-
-            <div class="subtitulo">
-                Morfología · 4.º ESO
-            </div>
-
-            <div class="panel">
-
-                <h2>🧩 Estructura de la palabra</h2>
-
-                <p>
-                    Aquí aprenderás a identificar los diferentes elementos
-                    que forman una palabra: lexemas, morfemas y sus tipos.
-                </p>
-
-                <button class="volver"
-                    onclick="document.getElementById('estructura').style.display='none'; document.getElementById('morfologia').style.display='block';">
-                    ← Volver a Morfología
-                </button>
-
-            </div>
-
-        </div>
-    </div>
-    
-
-
-    <script>
-
-        function mostrarMorfologia() {
-
-            document.getElementById("inicio").style.display = "none";
-
-            document.getElementById("morfologia").style.display = "block";
-
-        }
-
-
-        function volverInicio() {
-
-            document.getElementById("morfologia").style.display = "none";
-
-            document.getElementById("inicio").style.display = "block";
-
-        }
-        function mostrarEstructura() {
-
-    document.getElementById("morfologia").style.display = "none";
-
-    document.getElementById("estructura").style.display = "block";
-
-}
-
-    </script>
-
+<div class="contenedor">
+<h1>Docere et Delectare</h1>
+<div class="subtitulo">Lengua Castellana y Literatura · 4.º ESO</div>
+<div class="panel">
+<h2>¿Qué quieres trabajar hoy?</h2>
+<div class="temas">
+<a class="tema" href="morfologia.html"><span class="icono">🔤</span>Morfología</a>
+<a class="tema" href="#"><span class="icono">📐</span>Sintaxis</a>
+<a class="tema" href="#"><span class="icono">📖</span>Literatura</a>
+<a class="tema" href="#"><span class="icono">📝</span>Comunicación</a>
+<a class="tema" href="#"><span class="icono">🔎</span>Léxico y semántica</a>
+<a class="tema" href="#"><span class="icono">✍️</span>Ortografía</a>
+</div>
+<a class="tema progreso-link" href="progreso.html"><span class="icono">🏆</span>Mi progreso</a>
+</div>
+</div>
 </body>
 </html>
