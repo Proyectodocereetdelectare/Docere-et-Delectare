@@ -1480,6 +1480,9 @@ function iniciarBloque(tipo) {
 
     bloqueActual = tipo;
 
+    window.respuestaMCQ = undefined;
+    window.respuestaClasificacion = undefined;
+
     actividadesActuales =
         crearPartida(tipo);
 
@@ -1516,7 +1519,7 @@ function mostrarActividad() {
 
     const porcentaje =
         Math.round(
-            (actividadActual /
+            ((actividadActual + 1) /
             actividadesActuales.length) * 100
         );
 
@@ -1554,8 +1557,9 @@ function mostrarActividad() {
         actividad.palabra || "";
 
 
-    document.getElementById("feedback")
-        .innerHTML = "";
+    const feedback = document.getElementById("feedback");
+    feedback.innerHTML = "";
+    feedback.className = "";
 
 
     document.getElementById("comprobar")
