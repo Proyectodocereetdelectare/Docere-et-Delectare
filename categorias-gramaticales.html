@@ -218,10 +218,11 @@ function mostrar(){
   let h='<div class="etiqueta">'+nombres[seccionActual]+' · Nivel '+a.n+'</div><div id="pregunta">'+a.q+'</div>';
   if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'">'+x+'</button>').join('')+'</div>';
   if(a.t==='text')h+='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';
-  if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Categoría y subcategoría">');h+='<button class="boton boton-principal" onclick="analisis()">Comprobar</button>'}
+  if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Categoría y subcategoría">');h+='<button type="button" class="boton boton-principal" data-accion="analisis">Comprobar</button>'}
   document.getElementById('contenido').innerHTML=h;
   document.querySelectorAll('#contenido .opcion').forEach(btn=>btn.addEventListener('click',()=>mcq(btn,btn.dataset.respuesta)));
 const accionTexto=document.querySelector('#contenido [data-accion="texto"]');if(accionTexto)accionTexto.addEventListener('click',texto);
+const accionAnalisis=document.querySelector('#contenido [data-accion="analisis"]');if(accionAnalisis)accionAnalisis.addEventListener('click',analisis);
 }
 function feedback(b,e){let f=document.getElementById('feedback');f.className='feedback '+(b?'exito':'error');f.innerHTML=(b?'<strong>✓ Correcto.</strong> ':'<strong>✗ No es correcto.</strong> ')+e;document.getElementById('siguiente').style.display='inline-block'}
 function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=norm(v)===norm(a.r);document.querySelectorAll('.opcion').forEach(x=>{x.disabled=true;if(norm(x.textContent)===norm(a.r))x.classList.add('correcta')});if(!b)btn.classList.add('incorrecta');else puntos++;feedback(b,a.e);document.getElementById('porcentaje').textContent=Math.round((i+1)/partida.length*100)+'%'}
