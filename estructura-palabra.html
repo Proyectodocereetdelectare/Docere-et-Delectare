@@ -456,12 +456,19 @@ h3 {
 
 }
 
+
+
+/* Control global de navegación */
+.boton-inicio-global{position:fixed;top:16px;left:16px;z-index:900;padding:10px 16px;border:0;border-radius:12px;background:#fff;color:#625b51;box-shadow:0 4px 14px rgba(0,0,0,.12);font:16px Georgia,"Times New Roman",serif;cursor:pointer;text-decoration:none;transition:.2s}.boton-inicio-global:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.16)}
+@media(max-width:700px){.boton-inicio-global{top:10px;left:10px;padding:9px 12px;font-size:14px}}
 </style>
 
 </head>
 
 
 <body>
+<a class="boton-inicio-global" href="javascript:void(0)" onclick="irInicio()" aria-label="Volver a la página de inicio">⌂ Inicio</a>
+
 
 <div class="contenedor">
 
@@ -2628,6 +2635,13 @@ function volverMorfologia() {
 
 }
 
+
+function irInicio(){
+    const actividad=document.getElementById("actividad");
+    const enPartida=actividad && getComputedStyle(actividad).display!=="none";
+    if(enPartida && !confirm("Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?")) return;
+    window.location.href="index.html";
+}
 </script>
 
 </body>
