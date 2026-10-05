@@ -370,7 +370,8 @@ onclick="iniciarBloque('identifica')">
 <strong>Identifica</strong>
 
 <span class="descripcion">
-Lexemas, morfemas, afijos,
+Reconoce, localiza y diferencia
+lexemas, morfemas, afijos,
 alomorfos e infijos
 </span>
 
@@ -592,216 +593,62 @@ function comparar(respuesta, soluciones) {
    NIVEL 1
 ===================================================== */
 
+
 const identifica = [
 
-{
-tipo: "mcq",
-pregunta: "¿Qué es un morfema?",
-opciones: [
-"La mínima unidad lingüística con significado",
-"El significado central de una familia léxica",
-"Una palabra formada por dos lexemas",
-"Una sílaba sin significado"
-],
-correcta: 0,
-explicacion: "El morfema es la mínima unidad lingüística con significado."
-},
+/* NIVEL 1 · RECONOCE */
+{id:"id01",nivel:1,tipo:"mcq",pregunta:"¿Qué es un morfema?",opciones:["La mínima unidad lingüística con significado","El significado central de una familia léxica","Una palabra formada por dos lexemas","Un elemento que siempre aparece al final"],correcta:0,explicacion:"Un morfema es la mínima unidad lingüística con significado."},
+{id:"id02",nivel:1,tipo:"mcq",pregunta:"¿Qué elemento aporta el significado central y común a los términos de una familia léxica?",opciones:["El lexema","El morfema flexivo","El infijo","El sufijo"],correcta:0,explicacion:"Los lexemas aportan el significado central, común a los términos de una familia léxica."},
+{id:"id03",nivel:1,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un morfema flexivo?",opciones:["re- en «revivir»","-eza en «belleza»","-s en «libros»","im- en «impar»"],correcta:2,explicacion:"-s indica número plural y, por tanto, es un morfema flexivo."},
+{id:"id04",nivel:1,tipo:"mcq",pregunta:"¿Cuál de estos elementos es un afijo derivativo?",opciones:["-s en «libros»","-a en «rápida»","re- en «revivir»","-mos en «temiésemos»"],correcta:2,explicacion:"re- es un prefijo derivativo: se añade delante del lexema y modifica su significado."},
+{id:"id05",nivel:1,tipo:"mcq",pregunta:"¿Dónde se sitúa un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Siempre entre dos lexemas","Solo en palabras compuestas"],correcta:0,explicacion:"Los prefijos se sitúan delante del lexema."},
+{id:"id06",nivel:1,tipo:"mcq",pregunta:"¿Dónde se sitúa un sufijo?",opciones:["Delante del lexema","Detrás del lexema","Siempre al principio de la palabra","Solo en los verbos"],correcta:1,explicacion:"Los sufijos aparecen detrás del lexema."},
+{id:"id07",nivel:1,tipo:"mcq",pregunta:"¿Qué es un alomorfo?",opciones:["Una variante de un morfema","Un tipo de sufijo","Un morfema de número","Un elemento que carece siempre de significado"],correcta:0,explicacion:"Un alomorfo es una variante de un morfema."},
+{id:"id08",nivel:1,tipo:"mcq",pregunta:"¿Qué es un infijo?",opciones:["Un elemento de enlace situado en el interior de una palabra que no aporta significado","Un prefijo que modifica el significado del lexema","Un morfema flexivo de género","El significado central de una familia léxica"],correcta:0,explicacion:"El infijo es un elemento de enlace situado en el interior de una palabra que no aporta significado."},
 
-{
-tipo: "mcq",
-pregunta: "¿Qué elemento aporta el significado central de una familia léxica?",
-opciones: [
-"El lexema",
-"El morfema flexivo",
-"El infijo",
-"El artículo"
-],
-correcta: 0,
-explicacion: "Los lexemas aportan el significado central y común a los términos de una familia léxica."
-},
+/* NIVEL 2 · LOCALIZA */
+{id:"id09",nivel:2,tipo:"texto",pregunta:"Escribe el lexema de «sol».",palabra:"sol",soluciones:["sol","sol-"],explicacion:"sol- es el lexema."},
+{id:"id10",nivel:2,tipo:"texto",pregunta:"Escribe el lexema de «soleado».",palabra:"soleado",soluciones:["sol","sol-"],explicacion:"sol- es el lexema que aporta el significado central de la familia léxica."},
+{id:"id11",nivel:2,tipo:"texto",pregunta:"Escribe el sufijo derivativo de «belleza».",palabra:"belleza",soluciones:["eza","-eza"],explicacion:"-eza es un sufijo derivativo."},
+{id:"id12",nivel:2,tipo:"texto",pregunta:"Escribe el prefijo de «impar».",palabra:"impar",soluciones:["im","im-"],explicacion:"im- es un prefijo."},
+{id:"id13",nivel:2,tipo:"texto",pregunta:"En «libros», ¿qué morfema indica el número?",palabra:"libros",soluciones:["s","-s"],explicacion:"-s indica número plural."},
+{id:"id14",nivel:2,tipo:"texto",pregunta:"En «paredes», ¿qué morfema indica el número?",palabra:"paredes",soluciones:["es","-es"],explicacion:"-es indica número plural."},
+{id:"id15",nivel:2,tipo:"texto",pregunta:"En «rápida», ¿qué morfema indica el género?",palabra:"rápida",soluciones:["a","-a"],explicacion:"-a indica género femenino."},
+{id:"id16",nivel:2,tipo:"mcq",pregunta:"En «minero», ¿qué elemento se relaciona con la idea de oficio u ocupación?",opciones:["min-","-er-","-o","minero completo"],correcta:1,explicacion:"En minero, -er- aparece como morfema relacionado con «oficio u ocupación»."},
 
-{
-tipo: "mcq",
-pregunta: "¿Cuál es un morfema flexivo?",
-opciones: [
-"re- en «releer»",
-"-ero en «minero»",
-"-s en «libros»",
-"im- en «imposible»"
-],
-correcta: 2,
-explicacion: "«-s» indica número plural."
-},
+/* NIVEL 3 · DISTINGUE */
+{id:"id17",nivel:3,tipo:"mcq",pregunta:"¿Por qué «-s» en «libros» es un morfema flexivo y no un sufijo derivativo?",opciones:["Porque indica número","Porque aparece delante del lexema","Porque cambia el significado del lexema","Porque forma una palabra nueva"],correcta:0,explicacion:"Los morfemas flexivos expresan valores gramaticales. En libros, -s indica número."},
+{id:"id18",nivel:3,tipo:"mcq",pregunta:"¿Por qué «re-» en «revivir» es un afijo derivativo?",opciones:["Porque indica plural","Porque se añade al lexema y modifica su significado","Porque indica género","Porque funciona como elemento de enlace sin significado"],correcta:1,explicacion:"Los afijos derivativos son no flexivos y pueden matizar o modificar el significado del lexema."},
+{id:"id19",nivel:3,tipo:"mcq",pregunta:"¿Cuál de estos pares distingue correctamente un afijo derivativo de uno flexivo?",opciones:["re- en «revivir» / -s en «libros»","-s en «libros» / re- en «revivir»","-a en «rápida» / -s en «libros»","-s en «libros» / -a en «rápida»"],correcta:0,explicacion:"re- es derivativo; -s es flexivo porque expresa número."},
+{id:"id20",nivel:3,tipo:"mcq",pregunta:"En «sencillas», ¿qué elemento expresa el número?",opciones:["sencill-","-a","-s","todo el lexema"],correcta:2,explicacion:"-s indica número plural."},
+{id:"id21",nivel:3,tipo:"mcq",pregunta:"En «sencillas», ¿qué elemento expresa el género?",opciones:["sencill-","-a","-s","ninguno"],correcta:1,explicacion:"-a indica género femenino."},
+{id:"id22",nivel:3,tipo:"mcq",pregunta:"En «escribiré», ¿qué tipo de información pueden aportar los morfemas flexivos verbales?",opciones:["Tiempo, modo, número y persona","Solo género y número","Solo significado léxico","Solo derivación"],correcta:0,explicacion:"En los verbos, los morfemas flexivos pueden indicar tiempo, modo, número y persona."},
+{id:"id23",nivel:3,tipo:"mcq",pregunta:"¿Cuál de estas afirmaciones es correcta?",opciones:["Los prefijos se sitúan detrás del lexema","Los sufijos se sitúan delante del lexema","Los prefijos se sitúan delante y los sufijos detrás del lexema","Los afijos derivativos siempre indican número"],correcta:2,explicacion:"Los prefijos se sitúan delante del lexema y los sufijos detrás."},
+{id:"id24",nivel:3,tipo:"mcq",pregunta:"Un alumno afirma: «En libros, -s es un sufijo derivativo porque aparece al final». ¿Qué error comete?",opciones:["Confunde posición con función: -s es flexivo porque indica número","Confunde lexema con infijo","Confunde un prefijo con un lexema","No comete ningún error"],correcta:0,explicacion:"Que un elemento aparezca al final no lo convierte automáticamente en sufijo derivativo. En libros, -s expresa número y es flexivo."},
 
-{
-tipo: "mcq",
-pregunta: "¿Cuál es un afijo derivativo?",
-opciones: [
-"-s en «casas»",
-"re- en «releer»",
-"-a en «niña»",
-"-o en «libro»"
-],
-correcta: 1,
-explicacion: "«re-» es un prefijo derivativo."
-},
+/* NIVEL 4 · APLICA Y CORRIGE */
+{id:"id25",nivel:4,tipo:"mcq",pregunta:"Un alumno analiza «rápidas» como «rápid- + -as» y dice que «-as» es un único sufijo derivativo. ¿Qué debería corregir?",opciones:["Debe distinguir -a, género, y -s, número","Debe considerar -as un lexema","Debe eliminar el lexema","No hay nada que corregir"],correcta:0,explicacion:"En el análisis morfológico conviene distinguir -a como morfema de género y -s como morfema de número."},
+{id:"id26",nivel:4,tipo:"mcq",pregunta:"Un alumno afirma que «re-» en «revivir» es un morfema flexivo porque aparece delante de la palabra. ¿Qué respuesta es correcta?",opciones:["Es flexivo porque aparece delante","Es derivativo porque es un prefijo que modifica el significado","Es un infijo","Es el lexema"],correcta:1,explicacion:"La posición no determina por sí sola la función. re- es un prefijo derivativo."},
+{id:"id27",nivel:4,tipo:"segmentacion",pregunta:"Segmenta «sencillas» indicando sus morfemas.",palabra:"sencillas",soluciones:["sencill- + -a + -s","sencill + a + s"],explicacion:"sencill- es el lexema; -a indica género y -s indica número."},
+{id:"id28",nivel:4,tipo:"segmentacion",pregunta:"Segmenta «paredes» indicando sus morfemas.",palabra:"paredes",soluciones:["pared- + -es","pared + es"],explicacion:"pared- es el lexema y -es indica número plural."},
+{id:"id29",nivel:4,tipo:"segmentacion",pregunta:"Segmenta «lápices» indicando sus morfemas.",palabra:"lápices",soluciones:["lápic- + -es","lapic- + -es","lápic + es","lapic + es"],explicacion:"lápic- es el lexema y -es indica número plural."},
+{id:"id30",nivel:4,tipo:"mcq",pregunta:"¿Cuál de estos análisis identifica correctamente los elementos de «belleza»?",opciones:["bell- = lexema; -eza = sufijo derivativo","bell- = sufijo; -eza = lexema","bell- = prefijo; -eza = flexivo","bell- = infijo; -eza = lexema"],correcta:0,explicacion:"En belleza, bell- funciona como lexema y -eza como sufijo derivativo."},
 
-{
-tipo: "mcq",
-pregunta: "¿Dónde se sitúa un prefijo?",
-opciones: [
-"Delante del lexema",
-"Detrás del lexema",
-"Siempre entre dos lexemas",
-"Solo al final"
-],
-correcta: 0,
-explicacion: "Los prefijos se sitúan delante del lexema."
-},
+/* NIVEL 5 · CASOS ESPECIALES */
+{id:"id31",nivel:5,tipo:"mcq",pregunta:"En «sueñas» y «soñar» aparecen «sueñ-» y «soñ-». ¿Cómo se denominan estas dos formas?",opciones:["Dos infijos","Dos alomorfos","Dos sufijos","Dos morfemas flexivos"],correcta:1,explicacion:"sueñ- y soñ- son variantes de un mismo lexema: son alomorfos."},
+{id:"id32",nivel:5,tipo:"mcq",pregunta:"¿Qué caracteriza a «sueñ-» y «soñ-»?",opciones:["Presentan formas diferentes pero pertenecen al mismo lexema","Uno es un prefijo y otro un sufijo","Uno es un infijo y otro un morfema flexivo","Son dos palabras compuestas"],correcta:0,explicacion:"Los alomorfos son variantes de un mismo morfema; aquí, sueñ- y soñ- son formas diferentes del mismo lexema."},
+{id:"id33",nivel:5,tipo:"mcq",pregunta:"¿Cuál de estas parejas aparece como ejemplo de alomorfia?",opciones:["sueñ- / soñ-","pan- / -ec-","re- / -eza","-a / -s"],correcta:0,explicacion:"sueñ- y soñ- son el ejemplo de alomorfos."},
+{id:"id34",nivel:5,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Aporta el significado central de la palabra","Es un elemento de enlace que no aporta significado","Indica plural","Es un prefijo derivativo"],correcta:1,explicacion:"-ec- funciona como elemento de enlace situado en el interior de la palabra y no aporta significado."},
+{id:"id35",nivel:5,tipo:"mcq",pregunta:"¿Por qué «-ec-» en «panecillo» no se considera un morfema con significado?",opciones:["Porque funciona como elemento de enlace","Porque es el lexema","Porque indica género","Porque es un prefijo"],correcta:0,explicacion:"El infijo funciona como elemento de enlace y no aporta significado."},
+{id:"id36",nivel:5,tipo:"mcq",pregunta:"Un alumno dice que «-ec-» en «panecillo» es un sufijo derivativo porque aparece antes del final. ¿Qué respuesta es más adecuada?",opciones:["No: funciona como elemento de enlace y no aporta significado","Sí: todos los elementos interiores son sufijos","No: es el lexema","Sí: indica plural"],correcta:0,explicacion:"La función de -ec- es la de elemento de enlace o infijo, no la de sufijo derivativo."},
 
-{
-tipo: "mcq",
-pregunta: "¿Dónde se sitúa un sufijo?",
-opciones: [
-"Delante del lexema",
-"Detrás del lexema",
-"Siempre al principio",
-"Fuera de la palabra"
-],
-correcta: 1,
-explicacion: "Los sufijos aparecen detrás del lexema."
-},
-
-{
-tipo: "mcq",
-pregunta: "¿Qué es un alomorfo?",
-opciones: [
-"Una variante de un mismo morfema",
-"Un lexema independiente",
-"Un tipo de palabra compuesta",
-"Un morfema exclusivamente flexivo"
-],
-correcta: 0,
-explicacion: "Un alomorfo es una variante de un morfema."
-},
-
-{
-tipo: "mcq",
-pregunta: "¿Qué es un infijo?",
-opciones: [
-"Un elemento de enlace situado en el interior de una palabra",
-"Un prefijo derivativo",
-"Un morfema de plural",
-"El lexema"
-],
-correcta: 0,
-explicacion: "El infijo es un elemento de enlace situado en el interior de una palabra que no aporta significado."
-},
-
-
-/* SEGMENTACIÓN */
-
-{
-tipo: "segmentacion",
-pregunta: "Segmenta la palabra e identifica sus constituyentes.",
-palabra: "niñas",
-soluciones: [
-"niñ- + -a + -s",
-"niñ + a + s"
-],
-respuesta: "niñ- + -a + -s",
-explicacion: "niñ- es el lexema; -a indica género y -s indica número."
-},
-
-{
-tipo: "segmentacion",
-pregunta: "Segmenta la palabra.",
-palabra: "libros",
-soluciones: [
-"libr- + -o + -s",
-"libr + o + s"
-],
-respuesta: "libr- + -o + -s",
-explicacion: "libr- es el lexema; -o y -s son morfemas flexivos."
-},
-
-{
-tipo: "segmentacion",
-pregunta: "Segmenta la palabra.",
-palabra: "releer",
-soluciones: [
-"re- + le- + -er",
-"re + le + er"
-],
-respuesta: "re- + le- + -er",
-explicacion: "re- es un prefijo derivativo y le- constituye el lexema verbal."
-},
-
-
-/* IDENTIFICACIÓN */
-
-{
-tipo: "texto",
-pregunta: "Escribe el lexema de la palabra «panadero».",
-palabra: "panadero",
-soluciones: ["pan", "pan-"],
-explicacion: "El lexema es pan-."
-},
-
-{
-tipo: "texto",
-pregunta: "Escribe el prefijo de «imposible».",
-palabra: "imposible",
-soluciones: ["im", "im-"],
-explicacion: "im- es un prefijo derivativo de negación."
-},
-
-{
-tipo: "texto",
-pregunta: "Escribe el sufijo derivativo de «belleza».",
-palabra: "belleza",
-soluciones: ["eza", "-eza"],
-explicacion: "-eza es un sufijo derivativo."
-},
-
-{
-tipo: "mcq",
-pregunta: "En «panecillo», ¿qué función cumple «-ec-»?",
-opciones: [
-"Lexema",
-"Prefijo",
-"Elemento de enlace o infijo",
-"Morfema de plural"
-],
-correcta: 2,
-explicacion: "En «panecillo», -ec- funciona como elemento de enlace."
-},
-
-{
-tipo: "mcq",
-pregunta: "¿Qué relación existe entre «sueñ-» y «soñ-»?",
-opciones: [
-"Son dos lexemas sin relación",
-"Son alomorfos",
-"Uno es un prefijo",
-"Son dos infijos"
-],
-correcta: 1,
-explicacion: "sueñ- y soñ- son dos formas diferentes de un mismo lexema; por eso son alomorfos."
-},
-
-{
-tipo: "mcq",
-pregunta: "¿Qué relación existe entre «im-», «in-» e «i-»?",
-opciones: [
-"Son variantes de un mismo morfema de negación",
-"Son tres lexemas",
-"Son morfemas flexivos",
-"Son sufijos"
-],
-correcta: 0,
-explicacion: "im-, in- e i- son variantes de un mismo morfema de negación; según el contexto, el morfema adopta una forma diferente."
-}
+/* NIVEL 6 · RETO */
+{id:"id37",nivel:6,tipo:"mcq",pregunta:"¿Cuál de estas afirmaciones reúne correctamente las funciones de los tres elementos de «sencillas»?",opciones:["sencill- = lexema; -a = género; -s = número","sencill- = prefijo; -a = sufijo; -s = lexema","sencill- = lexema; -a = número; -s = género","sencill- = infijo; -a = lexema; -s = sufijo"],correcta:0,explicacion:"sencill- aporta el significado central; -a expresa género femenino y -s expresa plural."},
+{id:"id38",nivel:6,tipo:"mcq",pregunta:"¿Cuál de estas afirmaciones compara correctamente «revivir» y «libros»?",opciones:["re- es derivativo, mientras que -s es flexivo","re- es flexivo, mientras que -s es derivativo","Ambos son morfemas flexivos","Ambos son infijos"],correcta:0,explicacion:"re- es un afijo derivativo; -s es un morfema flexivo de número."},
+{id:"id39",nivel:6,tipo:"mcq",pregunta:"¿Cuál de estos análisis es incorrecto?",opciones:["«belleza»: bell- + -eza","«libros»: libr- + -o + -s","«panecillo»: pan- + -ec- como elemento de enlace","«sueñas»: sueñ- como sufijo derivativo"],correcta:3,explicacion:"En sueñas, sueñ- es una variante del lexema, no un sufijo derivativo."},
+{id:"id40",nivel:6,tipo:"mcq",pregunta:"Un alumno afirma: «Todos los elementos que aparecen después del lexema son sufijos derivativos». ¿Qué ejemplo demuestra que la afirmación es incorrecta?",opciones:["-s en «libros»","re- en «revivir»","im- en «impar»","bell- en «belleza»"],correcta:0,explicacion:"-s aparece después del lexema, pero es un morfema flexivo porque indica número. La posición no basta para determinar la función."},
+{id:"id41",nivel:6,tipo:"mcq",pregunta:"¿Qué opción diferencia mejor un infijo de un sufijo derivativo?",opciones:["El infijo sirve de enlace y no aporta significado; el sufijo derivativo sí modifica o matiza el significado del lexema","El infijo siempre aparece al principio; el sufijo siempre al final","El infijo indica número; el sufijo indica género","No existe diferencia"],correcta:0,explicacion:"El infijo funciona como elemento de enlace sin significado, mientras que los afijos derivativos matizan o modifican el significado del lexema."},
+{id:"id42",nivel:6,tipo:"mcq",pregunta:"¿Cuál sería la mejor explicación de por qué «sueñ-» y «soñ-» no deben analizarse como dos lexemas completamente independientes?",opciones:["Porque son variantes formales de un mismo lexema","Porque ambos son sufijos","Porque ambos son morfemas de número","Porque uno es un infijo"],correcta:0,explicacion:"Se consideran alomorfos: presentan formas diferentes, pero corresponden a variantes de un mismo lexema."}
 
 ];
 
@@ -1427,10 +1274,12 @@ let respondida = false;
 const configuracion = {
 
 identifica: [
-    ["mcq", 4],
-    ["segmentacion", 2],
-    ["texto", 2],
-    ["mcq", 2]
+    [1, 4],
+    [2, 4],
+    [3, 4],
+    [4, 3],
+    [5, 3],
+    [6, 2]
 ],
 
 clasifica: [
@@ -1484,11 +1333,82 @@ function crearPartida(tipo) {
     if (tipo === "analiza") banco = analiza;
     if (tipo === "reto") banco = reto;
 
+    /*
+       Identifica tiene una progresión fija:
+       4 actividades de nivel 1,
+       4 de nivel 2,
+       4 de nivel 3,
+       3 de nivel 4,
+       3 de nivel 5 y
+       2 de nivel 6.
+    */
+    if (tipo === "identifica") {
+
+        const usadas =
+            JSON.parse(
+                localStorage.getItem("identificaUsadas") || "[]"
+            );
+
+        const seleccion = [];
+        const indicesSeleccionados = new Set();
+
+        configuracion.identifica.forEach(
+            ([nivel, cantidad]) => {
+
+                let candidatos =
+                    banco
+                        .map((actividad, indice) => ({actividad, indice}))
+                        .filter(item =>
+                            item.actividad.nivel === nivel &&
+                            !usadas.includes(item.indice)
+                        );
+
+                /*
+                   Si ya se han usado todas las actividades
+                   de un nivel, se permite reutilizar las
+                   menos recientes para no bloquear la partida.
+                */
+                if (candidatos.length < cantidad) {
+
+                    candidatos =
+                        banco
+                            .map((actividad, indice) => ({actividad, indice}))
+                            .filter(item =>
+                                item.actividad.nivel === nivel &&
+                                !indicesSeleccionados.has(item.indice)
+                            );
+                }
+
+                candidatos = mezclar(candidatos);
+
+                candidatos
+                    .slice(0, cantidad)
+                    .forEach(item => {
+
+                        seleccion.push(item.actividad);
+                        indicesSeleccionados.add(item.indice);
+
+                    });
+
+            }
+        );
+
+        localStorage.setItem(
+            "identificaUsadas",
+            JSON.stringify(
+                Array.from(
+                    new Set(
+                        [...usadas, ...Array.from(indicesSeleccionados)]
+                    )
+                ).slice(-22)
+            )
+        );
+
+        return seleccion;
+    }
 
     const seleccion = [];
-
     const usados = new Set();
-
 
     configuracion[tipo].forEach(
         ([tipoActividad, cantidad]) => {
@@ -1501,9 +1421,7 @@ function crearPartida(tipo) {
                     )
                 );
 
-
             let contador = 0;
-
 
             for (
                 let i = 0;
@@ -1512,20 +1430,13 @@ function crearPartida(tipo) {
                 i++
             ) {
 
-                const actividad =
-                    candidatos[i];
-
-
-                const indice =
-                    banco.indexOf(actividad);
-
+                const actividad = candidatos[i];
+                const indice = banco.indexOf(actividad);
 
                 if (!usados.has(indice)) {
 
                     usados.add(indice);
-
                     seleccion.push(actividad);
-
                     contador++;
 
                 }
@@ -1534,12 +1445,6 @@ function crearPartida(tipo) {
 
         }
     );
-
-
-    /*
-       Si algún tipo no dispone de suficientes
-       ejercicios, completamos hasta 20.
-    */
 
     if (seleccion.length < 20) {
 
@@ -1551,20 +1456,16 @@ function crearPartida(tipo) {
                 )
             );
 
-
         while (
             seleccion.length < 20 &&
             restantes.length > 0
         ) {
 
-            seleccion.push(
-                restantes.shift()
-            );
+            seleccion.push(restantes.shift());
 
         }
 
     }
-
 
     return seleccion.slice(0, 20);
 
@@ -1797,6 +1698,7 @@ function construirInterfaz(actividad) {
 
         texto.textContent =
             "Selecciona la categoría correcta:";
+
         contenedor.appendChild(texto);
 
 
