@@ -231,7 +231,26 @@ function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').sty
 function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('inicio').style.display='block';document.querySelectorAll('.seccion-btn').forEach(b=>b.classList.remove('activa'));seccionActual=''}
 
 mostrarAlias();
-
+window.norm=norm;
+window.ok=ok;
+window.mix=mix;
+window.alias=alias;
+window.player=player;
+window.mostrarAlias=mostrarAlias;
+window.abrirPerfil=abrirPerfil;
+window.guardarPerfil=guardarPerfil;
+window.iniciar=iniciar;
+window.crear=crear;
+window.mostrar=mostrar;
+window.feedback=feedback;
+window.mcq=mcq;
+window.texto=texto;
+window.analisis=analisis;
+window.siguiente=siguiente;
+window.resultado=resultado;
+window.repetir=repetir;
+window.volverMenu=volverMenu;
+window.irInicio=irInicio;
 function irInicio(){
     const actividad=document.getElementById("actividad");
     const enPartida=actividad && getComputedStyle(actividad).display!=="none";
