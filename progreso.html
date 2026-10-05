@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi progreso · Docere et Delectare</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#f4efe5;color:#2d2a26;min-height:100vh;padding:30px 15px}
+.contenedor{width:100%;max-width:900px;margin:auto}
+h1{font-size:44px;margin:0 0 10px;text-align:center}
+.subtitulo{text-align:center;color:#625b51;font-size:19px;margin-bottom:35px}
+.panel{background:white;padding:35px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.12);margin-bottom:20px}
+.perfil{display:flex;justify-content:space-between;align-items:center;gap:15px;background:#f7f4ee;padding:16px 20px;border-radius:12px}
+.alias{font-size:22px;font-weight:bold}
+button,.volver{padding:11px 18px;border:0;border-radius:10px;background:#ddd5c8;font-family:Georgia,"Times New Roman",serif;font-size:15px;cursor:pointer;text-decoration:none;color:#2d2a26}
+button:hover,.volver:hover{background:#cfc5b5}
+.estadisticas{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.estadistica{background:#eee8dc;border-radius:14px;padding:20px;text-align:center}
+.estadistica strong{display:block;font-size:30px;margin-bottom:6px}
+.estadistica span{color:#625b51}
+h2{margin-top:0}
+.tabla{width:100%;border-collapse:collapse}
+.tabla th,.tabla td{padding:12px 8px;border-bottom:1px solid #e5dfd4;text-align:left}
+.tabla th{color:#625b51}
+.vacio{text-align:center;color:#625b51;padding:25px}
+.aviso{background:#f7f4ee;padding:16px;border-radius:12px;line-height:1.6;color:#625b51}
+@media(max-width:700px){h1{font-size:36px}.estadisticas{grid-template-columns:1fr}.perfil{flex-direction:column;align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="contenedor">
+<h1>🏆 Mi progreso</h1>
+<div class="subtitulo">Docere et Delectare · Lengua Castellana y Literatura · 4.º ESO</div>
+<div class="panel">
+<div class="perfil">
+<div>👤 <span class="alias" id="alias">Invitado</span></div>
+<button onclick="cambiarAlias()">Cambiar alias</button>
+</div>
+</div>
+<div class="panel">
+<h2>📈 Mis estadísticas</h2>
+<div class="estadisticas">
+<div class="estadistica"><strong id="partidas">0</strong><span>partidas</span></div>
+<div class="estadistica"><strong id="puntos">0</strong><span>puntos</span></div>
+<div class="estadistica"><strong id="mejor">0,0</strong><span>mejor nota</span></div>
+</div>
+</div>
+<div class="panel">
+<h2>🧩 Actividad reciente</h2>
+<div id="historial"></div>
+</div>
+<div class="panel">
+<h2>🏆 Clasificación</h2>
+<div class="aviso">La clasificación global entre alumnos se añadirá cuando exista un sistema común de almacenamiento. El alias no requiere cuenta ni datos personales.</div>
+</div>
+<div style="text-align:center">
+<a class="volver" href="index.html">← Volver al inicio</a>
+</div>
+</div>
+<script>
+function cargar(){
+const alias=localStorage.getItem("docereAlias")||"Invitado";
+const p=JSON.parse(localStorage.getItem("docereProgreso")||'{"partidas":0,"mejor":0,"puntos":0,"historial":[]}');
+document.getElementById("alias").textContent=alias;
+document.getElementById("partidas").textContent=p.partidas;
+document.getElementById("puntos").textContent=p.puntos;
+document.getElementById("mejor").textContent=Number(p.mejor||0).toFixed(1).replace(".",",");
+const h=document.getElementById("historial");
+if(!p.historial||!p.historial.length){h.innerHTML='<div class="vacio">Todavía no has completado ninguna partida.</div>';return}
+h.innerHTML='<table class="tabla"><thead><tr><th>Bloque</th><th>Aciertos</th><th>Nota</th></tr></thead><tbody>'+
+p.historial.map(x=>'<tr><td>'+escapeHtml(x.bloque||"Actividad")+'</td><td>'+x.aciertos+'</td><td>'+Number(x.nota||0).toFixed(1).replace(".",",")+'</td></tr>').join("")+
+'</tbody></table>';
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function cambiarAlias(){
+const actual=localStorage.getItem("docereAlias")||"";
+const nuevo=prompt("Escribe tu nuevo alias:",actual);
+if(nuevo&&nuevo.trim()){localStorage.setItem("docereAlias",nuevo.trim().replace(/[<>]/g,"").slice(0,20));cargar();}
+}
+cargar();
+</script>
+</body>
+</html>
