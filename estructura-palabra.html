@@ -5,8 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Estructura de la palabra · Docere et Delectare</title>
 
@@ -37,6 +36,7 @@ body {
 h1 {
     font-size: 46px;
     margin: 0 0 10px;
+    letter-spacing: 1px;
 }
 
 .subtitulo {
@@ -82,6 +82,16 @@ h2 {
 .bloque:hover {
     transform: translateY(-4px);
     box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.bloque.deshabilitado {
+    opacity: 0.55;
+    cursor: default;
+}
+
+.bloque.deshabilitado:hover {
+    transform: none;
+    box-shadow: none;
 }
 
 .icono {
@@ -161,6 +171,7 @@ h2 {
     font-family: Georgia, "Times New Roman", serif;
     font-size: 17px;
     cursor: pointer;
+    transition: 0.2s;
 }
 
 .opcion:hover:not(:disabled) {
@@ -228,25 +239,24 @@ h2 {
 <div class="contenedor">
 
 
-<h1>🧩 Estructura de la palabra</h1>
-
-<div class="subtitulo">
-Lengua Castellana y Literatura · 4.º ESO
-</div>
-
-
 <!-- ========================= -->
 <!-- MENÚ PRINCIPAL -->
 <!-- ========================= -->
 
 <div class="panel" id="menu">
 
+<h1>🧩 Estructura de la palabra</h1>
+
+<div class="subtitulo">
+Lengua Castellana y Literatura · 4.º ESO
+</div>
+
 <h2>¿Qué quieres practicar?</h2>
 
 <div class="introduccion">
 
-Explora los cuatro bloques de la estructura
-y formación de las palabras.
+Explora los cuatro bloques sobre la estructura
+y los procedimientos de formación de las palabras.
 
 </div>
 
@@ -254,8 +264,10 @@ y formación de las palabras.
 <div class="bloques">
 
 
+<!-- BLOQUE 1 -->
+
 <button class="bloque"
-onclick="iniciarBloque(0)">
+onclick="iniciarBloque1()">
 
 <span class="icono">🧱</span>
 
@@ -263,16 +275,18 @@ onclick="iniciarBloque(0)">
 
 <span class="descripcion">
 
-Lexema, morfemas, afijos,
-alomorfos e infijos.
+Morfema · lexema · afijos ·
+flexivos · derivativos · alomorfos · infijos
 
 </span>
 
 </button>
 
 
-<button class="bloque"
-onclick="iniciarBloque(1)">
+<!-- BLOQUE 2 -->
+
+<button class="bloque deshabilitado"
+onclick="proximamente()">
 
 <span class="icono">🌱</span>
 
@@ -280,16 +294,17 @@ onclick="iniciarBloque(1)">
 
 <span class="descripcion">
 
-Palabras simples,
-derivadas y compuestas.
+Próximamente
 
 </span>
 
 </button>
 
 
-<button class="bloque"
-onclick="iniciarBloque(2)">
+<!-- BLOQUE 3 -->
+
+<button class="bloque deshabilitado"
+onclick="proximamente()">
 
 <span class="icono">🧬</span>
 
@@ -297,16 +312,17 @@ onclick="iniciarBloque(2)">
 
 <span class="descripcion">
 
-Palabras parasintéticas
-y acrónimos.
+Próximamente
 
 </span>
 
 </button>
 
 
-<button class="bloque"
-onclick="iniciarBloque(3)">
+<!-- BLOQUE 4 -->
+
+<button class="bloque deshabilitado"
+onclick="proximamente()">
 
 <span class="icono">🏛️</span>
 
@@ -314,25 +330,7 @@ onclick="iniciarBloque(3)">
 
 <span class="descripcion">
 
-Raíces cultas y
-compuestos cultos.
-
-</span>
-
-</button>
-
-
-<button class="bloque"
-onclick="iniciarRetoGlobal()">
-
-<span class="icono">🎯</span>
-
-<strong>Reto global</strong>
-
-<span class="descripcion">
-
-Preguntas mezcladas
-de los cuatro bloques.
+Próximamente
 
 </span>
 
@@ -352,17 +350,17 @@ onclick="volverMorfologia()">
 </div>
 
 
+
 <!-- ========================= -->
-<!-- ACTIVIDAD -->
+<!-- ACTIVIDAD BLOQUE 1 -->
 <!-- ========================= -->
 
 <div class="panel" id="actividad">
 
-
 <div class="progreso-texto">
 
 <span id="numeroPregunta">
-Pregunta 1 de 8
+Pregunta 1 de 20
 </span>
 
 <span id="porcentaje">
@@ -381,7 +379,10 @@ id="barraProgreso">
 </div>
 
 
-<h2 id="tituloBloque"></h2>
+<h2>
+🧱 Estructura de la palabra
+</h2>
+
 
 <div id="pregunta"></div>
 
@@ -396,29 +397,14 @@ id="opciones">
 
 <button class="boton"
 id="siguiente"
-onclick="siguientePregunta()"
-style="display:none;">
+onclick="siguientePregunta()">
 
 Siguiente →
 
 </button>
 
 
-</div>
-
-
-<!-- ========================= -->
-<!-- RESULTADO -->
-<!-- ========================= -->
-
-<div class="panel"
-id="resultado">
-
-<h2>🎉 Actividad terminada</h2>
-
-<div id="nota"></div>
-
-<div id="mensaje"></div>
+<br>
 
 
 <button class="boton"
@@ -428,11 +414,38 @@ onclick="volverMenu()">
 
 </button>
 
+</div>
+
+
+
+<!-- ========================= -->
+<!-- RESULTADO -->
+<!-- ========================= -->
+
+<div class="panel"
+id="resultado">
+
+<h2>
+🎉 ¡Actividad terminada!
+</h2>
+
+<div id="nota"></div>
+
+<div id="mensaje"></div>
+
 
 <button class="boton"
 onclick="repetirActividad()">
 
-🔄 Repetir
+🔄 Repetir actividad
+
+</button>
+
+
+<button class="boton"
+onclick="volverMenu()">
+
+← Volver a los bloques
 
 </button>
 
@@ -442,64 +455,70 @@ onclick="repetirActividad()">
 </div>
 
 
+
 <script>
 
 
-/* =====================================
-   PREGUNTAS
-===================================== */
+/* ==========================================
+   PREGUNTAS DEL BLOQUE 1
+========================================== */
 
-
-const bancos = [
-
-
-/* =====================================
-   BLOQUE 1
-===================================== */
-
-[
+const preguntas = [
 
 {
-pregunta: "¿Qué es el lexema de una palabra?",
+pregunta: "¿Qué es un morfema?",
 opciones: [
-"El elemento que aporta el significado léxico",
-"El elemento que siempre indica plural",
-"Un tipo de prefijo",
-"Una palabra compuesta"
+"Una palabra formada por dos lexemas",
+"La mínima unidad lingüística con significado",
+"Un tipo de palabra compuesta",
+"Una sílaba sin significado"
 ],
-correcta: 0,
+correcta: 1,
 explicacion:
-"El lexema es el elemento que contiene el significado léxico fundamental de la palabra."
+"El morfema es la mínima unidad lingüística con significado."
 },
 
 {
-pregunta: "En «niñas», ¿cuál es el lexema?",
+pregunta: "¿Qué aporta principalmente el lexema?",
+opciones: [
+"El significado léxico central",
+"El género femenino",
+"El número plural",
+"El tiempo verbal"
+],
+correcta: 0,
+explicacion:
+"El lexema aporta el significado central y común a los términos de una familia léxica."
+},
+
+{
+pregunta: "En «libros», ¿cuál es el lexema?",
+opciones: [
+"libr-",
+"-o",
+"-s",
+"libros"
+],
+correcta: 0,
+explicacion:
+"«libr-» aporta el significado léxico de la palabra."
+},
+
+{
+pregunta: "En «niñas», ¿qué morfema indica el género?",
 opciones: [
 "niñ-",
 "-a",
 "-s",
 "niñas"
 ],
-correcta: 0,
-explicacion:
-"«niñ-» contiene el significado léxico fundamental."
-},
-
-{
-pregunta: "En «niñas», ¿qué morfema indica género?",
-opciones: [
-"niñ-",
-"-a",
-"-s",
-"ninguno"
-],
 correcta: 1,
 explicacion:
-"«-a» es el morfema flexivo que indica género femenino."
+"En «niñas», «-a» es el morfema flexivo que indica género femenino."
 },
 
 {
-pregunta: "En «libros», ¿qué morfema indica número?",
+pregunta: "En «libros», ¿qué morfema indica el número?",
 opciones: [
 "libr-",
 "-o",
@@ -508,416 +527,203 @@ opciones: [
 ],
 correcta: 2,
 explicacion:
-"«-s» indica número plural."
+"«-s» es el morfema flexivo que indica número plural."
 },
 
 {
-pregunta: "¿Cuál de estos es un afijo derivativo?",
+pregunta: "¿Cuál de estos elementos es un afijo derivativo?",
 opciones: [
 "-s en «casas»",
 "re- en «releer»",
-"-o en «niño»",
-"-a en «niña»"
+"-a en «niña»",
+"-o en «libro»"
 ],
 correcta: 1,
 explicacion:
-"«re-» es un prefijo derivativo."
+"«re-» es un afijo derivativo y, concretamente, un prefijo."
 },
 
 {
-pregunta: "¿Qué característica tiene un morfema flexivo?",
+pregunta: "¿Dónde se sitúa normalmente un prefijo?",
 opciones: [
-"Forma siempre una palabra nueva",
-"Puede expresar género o número",
-"Siempre aparece delante del lexema",
-"Es siempre un sufijo derivativo"
+"Delante del lexema",
+"Detrás del lexema",
+"Siempre entre dos lexemas",
+"Solo al final de la palabra"
+],
+correcta: 0,
+explicacion:
+"Los prefijos son afijos derivativos que se sitúan delante del lexema."
+},
+
+{
+pregunta: "¿Dónde se sitúa normalmente un sufijo?",
+opciones: [
+"Delante del lexema",
+"Detrás del lexema",
+"Siempre al principio de la palabra",
+"Fuera de la palabra"
 ],
 correcta: 1,
 explicacion:
-"Los morfemas flexivos expresan valores gramaticales como género y número."
+"Los sufijos son afijos derivativos que aparecen detrás del lexema."
+},
+
+{
+pregunta: "¿Cuál de estos es un morfema flexivo?",
+opciones: [
+"re- en «releer»",
+"-ez en «belleza»",
+"-s en «libros»",
+"im- en «imposible»"
+],
+correcta: 2,
+explicacion:
+"«-s» es un morfema flexivo porque indica número plural."
+},
+
+{
+pregunta: "En los verbos, los morfemas flexivos pueden indicar...",
+opciones: [
+"Solo género",
+"Tiempo, modo, número y persona",
+"Solo número",
+"Únicamente significado léxico"
+],
+correcta: 1,
+explicacion:
+"En los verbos, los morfemas flexivos pueden indicar tiempo, modo, número y persona."
+},
+
+{
+pregunta: "¿Qué diferencia fundamental existe entre un morfema flexivo y uno derivativo?",
+opciones: [
+"El flexivo expresa valores gramaticales y el derivativo puede crear o modificar palabras",
+"El derivativo siempre indica plural",
+"El flexivo siempre es un prefijo",
+"No existe ninguna diferencia"
+],
+correcta: 0,
+explicacion:
+"Los morfemas flexivos expresan valores gramaticales; los derivativos son afijos no flexivos que matizan o modifican el significado."
+},
+
+{
+pregunta: "En «im-posible», ¿qué función tiene «im-»?",
+opciones: [
+"Es un sufijo flexivo",
+"Es un prefijo derivativo",
+"Es el lexema",
+"Es un morfema de número"
+],
+correcta: 1,
+explicacion:
+"«im-» es un prefijo derivativo que aporta un significado de negación."
+},
+
+{
+pregunta: "En «i-legal» e «in-negable», ¿qué relación existe entre «i-», «in-» e «im-»?",
+opciones: [
+"Son tres lexemas diferentes",
+"Son variantes de un mismo morfema",
+"Son morfemas flexivos de género",
+"Son sufijos"
+],
+correcta: 1,
+explicacion:
+"«i-», «in-» e «im-» pueden entenderse como variantes o alomorfos de un mismo morfema de negación."
+},
+
+{
+pregunta: "¿Qué es un alomorfo?",
+opciones: [
+"Una variante de un mismo morfema",
+"Una palabra compuesta",
+"Un lexema independiente",
+"Un morfema que siempre indica plural"
+],
+correcta: 0,
+explicacion:
+"Un alomorfo es una variante de un morfema."
+},
+
+{
+pregunta: "¿Cuál de estas series permite observar diferentes formas de un mismo morfema de negación?",
+opciones: [
+"im-posible / i-legal / in-negable",
+"pan / mesa / libro",
+"niño / niña / niños",
+"flor / florista / florero"
+],
+correcta: 0,
+explicacion:
+"im-, i- e in- presentan distintas formas del morfema de negación."
+},
+
+{
+pregunta: "En «sueñ-as» y «soñ-ar», ¿qué fenómeno puede observarse según los materiales?",
+opciones: [
+"Dos lexemas completamente diferentes",
+"Dos alomorfos del lexema",
+"Un prefijo y un sufijo",
+"Un infijo"
+],
+correcta: 1,
+explicacion:
+"Los materiales presentan «sueñ-» y «soñ-» como alomorfos distintos del mismo lexema."
 },
 
 {
 pregunta: "¿Qué es un infijo?",
 opciones: [
-"Un elemento de enlace sin significado",
-"Un lexema",
-"Un prefijo",
-"Un morfema de género"
+"Un elemento de enlace situado en el interior de una palabra",
+"Un prefijo derivativo",
+"Un morfema que siempre indica plural",
+"El significado central de una palabra"
 ],
 correcta: 0,
 explicacion:
-"El infijo funciona como elemento de enlace y carece de significado."
+"El infijo es un elemento de enlace situado en el interior de una palabra y no aporta significado."
 },
 
 {
-pregunta: "¿Qué son los alomorfos?",
+pregunta: "En «panecillo», ¿qué función cumple el elemento de enlace?",
 opciones: [
-"Variantes de un mismo morfema",
-"Palabras compuestas",
-"Prefijos latinos",
-"Lexemas independientes"
+"Aporta el significado principal",
+"Funciona como infijo y no aporta significado",
+"Indica género",
+"Es un prefijo"
+],
+correcta: 1,
+explicacion:
+"En «panecillo», el elemento de enlace funciona como infijo y no aporta significado."
+},
+
+{
+pregunta: "¿Cuál de estas afirmaciones sobre los afijos derivativos es correcta?",
+opciones: [
+"Son siempre morfemas de número",
+"Son afijos no flexivos",
+"Solo aparecen en los verbos",
+"Siempre se colocan detrás del lexema"
+],
+correcta: 1,
+explicacion:
+"Los afijos derivativos son los afijos no flexivos. Pueden ser prefijos o sufijos."
+},
+
+{
+pregunta: "¿Cuál de estos análisis distingue correctamente lexema y morfemas flexivos?",
+opciones: [
+"niñ- + -a + -s → lexema + género + número",
+"niñ- + -a + -s → tres lexemas",
+"niñ- + -a + -s → prefijo + lexema + sufijo",
+"niñ- + -a + -s → tres morfemas derivativos"
 ],
 correcta: 0,
 explicacion:
-"Los alomorfos son variantes que puede presentar un mismo morfema."
+"En «niñas», «niñ-» es el lexema, «-a» expresa género y «-s» expresa número."
 }
-
-],
-
-
-/* =====================================
-   BLOQUE 2
-===================================== */
-
-[
-
-{
-pregunta: "¿Qué es una palabra simple?",
-opciones: [
-"La formada por un único lexema sin derivación",
-"La formada por dos lexemas",
-"La formada mediante un prefijo y un sufijo",
-"La formada por iniciales"
-],
-correcta: 0,
-explicacion:
-"Las palabras simples no se forman mediante procedimientos derivativos o compositivos."
-},
-
-{
-pregunta: "¿Cuál de estas palabras es derivada?",
-opciones: [
-"pan",
-"panadero",
-"mesa",
-"sol"
-],
-correcta: 1,
-explicacion:
-"«panadero» se forma a partir de «pan» mediante derivación."
-},
-
-{
-pregunta: "¿Cuál de estas palabras es compuesta?",
-opciones: [
-"pan",
-"panadero",
-"sacacorchos",
-"florista"
-],
-correcta: 2,
-explicacion:
-"«sacacorchos» combina dos elementos léxicos."
-},
-
-{
-pregunta: "¿Qué procedimiento consiste en añadir un afijo a un lexema?",
-opciones: [
-"Composición",
-"Derivación",
-"Acronimia",
-"Parasíntesis"
-],
-correcta: 1,
-explicacion:
-"La derivación consiste en formar palabras mediante la adición de afijos."
-},
-
-{
-pregunta: "¿Qué procedimiento utiliza dos o más lexemas?",
-opciones: [
-"Derivación",
-"Composición",
-"Flexión",
-"Acronimia"
-],
-correcta: 1,
-explicacion:
-"La composición combina dos o más lexemas."
-},
-
-{
-pregunta: "¿Cuál es una palabra simple?",
-opciones: [
-"flor",
-"florista",
-"parabrisas",
-"deshacer"
-],
-correcta: 0,
-explicacion:
-"«flor» es una palabra simple."
-},
-
-{
-pregunta: "¿Cuál es una palabra derivada?",
-opciones: [
-"mar",
-"marinero",
-"lavaplatos",
-"sol"
-],
-correcta: 1,
-explicacion:
-"«marinero» se forma mediante derivación a partir de «mar»."
-},
-
-{
-pregunta: "¿Cuál de estas palabras está formada por composición?",
-opciones: [
-"panadero",
-"releer",
-"sacacorchos",
-"florista"
-],
-correcta: 2,
-explicacion:
-"«sacacorchos» combina elementos léxicos mediante composición."
-}
-
-],
-
-
-/* =====================================
-   BLOQUE 3
-===================================== */
-
-[
-
-{
-pregunta: "¿Qué es una palabra parasintética?",
-opciones: [
-"Una palabra formada exclusivamente por flexión",
-"Una palabra formada mediante un procedimiento parasintético",
-"Una palabra simple",
-"Una abreviatura"
-],
-correcta: 1,
-explicacion:
-"La parasíntesis es un procedimiento de formación de palabras diferente de la simple derivación."
-},
-
-{
-pregunta: "¿Cuál de estas palabras aparece como ejemplo de parasíntesis?",
-opciones: [
-"pan",
-"a-tornill-ar",
-"flor",
-"mesa"
-],
-correcta: 1,
-explicacion:
-"«a-tornill-ar» aparece en los materiales como ejemplo de formación parasintética."
-},
-
-{
-pregunta: "¿Qué característica presenta la parasíntesis?",
-opciones: [
-"Puede implicar elementos a ambos lados del lexema",
-"Solo utiliza morfemas flexivos",
-"Siempre utiliza dos lexemas",
-"Solo utiliza iniciales"
-],
-correcta: 0,
-explicacion:
-"En los ejemplos de los materiales aparecen elementos a ambos lados del lexema."
-},
-
-{
-pregunta: "¿Qué es un morfema discontinuo?",
-opciones: [
-"Un morfema que aparece dividido alrededor del lexema",
-"Un lexema independiente",
-"Un acrónimo",
-"Un sufijo flexivo"
-],
-correcta: 0,
-explicacion:
-"En la formación parasintética puede hablarse de morfemas discontinuos."
-},
-
-{
-pregunta: "¿Qué es un acrónimo?",
-opciones: [
-"Una palabra simple",
-"Una formación creada a partir de elementos de varias palabras",
-"Un morfema flexivo",
-"Un sufijo"
-],
-correcta: 1,
-explicacion:
-"Los acrónimos se forman a partir de elementos de varias palabras."
-},
-
-{
-pregunta: "¿Cuál de estos ejemplos aparece en los materiales como acrónimo o formación por iniciales?",
-opciones: [
-"OMS",
-"panadero",
-"florista",
-"casita"
-],
-correcta: 0,
-explicacion:
-"OMS aparece como ejemplo de formación mediante iniciales."
-},
-
-{
-pregunta: "¿Cuál de estas opciones NO corresponde a la parasíntesis?",
-opciones: [
-"a-tornill-ar",
-"re-bland-ec-er",
-"una palabra formada solo mediante flexión",
-"formación mediante elementos alrededor del lexema"
-],
-correcta: 2,
-explicacion:
-"La flexión por sí sola no constituye un procedimiento parasintético."
-},
-
-{
-pregunta: "¿Qué procedimiento debemos distinguir de la parasíntesis?",
-opciones: [
-"La composición",
-"La puntuación",
-"La concordancia",
-"La acentuación"
-],
-correcta: 0,
-explicacion:
-"La parasíntesis es uno de los procedimientos de formación de palabras y debe distinguirse de otros como la composición."
-}
-
-],
-
-
-/* =====================================
-   BLOQUE 4
-===================================== */
-
-[
-
-{
-pregunta: "¿Qué son los formantes de origen grecolatino?",
-opciones: [
-"Raíces cultas utilizadas en la formación de palabras",
-"Morfemas exclusivamente flexivos",
-"Palabras simples",
-"Signos de puntuación"
-],
-correcta: 0,
-explicacion:
-"Los materiales presentan los formantes grecolatinos como elementos cultos utilizados en la formación de palabras."
-},
-
-{
-pregunta: "¿Qué significa el formante «bio»?",
-opciones: [
-"Tierra",
-"Vida",
-"Agua",
-"Luz"
-],
-correcta: 1,
-explicacion:
-"«bio» significa «vida»."
-},
-
-{
-pregunta: "¿Qué significa «geo»?",
-opciones: [
-"Tierra",
-"Vida",
-"Lejos",
-"Agua"
-],
-correcta: 0,
-explicacion:
-"«geo» significa «tierra»."
-},
-
-{
-pregunta: "¿Qué significa «foto»?",
-opciones: [
-"Agua",
-"Luz",
-"Piel",
-"Corazón"
-],
-correcta: 1,
-explicacion:
-"«foto» significa «luz»."
-},
-
-{
-pregunta: "¿Qué significa «tele»?",
-opciones: [
-"Lejos",
-"Agua",
-"Tierra",
-"Escribir"
-],
-correcta: 0,
-explicacion:
-"«tele» significa «lejos»."
-},
-
-{
-pregunta: "¿Qué significa «hidro»?",
-opciones: [
-"Vida",
-"Agua",
-"Luz",
-"Temor"
-],
-correcta: 1,
-explicacion:
-"«hidro» significa «agua»."
-},
-
-{
-pregunta: "¿Qué significa «cardio»?",
-opciones: [
-"Piel",
-"Corazón",
-"Tierra",
-"Lejos"
-],
-correcta: 1,
-explicacion:
-"«cardio» significa «corazón»."
-},
-
-{
-pregunta: "¿Qué significa «fobia»?",
-opciones: [
-"Estudio",
-"Observar",
-"Temor o aversión",
-"Escribir"
-],
-correcta: 2,
-explicacion:
-"«fobia» expresa temor o aversión."
-}
-
-]
-
-];
-
-
-const nombresBloques = [
-
-"🧱 Estructura de la palabra",
-
-"🌱 Derivación y composición",
-
-"🧬 Parasíntesis y acronimia",
-
-"🏛️ Formantes grecolatinos",
-
-"🎯 Reto global"
 
 ];
 
@@ -928,14 +734,12 @@ let preguntaActual = 0;
 
 let puntuacion = 0;
 
-let bloqueSeleccionado = 0;
-
 let respondida = false;
 
 
-/* =====================================
+/* ==========================================
    MEZCLAR
-===================================== */
+========================================== */
 
 function mezclar(array) {
 
@@ -946,16 +750,13 @@ function mezclar(array) {
 }
 
 
-/* =====================================
-   INICIAR BLOQUE
-===================================== */
+/* ==========================================
+   INICIAR
+========================================== */
 
-function iniciarBloque(numero) {
+function iniciarBloque1() {
 
-    bloqueSeleccionado = numero;
-
-    preguntasActuales =
-        mezclar(bancos[numero]);
+    preguntasActuales = mezclar(preguntas);
 
     preguntaActual = 0;
 
@@ -970,56 +771,14 @@ function iniciarBloque(numero) {
     document.getElementById("actividad")
         .style.display = "block";
 
-    document.getElementById("tituloBloque")
-        .textContent =
-        nombresBloques[numero];
-
     mostrarPregunta();
 
 }
 
 
-/* =====================================
-   RETO GLOBAL
-===================================== */
-
-function iniciarRetoGlobal() {
-
-    bloqueSeleccionado = 4;
-
-    preguntasActuales =
-        mezclar([
-            ...bancos[0],
-            ...bancos[1],
-            ...bancos[2],
-            ...bancos[3]
-        ]);
-
-    preguntaActual = 0;
-
-    puntuacion = 0;
-
-    document.getElementById("menu")
-        .style.display = "none";
-
-    document.getElementById("resultado")
-        .style.display = "none";
-
-    document.getElementById("actividad")
-        .style.display = "block";
-
-    document.getElementById("tituloBloque")
-        .textContent =
-        "🎯 Reto global";
-
-    mostrarPregunta();
-
-}
-
-
-/* =====================================
-   MOSTRAR PREGUNTA
-===================================== */
+/* ==========================================
+   MOSTRAR
+========================================== */
 
 function mostrarPregunta() {
 
@@ -1064,8 +823,7 @@ function mostrarPregunta() {
 
 
     document.getElementById("siguiente")
-        .style.display =
-        "none";
+        .style.display = "none";
 
 
     const contenedor =
@@ -1100,9 +858,9 @@ function mostrarPregunta() {
 }
 
 
-/* =====================================
+/* ==========================================
    COMPROBAR
-===================================== */
+========================================== */
 
 function comprobarRespuesta(indice) {
 
@@ -1172,9 +930,9 @@ function comprobarRespuesta(indice) {
 }
 
 
-/* =====================================
+/* ==========================================
    SIGUIENTE
-===================================== */
+========================================== */
 
 function siguientePregunta() {
 
@@ -1197,9 +955,9 @@ function siguientePregunta() {
 }
 
 
-/* =====================================
+/* ==========================================
    RESULTADO
-===================================== */
+========================================== */
 
 function mostrarResultado() {
 
@@ -1210,16 +968,6 @@ function mostrarResultado() {
     document.getElementById("resultado")
         .style.display =
         "block";
-
-
-    document.getElementById("barraProgreso")
-        .style.width =
-        "100%";
-
-
-    document.getElementById("porcentaje")
-        .textContent =
-        "100%";
 
 
     const nota =
@@ -1241,28 +989,28 @@ function mostrarResultado() {
     if (nota >= 9) {
 
         mensaje =
-            "🏆 ¡Excelente! Dominas muy bien estos contenidos.";
+            "🏆 ¡Excelente! Dominas muy bien la estructura de la palabra.";
 
     }
 
     else if (nota >= 7) {
 
         mensaje =
-            "👏 ¡Muy bien! Tienes un buen dominio del tema.";
+            "👏 ¡Muy bien! Tienes un buen dominio de estos contenidos.";
 
     }
 
     else if (nota >= 5) {
 
         mensaje =
-            "👍 Has aprobado. Conviene seguir practicando.";
+            "👍 Has aprobado. Conviene seguir practicando algunos conceptos.";
 
     }
 
     else {
 
         mensaje =
-            "📚 Necesitas repasar este bloque y volver a intentarlo.";
+            "📚 Necesitas repasar el bloque y volver a intentarlo.";
 
     }
 
@@ -1274,38 +1022,28 @@ function mostrarResultado() {
 }
 
 
-/* =====================================
+/* ==========================================
    REPETIR
-===================================== */
+========================================== */
 
 function repetirActividad() {
 
-    if (bloqueSeleccionado === 4) {
-
-        iniciarRetoGlobal();
-
-    } else {
-
-        iniciarBloque(
-            bloqueSeleccionado
-        );
-
-    }
+    iniciarBloque1();
 
 }
 
 
-/* =====================================
+/* ==========================================
    VOLVER AL MENÚ
-===================================== */
+========================================== */
 
 function volverMenu() {
 
-    document.getElementById("resultado")
+    document.getElementById("actividad")
         .style.display =
         "none";
 
-    document.getElementById("actividad")
+    document.getElementById("resultado")
         .style.display =
         "none";
 
@@ -1316,14 +1054,27 @@ function volverMenu() {
 }
 
 
-/* =====================================
+/* ==========================================
    VOLVER A MORFOLOGÍA
-===================================== */
+========================================== */
 
 function volverMorfologia() {
 
     window.location.href =
         "morfologia.html";
+
+}
+
+
+/* ==========================================
+   BLOQUES FUTUROS
+========================================== */
+
+function proximamente() {
+
+    alert(
+        "🚧 Este bloque estará disponible próximamente."
+    );
 
 }
 
