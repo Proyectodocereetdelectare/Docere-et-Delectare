@@ -77,6 +77,27 @@
             margin-bottom: 10px;
         }
 
+        /* Pantalla de Morfología */
+
+        #morfologia {
+            display: none;
+        }
+
+        .volver {
+            margin-top: 30px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            background: #ddd5c8;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .volver:hover {
+            background: #cfc5b5;
+        }
+
         @media (max-width: 700px) {
             h1 {
                 font-size: 38px;
@@ -97,46 +118,99 @@
 
     <div class="contenedor">
 
-        <h1>Docere et Delectare</h1>
+        <!-- PANTALLA PRINCIPAL -->
 
-        <div class="subtitulo">
-            Lengua Castellana y Literatura · 4.º ESO
+        <div id="inicio">
+
+            <h1>Docere et Delectare</h1>
+
+            <div class="subtitulo">
+                Lengua Castellana y Literatura · 4.º ESO
+            </div>
+
+            <div class="panel">
+
+                <h2>¿Qué quieres trabajar hoy?</h2>
+
+                <div class="temas">
+
+                    <button class="tema" onclick="mostrarMorfologia()">
+                        <span class="icono">🔤</span>
+                        Morfología
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">📐</span>
+                        Sintaxis
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">📖</span>
+                        Literatura
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">📝</span>
+                        Comunicación
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">🔎</span>
+                        Léxico y semántica
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">✍️</span>
+                        Ortografía
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
 
-        <div class="panel">
 
-            <h2>¿Qué quieres trabajar hoy?</h2>
+        <!-- PANTALLA DE MORFOLOGÍA -->
 
-            <div class="temas">
+        <div id="morfologia">
 
-                <button class="tema">
-                    <span class="icono">🔤</span>
-                    Morfología
-                </button>
+            <h1>Morfología</h1>
 
-                <button class="tema">
-                    <span class="icono">📐</span>
-                    Sintaxis
-                </button>
+            <div class="subtitulo">
+                Lengua Castellana y Literatura · 4.º ESO
+            </div>
 
-                <button class="tema">
-                    <span class="icono">📖</span>
-                    Literatura
-                </button>
+            <div class="panel">
 
-                <button class="tema">
-                    <span class="icono">📝</span>
-                    Comunicación
-                </button>
+                <h2>¿Qué quieres practicar?</h2>
 
-                <button class="tema">
-                    <span class="icono">🔎</span>
-                    Léxico y semántica
-                </button>
+                <div class="temas">
 
-                <button class="tema">
-                    <span class="icono">✍️</span>
-                    Ortografía
+                    <button class="tema">
+                        <span class="icono">🧩</span>
+                        Estructura de la palabra
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">🌱</span>
+                        Formación de palabras
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">🔤</span>
+                        Categorías gramaticales
+                    </button>
+
+                    <button class="tema">
+                        <span class="icono">⚙️</span>
+                        El verbo
+                    </button>
+
+                </div>
+
+                <button class="volver" onclick="volverInicio()">
+                    ← Volver
                 </button>
 
             </div>
@@ -144,6 +218,28 @@
         </div>
 
     </div>
+
+
+    <script>
+
+        function mostrarMorfologia() {
+
+            document.getElementById("inicio").style.display = "none";
+
+            document.getElementById("morfologia").style.display = "block";
+
+        }
+
+
+        function volverInicio() {
+
+            document.getElementById("morfologia").style.display = "none";
+
+            document.getElementById("inicio").style.display = "block";
+
+        }
+
+    </script>
 
 </body>
 </html>
