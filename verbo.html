@@ -209,6 +209,26 @@ function repetir(){iniciarPartida()}
 function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('menu').style.display='block';seccionActual=''}
 function irInicio(){const en= document.getElementById('actividad').style.display!=='none';if(en&&!confirm('Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?'))return;window.location.href='index.html'}
 mostrarAlias();
+window.norm=norm;
+window.ok=ok;
+window.mix=mix;
+window.alias=alias;
+window.player=player;
+window.mostrarAlias=mostrarAlias;
+window.abrirPerfil=abrirPerfil;
+window.guardarPerfil=guardarPerfil;
+window.iniciarSeccion=iniciarSeccion;
+window.iniciarPartida=iniciarPartida;
+window.crearPartida=crearPartida;
+window.mostrar=mostrar;
+window.feedback=feedback;
+window.mcq=mcq;
+window.texto=texto;
+window.siguiente=siguiente;
+window.resultado=resultado;
+window.repetir=repetir;
+window.volverMenu=volverMenu;
+window.irInicio=irInicio;
 </script>
 </body>
 </html>
