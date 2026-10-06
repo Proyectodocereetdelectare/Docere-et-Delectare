@@ -18,7 +18,7 @@
 <div class="contenedor"><div class="panel">
 <section id="inicio">
 <h1>🌱 Formación de palabras</h1><div class="subtitulo">Lengua Castellana y Literatura</div>
-<p class="intro">Practica <strong>derivación, composición, parasíntesis, acronimia y formantes de origen grecolatino</strong>. Cada partida combina ejercicios diferentes y aumenta progresivamente la dificultad.</p>
+<p class="intro">Practica <strong>derivación, composición, parasíntesis, acronimia y formantes de origen grecolatino</strong> mediante una ruta progresiva: <strong>reconocer → distinguir → analizar → justificar → integrar</strong>. La estructura de la palabra y el procedimiento de formación se trabajan como preguntas diferentes: aquí importa cómo se ha formado la palabra.</p>
 <div class="perfil"><span>Jugador/a: <span id="aliasInicio" class="alias">—</span></span><button class="cambiar" onclick="abrirPerfil()">Cambiar alias</button></div>
 <button class="boton boton-principal" onclick="iniciarBloque()">▶ Empezar partida</button><a class="boton" href="morfologia.html">← Morfología</a>
 </section>
@@ -240,6 +240,7 @@ const A=[
 
 let partida=[],i=0,puntos=0,respondida=false;
 const dist={1:4,2:4,3:4,4:3,5:3,6:2};
+// La partida avanza por niveles: no se mezclan entre sí para que la dificultad sea visible y progresiva.
 function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
 function ok(v,r){r=Array.isArray(r)?r:[r];return r.some(x=>norm(v)===norm(x))}
 function mix(a){return [...a].sort(()=>Math.random()-.5)}
@@ -249,7 +250,7 @@ function mostrarAlias(){document.getElementById('aliasInicio').textContent=alias
 function abrirPerfil(){document.getElementById('aliasInput').value=alias();document.getElementById('perfilModal').style.display='flex';setTimeout(()=>document.getElementById('aliasInput').focus(),50)}
 function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias()}
 function iniciarBloque(){if(!alias()){abrirPerfil();return}crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
-function crear(){let usados=JSON.parse(localStorage.getItem('formacionUsadas')||'[]'),sel=[];Object.keys(dist).forEach(n=>{let p=A.map((a,j)=>({a:a,j:j})).filter(x=>x.a.n===+n&&!usados.includes(x.j));if(p.length<dist[n])p=A.map((a,j)=>({a:a,j:j})).filter(x=>x.a.n===+n);sel=sel.concat(mix(p).slice(0,dist[n]).map(x=>x.j))});localStorage.setItem('formacionUsadas',JSON.stringify(usados.concat(sel).slice(-30)));partida=mix(sel).map(x=>A[x])}
+function crear(){let usados=JSON.parse(localStorage.getItem('formacionUsadas')||'[]'),sel=[];Object.keys(dist).forEach(n=>{let p=A.map((a,j)=>({a:a,j:j})).filter(x=>x.a.n===+n&&!usados.includes(x.j));if(p.length<dist[n])p=A.map((a,j)=>({a:a,j:j})).filter(x=>x.a.n===+n);sel=sel.concat(mix(p).slice(0,dist[n]).map(x=>x.j))});localStorage.setItem('formacionUsadas',JSON.stringify(usados.concat(sel).slice(-30)));partida=sel.map(x=>A[x])}
 function mostrar(){respondida=false;let a=partida[i],c=document.getElementById('contenido');document.getElementById('numero').textContent='Actividad '+(i+1)+' de 20';document.getElementById('aciertos').textContent=puntos+' aciertos';document.getElementById('barra').style.width=Math.max(5,(i+1)/20*100)+'%';document.getElementById('feedback').innerHTML='';document.getElementById('siguiente').style.display='none';let h='<div class="etiqueta">Nivel '+a.n+' · Formación de palabras</div><div id="pregunta">'+a.q+'</div>';
 if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" onclick="window.mcq(this, this.dataset.respuesta)">'+x+'</button>').join('')+'</div>';
 if(a.t==='text'||a.t==='seg')h+=(a.t==='seg'?'<p style="color:#625b51">Separa los elementos con +, guiones o espacios.</p>':'')+'<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';
