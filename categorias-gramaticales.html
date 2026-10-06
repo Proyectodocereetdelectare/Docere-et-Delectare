@@ -31,7 +31,7 @@ Lengua Castellana y Literatura
 <h2>¿Qué quieres practicar?</h2>
 
 <div class="introduccion">
-Practica las categorías gramaticales mediante actividades progresivas y variadas.
+Practica las categorías gramaticales mediante una ruta progresiva: primero reconoce, después analiza, transforma y finalmente detecta errores y resuelve casos integrados.
 </div>
 
 <div class="bloques">
@@ -68,7 +68,7 @@ data-seccion="transforma">
 <span class="icono">🔄</span>
 <strong>Transforma</strong>
 <span class="descripcion">
-Modifica las oraciones y comprueba cómo cambia el uso de una palabra.
+Transforma género, número y otras propiedades morfológicas sin convertir el ejercicio en un análisis sintáctico.
 </span>
 </button>
 
@@ -77,7 +77,7 @@ data-seccion="error">
 <span class="icono">🧠</span>
 <strong>Detecta el error</strong>
 <span class="descripcion">
-Localiza y corrige análisis gramaticales incorrectos.
+Localiza el error, corrígelo y explica qué categoría o propiedad corresponde.
 </span>
 </button>
 
@@ -201,7 +201,19 @@ const A=[
 {s:'reto',n:5,t:'mcq',q:'¿Cuál es el análisis correcto de «<b>mucho</b>» en «mucho tiempo», «trabaja mucho» y «muchos llegaron»?',o:['Determinante, adverbio y pronombre, respectivamente.','Pronombre, determinante y adverbio, respectivamente.','Adverbio, pronombre y determinante, respectivamente.','Determinante en los tres casos.'],r:'Determinante, adverbio y pronombre, respectivamente.',e:'La categoría depende del uso: acompaña a un sustantivo, modifica a un verbo o aparece de forma independiente.'},
 {s:'reto',n:5,t:'mcq',q:'¿Cuál de estos análisis contiene un error?',o:['«mi casa» → determinante posesivo.','«mía» en «la casa es mía» → pronombre posesivo.','«rápido» en «corre rápido» → adverbio.','«muchos» en «muchos alumnos» → pronombre.'],r:'«muchos» en «muchos alumnos» → pronombre.',e:'En «muchos alumnos», muchos acompaña al sustantivo y funciona como determinante.'},
 {s:'reto',n:6,t:'analysis',q:'Analiza las palabras destacadas: «<b>Aquellos</b> deportistas entrenan <b>muchísimo</b>, pero <b>ellos</b> descansan».',f:['Aquellos','muchísimo','ellos'],r:[['determinante demostrativo','determinante'],['adverbio de cantidad','adverbio'],['pronombre personal','pronombre']],e:'Aquellos acompaña a deportistas; muchísimo modifica al verbo entrenan; ellos sustituye a un grupo nominal.'},
-{s:'reto',n:6,t:'analysis',q:'Explica la categoría de <b>que</b> en «El atleta que ganó» y «Espero que ganes».',f:['que en la primera oración','que en la segunda oración'],r:[['pronombre relativo','pronombre'],['conjunción','conjunción']],e:'En la primera oración que es un pronombre relativo; en la segunda funciona como conjunción subordinante.'}
+{s:'reto',n:6,t:'analysis',q:'Explica la categoría de <b>que</b> en «El atleta que ganó» y «Espero que ganes».',f:['que en la primera oración','que en la segunda oración'],r:[['pronombre relativo','pronombre'],['conjunción','conjunción']],e:'En la primera oración que es un pronombre relativo; en la segunda funciona como conjunción subordinante.'},
+{s:'transforma',n:1,t:'text',q:'Cambia «La atleta entrena» a 3.ª persona del plural, manteniendo el presente.',r:['las atletas entrenan','ellos entrenan','entrenan'],e:'La forma correcta es «las atletas entrenan»: cambia la persona y se mantiene el presente.'},
+{s:'transforma',n:2,t:'text',q:'Cambia «El corredor rápido» a femenino.',r:['la corredora rápida','corredora rápida'],e:'Los dos elementos variables pasan a femenino: «la corredora rápida».'},
+{s:'transforma',n:3,t:'text',q:'Sustituye el sustantivo «jugador» por su plural.',r:['jugadores','los jugadores'],e:'El plural de jugador es jugadores.'},
+{s:'transforma',n:4,t:'text',q:'Cambia «este libro» a plural.',r:['estos libros'],e:'El demostrativo y el sustantivo concuerdan en plural: «estos libros».'},
+{s:'transforma',n:5,t:'text',q:'Cambia «una deportista» a masculino singular.',r:['un deportista','deportista'],e:'La transformación es «un deportista».'},
+{s:'transforma',n:6,t:'text',q:'Transforma «muchos corredores» a singular manteniendo el género masculino.',r:['mucho corredor','un corredor'],e:'Una respuesta válida es «mucho corredor»: se conserva el género masculino y se pasa a singular.'},
+{s:'error',n:1,t:'text',q:'Corrige el análisis: «mesa» es un verbo.',r:['mesa es un sustantivo','sustantivo','es un sustantivo'],e:'Mesa es un sustantivo, no un verbo.'},
+{s:'error',n:2,t:'text',q:'Corrige el análisis: «rápidamente» es un adjetivo.',r:['es un adverbio','adverbio','rapidamente es un adverbio'],e:'Rápidamente es un adverbio, concretamente un adverbio de modo.'},
+{s:'error',n:3,t:'text',q:'Corrige el análisis: «ellos» es un determinante.',r:['es un pronombre','pronombre','ellos es un pronombre'],e:'Ellos es un pronombre personal.'},
+{s:'error',n:4,t:'text',q:'Corrige el análisis: «tres» en «tres atletas» es un pronombre.',r:['es un determinante numeral','determinante numeral','tres es un determinante numeral'],e:'En «tres atletas», tres determina al sustantivo y funciona como determinante numeral.'},
+{s:'error',n:5,t:'text',q:'Corrige el análisis: «cansado» en «está cansado» es un sustantivo.',r:['es un adjetivo','adjetivo','cansado es un adjetivo'],e:'Cansado es un adjetivo que funciona como atributo.'},
+{s:'error',n:6,t:'text',q:'Explica el error: «nadie» es un adjetivo porque expresa una cualidad.',r:['nadie es un pronombre','es un pronombre','nadie es un pronombre indefinido'],e:'Nadie es un pronombre indefinido: sustituye a un sustantivo y no expresa una cualidad.'}
 ];
 
 let partida=[],i=0,puntos=0,respondida=false,seccionActual='';
@@ -236,11 +248,15 @@ function iniciar(){
 }
 function crear(){
   let usados=JSON.parse(localStorage.getItem('categoriasUsadas')||'[]');
-  let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&!usados.includes(x.j));
-  if(disponibles.length<12) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual);
-  const sel=mix(disponibles).slice(0,12).map(x=>x.j);
-  localStorage.setItem('categoriasUsadas',JSON.stringify(usados.concat(sel).slice(-48)));
-  partida=sel.map(x=>A[x]);
+  const seleccion=[];
+  const usadosPartida=new Set();
+  for(let nivel=1;nivel<=6;nivel++){
+    let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usados.includes(x.j));
+    if(disponibles.length<2) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j));
+    mix(disponibles).slice(0,2).forEach(x=>{seleccion.push(x.j);usadosPartida.add(x.j)});
+  }
+  localStorage.setItem('categoriasUsadas',JSON.stringify(usados.concat(seleccion).slice(-60)));
+  partida=seleccion.map(x=>A[x]);
 }
 function mostrar(){
   respondida=false;
