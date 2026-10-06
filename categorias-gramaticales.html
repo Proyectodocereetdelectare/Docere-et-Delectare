@@ -46,6 +46,15 @@ Reconoce categorías gramaticales en palabras y oraciones sencillas.
 </button>
 
 <button class="bloque"
+onclick="window.elegirSeccion('sustantivos')">
+<span class="icono">🏷️</span>
+<strong>Tipos de sustantivos</strong>
+<span class="descripcion">
+Comunes y propios, concretos y abstractos, individuales y colectivos, contables y no contables.
+</span>
+</button>
+
+<button class="bloque"
 onclick="window.elegirSeccion('analiza')">
 <span class="icono">🧩</span>
 <strong>Analiza</strong>
@@ -111,6 +120,32 @@ const A=[
 {s:'identifica',n:5,t:'mcq',q:'En «<b>¡ay!</b>, qué susto», ¿qué categoría tiene <b>¡ay!</b>?',o:['Interjección','Adverbio','Conjunción','Adjetivo'],r:'Interjección',e:'¡Ay! es una interjección.'},
 {s:'identifica',n:6,t:'mcq',q:'En «<b>quién</b> ha llamado?», ¿qué categoría tiene <b>quién</b>?',o:['Pronombre','Determinante','Adjetivo','Adverbio'],r:'Pronombre',e:'Quién aparece sin sustantivo y funciona como pronombre interrogativo.'},
 {s:'identifica',n:6,t:'mcq',q:'En «<b>muy</b> cansado», ¿qué categoría tiene <b>muy</b>?',o:['Adverbio','Adjetivo','Determinante','Conjunción'],r:'Adverbio',e:'Muy es un adverbio de cantidad que modifica al adjetivo cansado.'},
+
+/* ==================== TIPOS DE SUSTANTIVOS ==================== */
+{s:'sustantivos',n:1,t:'mcq',q:"¿Qué tipo de sustantivo es <b>Madrid</b>?",o:["Común","Propio","Colectivo","Abstracto"],r:"Propio",e:"Madrid es un sustantivo propio porque nombra un lugar concreto."},
+{s:'sustantivos',n:1,t:'mcq',q:"¿Qué tipo de sustantivo es <b>perro</b>?",o:["Común","Propio","Abstracto","Colectivo"],r:"Común",e:"Perro es un sustantivo común porque designa a cualquier miembro de esa clase."},
+{s:'sustantivos',n:1,t:'mcq',q:"¿Cuál es un sustantivo <b>abstracto</b>?",o:["mesa","amistad","árbol","caballo"],r:"amistad",e:"Amistad nombra una realidad o concepto que no se percibe directamente por los sentidos."},
+{s:'sustantivos',n:1,t:'mcq',q:"¿Cuál es un sustantivo <b>colectivo</b>?",o:["oveja","rebaño","casa","montaña"],r:"rebaño",e:"Rebaño es colectivo porque, en singular, designa un conjunto de seres de la misma clase."},
+{s:'sustantivos',n:2,t:'mcq',q:"¿Qué clasificación es correcta para <b>bosque</b>?",o:["Común, concreto y colectivo","Propio, concreto e individual","Común, abstracto y colectivo","Propio, abstracto e individual"],r:"Común, concreto y colectivo",e:"Bosque es común y concreto; además, puede funcionar como colectivo al designar un conjunto de árboles."},
+{s:'sustantivos',n:2,t:'mcq',q:"¿Qué tipo de sustantivo es <b>libertad</b>?",o:["Concreto","Abstracto","Colectivo","Propio"],r:"Abstracto",e:"Libertad es abstracto porque nombra un concepto."},
+{s:'sustantivos',n:2,t:'mcq',q:"¿Cuál es un sustantivo <b>propio</b>?",o:["río","Ebro","montaña","ciudad"],r:"Ebro",e:"Ebro es un nombre propio de un río."},
+{s:'sustantivos',n:2,t:'mcq',q:"¿Cuál es un sustantivo <b>individual</b>?",o:["enjambre","abeja","rebaño","ejército"],r:"abeja",e:"Abeja designa un solo ser; enjambre, rebaño y ejército son colectivos."},
+{s:'sustantivos',n:3,t:'mcq',q:"¿Qué clasificación es correcta para <b>ejército</b>?",o:["Común, concreto y colectivo","Propio, abstracto e individual","Común, abstracto y colectivo","Propio, concreto e individual"],r:"Común, concreto y colectivo",e:"Ejército es común, concreto y colectivo."},
+{s:'sustantivos',n:3,t:'mcq',q:"¿Cuál es un sustantivo <b>contable</b>?",o:["agua","arena","libro","aire"],r:"libro",e:"Libro puede contarse: un libro, dos libros, tres libros..."},
+{s:'sustantivos',n:3,t:'mcq',q:"¿Cuál es un sustantivo normalmente <b>no contable</b>?",o:["silla","agua","balón","cuaderno"],r:"agua",e:"Agua suele designar una cantidad de materia que no se cuenta directamente como unidades."},
+{s:'sustantivos',n:3,t:'mcq',q:"¿Qué pareja está formada por un individual y su correspondiente colectivo?",o:["abeja / enjambre","árbol / árbol","soldado / soldado","pez / pez"],r:"abeja / enjambre",e:"Abeja es individual y enjambre es colectivo."},
+{s:'sustantivos',n:4,t:'mcq',q:"¿Qué clasificación es correcta para <b>amor</b>?",o:["Común y abstracto","Propio y concreto","Colectivo y concreto","Individual y propio"],r:"Común y abstracto",e:"Amor es común y abstracto porque nombra un concepto o sentimiento."},
+{s:'sustantivos',n:4,t:'mcq',q:"¿Qué clasificación es correcta para <b>Barcelona</b>?",o:["Común y abstracto","Propio y concreto","Colectivo y abstracto","Común y colectivo"],r:"Propio y concreto",e:"Barcelona es un nombre propio de una ciudad y designa una realidad concreta."},
+{s:'sustantivos',n:4,t:'mcq',q:"¿Cuál es un sustantivo colectivo?",o:["músico","orquesta","canción","instrumento"],r:"orquesta",e:"Orquesta designa un conjunto de músicos."},
+{s:'sustantivos',n:4,t:'mcq',q:"¿Cuál de estas parejas presenta un sustantivo contable y otro no contable?",o:["libro / agua","mesa / silla","árbol / perro","balón / cuaderno"],r:"libro / agua",e:"Libro es contable y agua es normalmente no contable."},
+{s:'sustantivos',n:5,t:'mcq',q:"En «La <b>manada</b> avanzó», ¿qué tipo de sustantivo es manada?",o:["Individual","Colectivo","Propio","Abstracto"],r:"Colectivo",e:"Manada es colectivo porque designa un conjunto de animales."},
+{s:'sustantivos',n:5,t:'mcq',q:"En «Sentía mucha <b>tristeza</b>», ¿qué tipo de sustantivo es tristeza?",o:["Concreto","Abstracto","Propio","Colectivo"],r:"Abstracto",e:"Tristeza es abstracto porque nombra un sentimiento."},
+{s:'sustantivos',n:5,t:'mcq',q:"¿Cuál de estos sustantivos es simultáneamente <b>propio y concreto</b>?",o:["amistad","España","multitud","valentía"],r:"España",e:"España es un nombre propio y designa un país, una realidad concreta."},
+{s:'sustantivos',n:5,t:'mcq',q:"¿Cuál es la clasificación más adecuada para <b>rebaño</b>?",o:["Común, concreto y colectivo","Propio, abstracto e individual","Común, abstracto y contable","Propio, concreto e individual"],r:"Común, concreto y colectivo",e:"Rebaño designa un conjunto de animales y puede percibirse directamente."},
+{s:'sustantivos',n:6,t:'mcq',q:"¿Cuál presenta correctamente las características de <b>multitud</b>?",o:["Común, concreto y colectivo","Propio, abstracto e individual","Común, abstracto e individual","Propio, concreto y colectivo"],r:"Común, concreto y colectivo",e:"Multitud es un sustantivo común, concreto y colectivo."},
+{s:'sustantivos',n:6,t:'mcq',q:"¿Cuál presenta correctamente las características de <b>honestidad</b>?",o:["Común y abstracto","Propio y concreto","Colectivo y concreto","Individual y contable"],r:"Común y abstracto",e:"Honestidad es un sustantivo común y abstracto."},
+{s:'sustantivos',n:6,t:'mcq',q:"¿Cuál de estas afirmaciones es correcta?",o:["Un sustantivo puede pertenecer a varias clasificaciones a la vez.","Cada sustantivo solo puede tener una clasificación.","Los sustantivos propios siempre son abstractos.","Los sustantivos colectivos siempre son propios."],r:"Un sustantivo puede pertenecer a varias clasificaciones a la vez.",e:"Una misma palabra puede ser, por ejemplo, común, concreto, colectivo y contable."},
+{s:'sustantivos',n:6,t:'mcq',q:"¿Cuál de estas series contiene únicamente sustantivos colectivos?",o:["rebaño, ejército, orquesta","oveja, soldado, músico","amor, tristeza, libertad","Madrid, España, Ebro"],r:"rebaño, ejército, orquesta",e:"Los tres sustantivos designan conjuntos."},
 
 /* ==================== ANALIZA ==================== */
 {s:'analiza',n:1,t:'analysis',q:'Analiza <b>nosotros</b>: indica categoría y subcategoría.',f:['Respuesta'],r:[['pronombre personal','pronombre']],e:'Nosotros es un pronombre personal.'},
@@ -214,7 +249,7 @@ function mostrar(){
   document.getElementById('barra').style.width=Math.round((i+1)/total*100)+'%';
   document.getElementById('feedback').innerHTML='';
   document.getElementById('siguiente').style.display='none';
-  let nombres={identifica:'Identifica',analiza:'Analiza',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
+  let nombres={sustantivos:'Tipos de sustantivos',identifica:'Identifica',analiza:'Analiza',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
   let h='<div class="etiqueta">'+nombres[seccionActual]+' · Nivel '+a.n+'</div><div id="pregunta">'+a.q+'</div>';
   if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" onclick="window.mcq(this, this.dataset.respuesta)">'+x+'</button>').join('')+'</div>';
   if(a.t==='text')h+='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';
