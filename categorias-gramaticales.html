@@ -224,7 +224,7 @@ function mostrarAlias(){document.getElementById('aliasActividad').textContent=al
 function abrirPerfil(){document.getElementById('aliasInput').value=alias();document.getElementById('perfilModal').style.display='flex';setTimeout(()=>document.getElementById('aliasInput').focus(),50)}
 function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias();if(seccionActual&&document.getElementById('inicio').style.display!=='none')iniciar()}
 window.elegirSeccion=function(s){
-  if(!['identifica','analiza','transforma','error','reto'].includes(s))return;
+  if(!['sustantivos','identifica','analiza','transforma','error','reto'].includes(s))return;
   seccionActual=s;
   iniciar();
 };
