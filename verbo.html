@@ -54,7 +54,7 @@ h2{font-size:28px;margin:30px 0 16px}
 <h1>🔵 El verbo</h1>
 <div class="subtitulo">Lengua Castellana y Literatura</div>
 <h2>¿Qué quieres practicar?</h2>
-<div class="introduccion">Practica las formas verbales, su análisis, la conjugación, la transformación y, especialmente, la distinción entre perífrasis verbales, locuciones y construcciones con varios verbos.</div>
+<div class="introduccion">Practica las formas verbales mediante una progresión de reconocimiento, análisis, conjugación, transformación y detección de errores. La sección de perífrasis y locuciones añade contraste, justificación y casos difíciles.</div>
 <div class="bloques">
 <button class="bloque" onclick="iniciarSeccion('identifica')"><span class="icono">🔎</span><strong>Identifica</strong><span class="descripcion">Reconoce formas verbales y sus características básicas.</span></button>
 <button class="bloque" onclick="iniciarSeccion('analiza')"><span class="icono">🧩</span><strong>Analiza</strong><span class="descripcion">Analiza persona, número, tiempo, modo, forma y otros rasgos.</span></button>
@@ -222,7 +222,27 @@ const A=[
 {s:'reto',n:5,t:'mcq',q:'¿Cuál de estas formas combina correctamente tiempo compuesto y voz pasiva?',o:['habrán sido convocados','convocarán','habían convocado','están convocando'],r:'habrán sido convocados',e:'Habrá(n) + sido + participio combina tiempo compuesto y voz pasiva.'},
 {s:'reto',n:5,t:'mcq',q:'¿Qué transformación es correcta? «El comité está revisando los resultados» → pasiva.',o:['Los resultados están siendo revisados por el comité.','Los resultados fueron revisados por el comité.','Los resultados están revisando al comité.','El comité está siendo revisado por los resultados.'],r:'Los resultados están siendo revisados por el comité.',e:'Se conserva el valor progresivo mediante está siendo + participio.'},
 {s:'reto',n:6,t:'mcq',q:'Un alumno escribe: «Si <b>habría estudiado</b> más, habría aprobado». ¿Cuál es la corrección?',o:['Si hubiera estudiado más, habría aprobado.','Si habré estudiado más, habría aprobado.','Si estudiaría más, habría aprobado.','Si había estudiado más, habría aprobado.'],r:'Si hubiera estudiado más, habría aprobado.',e:'En la prótasis condicional se utiliza el pluscuamperfecto de subjuntivo.'},
-{s:'reto',n:6,t:'mcq',q:'¿Cuál es la transformación correcta de «Los técnicos habrán revisado el informe» a pasiva?',o:['El informe habrá sido revisado por los técnicos.','El informe fue revisado por los técnicos.','El informe había sido revisado por los técnicos.','Los técnicos habrán sido revisados por el informe.'],r:'El informe habrá sido revisado por los técnicos.',e:'El futuro perfecto activo se transforma en futuro perfecto pasivo.'}
+{s:'reto',n:6,t:'mcq',q:'¿Cuál es la transformación correcta de «Los técnicos habrán revisado el informe» a pasiva?',o:['El informe habrá sido revisado por los técnicos.','El informe fue revisado por los técnicos.','El informe había sido revisado por los técnicos.','Los técnicos habrán sido revisados por el informe.'],r:'El informe habrá sido revisado por los técnicos.',e:'El futuro perfecto activo se transforma en futuro perfecto pasivo.'},
+{s:'transforma',n:1,t:'text',q:'Cambia «El atleta entrena» a 3.ª persona del plural, manteniendo el presente.',r:['ellos entrenan','las atletas entrenan','entrenan'],e:'La forma correcta es «ellos entrenan» o «las atletas entrenan»: se cambia la persona y se mantiene el presente.'},
+{s:'transforma',n:2,t:'text',q:'Pasa «entrenábamos» a 1.ª persona del plural del presente.',r:['entrenamos'],e:'La forma correcta es entrenamos.'},
+{s:'transforma',n:3,t:'text',q:'Pasa «había terminado» a 1.ª persona del plural, manteniendo el pluscuamperfecto de indicativo.',r:['habíamos terminado'],e:'La forma correcta es habíamos terminado.'},
+{s:'transforma',n:4,t:'text',q:'Cambia «si tuviera tiempo» para expresar una situación real en el presente.',r:['si tengo tiempo','si tengo tiempo puedo ir','si tengo tiempo, voy'],e:'Una construcción posible es «si tengo tiempo»: se sustituye la hipótesis por una condición real.'},
+{s:'transforma',n:5,t:'text',q:'Pasa «El comité había aprobado el proyecto» a voz pasiva conservando el tiempo verbal.',r:['el proyecto había sido aprobado por el comité'],e:'Debe mantenerse el pluscuamperfecto: «El proyecto había sido aprobado por el comité».'},
+{s:'transforma',n:6,t:'text',q:'Pasa «Los técnicos habrán revisado el informe» a voz pasiva conservando el futuro perfecto.',r:['el informe habrá sido revisado por los técnicos'],e:'La transformación correcta es «El informe habrá sido revisado por los técnicos».'},
+{s:'error',n:1,t:'text',q:'Corrige: «Ayer cantastes muy bien».',r:['cantaste'],e:'La segunda persona del singular del pretérito perfecto simple es cantaste, sin -s final.'},
+{s:'error',n:2,t:'text',q:'Corrige: «Estoy pusiendo la mesa».',r:['poniendo'],e:'El gerundio de poner es poniendo.'},
+{s:'error',n:3,t:'text',q:'Corrige: «En habíamos llegado, la forma es simple».',r:['es una forma compuesta','forma compuesta','habíamos llegado es una forma compuesta'],e:'Habíamos llegado es una forma compuesta: haber + participio.'},
+{s:'error',n:4,t:'text',q:'Corrige: «En estamos entrenando, entrenando es un infinitivo».',r:['es un gerundio','gerundio','entrenando es un gerundio'],e:'Entrenando es el gerundio de entrenar.'},
+{s:'error',n:5,t:'text',q:'Corrige: «Si tendría tiempo, iría».',r:['si tuviera tiempo iria','si tuviera tiempo, iría','tuviera'],e:'En esta construcción hipotética se utiliza el imperfecto de subjuntivo: «si tuviera tiempo, iría».'},
+{s:'error',n:6,t:'text',q:'Corrige: «En cuando lleguemos, lleguemos está en futuro de subjuntivo».',r:['es presente de subjuntivo','presente de subjuntivo','lleguemos es presente de subjuntivo'],e:'Lleguemos es presente de subjuntivo.'},
+{s:'perifrasis',n:1,t:'text',q:'Indica si «tengo que estudiar» es perífrasis y qué valor expresa.',r:['perifrasis de obligacion','perifrasis de obligación','perífrasis de obligación','es una perífrasis de obligación'],e:'Es una perífrasis verbal modal de obligación: tener que + infinitivo.'},
+{s:'perifrasis',n:2,t:'text',q:'¿«Quiero estudiar» es una perífrasis? Responde y justifica brevemente.',r:['no','no, porque quiero mantiene su significado y estudiar puede funcionar como complemento','no es una perifrasis'],e:'No es perífrasis: querer mantiene su significado léxico y la construcción admite un complemento oracional.'},
+{s:'perifrasis',n:3,t:'text',q:'Clasifica «está entrenando»: indica si es perífrasis y su valor aspectual.',r:['perifrasis durativa','perífrasis durativa','es una perífrasis durativa'],e:'Es una perífrasis aspectual durativa: estar + gerundio.'},
+{s:'perifrasis',n:4,t:'text',q:'Clasifica «dejó de entrenar».',r:['perifrasis terminativa','perífrasis terminativa','perifrasis terminativa aspectual'],e:'Es una perífrasis aspectual terminativa: dejar de + infinitivo.'},
+{s:'perifrasis',n:5,t:'text',q:'¿«Se paró a charlar» es una perífrasis? Justifica.',r:['no','no, porque expresa dos acciones','no es una perifrasis porque expresa dos acciones'],e:'No es perífrasis: se paró y charlar expresan dos acciones diferenciadas.'},
+{s:'perifrasis',n:6,t:'text',q:'Clasifica «volvió a entrenar».',r:['perifrasis reiterativa','perífrasis reiterativa','es una perífrasis reiterativa'],e:'Es una perífrasis aspectual reiterativa: volver a + infinitivo.'},
+{s:'perifrasis',n:7,t:'text',q:'Clasifica «está a punto de comenzar».',r:['perifrasis ingresiva','perífrasis ingresiva','es una perífrasis ingresiva'],e:'Es una perífrasis aspectual ingresiva: estar a punto de + infinitivo.'},
+{s:'perifrasis',n:8,t:'text',q:'Distingue «tomó el pelo» de una perífrasis verbal.',r:['locucion verbal','locución verbal','es una locución verbal'],e:'Tomar el pelo es una locución verbal: una combinación fija que funciona como un verbo, no una perífrasis.'}
 ];
 
 function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
@@ -235,7 +255,20 @@ function abrirPerfil(forzar){document.getElementById('aliasInput').value=alias()
 function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias();if(seccionActual&&document.getElementById('menu').style.display!=='none')iniciarPartida()}
 function iniciarSeccion(s){seccionActual=s;if(!alias()){abrirPerfil();return}iniciarPartida()}
 function iniciarPartida(){crearPartida();i=0;puntos=0;document.getElementById('menu').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
-function crearPartida(){let usados=JSON.parse(localStorage.getItem('verboUsadas')||'[]');let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&!usados.includes(x.j));if(disponibles.length<12)disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual);let sel=mix(disponibles).slice(0,12).map(x=>x.j);localStorage.setItem('verboUsadas',JSON.stringify(usados.concat(sel).slice(-72)));partida=sel.map(x=>A[x])}
+function crearPartida(){
+  let usados=JSON.parse(localStorage.getItem('verboUsadas')||'[]');
+  const seleccion=[];
+  const usadosPartida=new Set();
+  const niveles=seccionActual==='perifrasis' ? [1,2,3,4,5,6,7,8,5,6,7,8] : [1,1,2,2,3,3,4,4,5,5,6,6];
+  niveles.forEach(nivel=>{
+    let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usados.includes(x.j));
+    if(disponibles.length===0) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j));
+    const elegido=mix(disponibles).find(x=>!usadosPartida.has(x.j));
+    if(elegido){seleccion.push(elegido.j);usadosPartida.add(elegido.j);}
+  });
+  localStorage.setItem('verboUsadas',JSON.stringify(usados.concat(seleccion).slice(-96)));
+  partida=seleccion.map(x=>A[x]);
+}
 function mostrar(){respondida=false;let a=partida[i],pct=Math.round((i+1)/partida.length*100);document.getElementById('numero').textContent='Actividad '+(i+1)+' de '+partida.length;document.getElementById('porcentaje').textContent=pct+'%';document.getElementById('barraProgreso').style.width=pct+'%';document.getElementById('etiqueta').textContent=secciones[seccionActual]+' · Nivel '+a.n;document.getElementById('feedback').innerHTML='';document.getElementById('siguiente').style.display='none';document.getElementById('pregunta').innerHTML=a.q;let h='';if(a.t==='mcq')h='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" onclick="window.mcq(this, this.dataset.respuesta)">'+x+'</button>').join('')+'</div>';if(a.t==='text')h='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';document.getElementById('contenido').innerHTML=h;
 if(a.t==='mcq')
 if(a.t==='text'){const b=document.querySelector('#contenido .boton-principal');if(b)b.addEventListener('click',texto)};
