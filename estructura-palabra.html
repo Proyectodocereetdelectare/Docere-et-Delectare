@@ -521,7 +521,7 @@ onclick="iniciarBloque('clasifica')">
 <strong>Clasifica elementos</strong>
 
 <span class="descripcion">
-Distingue lexemas, morfemas flexivos,
+Distingue y analiza lexemas, morfemas flexivos,
 afijos derivativos, interfijos y alomorfos
 </span>
 
@@ -536,8 +536,8 @@ onclick="iniciarBloque('analiza')">
 <strong>Analiza</strong>
 
 <span class="descripcion">
-Segmentación, constituyentes
-y formantes grecolatinos
+Segmentación, constituyentes, relaciones
+entre elementos y formantes grecolatinos
 </span>
 
 </button>
@@ -948,6 +948,7 @@ const identifica = [
 ===================================================== */
 
 const clasifica = [
+
 {nivel:1,tipo:"mcq",pregunta:"¿Qué elemento aporta el significado léxico central?",opciones:["El lexema","El morfema flexivo","El prefijo","El interfijo"],correcta:0,explicacion:"El lexema aporta el significado central."},
 {nivel:1,tipo:"mcq",pregunta:"En «libros», ¿qué elemento indica el plural?",opciones:["-s","libr-","-o","libro"],correcta:0,explicacion:"-s expresa número plural."},
 {nivel:1,tipo:"mcq",pregunta:"En «revivir», ¿qué elemento es un prefijo derivativo?",opciones:["re-","viv-","-ir","-s"],correcta:0,explicacion:"re- aparece delante del lexema y es derivativo."},
@@ -995,7 +996,19 @@ const clasifica = [
 {nivel:6,tipo:"mcq",pregunta:"¿Qué análisis de «niñas» es correcto?",opciones:["niñ- + -a + -s","niña- + -s","niñ- + -as como un único sufijo derivativo","ni- + -ñ- + -as"],correcta:0,explicacion:"-a y -s son morfemas flexivos."},
 {nivel:6,tipo:"mcq",pregunta:"¿Cuál compara correctamente «libros» y «revivir»?",opciones:["-s es flexivo y re- es derivativo","Ambos son flexivos","Ambos son derivativos","-s es derivativo y re- flexivo"],correcta:0,explicacion:"Las funciones son distintas."},
 {nivel:6,tipo:"mcq",pregunta:"¿Qué opción identifica correctamente el elemento especial?",opciones:["panecillo → -ec- = interfijo","sueñas → -s = alomorfo","revivir → re- = flexivo","libros → libr- = sufijo"],correcta:0,explicacion:"-ec- funciona como elemento de enlace."},
-{nivel:6,tipo:"mcq",pregunta:"¿Qué afirmación resume mejor la estructura interna de una palabra?",opciones:["Puede contener lexema y morfemas; estos pueden ser flexivos o derivativos","Toda palabra tiene dos lexemas","Todo morfema es un sufijo","Toda terminación es flexiva"],correcta:0,explicacion:"La estructura interna se analiza según la función de sus constituyentes."}
+{nivel:6,tipo:"mcq",pregunta:"¿Qué afirmación resume mejor la estructura interna de una palabra?",opciones:["Puede contener lexema y morfemas; estos pueden ser flexivos o derivativos","Toda palabra tiene dos lexemas","Todo morfema es un sufijo","Toda terminación es flexiva"],correcta:0,explicacion:"La estructura interna se analiza según la función de sus constituyentes."},
+{"id":"cl01","nivel":1,"tipo":"texto","pregunta":"En «libros», escribe el elemento que indica el plural.","soluciones":["s","-s","morfema flexivo de numero","morfema flexivo de número"],"explicacion":"-s es un morfema flexivo de número: indica plural."},
+{"id":"cl02","nivel":1,"tipo":"texto","pregunta":"En «revivir», escribe el prefijo derivativo.","soluciones":["re","re-","prefijo re","prefijo re-"],"explicacion":"re- es un prefijo derivativo situado delante del lexema."},
+{"id":"cl03","nivel":2,"tipo":"texto","pregunta":"En «belleza», escribe el sufijo derivativo.","soluciones":["eza","-eza","sufijo eza","sufijo -eza"],"explicacion":"-eza es un sufijo derivativo."},
+{"id":"cl04","nivel":2,"tipo":"texto","pregunta":"En «panecillo», identifica el elemento de enlace que aparece entre el lexema y el sufijo.","soluciones":["ec","-ec-","ec-","interfijo ec","interfijo -ec-"],"explicacion":"-ec- funciona como interfijo, un elemento de enlace sin significado propio."},
+{"id":"cl05","nivel":3,"tipo":"texto","pregunta":"Escribe los dos lexemas de «rojiblanco».","soluciones":["roj y blanco","roj+blanco","roj-blanco","roj blanco"],"explicacion":"Rojiblanco contiene los lexemas roj- y blanco; la -i- funciona como interfijo."},
+{"id":"cl06","nivel":3,"tipo":"texto","pregunta":"En «lápices», ¿qué elemento indica el plural?","soluciones":["s","-s","morfema flexivo de numero","morfema flexivo de número"],"explicacion":"-s es el morfema flexivo que indica número plural."},
+{"id":"cl07","nivel":4,"tipo":"texto","pregunta":"En «imposible», identifica el afijo derivativo y señala si es prefijo o sufijo.","soluciones":["im-, prefijo","im prefijo","im- prefijo derivativo","prefijo im-"],"explicacion":"im- es un prefijo derivativo que aparece delante del lexema."},
+{"id":"cl08","nivel":4,"tipo":"texto","pregunta":"En «inutilidad», identifica el prefijo y el sufijo derivativos.","soluciones":["in- e -idad","in y idad","in- + -idad","in e idad"],"explicacion":"in- es prefijo derivativo y -idad es sufijo derivativo."},
+{"id":"cl09","nivel":5,"tipo":"texto","pregunta":"En «sueñas» y «soñar», ¿qué relación existe entre «sueñ-» y «soñ-»?","soluciones":["son alomorfos","alomorfos","son dos alomorfos","variante de un morfema"],"explicacion":"sueñ- y soñ- son variantes o alomorfos relacionados con un mismo morfema."},
+{"id":"cl10","nivel":5,"tipo":"texto","pregunta":"En «piedra» y «pedrusco», ¿qué fenómeno permite relacionar «piedr-» y «pedr-»?","soluciones":["alomorfia","alomorfos","son alomorfos","variante de un morfema"],"explicacion":"La variación formal entre ambos elementos se explica mediante la alomorfia."},
+{"id":"cl11","nivel":6,"tipo":"texto","pregunta":"Segmenta «rojiblanco» indicando lexema + interfijo + lexema.","soluciones":["roj+i+blanco","roj-i-blanco","roj + i + blanco","roj- + -i- + blanco"],"explicacion":"La segmentación es roj- + -i- + blanco: dos lexemas unidos mediante un interfijo."},
+{"id":"cl12","nivel":6,"tipo":"texto","pregunta":"Explica brevemente la diferencia entre un morfema flexivo y un afijo derivativo.","soluciones":["el flexivo indica genero o numero y el derivativo crea o modifica palabras","el morfema flexivo indica genero o numero y el afijo derivativo modifica el lexema","flexivo indica genero numero derivativo modifica el lexema","flexivo género número derivativo modifica el significado"],"explicacion":"Los morfemas flexivos expresan rasgos como género y número; los afijos derivativos modifican el lexema y permiten formar nuevas palabras."}
 ];
 
 /* =====================================================
@@ -1460,11 +1473,11 @@ identifica: [
 ],
 
 clasifica: [
-    [1, 4],
-    [2, 4],
-    [3, 4],
-    [4, 3],
-    [5, 3],
+    [1, 2],
+    [2, 2],
+    [3, 2],
+    [4, 2],
+    [5, 2],
     [6, 2]
 ],
 
