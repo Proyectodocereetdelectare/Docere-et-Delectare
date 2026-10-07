@@ -70,22 +70,22 @@ const A=[
 ,{id:"FP-A-064",n:1,t:'text',q:'¿Qué procedimiento de formación aparece en <b>aterrizar</b>?',r:['parasíntesis','parasintesis','palabra parasintética','palabra parasintetica'],e:'Aterrizar aparece como ejemplo de palabra parasintética.'}
 
 ,{id:"FP-A-065",n:2,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['abofetear','releer','sacacorchos','cardiología'],r:'abofetear',e:'Apadrinar aparece como ejemplo de palabra parasintética.'}
-,{id:"FP-A-066",n:2,t:'text',q:'¿Qué procedimiento aparece en <b>anochecer</b>?',r:['parasíntesis','parasintesis','palabra parasintética','palabra parasintetica'],e:'Encabezar aparece como ejemplo de palabra parasintética.'}
+,{id:"FP-A-066",n:2,t:'text',q:'¿Qué procedimiento aparece en <b>anochecer</b>?',r:['parasíntesis','parasintesis','palabra parasintética','palabra parasintetica'],e:'Anochecer aparece como ejemplo de palabra parasintética.'}
 ,{id:"FP-A-067",n:2,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['embellecer','panadero','rojiblanco','OMS'],r:'embellecer',e:'Embellecer presenta prefijo y sufijo añadidos al lexema mediante parasíntesis.'}
 ,{id:"FP-A-068",n:2,t:'analysis',q:'Analiza <b>embellecer</b>.',f:['Procedimiento','Tipo de palabra'],r:[['parasíntesis','parasintesis'],['palabra parasintética','palabra parasintetica']],e:'Embellecer aparece como ejemplo de palabra parasintética.'}
 
 ,{id:"FP-A-069",n:3,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['embellecer','revivir','sacacorchos','geología'],r:'embellecer',e:'Embellecer aparece como ejemplo de palabra parasintética.'}
 ,{id:"FP-A-070",n:3,t:'text',q:'¿Qué procedimiento aparece en <b>enloquecer</b>?',r:['parasíntesis','parasintesis','palabra parasintética','palabra parasintetica'],e:'Enloquecer aparece como ejemplo de palabra parasintética.'}
 ,{id:"FP-A-071",n:3,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['aterrizar','panadero','rojiblanco','telescopio'],r:'aterrizar',e:'Aterrizar presenta prefijo y sufijo añadidos al lexema mediante parasíntesis.'}
-,{id:"FP-A-072",n:3,t:'analysis',q:'Analiza <b>encadenar</b>.',f:['Procedimiento','Tipo de palabra'],r:[['parasíntesis','parasintesis'],['palabra parasintética','palabra parasintetica']],e:'Desalmado aparece como ejemplo de palabra parasintética.'}
+,{id:"FP-A-072",n:3,t:'analysis',q:'Analiza <b>encadenar</b>.',f:['Procedimiento','Tipo de palabra'],r:[['parasíntesis','parasintesis'],['palabra parasintética','palabra parasintetica']],e:'Encadenar aparece como ejemplo de palabra parasintética.'}
 
 ,{id:"FP-A-073",n:4,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['entrampar','releer','sacacorchos','cardiología'],r:'entrampar',e:'Entrampar presenta prefijo y sufijo añadidos al lexema mediante parasíntesis.'}
 ,{id:"FP-A-074",n:4,t:'text',q:'¿Qué procedimiento aparece en <b>abotonar</b>?',r:['parasíntesis','parasintesis','palabra parasintética','palabra parasintetica'],e:'Abotonar aparece como ejemplo de palabra parasintética.'}
-,{id:"FP-A-075",n:4,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['traspapelar','panadero','rojiblanco','OMS'],r:'traspapelar',e:'Empapelar aparece como ejemplo de palabra parasintética.'}
+,{id:"FP-A-075",n:4,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['traspapelar','panadero','rojiblanco','OMS'],r:'traspapelar',e:'Traspapelar aparece como ejemplo de palabra parasintética.'}
 ,{id:"FP-A-076",n:4,t:'analysis',q:'Analiza <b>ennoblecer</b>.',f:['Procedimiento','Tipo de palabra'],r:[['parasíntesis','parasintesis'],['palabra parasintética','palabra parasintetica']],e:'Ennoblecer presenta prefijo y sufijo alrededor del lexema y se clasifica como palabra parasintética.'}
 
 ,{id:"FP-A-077",n:5,t:'mcq',q:'¿Cuál de estas palabras es parasintética?',o:['enterrar','revivir','sacacorchos','geología'],r:'enterrar',e:'Enterrar presenta prefijo y sufijo añadidos al lexema mediante parasíntesis.'}
-,{id:"FP-A-078",n:5,t:'text',q:'¿Qué procedimiento aparece en <b>ennoblecer</b>?',r:['parasíntesis','parasintesis','palabra parasintética','palabra parasintetica'],e:'Enorgullecer aparece como ejemplo de palabra parasintética.'}
+,{id:"FP-A-078",n:5,t:'text',q:'¿Qué procedimiento aparece en <b>ennoblecer</b>?',r:['parasíntesis','parasintesis','palabra parasintética','palabra parasintetica'],e:'Ennoblecer aparece como ejemplo de palabra parasintética.'}
 ,{id:"FP-A-079",n:5,t:'analysis',q:'Analiza <b>empobrecer</b>.',f:['Procedimiento','Tipo de palabra'],r:[['parasíntesis','parasintesis'],['palabra parasintética','palabra parasintetica']],e:'Empobrecer presenta prefijo y sufijo alrededor del lexema y se clasifica como palabra parasintética.'}
 ,{id:"FP-A-080",n:5,t:'analysis',q:'Analiza <b>enternecer</b>.',f:['Procedimiento','Tipo de palabra'],r:[['parasíntesis','parasintesis'],['palabra parasintética','palabra parasintetica']],e:'Enternecer presenta prefijo y sufijo alrededor del lexema y se clasifica como palabra parasintética.'}
 
