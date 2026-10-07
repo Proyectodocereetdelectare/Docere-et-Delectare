@@ -110,8 +110,6 @@ ranking.map((x,i)=>'<tr><td>'+(i+1)+'</td><td>'+escapeHtml(x.alias||"Invitado")+
 '</tbody></table>';
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-cargar();cargarRanking();}
-}
 cargar();
 cargarRanking();
 </script>
