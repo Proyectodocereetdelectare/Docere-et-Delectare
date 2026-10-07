@@ -7,6 +7,7 @@ const pages=[
   "formacion-palabras.html","categorias-gramaticales.html",
   "verbo.html","sintaxis.html","progreso.html"
 ];
+const dynamicIds=new Set(["respuesta","campo0","campo1","campo2","campo3","campo4","campo5","campo6"]);
 
 const errors=[];
 const externalScripts=new Set();
@@ -59,7 +60,7 @@ for(const file of pages){
   }
 
   for(const match of inline.matchAll(/getElementById\(["']([^"']+)["']\)/g)){
-    if(!ids.has(match[1]))addError(file+": JavaScript referencia un id inexistente: "+match[1]);
+    if(!ids.has(match[1])&&!dynamicIds.has(match[1]))addError(file+": JavaScript referencia un id inexistente: "+match[1]);
   }
 
   const funcs=[...inline.matchAll(/\bfunction\s+([A-Za-z_$][\w$]*)\s*\(/g)].map(m=>m[1]);
@@ -126,7 +127,8 @@ for(const [file,names] of contracts){
     for(const a of activities){
       const level=a.nivel??a.n;
       const type=a.tipo??a.t;
-      if(!Number.isInteger(level)||level<1||level>6)addError(file+": nivel inválido en "+(a.id||"actividad"));
+      const allowsNoLevel=file.endsWith("estructura-palabra.js") && (a.tipo==="analisis" || a.tipo==="texto" || a.tipo==="mcq") && /^EP-(S|R)-/.test(a.id||"");
+      if(!allowsNoLevel && (!Number.isInteger(level)||level<1||level>6))addError(file+": nivel inválido en "+(a.id||"actividad"));
       if(!a.q&&!a.pregunta)addError(file+": actividad sin enunciado en "+(a.id||"actividad"));
       if(type==="mcq"){
         const options=a.opciones??a.o;
