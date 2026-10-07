@@ -74,14 +74,14 @@ h2{font-size:28px;margin:30px 0 16px}
 <div id="etiqueta" class="etiqueta"></div>
 <div id="pregunta"></div>
 <div id="contenido"></div>
-<div id="feedback" class="feedback"></div>
+<div id="feedback" class="feedback" aria-live="polite"></div>
 <button type="button" id="siguiente" class="boton boton-principal" onclick="siguiente()" style="display:none">Siguiente →</button>
 <button type="button" id="adelante" class="boton" onclick="adelante()">Adelante →</button>
 <br>
 <button type="button" class="boton" onclick="volverMenu()">← Volver a los bloques</button>
 </section>
 
-<section class="panel" id="resultado">
+<section class="panel" id="resultado" aria-live="polite">
 <h2>🎉 ¡Actividad terminada!</h2>
 <div id="nota" class="resultado-nota">0/10</div>
 <p id="detalle"></p>
