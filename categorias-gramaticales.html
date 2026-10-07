@@ -138,7 +138,7 @@ function iniciar(){
   crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()
 }
 function crear(){
-  let usados=leerJSON('categoriasUsadas',[]);
+  let usados=leerJSON(DOCERE_STORAGE.CATEGORIAS,[]);
   const seleccion=[];
   const usadosPartida=new Set();
   for(let nivel=1;nivel<=6;nivel++){
@@ -146,7 +146,7 @@ function crear(){
     if(disponibles.length<2) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j));
     mix(disponibles).slice(0,2).forEach(x=>{seleccion.push(x.j);usadosPartida.add(x.j)});
   }
-  localStorage.setItem('categoriasUsadas',JSON.stringify(usados.concat(seleccion).slice(-60)));
+  localStorage.setItem(DOCERE_STORAGE.CATEGORIAS,JSON.stringify(usados.concat(seleccion).slice(-60)));
   partida=seleccion.map(x=>A[x]);
 }
 function mostrar(){
@@ -174,7 +174,7 @@ function texto(){if(respondida)return;let v=document.getElementById('respuesta')
 function analisis(){if(respondida)return;let a=partida[i],cs=[...document.querySelectorAll('.analisis')];if(cs.some(x=>!x.value.trim()))return;respondida=true;let b=true;cs.forEach((x,j)=>{let z=ok(x.value,a.r[j]);if(!z){b=false;x.classList.add('incorrecta')}else x.classList.add('correcta');x.disabled=true});if(b)puntos++;feedback(b,a.e)}
 function adelante(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
-function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let total=partida.length,nota=Number((puntos/total*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+total+' actividades.';let h=leerJSON('docereProgreso',null);if(Array.isArray(h))h={partidas:h.length,puntos:h.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:h.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:h};if(!h||typeof h!=='object')h={partidas:0,puntos:0,mejor:0,historial:[]};h.partidas++;h.puntos+=puntos*10;h.mejor=Math.max(Number(h.mejor||0),nota);h.historial=Array.isArray(h.historial)?h.historial:[];h.historial.unshift({playerId:player(),alias:alias(),bloque:'Categorías gramaticales · '+seccionActual,nota,aciertos:puntos,fecha:new Date().toISOString()});h.historial=h.historial.slice(0,10);localStorage.setItem('docereProgreso',JSON.stringify(h));actualizarRankingLocal()}
+function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let total=partida.length,nota=Number((puntos/total*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+total+' actividades.';let h=leerJSON(DOCERE_STORAGE.PROGRESO,null);if(Array.isArray(h))h={partidas:h.length,puntos:h.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:h.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:h};if(!h||typeof h!=='object')h={partidas:0,puntos:0,mejor:0,historial:[]};h.partidas++;h.puntos+=puntos*10;h.mejor=Math.max(Number(h.mejor||0),nota);h.historial=Array.isArray(h.historial)?h.historial:[];h.historial.unshift({playerId:player(),alias:alias(),bloque:'Categorías gramaticales · '+seccionActual,nota,aciertos:puntos,fecha:new Date().toISOString()});h.historial=h.historial.slice(0,10);localStorage.setItem(DOCERE_STORAGE.PROGRESO,JSON.stringify(h));actualizarRankingLocal()}
 function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('inicio').style.display='block';document.querySelectorAll('.seccion-btn').forEach(b=>b.classList.remove('activa'));seccionActual=''}
 
