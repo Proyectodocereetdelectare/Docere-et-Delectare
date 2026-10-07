@@ -50,3 +50,5 @@ window.resultado=resultado;
 window.repetir=repetir;
 window.volverMenu=volverMenu;
 window.irInicio=irInicio;
+
+window.adelante=adelante;
