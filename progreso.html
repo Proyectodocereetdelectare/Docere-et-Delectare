@@ -14,6 +14,7 @@ h1{font-size:44px;margin:0 0 10px;text-align:center}
 .perfil{display:flex;justify-content:space-between;align-items:center;gap:15px;background:#f7f4ee;padding:16px 20px;border-radius:12px}
 .alias{font-size:22px;font-weight:bold}
 button,.volver{padding:11px 18px;border:0;border-radius:10px;background:#ddd5c8;font-family:Georgia,"Times New Roman",serif;font-size:15px;cursor:pointer;text-decoration:none;color:#2d2a26}
+#perfilModal{display:none;position:fixed;inset:0;background:rgba(45,42,38,.55);align-items:center;justify-content:center;padding:20px;z-index:1000}.modal-contenido{background:#fff;max-width:500px;width:100%;padding:30px;border-radius:18px;text-align:center;box-shadow:0 12px 30px rgba(0,0,0,.2)}.modal-contenido p{line-height:1.5;color:#625b51}.perfil-input{width:100%;padding:13px;border:2px solid #ddd5c8;border-radius:10px;font:inherit}
 button:hover,.volver:hover{background:#cfc5b5}
 .estadisticas{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .estadistica{background:#eee8dc;border-radius:14px;padding:20px;text-align:center}
@@ -35,7 +36,7 @@ h2{margin-top:0}
 <div class="panel">
 <div class="perfil">
 <div>👤 <span class="alias" id="alias">Invitado</span></div>
-<button type="button" onclick="cambiarAlias()">Cambiar alias</button>
+<button type="button" onclick="abrirPerfil(true)">Cambiar alias</button>
 </div>
 </div>
 <div class="panel">
@@ -58,6 +59,15 @@ h2{margin-top:0}
 <div style="text-align:center">
 <a class="volver" href="index.html">← Volver al inicio</a>
 </div>
+</div>
+<div id="perfilModal">
+  <div class="modal-contenido">
+    <h2>👤 Tu alias</h2>
+    <p>Usa un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni proporcionar datos personales.</p>
+    <input id="aliasInput" class="perfil-input" maxlength="20" autocomplete="off" placeholder="Tu nombre o alias" onkeydown="if(event.key==='Enter')guardarPerfil()">
+    <br>
+    <button type="button" onclick="guardarPerfil()">Guardar alias</button>
+  </div>
 </div>
 <script src="assets/js/core.js"></script>
 <script>
