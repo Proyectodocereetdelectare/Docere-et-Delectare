@@ -775,6 +775,7 @@ function guardarProgreso(progreso) {
 
 function asegurarPerfil() {
     if (!obtenerAlias()) {
+        globalThis.accionPerfilPendiente=()=>iniciarBloque(window.bloquePendiente);
         abrirPerfil(false);
         return false;
     }
@@ -1110,11 +1111,8 @@ function crearPartida(tipo) {
 ===================================================== */
 
 function iniciarBloque(tipo) {
-
-    if (!asegurarPerfil()) {
-        window.bloquePendiente = tipo;
-        return;
-    }
+    window.bloquePendiente = tipo;
+    if (!asegurarPerfil()) return;
 
     bloqueActual = tipo;
 
