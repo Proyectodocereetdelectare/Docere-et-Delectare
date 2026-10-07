@@ -5,6 +5,18 @@
 (function(){
   "use strict";
 
+  const DOCERE_STORAGE=Object.freeze({
+    PLAYER_ID:"docerePlayerId",
+    ALIAS:"docereAlias",
+    PROGRESO:"docereProgreso",
+    RANKING:"docereRanking",
+    ESTRUCTURA_IDENTIFICA:"identificaUsadas",
+    ESTRUCTURA_CLASIFICA:"clasificaUsadas",
+    FORMACION:"formacionUsadas",
+    CATEGORIAS:"categoriasUsadas",
+    VERBO:"verboUsadas"
+  });
+
   function normalizar(texto){
     return String(texto ?? "")
       .replace(/<[^>]*>/g,"")
@@ -40,8 +52,8 @@
   function actualizarRankingLocal(){
     const id=obtenerPlayerId();
     const alias=obtenerAlias() || "Invitado";
-    const progreso=leerJSON("docereProgreso",{mejor:0,puntos:0});
-    let ranking=leerJSON("docereRanking",[]);
+    const progreso=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
+    let ranking=leerJSON(DOCERE_STORAGE.RANKING,[]);
     if(!Array.isArray(ranking))ranking=[];
     const registro={
       playerId:id,
@@ -53,23 +65,23 @@
     if(indice>=0)ranking[indice]=registro;
     else ranking.push(registro);
     ranking.sort((a,b)=>Number(b.mejor||0)-Number(a.mejor||0)||Number(b.puntos||0)-Number(a.puntos||0));
-    guardarJSON("docereRanking",ranking.slice(0,20));
+    guardarJSON(DOCERE_STORAGE.RANKING,ranking.slice(0,20));
   }
 
   function obtenerPlayerId(){
-    let id=localStorage.getItem("docerePlayerId");
+    let id=localStorage.getItem(DOCERE_STORAGE.PLAYER_ID);
     if(!id){
       const generador=globalThis.crypto && typeof globalThis.crypto.randomUUID==="function"
         ? globalThis.crypto.randomUUID.bind(globalThis.crypto)
         : null;
       id=generador ? generador() : "p_"+Date.now()+"_"+Math.random().toString(36).slice(2,12);
-      localStorage.setItem("docerePlayerId",id);
+      localStorage.setItem(DOCERE_STORAGE.PLAYER_ID,id);
     }
     return id;
   }
 
   function obtenerAlias(){
-    return localStorage.getItem("docereAlias") || "";
+    return localStorage.getItem(DOCERE_STORAGE.ALIAS) || "";
   }
 
   function actualizarAliases(){
@@ -101,7 +113,7 @@
       input.focus();
       return;
     }
-    localStorage.setItem("docereAlias",alias);
+    localStorage.setItem(DOCERE_STORAGE.ALIAS,alias);
     actualizarAliases();
     if(typeof actualizarAliasInterfaz==="function")actualizarAliasInterfaz();
     if(typeof actualizarAlias==="function")actualizarAlias();
@@ -121,6 +133,7 @@
     window.location.href="index.html";
   }
 
+  globalThis.DOCERE_STORAGE=DOCERE_STORAGE;
   globalThis.normalizar=normalizar;
   globalThis.norm=normalizar;
   globalThis.mezclar=mezclar;
