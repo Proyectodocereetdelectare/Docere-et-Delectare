@@ -96,9 +96,9 @@ ranking.map((x,i)=>'<tr><td>'+(i+1)+'</td><td>'+escapeHtml(x.alias||"Invitado")+
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 function cambiarAlias(){
-const actual=localStorage.getItem("docereAlias")||"";
+const actual=localStorage.getItem(DOCERE_STORAGE.ALIAS)||"";
 const nuevo=prompt("Escribe tu nuevo alias:",actual);
-if(nuevo&&nuevo.trim()){localStorage.setItem("docereAlias",limpiarAlias(nuevo));cargar();cargarRanking();}
+if(nuevo&&nuevo.trim()){localStorage.setItem(DOCERE_STORAGE.ALIAS,limpiarAlias(nuevo));cargar();cargarRanking();}
 }
 cargar();
 cargarRanking();
