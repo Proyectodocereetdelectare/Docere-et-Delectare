@@ -20,15 +20,15 @@ function normalizarAuditoria(texto){
     .replace(/<[^>]*>/g,"")
     .toLowerCase()
     .normalize("NFD")
-    .replace(/[\\u0300-\\u036f]/g,"")
-    .replace(/[¡!¿?.,;:()"'“”+\\-_|/]/g," ")
-    .replace(/\\s+/g," ")
+    .replace(/[\u0300-\u036f]/g,"")
+    .replace(/[¡!¿?.,;:()"'“”+\-_|/]/g," ")
+    .replace(/\s+/g," ")
     .trim();
 }
 
 function htmlEquilibrado(texto){
   for(const tag of ["b","i","strong","em"]){
-    const abiertos=(String(texto ?? "").match(new RegExp("<"+tag+"\\\\b","gi"))||[]).length;
+    const abiertos=(String(texto ?? "").match(new RegExp("<"+tag+"\\b","gi"))||[]).length;
     const cerrados=(String(texto ?? "").match(new RegExp("</"+tag+">","gi"))||[]).length;
     if(abiertos!==cerrados)return false;
   }
