@@ -463,7 +463,7 @@ function terminar(){
  guardarProgreso(nota);
 }
 function guardarProgreso(nota){
- const p=JSON.parse(localStorage.getItem('docereProgreso')||'{"partidas":0,"mejor":0,"puntos":0,"historial":[]}');
+ const p=leerJSON('docereProgreso',{partidas:0,mejor:0,puntos:0,historial:[]});
  if(Array.isArray(p))return;
  p.partidas=Number(p.partidas||0)+1;
  p.puntos=Number(p.puntos||0)+aciertos*10;
@@ -473,7 +473,7 @@ function guardarProgreso(nota){
  p.historial=p.historial.slice(0,30);
  localStorage.setItem('docereProgreso',JSON.stringify(p));
  const id=asegurarIdentidad(), alias=getAlias();
- let ranking=JSON.parse(localStorage.getItem('docereRanking')||'[]');
+ let ranking=leerJSON('docereRanking',[]);
  if(!Array.isArray(ranking))ranking=[];
  const idx=ranking.findIndex(x=>x.playerId===id);
  const reg={playerId:id,alias,mejor:Number(p.mejor||0),puntos:Number(p.puntos||0)};
