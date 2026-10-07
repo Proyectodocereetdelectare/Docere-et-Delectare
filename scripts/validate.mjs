@@ -5,7 +5,7 @@ const root=process.cwd();
 const pages=[
   "index.html","morfologia.html","estructura-palabra.html",
   "formacion-palabras.html","categorias-gramaticales.html",
-  "verbo.html","sintaxis.html","progreso.html"
+  "verbo.html","sintaxis.html"
 ];
 const dynamicIds=new Set(["respuesta","campo0","campo1","campo2","campo3","campo4","campo5","campo6"]);
 
