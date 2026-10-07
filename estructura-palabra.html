@@ -723,6 +723,7 @@ onclick="volverMenu()">
 
 
 
+<script src="assets/js/core.js"></script>
 <script>
 
 
@@ -730,26 +731,10 @@ onclick="volverMenu()">
    UTILIDADES
 ===================================================== */
 
-function mezclar(array) {
-
-    return [...array].sort(
-        () => Math.random() - 0.5
-    );
-
-}
 
 
-function normalizar(texto) {
 
-    return texto
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .replace(/[+\-_|/]/g, "")
-        .replace(/\s+/g, "")
-        .trim();
 
-}
 
 
 function comparar(respuesta, soluciones) {
@@ -767,24 +752,9 @@ function comparar(respuesta, soluciones) {
    PERFIL Y PROGRESO
 ===================================================== */
 
-function obtenerPlayerId() {
-    let id = localStorage.getItem("docerePlayerId");
 
-    if (!id) {
-        id = crypto.randomUUID
-            ? crypto.randomUUID()
-            : "p_" + Date.now() + "_" +
-              Math.random().toString(36).slice(2, 12);
 
-        localStorage.setItem("docerePlayerId", id);
-    }
 
-    return id;
-}
-
-function obtenerAlias() {
-    return localStorage.getItem("docereAlias") || "";
-}
 
 function obtenerProgreso() {
     return JSON.parse(
@@ -800,27 +770,9 @@ function guardarProgreso(progreso) {
     );
 }
 
-function limpiarAlias(alias) {
-    return alias
-        .replace(/[<>]/g, "")
-        .trim()
-        .slice(0, 20);
-}
 
-function abrirPerfil(forzar) {
-    const modal = document.getElementById("perfilModal");
-    const input = document.getElementById("aliasInput");
 
-    input.value = obtenerAlias();
 
-    modal.style.display = "flex";
-
-    setTimeout(() => input.focus(), 100);
-
-    if (forzar) {
-        modal.dataset.forzar = "true";
-    }
-}
 
 function guardarPerfil() {
     const input = document.getElementById("aliasInput");
@@ -2643,12 +2595,7 @@ function volverMorfologia() {
 
 
 window.mezclar=mezclar;window.normalizar=normalizar;window.comparar=comparar;window.obtenerPlayerId=obtenerPlayerId;window.obtenerAlias=obtenerAlias;window.obtenerProgreso=obtenerProgreso;window.guardarProgreso=guardarProgreso;window.limpiarAlias=limpiarAlias;window.abrirPerfil=abrirPerfil;window.guardarPerfil=guardarPerfil;window.actualizarAliasInterfaz=actualizarAliasInterfaz;window.asegurarPerfil=asegurarPerfil;window.actualizarEstadisticasResultado=actualizarEstadisticasResultado;window.crearPartida=crearPartida;window.iniciarBloque=iniciarBloque;window.mostrarActividad=mostrarActividad;window.construirInterfaz=construirInterfaz;window.seleccionarMCQ=seleccionarMCQ;window.comprobar=comprobar;window.obtenerSolucion=obtenerSolucion;window.mostrarFeedback=mostrarFeedback;window.mostrarAviso=mostrarAviso;window.siguientePregunta=siguientePregunta;window.mostrarResultado=mostrarResultado;window.repetirBloque=repetirBloque;window.volverMenu=volverMenu;window.volverMorfologia=volverMorfologia;
-function irInicio(){
-    const actividad=document.getElementById("actividad");
-    const enPartida=actividad && getComputedStyle(actividad).display!=="none";
-    if(enPartida && !confirm("Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?")) return;
-    window.location.href="index.html";
-}
+
 </script>
 
 </body>
