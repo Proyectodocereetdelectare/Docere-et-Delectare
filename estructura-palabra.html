@@ -755,10 +755,21 @@ function comparar(respuesta, soluciones) {
 
 
 function obtenerProgreso() {
-    return JSON.parse(
-        localStorage.getItem(DOCERE_STORAGE.PROGRESO) ||
-        '{"partidas":0,"mejor":0,"puntos":0,"historial":[]}'
-    );
+    const p=leerJSON(DOCERE_STORAGE.PROGRESO,{partidas:0,mejor:0,puntos:0,historial:[]});
+    if(Array.isArray(p)){
+        return {
+            partidas:p.length,
+            puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),
+            mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),
+            historial:p
+        };
+    }
+    if(!p||typeof p!=="object")return {partidas:0,mejor:0,puntos:0,historial:[]};
+    p.partidas=Number(p.partidas||0);
+    p.mejor=Number(p.mejor||0);
+    p.puntos=Number(p.puntos||0);
+    p.historial=Array.isArray(p.historial)?p.historial:[];
+    return p;
 }
 
 function guardarProgreso(progreso) {
