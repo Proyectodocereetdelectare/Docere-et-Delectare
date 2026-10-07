@@ -105,6 +105,7 @@ onclick="window.location.href='morfologia.html'">
 <section id="resultado"><h2>🔤 Partida terminada</h2><div id="nota" class="resultado-nota">0/10</div><p id="detalle"></p><button class="boton boton-principal" onclick="repetir()">🔄 Nueva partida</button><button class="boton" onclick="volverMenu()">← Volver a las categorías</button></section>
 </div></div>
 <div id="perfilModal"><div class="modal"><h2>👤 Tu alias</h2><p>Usa un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni proporcionar datos personales.</p><input id="aliasInput" maxlength="24" placeholder="Ej.: Laura, Lector27..." onkeydown="if(event.key==='Enter')guardarPerfil()"><button onclick="guardarPerfil()">Guardar alias</button></div></div>
+<script src="assets/js/core.js"></script>
 <script>
 const A=[
 /* ==================== IDENTIFICA ==================== */
@@ -227,14 +228,14 @@ const DESCRIPCIONES={
   reto:'Resuelve actividades integradas de mayor dificultad que combinan identificación, análisis y razonamiento.'
 };
 
-function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
+
 function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>norm(v)===norm(x))}
-function mix(a){return [...a].sort(()=>Math.random()-.5)}
-function alias(){return localStorage.getItem('docereAlias')||''}
-function player(){let x=localStorage.getItem('docerePlayerId');if(!x){x=crypto.randomUUID?crypto.randomUUID():'player-'+Date.now()+'-'+Math.random().toString(36).slice(2);localStorage.setItem('docerePlayerId',x)}return x}
-function mostrarAlias(){document.getElementById('aliasActividad').textContent=alias()||'Sin alias'}
-function abrirPerfil(){document.getElementById('aliasInput').value=alias();document.getElementById('perfilModal').style.display='flex';setTimeout(()=>document.getElementById('aliasInput').focus(),50)}
-function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias();if(seccionActual&&document.getElementById('inicio').style.display!=='none')iniciar()}
+
+
+
+
+
+
 function elegirSeccion(s){
   if(!['sustantivos','identifica','analiza','transforma','error','reto'].includes(s))return;
   seccionActual=s;
@@ -317,10 +318,5 @@ window.resultado=resultado;
 window.repetir=repetir;
 window.volverMenu=volverMenu;
 window.irInicio=irInicio;
-function irInicio(){
-    const actividad=document.getElementById("actividad");
-    const enPartida=actividad && getComputedStyle(actividad).display!=="none";
-    if(enPartida && !confirm("Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?")) return;
-    window.location.href="index.html";
-}
+
 </script></body></html>
