@@ -59,16 +59,11 @@ h2{margin-top:0}
 <a class="volver" href="index.html">← Volver al inicio</a>
 </div>
 </div>
+<script src="assets/js/core.js"></script>
 <script>
 function cargar(){
-let playerId = localStorage.getItem("docerePlayerId");
-if (!playerId) {
-    playerId = crypto.randomUUID
-        ? crypto.randomUUID()
-        : "p_" + Date.now() + "_" + Math.random().toString(36).slice(2, 12);
-    localStorage.setItem("docerePlayerId", playerId);
-}
-const alias=localStorage.getItem("docereAlias")||"Invitado";
+const playerId=obtenerPlayerId();
+const alias=obtenerAlias()||"Invitado";
 let p=leerJSON("docereProgreso",{partidas:0,mejor:0,puntos:0,historial:[]});
 if(Array.isArray(p)){p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};localStorage.setItem("docereProgreso",JSON.stringify(p));}
 if(!p||typeof p!=="object")p={partidas:0,puntos:0,mejor:0,historial:[]};
@@ -83,8 +78,8 @@ p.historial.map(x=>'<tr><td>'+escapeHtml(x.bloque||"Actividad")+'</td><td>'+x.ac
 '</tbody></table>';
 }
 function cargarRanking(){
-const actualId=localStorage.getItem("docerePlayerId");
-const actualAlias=localStorage.getItem("docereAlias")||"Invitado";
+const actualId=obtenerPlayerId();
+const actualAlias=obtenerAlias()||"Invitado";
 let ranking=leerJSON("docereRanking",[]);
 const p=leerJSON("docereProgreso",{mejor:0,puntos:0});
 if(!Array.isArray(ranking))ranking=[];
@@ -103,7 +98,7 @@ function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":
 function cambiarAlias(){
 const actual=localStorage.getItem("docereAlias")||"";
 const nuevo=prompt("Escribe tu nuevo alias:",actual);
-if(nuevo&&nuevo.trim()){localStorage.setItem("docereAlias",nuevo.trim().replace(/[<>]/g,"").slice(0,20));cargar();}
+if(nuevo&&nuevo.trim()){localStorage.setItem("docereAlias",limpiarAlias(nuevo));cargar();cargarRanking();}
 }
 cargar();
 cargarRanking();
