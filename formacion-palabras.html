@@ -47,6 +47,7 @@ function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=ok(v
 function texto(){if(respondida)return;let v=document.getElementById('respuesta').value;if(!v.trim())return;respondida=true;let a=partida[i],b=ok(v,a.r);if(b)puntos++;document.getElementById('respuesta').disabled=true;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
 function analisis(){if(respondida)return;let a=partida[i],cs=[...document.querySelectorAll('.analisis')];if(cs.some(x=>!x.value.trim()))return;respondida=true;let b=true;cs.forEach((x,j)=>{let z=ok(x.value,a.r[j]);if(!z){b=false;x.classList.add('incorrecta')}else x.classList.add('correcta');x.disabled=true});if(b)puntos++;feedback(b,a.e);document.getElementById('aciertos').textContent=puntos+' aciertos'}
 function adelante(){
+  if(!respondida)omitidas++;
   if(i<partida.length-1){i++;mostrar()}else{resultado()}
 }
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else{resultado()}}
