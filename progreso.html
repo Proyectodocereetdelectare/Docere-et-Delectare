@@ -69,7 +69,7 @@ if (!playerId) {
     localStorage.setItem("docerePlayerId", playerId);
 }
 const alias=localStorage.getItem("docereAlias")||"Invitado";
-let p=JSON.parse(localStorage.getItem("docereProgreso")||'{"partidas":0,"mejor":0,"puntos":0,"historial":[]}');
+let p=leerJSON("docereProgreso",{partidas:0,mejor:0,puntos:0,historial:[]});
 if(Array.isArray(p)){p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};localStorage.setItem("docereProgreso",JSON.stringify(p));}
 if(!p||typeof p!=="object")p={partidas:0,puntos:0,mejor:0,historial:[]};
 document.getElementById("alias").textContent=alias;
@@ -85,8 +85,8 @@ p.historial.map(x=>'<tr><td>'+escapeHtml(x.bloque||"Actividad")+'</td><td>'+x.ac
 function cargarRanking(){
 const actualId=localStorage.getItem("docerePlayerId");
 const actualAlias=localStorage.getItem("docereAlias")||"Invitado";
-let ranking=JSON.parse(localStorage.getItem("docereRanking")||"[]");
-const p=JSON.parse(localStorage.getItem("docereProgreso")||'{"mejor":0,"puntos":0}');
+let ranking=leerJSON("docereRanking",[]);
+const p=leerJSON("docereProgreso",{mejor:0,puntos:0});
 if(!Array.isArray(ranking))ranking=[];
 const idx=ranking.findIndex(x=>x.playerId===actualId);
 const registro={playerId:actualId,alias:actualAlias,mejor:Number(p.mejor||0),puntos:Number(p.puntos||0)};
