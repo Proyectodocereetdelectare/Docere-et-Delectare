@@ -125,7 +125,7 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 <script>
 
 
-let seccionActual='', partida=[], indice=0, aciertos=0, respondida=false, preguntaActual=null;
+let seccionActual='', partida=[], indice=0, aciertos=0, omitidas=0, respondida=false, preguntaActual=null;
 
 
 function acepta(v, respuestas){
@@ -161,7 +161,7 @@ function seleccionar(){
  return mezclar(salida);
 }
 function iniciarSeccion(s){
- seccionActual=s;partida=seleccionar(); indice=0; aciertos=0;
+ seccionActual=s;partida=seleccionar(); indice=0; aciertos=0; omitidas=0;
  document.getElementById('menu').style.display='none';
  document.getElementById('resultado').style.display='none';
  document.getElementById('actividad').style.display='block'; render();
@@ -305,15 +305,25 @@ function comprobar(){
  if(correcto)aciertos++;
  const fb=document.getElementById('feedback');
  fb.className='feedback '+(correcto?'exito':'error');
- fb.innerHTML='<strong>'+(correcto?'✓ ¡Correcto!':'✗ No es correcto.')+'</strong><br>'+preguntaActual.e;
+ fb.innerHTML='<strong>'+(correcto?'✓ ¡Correcto!':'✗ No es correcto.')+'</strong><br>'+(correcto?'': '<strong>Respuesta correcta:</strong> '+solucionVisible(preguntaActual)+'<br>')+preguntaActual.e;
  document.getElementById('comprobar').style.display='none';
  document.getElementById('siguiente').style.display='inline-block';
  document.getElementById('aciertos').textContent=aciertos+' aciertos';
+}
+function solucionVisible(a){
+ if(a.t==='mcq'||a.t==='text'||a.t==='transform')return Array.isArray(a.r)?a.r.join(' / '):String(a.r);
+ if(a.t==='select')return String(a.r);
+ if(a.t==='analysis')return a.f.map((campo,i)=>campo+': '+(Array.isArray(a.r[i])?a.r[i].join(' / '):a.r[i])).join('<br>');
+ if(a.t==='drag')return a.items.map(x=>x.t+' → '+x.f).join('<br>');
+ if(a.t==='build')return a.piezas.filter((_,i)=>a.r.split('|').includes(a.piezas[i])).join(' ');
+ if(a.t==='chain')return a.pasos.map((p,i)=>(i+1)+'. '+p.r).join('<br>');
+ return '';
 }
 function mostrarFeedback(t,c){
  const fb=document.getElementById('feedback');fb.className='feedback '+c;fb.innerHTML=t;
 }
 function adelante(){
+ if(!respondida)omitidas++;
  if(indice>=partida.length-1){terminar();return}
  indice++;
  render();
@@ -331,7 +341,7 @@ function terminar(){
  document.getElementById('resultadoNota').textContent=nota.toFixed(1).replace('.',',');
  document.getElementById('resultadoPuntos').textContent=aciertos*10;
  document.getElementById('notaFinal').textContent=nota.toFixed(1).replace('.',',')+' / 10';
- document.getElementById('detalleFinal').textContent=nota>=9?'Excelente análisis sintáctico.':nota>=7?'Buen trabajo: sigue afinando las funciones y las relaciones entre proposiciones.':nota>=5?'Has superado la partida; revisa los errores para consolidar el análisis.':'Conviene repasar las pruebas de identificación y volver a intentarlo.';
+ document.getElementById('detalleFinal').textContent='Correctas: '+aciertos+' · Incorrectas: '+(partida.length-aciertos-omitidas)+' · Sin responder: '+omitidas+'<br>'+ (nota>=9?'Excelente análisis sintáctico.':nota>=7?'Buen trabajo: sigue afinando las funciones y las relaciones entre proposiciones.':nota>=5?'Has superado la partida; revisa los errores para consolidar el análisis.':'Conviene repasar las pruebas de identificación y volver a intentarlo.';
 }
 function repetir(){iniciarSeccion(seccionActual)}
 function volverMenu(){
