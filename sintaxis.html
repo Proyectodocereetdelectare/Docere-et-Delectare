@@ -34,6 +34,25 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 .opcion{padding:16px;border:0;border-radius:13px;background:#eee8dc;font-family:Georgia,"Times New Roman",serif;font-size:16px;cursor:pointer;transition:.2s}
 .opcion:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.12)}
 .opcion:disabled{cursor:default}.correcta{background:#dce8d8!important}.incorrecta{background:#ead8d5!important}
+.seleccionables{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:18px auto;max-width:850px}
+.seleccionable{padding:12px 16px;border:2px solid #ddd5c8;border-radius:12px;background:#f7f4ee;font:inherit;cursor:pointer;transition:.2s}
+.seleccionable:hover{transform:translateY(-2px)}
+.seleccionable.seleccionada{border-color:#9b9183;background:#eee8dc}
+.arrastre{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:850px;margin:20px auto;text-align:left}
+.arrastre-elementos,.zonas{padding:16px;background:#f7f4ee;border-radius:14px;min-height:120px}
+.arrastre-elemento{display:inline-block;margin:6px;padding:10px 13px;border-radius:10px;background:#fff;border:2px solid #ddd5c8;cursor:grab}
+.zona-arrastre{padding:14px;margin:9px 0;border:2px dashed #cfc5b5;border-radius:12px;min-height:58px;background:#fff}
+.zona-arrastre strong{display:block;margin-bottom:7px}
+.zona-arrastre.activa{border-color:#8f8678;background:#eee8dc}
+.elemento-colocado{display:inline-block;margin:4px;padding:7px 10px;border-radius:8px;background:#eee8dc;cursor:pointer}
+.construccion{max-width:850px;margin:18px auto}
+.piezas{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:15px 0}
+.pieza{padding:10px 14px;border:2px solid #ddd5c8;border-radius:10px;background:#f7f4ee;font:inherit;cursor:pointer}
+.construida{min-height:58px;padding:12px;border:2px dashed #cfc5b5;border-radius:12px;background:#fff;line-height:1.7}
+.pieza-usada{display:inline-block;margin:4px;padding:7px 10px;border-radius:8px;background:#eee8dc}
+.paso-actividad{padding:16px;margin:15px auto;background:#f7f4ee;border-radius:14px;max-width:850px}
+.paso-titulo{font-weight:bold;margin-bottom:10px}
+@media(max-width:700px){.arrastre{grid-template-columns:1fr}.seleccionables{gap:7px}.seleccionable{padding:10px 12px}}
 .campo{width:100%;max-width:700px;padding:13px;margin:8px auto;border:2px solid #ddd5c8;border-radius:10px;font-family:Georgia,"Times New Roman",serif;font-size:17px;display:block}
 .campo:focus{outline:none;border-color:#9b9183}
 .etiqueta-campo{display:block;margin-top:15px;font-weight:bold}
@@ -140,6 +159,12 @@ simple: [
 {n:5,t:'mcq',q:'¿Cuál es la mejor prueba para reconocer el CD en <b>Vi a Carlos</b>?',o:['Sustituirlo por <b>lo</b>: Lo vi.','Preguntar siempre «¿qué?».','Comprobar que empieza por <b>a</b>.','Sustituirlo por <b>le</b>.'],r:'Sustituirlo por <b>lo</b>: Lo vi.',e:'La preposición <b>a</b> no impide que sea CD; la sustitución por <b>lo</b> y la posibilidad de pasiva son pruebas útiles.'},
 {n:6,t:'analysis',q:'Analiza <b>Los alumnos entregaron el trabajo a la profesora ayer</b>.',f:['Sujeto','Núcleo verbal','CD','CI','CC'],r:[['los alumnos','los alumnos (SN)'],['entregaron','entregaron'],['el trabajo','el trabajo'],['a la profesora','a la profesora'],['ayer','cc de tiempo','cc tiempo','complemento circunstancial de tiempo']],e:'Sujeto: <b>los alumnos</b>. Predicado: <b>entregaron el trabajo a la profesora ayer</b>. CD: <b>el trabajo</b>. CI: <b>a la profesora</b>. CC de tiempo: <b>ayer</b>.'},
 {n:6,t:'analysis',q:'Analiza <b>La solución resultó imposible</b>.',f:['Sujeto','Verbo','Función de imposible'],r:[['la solución'],['resultó'],['atributo']],e:'<b>La solución</b> es el sujeto; <b>resultó</b> funciona como verbo copulativo/pseudocopulativo en esta construcción; <b>imposible</b> desempeña la función de atributo.'}
+,
+{n:2,t:'select',q:'Pulsa sobre el fragmento que desempeña la función de <b>CD</b> en <b>María entregó el informe a Juan ayer</b>.',segmentos:[{t:'María',f:'sujeto'},{t:'entregó',f:'verbo'},{t:'el informe',f:'CD'},{t:'a Juan',f:'CI'},{t:'ayer',f:'CC'}],r:'el informe',e:'<b>El informe</b> es el CD: puede sustituirse por <b>lo</b> → María lo entregó a Juan ayer.'},
+{n:3,t:'drag',q:'Clasifica cada elemento de <b>Los alumnos entregaron los trabajos a la profesora ayer</b>.',items:[{t:'Los alumnos',f:'Sujeto'},{t:'entregaron',f:'Verbo'},{t:'los trabajos',f:'CD'},{t:'a la profesora',f:'CI'},{t:'ayer',f:'CC de tiempo'}],cats:['Sujeto','Verbo','CD','CI','CC de tiempo'],e:'La clasificación correcta es: <b>Los alumnos</b> = sujeto; <b>entregaron</b> = verbo; <b>los trabajos</b> = CD; <b>a la profesora</b> = CI; <b>ayer</b> = CC de tiempo.'},
+{n:4,t:'build',q:'Construye una oración que contenga <b>sujeto + verbo + CD + CI</b>. Pulsa las piezas en el orden correcto.',piezas:['La profesora','entregó','los exámenes','a los alumnos'],r:'La profesora|entregó|los exámenes|a los alumnos',e:'Una construcción válida es <b>La profesora entregó los exámenes a los alumnos</b>: sujeto + verbo + CD + CI.'},
+{n:5,t:'transform',q:'Sustituye el <b>CD</b> por un pronombre en <b>María compró el libro</b>.',r:['maría lo compró','maria lo compro'],e:'El CD <b>el libro</b> se sustituye por <b>lo</b>: <b>María lo compró</b>.'},
+{n:6,t:'chain',q:'En <b>Vi a Carlos</b>, demuestra que <b>a Carlos</b> es CD: primero identifica la función y después selecciona una prueba adecuada.',pasos:[{label:'Función',o:['CD','CI','CR'],r:'CD'},{label:'Prueba',o:['Sustituir por <b>lo</b>: Lo vi.','Sustituir por <b>le</b>: Le vi.','Comprobar que lleva <b>a</b>.'],r:'Sustituir por <b>lo</b>: Lo vi.'}],e:'<b>A Carlos</b> es CD. La preposición <b>a</b> puede introducir un CD de persona; la sustitución por <b>lo</b> es una prueba útil.'}
 ],
 compuesta: [
 {n:1,t:'mcq',q:'En <b>María llegó y Pedro salió</b>, la relación es…',o:['Coordinación copulativa','Subordinación causal','Yuxtaposición','Coordinación adversativa'],r:'Coordinación copulativa',e:'Las proposiciones están unidas por <b>y</b> y mantienen el mismo nivel sintáctico.'},
@@ -235,12 +260,16 @@ function escapar(s){
 function seleccionar(){
  const arr=[...BANCO[seccionActual]];
  const salida=[];
+ const tiposInter=['select','drag','build','transform','chain'];
  for(let n=1;n<=6;n++){
-   const nivel=arr.filter(a=>a.n===n && !salida.includes(a));
-   for(let i=0;i<Math.min(2,nivel.length);i++){
-     const j=Math.floor(Math.random()*nivel.length);
-     salida.push(nivel.splice(j,1)[0]);
-   }
+   const nivel=arr.filter(a=>a.n===n);
+   const inter=nivel.filter(a=>tiposInter.includes(a.t));
+   const normal=nivel.filter(a=>!tiposInter.includes(a.t));
+   const sacar=lista=>{if(!lista.length)return null;return lista.splice(Math.floor(Math.random()*lista.length),1)[0]};
+   const primero=sacar(inter)||sacar(nivel);
+   if(primero)salida.push(primero);
+   const segundo=sacar(normal.filter(a=>a!==primero))||sacar(nivel.filter(a=>a!==primero));
+   if(segundo)salida.push(segundo);
  }
  return salida;
 }
@@ -252,7 +281,7 @@ function iniciarSeccion(s){
  actualizarAlias(); render();
 }
 function render(){
- preguntaActual=partida[indice]; respondida=false;
+ preguntaActual=partida[indice]; respondida=false; arrastreSeleccionado=null; construccion=[];
  document.getElementById('numero').textContent='Actividad '+(indice+1)+' de '+partida.length;
  document.getElementById('aciertos').textContent=aciertos+' aciertos';
  document.getElementById('barra').style.width=(indice/partida.length*100)+'%';
@@ -267,6 +296,11 @@ function render(){
  const c=document.getElementById('contenido');
  if(preguntaActual.t==='mcq') renderMcq(c);
  else if(preguntaActual.t==='text') renderText(c);
+ else if(preguntaActual.t==='select') renderSelect(c);
+ else if(preguntaActual.t==='drag') renderDrag(c);
+ else if(preguntaActual.t==='build') renderBuild(c);
+ else if(preguntaActual.t==='transform') renderTransform(c);
+ else if(preguntaActual.t==='chain') renderChain(c);
  else renderAnalysis(c);
 }
 function renderMcq(c){
@@ -280,10 +314,53 @@ function renderAnalysis(c){
  c.innerHTML=preguntaActual.f.map((f,i)=>'<label class="etiqueta-campo" for="campo'+i+'">'+f+'</label><input id="campo'+i+'" class="campo" autocomplete="off" onkeydown="if(event.key===\'Enter\')comprobar()">').join('');
  setTimeout(()=>document.getElementById('campo0')?.focus(),50);
 }
+function renderSelect(c){
+ c.innerHTML='<div class="seleccionables">'+preguntaActual.segmentos.map((x,i)=>'<button class="seleccionable" data-i="'+i+'" onclick="elegirSeleccionable('+i+')">'+x.t+'</button>').join('')+'</div><div class="ayuda"><strong>Consejo:</strong> no te fijes solo en la forma; piensa qué relación establece el fragmento con el verbo.</div>';
+}
+function elegirSeleccionable(i){
+ if(respondida)return;
+ document.querySelectorAll('.seleccionable').forEach((b,j)=>{b.dataset.seleccion=(j===i?'1':'0');b.classList.toggle('seleccionada',j===i);});
+}
+function renderDrag(c){
+ c.innerHTML='<div class="arrastre"><div class="arrastre-elementos"><strong>Elementos</strong><div id="elementosArrastre">'+preguntaActual.items.map((x,i)=>'<span class="arrastre-elemento" draggable="true" data-i="'+i+'" ondragstart="iniciarArrastre(event,'+i+')" onclick="seleccionarArrastre('+i+')">'+x.t+'</span>').join('')+'</div></div><div class="zonas"><strong>Funciones</strong>'+preguntaActual.cats.map((cat,i)=>'<div class="zona-arrastre" data-cat="'+escapar(cat)+'" ondragover="permitirSoltar(event)" ondrop="soltarCategoria(event)" onclick="soltarPorClic('+i+')"><strong>'+cat+'</strong><div id="zona-'+i+'"></div></div>').join('')+'</div></div><div class="ayuda">Puedes <strong>arrastrar</strong> cada elemento a su función. En móvil, también puedes pulsar un elemento y después la categoría.</div>';
+}
+let arrastreSeleccionado=null;
+function iniciarArrastre(e,i){arrastreSeleccionado=i;e.dataTransfer.setData('text/plain',String(i));}
+function seleccionarArrastre(i){if(respondida)return;arrastreSeleccionado=i;document.querySelectorAll('.arrastre-elemento').forEach((el,j)=>el.classList.toggle('seleccionada',j===i));}
+function permitirSoltar(e){e.preventDefault();e.currentTarget.classList.add('activa');}
+function soltarCategoria(e){e.preventDefault();const cat=e.currentTarget.dataset.cat;const i=Number(e.dataTransfer.getData('text/plain'));colocarEnCategoria(i,cat);}
+function soltarPorClic(catIndex){if(arrastreSeleccionado===null||arrastreSeleccionado===undefined)return;const cat=preguntaActual.cats[catIndex];colocarEnCategoria(arrastreSeleccionado,cat);}
+function colocarEnCategoria(i,cat){
+ if(respondida)return;
+ const el=document.querySelector('.arrastre-elemento[data-i="'+i+'"]');if(!el)return;
+ const item=preguntaActual.items[i];
+ const anterior=document.querySelector('.elemento-colocado[data-i="'+i+'"]');if(anterior)anterior.remove();
+ document.querySelectorAll('.zona-arrastre').forEach(z=>z.classList.remove('activa'));
+ const zona=[...document.querySelectorAll('.zona-arrastre')].find(z=>z.dataset.cat===cat);if(!zona)return;
+ const nuevo=document.createElement('span');nuevo.className='elemento-colocado';nuevo.textContent=item.t;nuevo.dataset.i=i;nuevo.dataset.cat=cat;nuevo.onclick=()=>quitarDeCategoria(i,nuevo);
+ zona.querySelector('div').appendChild(nuevo);el.style.display='none';arrastreSeleccionado=null;
+}
+function quitarDeCategoria(i,nuevo){if(respondida)return;const el=document.querySelector('.arrastre-elemento[data-i="'+i+'"]');if(el)el.style.display='inline-block';nuevo.remove();}
+function renderBuild(c){
+ c.innerHTML='<div class="construccion"><div class="piezas">'+preguntaActual.piezas.map((x,i)=>'<button class="pieza" data-i="'+i+'" onclick="usarPieza('+i+')">'+x+'</button>').join('')+'</div><div id="construida" class="construida">Pulsa las piezas en el orden en que deben aparecer.</div><button class="boton" type="button" onclick="reiniciarConstruccion()">↺ Reiniciar</button></div>';
+}
+let construccion=[];
+function usarPieza(i){if(respondida||construccion.includes(i))return;construccion.push(i);document.getElementById('construida').innerHTML=construccion.map(j=>'<span class="pieza-usada">'+preguntaActual.piezas[j]+'</span>').join('');document.querySelector('.pieza[data-i="'+i+'"]').disabled=true;}
+function reiniciarConstruccion(){if(respondida)return;construccion=[];document.querySelectorAll('.pieza').forEach(b=>b.disabled=false);document.getElementById('construida').textContent='Pulsa las piezas en el orden en que deben aparecer.';}
+function renderTransform(c){
+ c.innerHTML='<label class="etiqueta-campo" for="respuesta">Escribe la transformación</label><input id="respuesta" class="campo" autocomplete="off" onkeydown="if(event.key===\'Enter\')comprobar()" placeholder="Escribe la oración transformada...">';
+ setTimeout(()=>document.getElementById('respuesta')?.focus(),50);
+}
+function renderChain(c){
+ c.innerHTML='<div>'+preguntaActual.pasos.map((p,i)=>'<div class="paso-actividad"><div class="paso-titulo">'+(i+1)+'. '+p.label+'</div><div class="opciones">'+p.o.map((x,j)=>'<button class="opcion paso-opcion" data-paso="'+i+'" data-i="'+j+'" onclick="elegirPaso('+i+','+j+')">'+x+'</button>').join('')+'</div></div>').join('')+'</div>';
+}
+function elegirPaso(paso,i){
+ if(respondida)return;
+ document.querySelectorAll('.paso-opcion[data-paso="'+paso+'"]').forEach((b,j)=>b.dataset.seleccion=(j===i?'1':'0'));
+}
 function elegir(i){
  if(respondida)return;
  document.querySelectorAll('.opcion').forEach(b=>b.classList.remove('correcta','incorrecta'));
- document.querySelectorAll('.opcion')[i].classList.add('seleccionada');
  document.querySelectorAll('.opcion').forEach((b,j)=>b.dataset.seleccion=(j===i?'1':'0'));
 }
 function comprobar(){
@@ -298,10 +375,36 @@ function comprobar(){
      if(b.dataset.seleccion==='1'&&!correcto)b.classList.add('incorrecta');
      b.disabled=true;
    });
- }else if(preguntaActual.t==='text'){
+ }else if(preguntaActual.t==='text'||preguntaActual.t==='transform'){
    const v=document.getElementById('respuesta')?.value||'';
    if(!v.trim()){mostrarFeedback('Escribe una respuesta antes de comprobar.','error');return}
    correcto=acepta(v,preguntaActual.r);
+ }else if(preguntaActual.t==='select'){
+   const sel=document.querySelector('.seleccionable[data-seleccion="1"]');
+   if(!sel){mostrarFeedback('Primero pulsa sobre un fragmento.','error');return}
+   const i=Number(sel.dataset.i);
+   correcto=normalizar(preguntaActual.segmentos[i].t)===normalizar(preguntaActual.r);
+   document.querySelectorAll('.seleccionable').forEach((b,j)=>{
+     if(normalizar(preguntaActual.segmentos[j].t)===normalizar(preguntaActual.r))b.classList.add('correcta');
+     if(b.dataset.seleccion==='1'&&!correcto)b.classList.add('incorrecta');
+     b.disabled=true;
+   });
+ }else if(preguntaActual.t==='drag'){
+   const colocados=[...document.querySelectorAll('.elemento-colocado')];
+   if(colocados.length!==preguntaActual.items.length){mostrarFeedback('Coloca todos los elementos antes de comprobar.','error');return}
+   correcto=colocados.every(el=>normalizar(preguntaActual.items[Number(el.dataset.i)].f)===normalizar(el.dataset.cat));
+ }else if(preguntaActual.t==='build'){
+   if(construccion.length!==preguntaActual.piezas.length){mostrarFeedback('Coloca todas las piezas antes de comprobar.','error');return}
+   correcto=construccion.map(i=>preguntaActual.piezas[i]).join('|')===preguntaActual.r;
+ }else if(preguntaActual.t==='chain'){
+   const ok=preguntaActual.pasos.map((p,i)=>{
+     const sel=document.querySelector('.paso-opcion[data-paso="'+i+'"][data-seleccion="1"]');
+     const valido=!!sel&&normalizar(sel.textContent)===normalizar(p.r);
+     document.querySelectorAll('.paso-opcion[data-paso="'+i+'"]').forEach(b=>{if(normalizar(b.textContent)===normalizar(p.r))b.classList.add('correcta');if(b.dataset.seleccion==='1'&&!valido)b.classList.add('incorrecta');b.disabled=true;});
+     return valido;
+   });
+   if(ok.some(v=>!v)){mostrarFeedback('Debes completar correctamente todos los pasos antes de continuar.','error');return}
+   correcto=true;
  }else{
    const vals=preguntaActual.f.map((_,i)=>document.getElementById('campo'+i)?.value||'');
    if(vals.some(v=>!v.trim())){mostrarFeedback('Completa todos los campos antes de comprobar.','error');return}
