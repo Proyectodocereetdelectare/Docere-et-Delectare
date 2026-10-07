@@ -5,6 +5,7 @@ on:
   pull_request:
 
 concurrency:
+  # Mantiene solo la validación vigente por rama.
   group: validate-${{ github.ref }}
   cancel-in-progress: true
 
