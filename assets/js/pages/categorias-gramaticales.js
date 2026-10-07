@@ -60,3 +60,5 @@ document.querySelectorAll('.bloque[data-seccion]').forEach(function(boton){
     elegirSeccion(this.dataset.seccion);
   });
 });window.ok=ok;window.elegirSeccion=elegirSeccion;window.iniciar=iniciar;window.crear=crear;window.mostrar=mostrar;window.feedback=feedback;window.mcq=mcq;window.texto=texto;window.analisis=analisis;window.siguiente=siguiente;window.resultado=resultado;window.repetir=repetir;window.volverMenu=volverMenu;
+
+window.adelante=adelante;
