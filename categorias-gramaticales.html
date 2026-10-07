@@ -134,7 +134,7 @@ function elegirSeccion(s){
 window.elegirSeccion=elegirSeccion;
 function iniciar(){
   if(!seccionActual)return;
-  if(!alias()){abrirPerfil();return}
+  if(!alias()){globalThis.accionPerfilPendiente=iniciar;abrirPerfil();return}
   crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()
 }
 function crear(){
