@@ -126,7 +126,7 @@ for (const contract of dataContracts) {
       errors.push(contract.file + ": hay identificadores de actividad duplicados");
     }
     activities.forEach(a => {
-      if (!a || !a.q || !a.e) errors.push(contract.file + ": actividad incompleta " + (a && a.id || "sin-id"));
+      if (!a || !(a.q || a.pregunta) || !(a.e || a.explicacion)) errors.push(contract.file + ": actividad incompleta " + (a && a.id || "sin-id"));
       if (a && a.n != null && (!Number.isInteger(Number(a.n)) || Number(a.n) < 1 || Number(a.n) > 6)) {
         errors.push(contract.file + ": nivel fuera de 1-6 en " + (a.id || "sin-id"));
       }
