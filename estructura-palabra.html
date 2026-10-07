@@ -1447,6 +1447,7 @@ function mostrarAviso(texto) {
 ===================================================== */
 
 function adelante() {
+    if (!respondida) omitidas++;
     actividadActual++;
     if (actividadActual < actividadesActuales.length) {
         window.respuestaMCQ = undefined;
@@ -1546,8 +1547,7 @@ function mostrarResultado() {
 
 
     document.getElementById("mensaje")
-        .textContent =
-        mensaje;}
+        .innerHTML = mensaje + "<br><br><strong>Correctas:</strong> " + puntuacion + " · <strong>Incorrectas:</strong> " + (actividadesActuales.length - puntuacion - omitidas) + " · <strong>Sin responder:</strong> " + omitidas;}
 
 
 /* =====================================================
