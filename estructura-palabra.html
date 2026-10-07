@@ -494,7 +494,7 @@ Practica la estructura interna de las palabras mediante actividades progresivas 
 <div class="bloques">
 
 
-<button class="bloque"
+<button type="button" class="bloque"
 onclick="iniciarBloque('identifica')">
 
 <span class="icono">🔎</span>
@@ -510,7 +510,7 @@ alomorfos e infijos
 </button>
 
 
-<button class="bloque"
+<button type="button" class="bloque"
 onclick="iniciarBloque('clasifica')">
 
 <span class="icono">🏷️</span>
@@ -525,7 +525,7 @@ afijos derivativos, interfijos y alomorfos
 </button>
 
 
-<button class="bloque"
+<button type="button" class="bloque"
 onclick="iniciarBloque('analiza')">
 
 <span class="icono">🧩</span>
@@ -540,7 +540,7 @@ entre elementos y formantes grecolatinos
 </button>
 
 
-<button class="bloque"
+<button type="button" class="bloque"
 onclick="iniciarBloque('reto')">
 
 <span class="icono">🏆</span>
@@ -558,7 +558,7 @@ los contenidos
 </div>
 
 
-<button class="boton"
+<button type="button" class="boton"
 onclick="volverMorfologia()">
 
 ← Volver a Morfología
@@ -577,7 +577,7 @@ onclick="volverMorfologia()">
 
 <div class="perfil-bar">
     <span>👤 <span class="alias" id="aliasActividad">Invitado</span></span>
-    <button class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
+    <button type="button" class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
 </div>
 
 <div class="progreso-texto">
@@ -618,7 +618,7 @@ class="palabra">
 <div id="feedback"></div>
 
 
-<button class="boton boton-principal"
+<button type="button" class="boton boton-principal"
 id="comprobar"
 onclick="comprobar()">
 
@@ -627,7 +627,7 @@ Comprobar
 </button>
 
 
-<button class="boton"
+<button type="button" class="boton"
 id="siguiente"
 onclick="siguientePregunta()">
 
@@ -639,9 +639,9 @@ Siguiente →
 <br>
 
 
-<button class="boton" id="adelante" onclick="adelante()">Adelante →</button>
+<button type="button" class="boton" id="adelante" onclick="adelante()">Adelante →</button>
 <br>
-<button class="boton"
+<button type="button" class="boton"
 onclick="volverMenu()">
 
 ← Volver a los bloques
@@ -660,7 +660,7 @@ onclick="volverMenu()">
 
 <div class="perfil-bar">
     <span>👤 <span class="alias" id="aliasResultado">Invitado</span></span>
-    <button class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
+    <button type="button" class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
 </div>
 
 <h2>🎉 ¡Actividad terminada!</h2>
@@ -686,14 +686,14 @@ onclick="volverMenu()">
 
 <div class="separador"></div>
 
-<button class="boton boton-principal"
+<button type="button" class="boton boton-principal"
 onclick="repetirBloque()">
 
 🔄 Nueva partida
 
 </button>
 
-<button class="boton"
+<button type="button" class="boton"
 onclick="volverMenu()">
 
 ← Volver a los bloques
@@ -711,7 +711,7 @@ onclick="volverMenu()">
         <p>Escribe un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni introducir ningún dato personal. Tu progreso se asocia a un identificador anónimo generado automáticamente en este dispositivo.</p>
         <input id="aliasInput" class="perfil-input" maxlength="20" autocomplete="off" placeholder="Tu nombre o alias">
         <br>
-        <button class="boton boton-principal" onclick="guardarPerfil()">
+        <button type="button" class="boton boton-principal" onclick="guardarPerfil()">
             Continuar →
         </button>
         <p class="pequeno">Puedes cambiar el alias cuando quieras.</p>
