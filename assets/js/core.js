@@ -29,7 +29,12 @@
   }
 
   function mezclar(array){
-    return [...array].sort(()=>Math.random()-0.5);
+    const copia=[...array];
+    for(let i=copia.length-1;i>0;i--){
+      const j=Math.floor(Math.random()*(i+1));
+      [copia[i],copia[j]]=[copia[j],copia[i]];
+    }
+    return copia;
   }
 
   function limpiarAlias(alias){
@@ -118,12 +123,14 @@
     actualizarRankingLocal();
     if(typeof actualizarAliasInterfaz==="function")actualizarAliasInterfaz();
     if(typeof actualizarAlias==="function")actualizarAlias();
-    actualizarAliases();
     if(modal)modal.style.display="none";
-    if(globalThis.bloquePendiente && typeof globalThis.iniciarBloque==="function"){
-      const pendiente=globalThis.bloquePendiente;
+    const pendiente=globalThis.accionPerfilPendiente;
+    globalThis.accionPerfilPendiente=null;
+    if(typeof pendiente==="function")pendiente();
+    else if(globalThis.bloquePendiente && typeof globalThis.iniciarBloque==="function"){
+      const bloque=globalThis.bloquePendiente;
       globalThis.bloquePendiente=null;
-      globalThis.iniciarBloque(pendiente);
+      globalThis.iniciarBloque(bloque);
     }
   }
 
