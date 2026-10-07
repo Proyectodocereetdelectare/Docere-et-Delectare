@@ -375,9 +375,20 @@ Si una modificación pequeña exige tocar muchas áreas no relacionadas, se cons
 
 ## 14. Estado actual
 
-Las páginas actuales funcionan y se mantienen en sus rutas públicas para evitar romper enlaces.
+La primera capa de la arquitectura ya está implantada:
 
-La arquitectura objetivo se introducirá mediante refactorizaciones controladas. No se deben mover simultáneamente todas las páginas ni reescribir todo el proyecto sin necesidad.
+- `assets/js/core.js`: utilidades compartidas, identidad anónima, alias, navegación y lectura segura de almacenamiento.
+- `assets/css/core.css`: estilos compartidos de navegación.
+- `assets/js/data/`: bancos de actividades separados de las páginas HTML.
+- Las páginas conservan su motor didáctico específico, pero ya no contienen los grandes bancos de preguntas.
+- `progreso.html` reutiliza el núcleo común para identidad y almacenamiento.
+- Las rutas públicas de las páginas se mantienen para no romper enlaces existentes.
+
+La migración continuará por capas: primero responsabilidades comunes, después motores reutilizables y, cuando sea necesario, renderizadores y componentes. No se hará una reescritura masiva que obligue a modificar simultáneamente todo el proyecto.
+
+### Principio de compatibilidad durante la migración
+
+Durante la transición puede coexistir código específico de una página con el núcleo común. Esto es deliberado: cada extracción debe comprobarse antes de eliminar la implementación anterior. El objetivo es reducir acoplamiento progresivamente, no sustituir todo el sistema de una vez.
 
 El objetivo no es que el proyecto tenga más archivos por tener más archivos.
 
