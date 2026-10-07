@@ -141,10 +141,12 @@ function crear(){
   let usados=leerJSON(DOCERE_STORAGE.CATEGORIAS,[]);
   const seleccion=[];
   const usadosPartida=new Set();
+  const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};
   for(let nivel=1;nivel<=6;nivel++){
+    const cantidad=objetivos[nivel];
     let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usados.includes(x.j));
-    if(disponibles.length<2) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j));
-    mix(disponibles).slice(0,2).forEach(x=>{seleccion.push(x.j);usadosPartida.add(x.j)});
+    if(disponibles.length<cantidad) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j));
+    mix(disponibles).slice(0,cantidad).forEach(x=>{seleccion.push(x.j);usadosPartida.add(x.j)});
   }
   localStorage.setItem(DOCERE_STORAGE.CATEGORIAS,JSON.stringify(usados.concat(seleccion).slice(-60)));
   partida=seleccion.map(x=>A[x]);
