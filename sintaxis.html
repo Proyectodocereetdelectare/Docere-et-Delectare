@@ -146,6 +146,8 @@ compuesta: [
 {n:1,t:'mcq',q:'En <b>Llegué, vi, vencí</b>, la relación entre las proposiciones es…',o:['Yuxtaposición','Coordinación disyuntiva','Subordinación','Coordinación explicativa'],r:'Yuxtaposición',e:'No aparece un nexo; las proposiciones se relacionan mediante la puntuación.'},
 {n:2,t:'mcq',q:'¿Qué tipo de coordinación aparece en <b>¿Vienes o te quedas?</b>?',o:['Disyuntiva','Copulativa','Adversativa','Explicativa'],r:'Disyuntiva',e:'<b>o</b> presenta alternativas.'},
 {n:2,t:'mcq',q:'¿Qué tipo de coordinación aparece en <b>Habla mucho, es decir, es muy comunicativo</b>?',o:['Explicativa','Distributiva','Adversativa','Copulativa'],r:'Explicativa',e:'<b>es decir</b> establece equivalencia o explicación.'},
+{n:3,t:'mcq',q:'¿Qué tipo de coordinación aparece en <b>Unas veces estudia, otras veces descansa</b>?',o:['Distributiva','Copulativa','Adversativa','Explicativa'],r:'Distributiva',e:'La estructura <b>unas veces... otras veces...</b> expresa alternancia distributiva.'},
+{n:4,t:'mcq',q:'¿Qué tipo de coordinación aparece en <b>Quería ir, pero estaba enfermo</b>?',o:['Adversativa','Disyuntiva','Copulativa','Distributiva'],r:'Adversativa',e:'<b>pero</b> introduce una relación de oposición o contrariedad.'},
 {n:3,t:'mcq',q:'En <b>No vino porque estaba enfermo</b>, la subordinada es…',o:['Causal','Final','Condicional','Concesiva'],r:'Causal',e:'Explica la causa de que no viniera.'},
 {n:3,t:'mcq',q:'En <b>Te llamaré cuando llegue</b>, la subordinada es…',o:['Temporal','Causal','Comparativa','Final'],r:'Temporal',e:'Indica el momento en que se realizará la acción principal.'},
 {n:4,t:'mcq',q:'En <b>El libro que compré ayer es interesante</b>, la subordinada es…',o:['Adjetiva especificativa','Adverbial temporal','Sustantiva de CD','Adjetiva explicativa'],r:'Adjetiva especificativa',e:'Modifica a <b>libro</b> y restringe qué libros son interesantes; no va entre comas.'},
@@ -157,7 +159,7 @@ compuesta: [
 {n:5,t:'mcq',q:'En <b>Está cerca de que lo admitan</b>, la subordinada sustantiva funciona como complemento de…',o:['Un adverbio','Un verbo','Un nombre','Un pronombre'],r:'Un adverbio',e:'<b>de que lo admitan</b> depende del adverbio <b>cerca</b>; la subordinada es su término.'},
 {n:5,t:'mcq',q:'En <b>Quien bien te quiere, te hará llorar</b>, <b>quien bien te quiere</b> es…',o:['Una subordinada adjetiva sustantivada que funciona como sujeto','Una adjetiva especificativa con antecedente expreso','Una subordinada causal','Una coordinada explicativa'],r:'Una subordinada adjetiva sustantivada que funciona como sujeto',e:'No hay antecedente nominal expreso; <b>quien bien te quiere</b> tiene valor sustantivo y funciona como sujeto.'},
 {n:5,t:'mcq',q:'En <b>Dame lo que quieras</b>, <b>lo que quieras</b> es…',o:['Una subordinada adjetiva sustantivada con función de CD','Una subordinada adverbial temporal','Una subordinada causal','Una coordinada copulativa'],r:'Una subordinada adjetiva sustantivada con función de CD',e:'La estructura <b>lo que quieras</b> carece de antecedente expreso y desempeña la función de CD de <b>dame</b>.'},
-{n:5,t:'analysis',q:'Analiza <b>Insistió en que fuéramos juntos</b>.',f:['Subordinada','Tipo','Función'],r:[['que fuéramos juntos'],['sustantiva','subordinada sustantiva'],['complemento de régimen','cr','término de un SPrep de régimen']],e:'La subordinada <b>que fuéramos juntos</b> es sustantiva y funciona como término del SPrep exigido por <b>insistió en</b>; el conjunto <b>en que fuéramos juntos</b> es CR.'}
+{n:5,t:'analysis',q:'Analiza <b>Insistió en que fuéramos juntos</b>.',f:['Subordinada','Tipo','Función'],r:[['que fuéramos juntos'],['sustantiva','subordinada sustantiva'],['complemento de régimen','cr','término de un SPrep de régimen']],e:'La subordinada <b>que fuéramos juntos</b> es sustantiva y funciona como término del SPrep exigido por <b>insistió en</b>; el conjunto <b>en que fuéramos juntos</b> es CR.'},
 {n:3,t:'mcq',q:'En <b>Vive donde quiere</b>, la subordinada es…',o:['Adverbial propia de lugar','Adjetiva especificativa','Sustantiva de CD','Adverbial causal'],r:'Adverbial propia de lugar',e:'Puede sustituirse por <b>allí</b>: Vive allí.'},
 {n:3,t:'mcq',q:'En <b>Hazlo como puedas</b>, la subordinada es…',o:['Adverbial propia de modo','Adverbial causal','Adjetiva explicativa','Sustantiva de sujeto'],r:'Adverbial propia de modo',e:'Expresa el modo de realizar la acción y puede sustituirse por <b>así</b>.'},
 {n:5,t:'mcq',q:'En <b>Hizo tanto frío que nevó</b>, la subordinada expresa…',o:['Consecuencia','Causa','Finalidad','Condición'],r:'Consecuencia',e:'La estructura intensiva <b>tanto... que</b> introduce el resultado o consecuencia.'},
@@ -221,7 +223,7 @@ function guardarPerfil(){
  actualizarAlias();
 }
 function normalizar(v){
- return String(v||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[¡!¿?.,;:()"'”“]/g,' ').replace(/\s+/g,' ').trim();
+ return String(v||'').replace(/<[^>]*>/g,'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[¡!¿?.,;:()"'”“]/g,' ').replace(/\s+/g,' ').trim();
 }
 function acepta(v, respuestas){
  const x=normalizar(v);
