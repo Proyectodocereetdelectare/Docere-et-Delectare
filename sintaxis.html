@@ -174,7 +174,7 @@ function render(){
  preguntaActual=partida[indice]; respondida=false; arrastreSeleccionado=null; construccion=[];
  document.getElementById('numero').textContent='Actividad '+(indice+1)+' de '+partida.length;
  document.getElementById('aciertos').textContent=aciertos+' aciertos';
- document.getElementById('barra').style.width=(indice/partida.length*100)+'%';
+ document.getElementById('barra').style.width=((indice+1)/partida.length*100)+'%';
  const nombres={unidades:'🔎 Unidades sintácticas',simple:'🏗️ Oración simple',compuesta:'🔗 Oración compuesta',error:'🧠 Detecta el error',reto:'🏆 Reto sintáctico'};
  document.getElementById('etiqueta').textContent=nombres[seccionActual];
  document.getElementById('nivel').textContent='Nivel '+preguntaActual.n;
@@ -335,22 +335,19 @@ function terminar(){
  guardarProgreso(nota);
 }
 function guardarProgreso(nota){
- const p=leerJSON(DOCERE_STORAGE.PROGRESO,{partidas:0,mejor:0,puntos:0,historial:[]});
- if(Array.isArray(p))return;
+ let p=leerJSON(DOCERE_STORAGE.PROGRESO,{partidas:0,mejor:0,puntos:0,historial:[]});
+ if(Array.isArray(p)){
+   p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};
+ }
+ if(!p||typeof p!=='object')p={partidas:0,mejor:0,puntos:0,historial:[]};
  p.partidas=Number(p.partidas||0)+1;
  p.puntos=Number(p.puntos||0)+aciertos*10;
  p.mejor=Math.max(Number(p.mejor||0),nota);
  p.historial=Array.isArray(p.historial)?p.historial:[];
- p.historial.unshift({bloque:'Sintaxis · '+seccionActual,aciertos,nota,fecha:new Date().toISOString()});
+ p.historial.unshift({playerId:obtenerPlayerId(),alias:obtenerAlias()||'Invitado',bloque:'Sintaxis · '+seccionActual,aciertos,nota,fecha:new Date().toISOString()});
  p.historial=p.historial.slice(0,30);
- localStorage.setItem(DOCERE_STORAGE.PROGRESO,JSON.stringify(p));
- const id=asegurarIdentidad(), alias=getAlias();
- let ranking=leerJSON(DOCERE_STORAGE.RANKING,[]);
- if(!Array.isArray(ranking))ranking=[];
- const idx=ranking.findIndex(x=>x.playerId===id);
- const reg={playerId:id,alias,mejor:Number(p.mejor||0),puntos:Number(p.puntos||0)};
- if(idx>=0)ranking[idx]=reg;else ranking.push(reg);
- localStorage.setItem(DOCERE_STORAGE.RANKING,JSON.stringify(ranking));
+ guardarJSON(DOCERE_STORAGE.PROGRESO,p);
+ actualizarRankingLocal();
 }
 function repetir(){iniciarSeccion(seccionActual)}
 function volverMenu(){
