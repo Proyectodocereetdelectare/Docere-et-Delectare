@@ -120,7 +120,7 @@ function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>norm(v)=
 function iniciarSeccion(s){seccionActual=s;if(!alias()){abrirPerfil();return}iniciarPartida()}
 function iniciarPartida(){crearPartida();i=0;puntos=0;document.getElementById('menu').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 function crearPartida(){
-  let usados=leerJSON('verboUsadas',[]);
+  let usados=leerJSON(DOCERE_STORAGE.VERBO,[]);
   const seleccion=[];
   const usadosPartida=new Set();
   const niveles=[1,1,2,2,3,3,4,4,5,5,6,6];
@@ -130,7 +130,7 @@ function crearPartida(){
     const elegido=mix(disponibles).find(x=>!usadosPartida.has(x.j));
     if(elegido){seleccion.push(elegido.j);usadosPartida.add(elegido.j);}
   });
-  localStorage.setItem('verboUsadas',JSON.stringify(usados.concat(seleccion).slice(-96)));
+  localStorage.setItem(DOCERE_STORAGE.VERBO,JSON.stringify(usados.concat(seleccion).slice(-96)));
   partida=seleccion.map(x=>A[x]);
 }
 function mostrar(){respondida=false;let a=partida[i],pct=Math.round((i+1)/partida.length*100);document.getElementById('numero').textContent='Actividad '+(i+1)+' de '+partida.length;document.getElementById('porcentaje').textContent=pct+'%';document.getElementById('barraProgreso').style.width=pct+'%';document.getElementById('etiqueta').textContent=secciones[seccionActual]+' · Nivel '+a.n;document.getElementById('feedback').innerHTML='';document.getElementById('siguiente').style.display='none';document.getElementById('pregunta').innerHTML=a.q;let h='';if(a.t==='mcq')h='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" onclick="window.mcq(this, this.dataset.respuesta)">'+x+'</button>').join('')+'</div>';if(a.t==='text')h='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';document.getElementById('contenido').innerHTML=h;
@@ -141,7 +141,7 @@ function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=norm
 function texto(){if(respondida)return;let v=document.getElementById('respuesta').value;if(!v.trim())return;respondida=true;let a=partida[i],b=ok(v,a.r);if(b)puntos++;document.getElementById('respuesta').disabled=true;feedback(b,a.e)}
 function adelante(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
-function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=Number((puntos/partida.length*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+partida.length+' actividades.';let h=leerJSON('docereProgreso',null);if(Array.isArray(h))h={partidas:h.length,puntos:h.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:h.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:h};if(!h||typeof h!=='object')h={partidas:0,puntos:0,mejor:0,historial:[]};h.partidas++;h.puntos+=puntos*10;h.mejor=Math.max(Number(h.mejor||0),nota);h.historial=Array.isArray(h.historial)?h.historial:[];h.historial.unshift({playerId:player(),alias:alias(),bloque:'El verbo · '+secciones[seccionActual],nota,aciertos:puntos,fecha:new Date().toISOString()});h.historial=h.historial.slice(0,10);localStorage.setItem('docereProgreso',JSON.stringify(h));actualizarRankingLocal()}
+function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=Number((puntos/partida.length*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+partida.length+' actividades.';let h=leerJSON(DOCERE_STORAGE.PROGRESO,null);if(Array.isArray(h))h={partidas:h.length,puntos:h.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:h.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:h};if(!h||typeof h!=='object')h={partidas:0,puntos:0,mejor:0,historial:[]};h.partidas++;h.puntos+=puntos*10;h.mejor=Math.max(Number(h.mejor||0),nota);h.historial=Array.isArray(h.historial)?h.historial:[];h.historial.unshift({playerId:player(),alias:alias(),bloque:'El verbo · '+secciones[seccionActual],nota,aciertos:puntos,fecha:new Date().toISOString()});h.historial=h.historial.slice(0,10);localStorage.setItem(DOCERE_STORAGE.PROGRESO,JSON.stringify(h));actualizarRankingLocal()}
 function repetir(){iniciarPartida()}
 function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('menu').style.display='block';seccionActual=''}
 
