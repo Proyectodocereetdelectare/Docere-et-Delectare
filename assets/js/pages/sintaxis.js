@@ -190,7 +190,7 @@ function terminar(){
  document.getElementById('resultadoNota').textContent=nota.toFixed(1).replace('.',',');
  document.getElementById('resultadoPuntos').textContent=aciertos*10;
  document.getElementById('notaFinal').textContent=nota.toFixed(1).replace('.',',')+' / 10';
- document.getElementById('detalleFinal').textContent='Correctas: '+aciertos+' · Incorrectas: '+(partida.length-aciertos-omitidas)+' · Sin responder: '+omitidas+'<br>'+ (nota>=9?'Excelente análisis sintáctico.':nota>=7?'Buen trabajo: sigue afinando las funciones y las relaciones entre proposiciones.':nota>=5?'Has superado la partida; revisa los errores para consolidar el análisis.':'Conviene repasar las pruebas de identificación y volver a intentarlo.');
+ document.getElementById('detalleFinal').innerHTML='Correctas: '+aciertos+' · Incorrectas: '+(partida.length-aciertos-omitidas)+' · Sin responder: '+omitidas+'<br><span class="pequeno">Las actividades sin responder no suman puntos.</span><br>'+ (nota>=9?'Excelente análisis sintáctico.':nota>=7?'Buen trabajo: sigue afinando las funciones y las relaciones entre proposiciones.':nota>=5?'Has superado la partida; revisa los errores para consolidar el análisis.':'Conviene repasar las pruebas de identificación y volver a intentarlo.');
 }
 function repetir(){iniciarSeccion(seccionActual)}
 function volverMenu(){
