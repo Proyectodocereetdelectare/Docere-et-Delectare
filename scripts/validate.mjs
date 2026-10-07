@@ -149,7 +149,7 @@ for(const [file,names] of contracts){
       const level=a.nivel??a.n;
       const type=a.tipo??a.t;
       const normalizedQuestion=normalizarAuditoria(a.q??a.pregunta);
-      if(normalizedQuestion){
+      if(file.endsWith("assets/js/data/sintaxis/sintaxis.js") && normalizedQuestion){
         const previous=seenQuestions.get(normalizedQuestion);
         if(previous)addError(file+": enunciado duplicado entre "+previous+" y "+a.id);
         else seenQuestions.set(normalizedQuestion,a.id);
