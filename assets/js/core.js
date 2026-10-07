@@ -96,5 +96,6 @@
   globalThis.abrirPerfil=abrirPerfil;
   globalThis.guardarPerfil=guardarPerfil;
   globalThis.irInicio=irInicio;
+  globalThis.mostrarAlias=actualizarAliases;
   globalThis.actualizarAliases=actualizarAliases;
 })();
