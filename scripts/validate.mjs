@@ -15,6 +15,26 @@ const exportedGlobals=new Set();
 
 function addError(message){errors.push(message);}
 
+function normalizarAuditoria(texto){
+  return String(texto ?? "")
+    .replace(/<[^>]*>/g,"")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\\u0300-\\u036f]/g,"")
+    .replace(/[¡!¿?.,;:()"'“”+\\-_|/]/g," ")
+    .replace(/\\s+/g," ")
+    .trim();
+}
+
+function htmlEquilibrado(texto){
+  for(const tag of ["b","i","strong","em"]){
+    const abiertos=(String(texto ?? "").match(new RegExp("<"+tag+"\\\\b","gi"))||[]).length;
+    const cerrados=(String(texto ?? "").match(new RegExp("</"+tag+">","gi"))||[]).length;
+    if(abiertos!==cerrados)return false;
+  }
+  return true;
+}
+
 function read(pathname){
   return fs.readFileSync(path.join(root,pathname),"utf8");
 }
@@ -124,9 +144,20 @@ for(const [file,names] of contracts){
     if(activities.some(a=>!a||!a.id))addError(file+": actividad sin identificador estable");
     if(new Set(ids).size!==ids.length)addError(file+": identificadores de actividad duplicados");
 
+    const seenQuestions=new Map();
     for(const a of activities){
       const level=a.nivel??a.n;
       const type=a.tipo??a.t;
+      const normalizedQuestion=normalizarAuditoria(a.q??a.pregunta);
+      if(normalizedQuestion){
+        const previous=seenQuestions.get(normalizedQuestion);
+        if(previous)addError(file+": enunciado duplicado entre "+previous+" y "+a.id);
+        else seenQuestions.set(normalizedQuestion,a.id);
+      }
+      if(!htmlEquilibrado((a.q??"")+" "+(a.e??a.explicacion??""))){
+        addError(file+": HTML descompensado en "+a.id);
+      }
+      if(!(a.e??a.explicacion))addError(file+": actividad sin explicación en "+a.id);
       const allowsNoLevel=file.endsWith("estructura-palabra.js") && (a.tipo==="analisis" || a.tipo==="texto" || a.tipo==="mcq") && /^EP-(S|R)-/.test(a.id||"");
       if(!allowsNoLevel && (!Number.isInteger(level)||level<1||level>6))addError(file+": nivel inválido en "+(a.id||"actividad"));
       if(!a.q&&!a.pregunta)addError(file+": actividad sin enunciado en "+(a.id||"actividad"));
@@ -159,6 +190,17 @@ for(const [file,names] of contracts){
           if(keys.some(k=>!Object.prototype.hasOwnProperty.call(answers,k))){
             addError(file+": análisis con campos sin solución en "+a.id);
           }
+        }
+      }
+    }
+    if(file.endsWith("assets/js/data/sintaxis/sintaxis.js")){
+      const banco=values.BANCO;
+      const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};
+      for(const [section,arr] of Object.entries(banco)){
+        if(arr.length<20)addError(file+": sección "+section+" tiene menos de 20 actividades");
+        for(const [level,target] of Object.entries(objetivos)){
+          const count=arr.filter(a=>(a.nivel??a.n)===Number(level)).length;
+          if(count<target)addError(file+": sección "+section+" no alcanza "+target+" actividades de nivel "+level);
         }
       }
     }
