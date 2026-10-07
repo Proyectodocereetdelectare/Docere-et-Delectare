@@ -139,4 +139,5 @@
   globalThis.irInicio=irInicio;
   globalThis.mostrarAlias=actualizarAliases;
   globalThis.actualizarAliases=actualizarAliases;
+  globalThis.actualizarAliasInterfaz=actualizarAliases;
 })();
