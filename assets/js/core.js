@@ -23,6 +23,19 @@
     return String(alias ?? "").replace(/[<>]/g,"").trim().slice(0,20);
   }
 
+  function leerJSON(clave,porDefecto){
+    try{
+      const raw=localStorage.getItem(clave);
+      return raw===null ? porDefecto : JSON.parse(raw);
+    }catch(_){
+      return porDefecto;
+    }
+  }
+
+  function guardarJSON(clave,valor){
+    localStorage.setItem(clave,JSON.stringify(valor));
+  }
+
   function obtenerPlayerId(){
     let id=localStorage.getItem("docerePlayerId");
     if(!id){
@@ -95,6 +108,8 @@
   globalThis.limpiarAlias=limpiarAlias;
   globalThis.abrirPerfil=abrirPerfil;
   globalThis.guardarPerfil=guardarPerfil;
+  globalThis.leerJSON=leerJSON;
+  globalThis.guardarJSON=guardarJSON;
   globalThis.irInicio=irInicio;
   globalThis.mostrarAlias=actualizarAliases;
   globalThis.actualizarAliases=actualizarAliases;
