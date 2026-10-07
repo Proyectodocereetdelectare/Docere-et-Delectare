@@ -63,7 +63,7 @@ function adelante(){
   if(i<partida.length-1){i++;mostrar()}else{resultado()}
 }
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else{resultado()}}
-function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=Number((puntos/partida.length*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+partida.length+' actividades.';actualizarRankingLocal()}
+function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=Number((puntos/partida.length*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+partida.length+' actividades.'}
 function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 mostrarAlias();if(!alias())setTimeout(abrirPerfil,300);
 
