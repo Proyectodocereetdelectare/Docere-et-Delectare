@@ -991,3 +991,5 @@ function volverMorfologia() {
 
 
 window.comparar=comparar;window.crearPartida=crearPartida;window.iniciarBloque=iniciarBloque;window.mostrarActividad=mostrarActividad;window.construirInterfaz=construirInterfaz;window.seleccionarMCQ=seleccionarMCQ;window.comprobar=comprobar;window.obtenerSolucion=obtenerSolucion;window.mostrarFeedback=mostrarFeedback;window.mostrarAviso=mostrarAviso;window.siguientePregunta=siguientePregunta;window.mostrarResultado=mostrarResultado;window.repetirBloque=repetirBloque;window.volverMenu=volverMenu;window.volverMorfologia=volverMorfologia;
+
+window.adelante=adelante;
