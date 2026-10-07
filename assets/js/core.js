@@ -57,7 +57,14 @@
   function actualizarRankingLocal(){
     const id=obtenerPlayerId();
     const alias=obtenerAlias() || "Invitado";
-    const progreso=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
+    let progreso=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
+    if(Array.isArray(progreso)){
+      progreso={
+        mejor:progreso.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),
+        puntos:progreso.reduce((s,x)=>s+Number(x.aciertos||0)*10,0)
+      };
+    }
+    if(!progreso||typeof progreso!=="object")progreso={mejor:0,puntos:0};
     let ranking=leerJSON(DOCERE_STORAGE.RANKING,[]);
     if(!Array.isArray(ranking))ranking=[];
     const registro={
