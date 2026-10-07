@@ -140,22 +140,6 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 let seccionActual='', partida=[], indice=0, aciertos=0, respondida=false, preguntaActual=null;
 
 
-function asegurarIdentidad(){
- let id=localStorage.getItem('docerePlayerId');
- if(!id){id=crypto.randomUUID?crypto.randomUUID():'p_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);localStorage.setItem('docerePlayerId',id)}
- return id;
-}
-function actualizarAlias(){
- const a=getAlias();
- document.getElementById('aliasInicio').textContent=a;
- document.getElementById('aliasActividad').textContent=a;
- document.getElementById('aliasResultado').textContent=a;
-}
-
-
-function normalizar(v){
- return String(v||'').replace(/<[^>]*>/g,'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[¡!¿?.,;:()"'”“]/g,' ').replace(/\s+/g,' ').trim();
-}
 function acepta(v, respuestas){
  const x=normalizar(v);
  return (Array.isArray(respuestas)?respuestas:[respuestas]).some(r=>normalizar(r)===x);
@@ -376,7 +360,7 @@ function volverMenu(){
  actualizarAlias();
 }
 
-asegurarIdentidad();actualizarAlias();
+obtenerPlayerId();actualizarAliases();
 </script>
 </body>
 </html,
