@@ -352,19 +352,6 @@ function terminar(){
  document.getElementById('notaFinal').textContent=nota.toFixed(1).replace('.',',')+' / 10';
  document.getElementById('detalleFinal').textContent=nota>=9?'Excelente análisis sintáctico.':nota>=7?'Buen trabajo: sigue afinando las funciones y las relaciones entre proposiciones.':nota>=5?'Has superado la partida; revisa los errores para consolidar el análisis.':'Conviene repasar las pruebas de identificación y volver a intentarlo.';
 }
-function
- if(Array.isArray(p)){
-   p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};
- }
- if(!p||typeof p!=='object')p={partidas:0,mejor:0,puntos:0,historial:[]};
- p.partidas=Number(p.partidas||0)+1;
- p.puntos=Number(p.puntos||0)+aciertos*10;
- p.mejor=Math.max(Number(p.mejor||0),nota);
- p.historial=Array.isArray(p.historial)?p.historial:[];
- p.historial.unshift({playerId:obtenerPlayerId(),alias:obtenerAlias()||'Invitado',bloque:'Sintaxis · '+seccionActual,aciertos,nota,fecha:new Date().toISOString()});
- p.historial=p.historial.slice(0,30);
- guardarJSON(DOCERE_STORAGE.PROGRESO,p);
-}
 function repetir(){iniciarSeccion(seccionActual)}
 function volverMenu(){
  document.getElementById('actividad').style.display='none';
