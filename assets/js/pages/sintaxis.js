@@ -198,3 +198,5 @@ function volverMenu(){
  document.getElementById('resultado').style.display='none';
  document.getElementById('menu').style.display='block';
 }
+
+window.adelante=adelante;
