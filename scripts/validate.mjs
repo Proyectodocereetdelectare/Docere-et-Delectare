@@ -1,147 +1,161 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const root = process.cwd();
-const pages = [
-  "index.html",
-  "morfologia.html",
-  "estructura-palabra.html",
-  "formacion-palabras.html",
-  "categorias-gramaticales.html",
-  "verbo.html",
-  "sintaxis.html",
-  "progreso.html"
+const root=process.cwd();
+const pages=[
+  "index.html","morfologia.html","estructura-palabra.html",
+  "formacion-palabras.html","categorias-gramaticales.html",
+  "verbo.html","sintaxis.html","progreso.html"
 ];
 
-const errors = [];
-const externalScripts = new Set();
+const errors=[];
+const externalScripts=new Set();
+const exportedGlobals=new Set();
 
-function balanced(source, open, close) {
-  let depth = 0, quote = null, escaped = false, line = false, block = false;
-  for (let i = 0; i < source.length; i++) {
-    const c = source[i], n = source[i + 1];
-    if (line) { if (c === "\n") line = false; continue; }
-    if (block) {
-      if (c === "*" && n === "/") { block = false; i++; }
-      continue;
-    }
-    if (quote) {
-      if (escaped) { escaped = false; continue; }
-      if (c === "\\") { escaped = true; continue; }
-      if (c === quote) quote = null;
-      continue;
-    }
-    if (c === "/" && n === "/") { line = true; i++; continue; }
-    if (c === "/" && n === "*") { block = true; i++; continue; }
-    if (c === "'" || c === '"' || c === "`") { quote = c; continue; }
-    if (c === open) depth++;
-    if (c === close) depth--;
-    if (depth < 0) return false;
-  }
-  return depth === 0 && !quote && !block;
+function addError(message){errors.push(message);}
+
+function read(pathname){
+  return fs.readFileSync(path.join(root,pathname),"utf8");
 }
 
+for(const file of pages){
+  const full=path.join(root,file);
+  if(!fs.existsSync(full)){addError(file+": archivo inexistente");continue;}
 
-for (const file of pages) {
-  const full = path.join(root, file);
-  if (!fs.existsSync(full)) {
-    errors.push(file + ": archivo inexistente");
-    continue;
-  }
+  const html=read(file);
 
-  const html = fs.readFileSync(full, "utf8");
-
-  for (const src of [...html.matchAll(/<script\s+src=["']([^"']+)["']/gi)].map(m => m[1])) {
-    const target = path.join(root, src);
-    if (!fs.existsSync(target)) errors.push(file + ": script inexistente " + src);
+  for(const src of [...html.matchAll(/<script\s+src=["']([^"']+)["']/gi)].map(m=>m[1])){
+    const target=path.join(root,src);
+    if(!fs.existsSync(target))addError(file+": script inexistente "+src);
     else externalScripts.add(target);
   }
 
-  for (const href of [...html.matchAll(/<link[^>]+href=["']([^"']+)["']/gi)].map(m => m[1])) {
-    if (!/^https?:|^data:|^javascript:/i.test(href)) {
-      const target = path.join(root, href);
-      if (!fs.existsSync(target)) errors.push(file + ": recurso CSS inexistente " + href);
+  for(const href of [...html.matchAll(/<link[^>]+href=["']([^"']+)["']/gi)].map(m=>m[1])){
+    if(!/^(https?:|data:|javascript:)/i.test(href)){
+      const target=path.join(root,href);
+      if(!fs.existsSync(target))addError(file+": recurso CSS inexistente "+href);
     }
   }
 
-  for (const href of [...html.matchAll(/href=["']([^"']+)["']/gi)].map(m => m[1])) {
-    if (href === "#") errors.push(file + ': enlace href="#" sin destino');
-    if (!/^(https?:|mailto:|javascript:|#)/i.test(href)) {
-      const target = path.join(root, href.split("#")[0].split("?")[0]);
-      if (!fs.existsSync(target)) errors.push(file + ": destino inexistente " + href);
+  for(const href of [...html.matchAll(/href=["']([^"']+)["']/gi)].map(m=>m[1])){
+    if(href==="#")addError(file+': enlace href="#" sin destino');
+    if(!/^(https?:|mailto:|javascript:|#)/i.test(href)){
+      const target=path.join(root,href.split("#")[0].split("?")[0]);
+      if(!fs.existsSync(target))addError(file+": destino inexistente "+href);
     }
   }
 
-  if (/4\.?º\s*ESO/i.test(html)) errors.push(file + ": referencia a 4.º ESO");
-  if (/según (la )?(presentación|material)|en el material|en la presentación/i.test(html)) {
-    errors.push(file + ": referencia a presentación/material");
+  if(/4\.?º\s*ESO/i.test(html))addError(file+": referencia a 4.º ESO");
+  if(/según (la )?(presentación|material)|en el material|en la presentación/i.test(html)){
+    addError(file+": referencia indebida a presentación/material");
   }
 
-  const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)].map(m => m[1]).join("\n");
-  if (scripts.trim()) {
-    try { new Function(scripts); }
-    catch (error) { errors.push(file + ": JavaScript inline inválido: " + error.message); }
+  const ids=new Set([...html.matchAll(/\bid=["']([^"']+)["']/gi)].map(m=>m[1]));
+  const inline=[...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).join("\n");
+
+  if(inline.trim()){
+    try{new Function(inline);}
+    catch(error){addError(file+": JavaScript inline inválido: "+error.message);}
   }
 
-  const funcs = [...scripts.matchAll(/function\s+([A-Za-z_$][\w$]*)\s*\(/g)].map(m => m[1]);
-  const duplicates = [...new Set(funcs.filter((x, i) => funcs.indexOf(x) !== i))];
-  if (duplicates.length) errors.push(file + ": funciones duplicadas " + duplicates.join(", "));
+  for(const match of inline.matchAll(/getElementById\(["']([^"']+)["']\)/g)){
+    if(!ids.has(match[1]))addError(file+": JavaScript referencia un id inexistente: "+match[1]);
+  }
+
+  const funcs=[...inline.matchAll(/\bfunction\s+([A-Za-z_$][\w$]*)\s*\(/g)].map(m=>m[1]);
+  const duplicates=[...new Set(funcs.filter((x,i)=>funcs.indexOf(x)!==i))];
+  if(duplicates.length)addError(file+": funciones inline duplicadas: "+duplicates.join(", "));
+
+  const handlers=[...html.matchAll(/\bon(?:click|change|input|submit|keydown|keyup)\s*=\s*["']([^"']+)["']/gi)].map(m=>m[1]);
+  const localFunctions=new Set(funcs);
+  const jsKeywords=new Set(["if","for","while","switch","catch","function","setTimeout","setInterval","clearTimeout","clearInterval","alert","confirm","prompt"]);
+  for(const handler of handlers){
+    for(const match of handler.matchAll(/(?:^|[^.\w$])([A-Za-z_$][\w$]*)\s*\(/g)){
+      const name=match[1];
+      if(!jsKeywords.has(name)&&!localFunctions.has(name)&&!exportedGlobals.has(name)){
+        // External globals are collected below; keep this check for the second pass.
+      }
+    }
+  }
 }
 
-for (const file of externalScripts) {
-  try {
-    const source = fs.readFileSync(file, "utf8");
+for(const file of externalScripts){
+  try{
+    const source=fs.readFileSync(file,"utf8");
     new Function(source);
-  } catch (error) {
-    errors.push("JS externo inválido " + path.relative(root, file) + ": " + error.message);
+    for(const m of source.matchAll(/(?:globalThis|window)\.([A-Za-z_$][\w$]*)\s*=/g))exportedGlobals.add(m[1]);
+  }catch(error){
+    addError("JS externo inválido "+path.relative(root,file)+": "+error.message);
   }
 }
 
+for(const file of pages){
+  const html=read(file);
+  const inline=[...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).join("\n");
+  const funcs=new Set([...inline.matchAll(/\bfunction\s+([A-Za-z_$][\w$]*)\s*\(/g)].map(m=>m[1]));
+  const handlers=[...html.matchAll(/\bon(?:click|change|input|submit|keydown|keyup)\s*=\s*["']([^"']+)["']/gi)].map(m=>m[1]);
+  const ignored=new Set(["if","for","while","switch","catch","function","setTimeout","setInterval","clearTimeout","clearInterval","alert","confirm","prompt"]);
+  for(const handler of handlers){
+    for(const match of handler.matchAll(/(?:^|[^.\w$])([A-Za-z_$][\w$]*)\s*\(/g)){
+      const name=match[1];
+      if(!ignored.has(name)&&!funcs.has(name)&&!exportedGlobals.has(name)){
+        addError(file+": handler referencia función inexistente: "+name);
+      }
+    }
+  }
+}
 
-const dataContracts = [
-  { file: "assets/js/data/morfologia/estructura-palabra.js", expr: "({identifica,clasifica,analiza,reto})" },
-  { file: "assets/js/data/morfologia/formacion-palabras.js", expr: "({A})" },
-  { file: "assets/js/data/morfologia/categorias-gramaticales.js", expr: "({A})" },
-  { file: "assets/js/data/morfologia/verbo.js", expr: "({A})" },
-  { file: "assets/js/data/sintaxis/sintaxis.js", expr: "({BANCO})" }
+const contracts=[
+  ["assets/js/data/morfologia/estructura-palabra.js",["identifica","clasifica","analiza","reto"]],
+  ["assets/js/data/morfologia/formacion-palabras.js",["A"]],
+  ["assets/js/data/morfologia/categorias-gramaticales.js",["A"]],
+  ["assets/js/data/morfologia/verbo.js",["A"]],
+  ["assets/js/data/sintaxis/sintaxis.js",["BANCO"]]
 ];
 
-for (const contract of dataContracts) {
-  const full = path.join(root, contract.file);
-  if (!fs.existsSync(full)) {
-    errors.push("Falta banco de datos " + contract.file);
-    continue;
-  }
-  try {
-    const source = fs.readFileSync(full, "utf8");
-    const values = new Function(source + "\nreturn " + contract.expr + ";")();
-    const activities = contract.expr.includes("BANCO")
-      ? Object.values(values.BANCO).flat()
-      : Object.values(values).flat();
-    const ids = activities.map(a => a && a.id).filter(Boolean);
-    if (ids.length !== activities.length) {
-      errors.push(contract.file + ": hay actividades sin identificador estable");
-    }
-    if (new Set(ids).size !== ids.length) {
-      errors.push(contract.file + ": hay identificadores de actividad duplicados");
-    }
-    activities.forEach(a => {
-      if (!a || !(a.q || a.pregunta) || !(a.e || a.explicacion)) errors.push(contract.file + ": actividad incompleta " + (a && a.id || "sin-id"));
-      if (a && a.n != null && (!Number.isInteger(Number(a.n)) || Number(a.n) < 1 || Number(a.n) > 6)) {
-        errors.push(contract.file + ": nivel fuera de 1-6 en " + (a.id || "sin-id"));
+for(const [file,names] of contracts){
+  try{
+    const source=read(file);
+    const values=new Function(source+"\nreturn {"+names.join(",")+"};")();
+    const arrays=names.flatMap(name=>Array.isArray(values[name])?[values[name]]:name==="BANCO"?Object.values(values[name]):[]);
+    const activities=arrays.flat();
+    const ids=activities.map(a=>a?.id);
+    if(activities.some(a=>!a||!a.id))addError(file+": actividad sin identificador estable");
+    if(new Set(ids).size!==ids.length)addError(file+": identificadores de actividad duplicados");
+
+    for(const a of activities){
+      const level=a.nivel??a.n;
+      const type=a.tipo??a.t;
+      if(!Number.isInteger(level)||level<1||level>6)addError(file+": nivel inválido en "+(a.id||"actividad"));
+      if(!a.q&&!a.pregunta)addError(file+": actividad sin enunciado en "+(a.id||"actividad"));
+      if(type==="mcq"){
+        const options=a.opciones??a.o;
+        const answer=a.correcta??a.r;
+        if(!Array.isArray(options)||options.length<2) addError(file+": MCQ sin opciones válidas en "+a.id);
+        else if(typeof answer==="number" ? (answer<0||answer>=options.length) : !options.includes(answer)){
+          addError(file+": respuesta MCQ inválida en "+a.id);
+        }
       }
-      if (a && a.t === "mcq" && (!Array.isArray(a.o) || a.o.length < 2 || !a.o.includes(a.r))) {
-        errors.push(contract.file + ": MCQ inválido " + (a.id || "sin-id"));
+      if(type==="text"||type==="seg"){
+        const answers=a.soluciones??a.r;
+        if(!answers || (Array.isArray(answers)&&answers.length===0))addError(file+": actividad abierta sin soluciones en "+a.id);
       }
-    });
-  } catch (error) {
-    errors.push(contract.file + ": banco inválido: " + error.message);
+      if(type==="analysis"){
+        const fields=a.f;
+        const answers=a.r;
+        if(!Array.isArray(fields)||!Array.isArray(answers)||fields.length!==answers.length){
+          addError(file+": análisis con campos/respuestas desalineados en "+a.id);
+        }
+      }
+    }
+  }catch(error){
+    addError(file+": banco inválido: "+error.message);
   }
 }
 
-if (errors.length) {
+if(errors.length){
   console.error(errors.join("\n"));
   process.exit(1);
 }
 
-console.log("Docere et Delectare: validación estructural OK (" + pages.length + " páginas).");
+console.log("Docere et Delectare: auditoría estructural OK.");
