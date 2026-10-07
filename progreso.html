@@ -51,11 +51,6 @@ h2{margin-top:0}
 <h2>🧩 Actividad reciente</h2>
 <div id="historial"></div>
 </div>
-<div class="panel">
-<h2>🏆 Clasificación</h2>
-<div id="rankingLocal"></div>
-<div class="aviso" style="margin-top:15px"><strong>Clasificación global:</strong> todavía no está conectada a un servidor común. La clasificación que ves aquí funciona entre los jugadores que hayan usado este dispositivo, sin cuentas ni datos personales.</div>
-</div>
 <div style="text-align:center">
 <a class="volver" href="index.html">← Volver al inicio</a>
 </div>
@@ -90,28 +85,8 @@ h.innerHTML='<table class="tabla"><thead><tr><th>Bloque</th><th>Aciertos</th><th
 p.historial.map(x=>'<tr><td>'+escapeHtml(x.bloque||"Actividad")+'</td><td>'+Number(x.aciertos||0)+'</td><td>'+Number(x.nota||0).toFixed(1).replace(".",",")+'</td></tr>').join("")+
 '</tbody></table>';
 }
-function cargarRanking(){
-const actualId=obtenerPlayerId();
-const actualAlias=obtenerAlias()||"Invitado";
-let ranking=leerJSON(DOCERE_STORAGE.RANKING,[]);
-let p=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
-if(Array.isArray(p))p={mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0)};
-if(!p||typeof p!=="object")p={mejor:0,puntos:0};
-if(!Array.isArray(ranking))ranking=[];
-const idx=ranking.findIndex(x=>x.playerId===actualId);
-const registro={playerId:actualId,alias:actualAlias,mejor:Number(p.mejor||0),puntos:Number(p.puntos||0)};
-if(idx>=0)ranking[idx]=registro;else ranking.push(registro);
-ranking.sort((a,b)=>Number(b.mejor||0)-Number(a.mejor||0)||Number(b.puntos||0)-Number(a.puntos||0));
-ranking=ranking.slice(0,20);
-localStorage.setItem(DOCERE_STORAGE.RANKING,JSON.stringify(ranking));
-const el=document.getElementById("rankingLocal");
-el.innerHTML='<table class="tabla"><thead><tr><th>#</th><th>Jugador/a</th><th>Mejor nota</th><th>Puntos</th></tr></thead><tbody>'+
-ranking.map((x,i)=>'<tr><td>'+(i+1)+'</td><td>'+escapeHtml(x.alias||"Invitado")+(x.playerId===actualId?' <strong>· tú</strong>':'')+'</td><td>'+Number(x.mejor||0).toFixed(1).replace(".",",")+'</td><td>'+Number(x.puntos||0)+'</td></tr>').join("")+
-'</tbody></table>';
-}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
 cargar();
-cargarRanking();
 </script>
 </body>
 </html>
