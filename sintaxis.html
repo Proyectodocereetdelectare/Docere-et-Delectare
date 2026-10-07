@@ -151,17 +151,26 @@ function seleccionar(){
  const arr=[...BANCO[seccionActual]];
  const salida=[];
  const tiposInter=['select','drag','build','transform','chain'];
+ const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};
+ const sacar=lista=>lista.length?lista.splice(Math.floor(Math.random()*lista.length),1)[0]:null;
+
  for(let n=1;n<=6;n++){
    const nivel=arr.filter(a=>a.n===n);
+   const objetivo=Math.min(objetivos[n],nivel.length);
    const inter=nivel.filter(a=>tiposInter.includes(a.t));
-   const normal=nivel.filter(a=>!tiposInter.includes(a.t));
-   const sacar=lista=>{if(!lista.length)return null;return lista.splice(Math.floor(Math.random()*lista.length),1)[0]};
-   const primero=sacar(inter)||sacar(nivel);
-   if(primero)salida.push(primero);
-   const segundo=sacar(normal.filter(a=>a!==primero))||sacar(nivel.filter(a=>a!==primero));
-   if(segundo)salida.push(segundo);
+   const elegidas=[];
+   const primeraInter=sacar(inter);
+   if(primeraInter)elegidas.push(primeraInter);
+
+   while(elegidas.length<objetivo){
+     const disponibles=nivel.filter(a=>!elegidas.includes(a));
+     const siguiente=sacar(disponibles);
+     if(!siguiente)break;
+     elegidas.push(siguiente);
+   }
+   salida.push(...elegidas);
  }
- return salida;
+ return mezclar(salida);
 }
 function iniciarSeccion(s){
  seccionActual=s;
