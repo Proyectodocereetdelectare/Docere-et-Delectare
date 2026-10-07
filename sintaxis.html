@@ -38,13 +38,13 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 .seleccionable{padding:12px 16px;border:2px solid #ddd5c8;border-radius:12px;background:#f7f4ee;font:inherit;cursor:pointer;transition:.2s}
 .seleccionable:hover{transform:translateY(-2px)}
 .seleccionable.seleccionada{border-color:#9b9183;background:#eee8dc}
-.arrastre{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:850px;margin:20px auto;text-align:left}
-.arrastre-elementos,.zonas{padding:16px;background:#f7f4ee;border-radius:14px;min-height:120px}
-.arrastre-elemento{display:inline-block;margin:6px;padding:10px 13px;border-radius:10px;background:#fff;border:2px solid #ddd5c8;cursor:grab}
-.zona-arrastre{padding:14px;margin:9px 0;border:2px dashed #cfc5b5;border-radius:12px;min-height:58px;background:#fff}
-.zona-arrastre strong{display:block;margin-bottom:7px}
-.zona-arrastre.activa{border-color:#8f8678;background:#eee8dc}
-.elemento-colocado{display:inline-block;margin:4px;padding:7px 10px;border-radius:8px;background:#eee8dc;cursor:pointer}
+
+
+
+
+
+
+
 .construccion{max-width:850px;margin:18px auto}
 .piezas{display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin:15px 0}
 .pieza{padding:10px 14px;border:2px solid #ddd5c8;border-radius:10px;background:#f7f4ee;font:inherit;cursor:pointer}
@@ -52,7 +52,7 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 .pieza-usada{display:inline-block;margin:4px;padding:7px 10px;border-radius:8px;background:#eee8dc}
 .paso-actividad{padding:16px;margin:15px auto;background:#f7f4ee;border-radius:14px;max-width:850px}
 .paso-titulo{font-weight:bold;margin-bottom:10px}
-@media(max-width:700px){.arrastre{grid-template-columns:1fr}.seleccionables{gap:7px}.seleccionable{padding:10px 12px}}
+@media(max-width:700px){.seleccionables{gap:7px}.seleccionable{padding:10px 12px}}
 .campo{width:100%;max-width:700px;padding:13px;margin:8px auto;border:2px solid #ddd5c8;border-radius:10px;font-family:Georgia,"Times New Roman",serif;font-size:17px;display:block}
 .campo:focus{outline:none;border-color:#9b9183}
 .etiqueta-campo{display:block;margin-top:15px;font-weight:bold}
@@ -138,7 +138,7 @@ function escapar(s){
 function seleccionar(){
  const arr=[...BANCO[seccionActual]];
  const salida=[];
- const tiposInter=['select','drag','build','transform','chain'];
+ const tiposInter=['select','build','transform','chain'];
  const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};
  const sacar=lista=>lista.length?lista.splice(Math.floor(Math.random()*lista.length),1)[0]:null;
 
@@ -183,7 +183,7 @@ function render(){
  if(preguntaActual.t==='mcq') renderMcq(c);
  else if(preguntaActual.t==='text') renderText(c);
  else if(preguntaActual.t==='select') renderSelect(c);
- else if(preguntaActual.t==='drag') renderDrag(c);
+
  else if(preguntaActual.t==='build') renderBuild(c);
  else if(preguntaActual.t==='transform') renderTransform(c);
  else if(preguntaActual.t==='chain') renderChain(c);
@@ -208,26 +208,6 @@ function elegirSeleccionable(i){
  if(respondida)return;
  document.querySelectorAll('.seleccionable').forEach((b,j)=>{b.dataset.seleccion=(j===i?'1':'0');b.classList.toggle('seleccionada',j===i);});
 }
-function renderDrag(c){
- c.innerHTML='<div class="arrastre"><div class="arrastre-elementos"><strong>Elementos</strong><div id="elementosArrastre">'+preguntaActual.items.map((x,i)=>'<span class="arrastre-elemento" draggable="true" data-i="'+i+'" ondragstart="iniciarArrastre(event,'+i+')" onclick="seleccionarArrastre('+i+')">'+x.t+'</span>').join('')+'</div></div><div class="zonas"><strong>Funciones</strong>'+preguntaActual.cats.map((cat,i)=>'<div class="zona-arrastre" data-cat="'+escapar(cat)+'" ondragover="permitirSoltar(event)" ondrop="soltarCategoria(event)" onclick="soltarPorClic('+i+')"><strong>'+cat+'</strong><div id="zona-'+i+'"></div></div>').join('')+'</div></div><div class="ayuda">Puedes <strong>arrastrar</strong> cada elemento a su función. En móvil, también puedes pulsar un elemento y después la categoría.</div>';
-}
-let arrastreSeleccionado=null;
-function iniciarArrastre(e,i){arrastreSeleccionado=i;e.dataTransfer.setData('text/plain',String(i));}
-function seleccionarArrastre(i){if(respondida)return;arrastreSeleccionado=i;document.querySelectorAll('.arrastre-elemento').forEach((el,j)=>el.classList.toggle('seleccionada',j===i));}
-function permitirSoltar(e){e.preventDefault();e.currentTarget.classList.add('activa');}
-function soltarCategoria(e){e.preventDefault();const cat=e.currentTarget.dataset.cat;const i=Number(e.dataTransfer.getData('text/plain'));colocarEnCategoria(i,cat);}
-function soltarPorClic(catIndex){if(arrastreSeleccionado===null||arrastreSeleccionado===undefined)return;const cat=preguntaActual.cats[catIndex];colocarEnCategoria(arrastreSeleccionado,cat);}
-function colocarEnCategoria(i,cat){
- if(respondida)return;
- const el=document.querySelector('.arrastre-elemento[data-i="'+i+'"]');if(!el)return;
- const item=preguntaActual.items[i];
- const anterior=document.querySelector('.elemento-colocado[data-i="'+i+'"]');if(anterior)anterior.remove();
- document.querySelectorAll('.zona-arrastre').forEach(z=>z.classList.remove('activa'));
- const zona=[...document.querySelectorAll('.zona-arrastre')].find(z=>z.dataset.cat===cat);if(!zona)return;
- const nuevo=document.createElement('span');nuevo.className='elemento-colocado';nuevo.textContent=item.t;nuevo.dataset.i=i;nuevo.dataset.cat=cat;nuevo.onclick=()=>quitarDeCategoria(i,nuevo);
- zona.querySelector('div').appendChild(nuevo);el.style.display='none';arrastreSeleccionado=null;
-}
-function quitarDeCategoria(i,nuevo){if(respondida)return;const el=document.querySelector('.arrastre-elemento[data-i="'+i+'"]');if(el)el.style.display='inline-block';nuevo.remove();}
 function renderBuild(c){
  c.innerHTML='<div class="construccion"><div class="piezas">'+preguntaActual.piezas.map((x,i)=>'<button type="button" class="pieza" data-i="'+i+'" onclick="usarPieza('+i+')">'+x+'</button>').join('')+'</div><div id="construida" class="construida">Pulsa las piezas en el orden en que deben aparecer.</div><button class="boton" type="button" onclick="reiniciarConstruccion()">↺ Reiniciar</button></div>';
 }
@@ -279,10 +259,6 @@ function comprobar(){
      if(b.dataset.seleccion==='1'&&!correcto)b.classList.add('incorrecta');
      b.disabled=true;
    });
- }else if(preguntaActual.t==='drag'){
-   const colocados=[...document.querySelectorAll('.elemento-colocado')];
-   if(colocados.length!==preguntaActual.items.length){mostrarFeedback('Coloca todos los elementos antes de comprobar.','error');return}
-   correcto=colocados.every(el=>normalizar(preguntaActual.items[Number(el.dataset.i)].f)===normalizar(el.dataset.cat));
  }else if(preguntaActual.t==='build'){
    if(construccion.length!==preguntaActual.piezas.length){mostrarFeedback('Coloca todas las piezas antes de comprobar.','error');return}
    correcto=construccion.map(i=>preguntaActual.piezas[i]).join('|')===preguntaActual.r;
