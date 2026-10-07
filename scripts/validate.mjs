@@ -216,11 +216,11 @@ for(const [file,names] of contracts){
 
 // Pruebas de comportamiento estáticas: protegen las reglas críticas del motor sin exigir navegador.
 const behaviorContracts=[
-  ["sintaxis.html",["omitidas++","Respuesta correcta:","function adelante("]],
-  ["estructura-palabra.html",["omitidas++","Sin responder:"]],
-  ["formacion-palabras.html",["omitidas++","Respuesta correcta:","Sin responder:"]],
-  ["categorias-gramaticales.html",["omitidas++","Respuesta correcta:","Sin responder:"]],
-  ["verbo.html",["omitidas++","Respuesta correcta:","Sin responder:"]]
+  ["assets/js/pages/sintaxis.js",["omitidas++","Respuesta correcta:","function adelante("]],
+  ["assets/js/pages/estructura-palabra.js",["omitidas++","Sin responder:"]],
+  ["assets/js/pages/formacion-palabras.js",["omitidas++","Respuesta correcta:","Sin responder:"]],
+  ["assets/js/pages/categorias-gramaticales.js",["omitidas++","Respuesta correcta:","Sin responder:"]],
+  ["assets/js/pages/verbo.js",["omitidas++","Respuesta correcta:","Sin responder:"]]
 ];
 for(const [file,patterns] of behaviorContracts){
   const source=read(file);
