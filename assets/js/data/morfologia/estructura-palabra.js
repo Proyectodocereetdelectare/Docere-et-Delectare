@@ -366,8 +366,8 @@ campos: [
 ],
 soluciones: {
 segmentacion: ["a- + terr- + -iz- + -ar", "a + terr + iz + ar"],
-lexema: ["bland", "bland-"],
-derivativos: ["re- + -ec-", "re + ec"],
+lexema: ["terr", "terr-"],
+derivativos: ["a- + -iz-", "a + iz"],
 tipo: ["parasintética", "parasintetica"]
 },
 explicacion: "Es parasintética porque presenta elementos a ambos lados del lexema y *terrizar no existe."
