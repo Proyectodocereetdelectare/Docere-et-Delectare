@@ -756,14 +756,14 @@ function comparar(respuesta, soluciones) {
 
 function obtenerProgreso() {
     return JSON.parse(
-        localStorage.getItem("docereProgreso") ||
+        localStorage.getItem(DOCERE_STORAGE.PROGRESO) ||
         '{"partidas":0,"mejor":0,"puntos":0,"historial":[]}'
     );
 }
 
 function guardarProgreso(progreso) {
     localStorage.setItem(
-        "docereProgreso",
+        DOCERE_STORAGE.PROGRESO,
         JSON.stringify(progreso)
     );
     actualizarRankingLocal();
@@ -924,7 +924,7 @@ function crearPartida(tipo) {
     if (tipo === "identifica") {
 
         const usadas =
-            leerJSON("identificaUsadas",[]);
+            leerJSON(DOCERE_STORAGE.ESTRUCTURA_IDENTIFICA,[]);
 
         const seleccion = [];
         const indicesSeleccionados = new Set();
@@ -971,7 +971,7 @@ function crearPartida(tipo) {
         );
 
         localStorage.setItem(
-            "identificaUsadas",
+            DOCERE_STORAGE.ESTRUCTURA_IDENTIFICA,
             JSON.stringify(
                 Array.from(
                     new Set(
@@ -989,7 +989,7 @@ function crearPartida(tipo) {
     if (tipo === "clasifica") {
 
         const usadas =
-            leerJSON("clasificaUsadas",[]);
+            leerJSON(DOCERE_STORAGE.ESTRUCTURA_CLASIFICA,[]);
 
         const seleccion = [];
         const indicesSeleccionados = new Set();
@@ -1027,7 +1027,7 @@ function crearPartida(tipo) {
         );
 
         localStorage.setItem(
-            "clasificaUsadas",
+            DOCERE_STORAGE.ESTRUCTURA_CLASIFICA,
             JSON.stringify(
                 Array.from(
                     new Set(
