@@ -138,7 +138,7 @@ for(const [file,names] of contracts){
           addError(file+": respuesta MCQ inválida en "+a.id);
         }
       }
-      if(type==="text"||type==="seg"){
+      if(type==="text"||type==="seg"||type==="texto"||type==="segmentacion"){
         const answers=a.soluciones??a.r;
         if(!answers || (Array.isArray(answers)&&answers.length===0))addError(file+": actividad abierta sin soluciones en "+a.id);
       }
@@ -147,6 +147,18 @@ for(const [file,names] of contracts){
         const answers=a.r;
         if(!Array.isArray(fields)||!Array.isArray(answers)||fields.length!==answers.length){
           addError(file+": análisis con campos/respuestas desalineados en "+a.id);
+        }
+      }
+      if(type==="analisis"){
+        const fields=a.campos;
+        const answers=a.soluciones;
+        if(!Array.isArray(fields)||!answers||typeof answers!=="object"){
+          addError(file+": análisis sin campos/soluciones en "+a.id);
+        }else{
+          const keys=fields.map(x=>Array.isArray(x)?x[0]:x);
+          if(keys.some(k=>!Object.prototype.hasOwnProperty.call(answers,k))){
+            addError(file+": análisis con campos sin solución en "+a.id);
+          }
         }
       }
     }
