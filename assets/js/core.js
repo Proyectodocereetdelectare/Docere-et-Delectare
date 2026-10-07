@@ -8,7 +8,6 @@
   const DOCERE_STORAGE=Object.freeze({
     PLAYER_ID:"docerePlayerId",
     ALIAS:"docereAlias",
-    PROGRESO:"docereProgreso",
     ESTRUCTURA_IDENTIFICA:"identificaUsadas",
     ESTRUCTURA_CLASIFICA:"clasificaUsadas",
     FORMACION:"formacionUsadas",
