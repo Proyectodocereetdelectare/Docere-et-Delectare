@@ -750,7 +750,7 @@ function crearPartida(tipo){
 
 function iniciarBloque(tipo){
  bloqueActual=tipo;window.respuestaMCQ=undefined;window.respuestaClasificacion=undefined;
- actividadesActuales=crearPartida(tipo);actividadActual=0;puntuacion=0;
+ actividadesActuales=crearPartida(tipo);actividadActual=0;puntuacion=0;omitidas=0;
  document.getElementById("menu").style.display="none";document.getElementById("resultado").style.display="none";document.getElementById("actividad").style.display="block";mostrarActividad();
 }
 
