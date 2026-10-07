@@ -16,28 +16,6 @@ const pages = [
 const errors = [];
 const externalScripts = new Set();
 
-function balanced(source, open, close) {
-  let depth = 0, quote = null, escaped = false, line = false, block = false;
-  for (let i = 0; i < source.length; i++) {
-    const c = source[i], n = source[i + 1];
-    if (line) { if (c === "\n") line = false; continue; }
-    if (block) { if (c === "*" && n === "/") { block = false; i++; } continue; }
-    if (quote) {
-      if (escaped) { escaped = false; continue; }
-      if (c === "\\") { escaped = true; continue; }
-      if (c === quote) quote = null;
-      continue;
-    }
-    if (c === "/" && n === "/") { line = true; i++; continue; }
-    if (c === "/" && n === "*") { block = true; i++; continue; }
-    if (c === "'" || c === '"' || c === "`") { quote = c; continue; }
-    if (c === open) depth++;
-    if (c === close) depth--;
-    if (depth < 0) return false;
-  }
-  return depth === 0 && !quote && !block;
-}
-
 for (const file of pages) {
   const full = path.join(root, file);
   if (!fs.existsSync(full)) {
