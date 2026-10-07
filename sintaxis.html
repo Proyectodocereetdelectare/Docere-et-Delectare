@@ -98,7 +98,7 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 <div class="nivel" id="nivel"></div>
 <div id="pregunta"></div>
 <div id="contenido"></div>
-<div id="feedback" class="feedback"></div>
+<div id="feedback" class="feedback" aria-live="polite"></div>
 <button type="button" id="comprobar" class="boton boton-principal" onclick="comprobar()">Comprobar</button>
 <button type="button" id="siguiente" class="boton" onclick="siguiente()">Siguiente →</button>
 <button type="button" id="adelante" class="boton" onclick="adelante()">Adelante →</button>
@@ -106,7 +106,7 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 <button type="button" class="boton" onclick="volverMenu()">← Volver a Sintaxis</button>
 </section>
 
-<section class="panel" id="resultado">
+<section class="panel" id="resultado" aria-live="polite">
 <h2>🎉 Partida terminada</h2>
 <div class="estadisticas">
 <div class="estadistica"><strong id="resultadoAciertos">0</strong><span>aciertos</span></div>
