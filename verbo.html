@@ -123,7 +123,7 @@ function crearPartida(){
   let usados=leerJSON('verboUsadas',[]);
   const seleccion=[];
   const usadosPartida=new Set();
-  const niveles=seccionActual==='perifrasis' ? [1,2,3,4,5,6,7,8,5,6,7,8] : [1,1,2,2,3,3,4,4,5,5,6,6];
+  const niveles=[1,1,2,2,3,3,4,4,5,5,6,6];
   niveles.forEach(nivel=>{
     let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usados.includes(x.j));
     if(disponibles.length===0) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j));
