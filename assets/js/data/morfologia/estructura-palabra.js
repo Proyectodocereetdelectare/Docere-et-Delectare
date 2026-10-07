@@ -122,7 +122,7 @@ const clasifica = [
 
 const analiza = [
 
-{
+{id:"EP-S-001",
 tipo: "analisis",
 pregunta: "Realiza un análisis completo.",
 palabra: "relectura",
@@ -141,7 +141,7 @@ tipo: ["derivada"]
 explicacion: "re- es un prefijo derivativo, lect- es el lexema y -ura es un sufijo derivativo. Es una palabra derivada."
 },
 
-{
+{id:"EP-S-002",
 tipo: "analisis",
 pregunta: "Realiza un análisis completo.",
 palabra: "desigualdad",
@@ -160,7 +160,7 @@ tipo: ["derivada"]
 explicacion: "des- es prefijo, igual es el lexema y -dad es sufijo derivativo."
 },
 
-{
+{id:"EP-S-003",
 tipo: "analisis",
 pregunta: "Realiza un análisis completo.",
 palabra: "inutilidad",
@@ -179,7 +179,7 @@ tipo: ["derivada"]
 explicacion: "in- es un prefijo derivativo, útil es el lexema y -idad es un sufijo derivativo."
 },
 
-{
+{id:"EP-S-004",
 tipo: "analisis",
 pregunta: "Realiza un análisis completo.",
 palabra: "panecillos",
@@ -198,7 +198,7 @@ tipo: ["infijo", "elemento de enlace"]
 explicacion: "pan- es el lexema; -ec- funciona como elemento de enlace o infijo."
 },
 
-{
+{id:"EP-S-005",
 tipo: "analisis",
 pregunta: "Realiza un análisis completo.",
 palabra: "reblandecer",
@@ -217,7 +217,7 @@ tipo: ["parasintética", "parasintetica"]
 explicacion: "reblandecer presenta afijos delante y detrás del lexema y *blandecer no existe en castellano."
 },
 
-{
+{id:"EP-S-006",
 tipo: "analisis",
 pregunta: "Realiza un análisis completo.",
 palabra: "niñas",
@@ -236,7 +236,7 @@ tipo: ["simple"]
 explicacion: "niñ- es el lexema; -a indica género y -s número."
 },
 
-{
+{id:"EP-S-007",
 tipo: "analisis",
 pregunta: "Analiza los constituyentes de «geología».",
 palabra: "geología",
@@ -255,7 +255,7 @@ tipo: ["compuesto culto", "compuesta"]
 explicacion: "geo- significa tierra y -logía se relaciona con estudio. geología es un compuesto culto: combina los formantes grecolatinos geo- («tierra») y -logía («estudio»)."
 },
 
-{
+{id:"EP-S-008",
 tipo: "analisis",
 pregunta: "Analiza los formantes de «telescopio».",
 palabra: "telescopio",
@@ -274,7 +274,7 @@ tipo: ["compuesto culto", "compuesta"]
 explicacion: "tele- significa lejos y -scopio se relaciona con observar."
 },
 
-{
+{id:"EP-S-009",
 tipo: "analisis",
 pregunta: "Analiza los constituyentes de «cardiopatía».",
 palabra: "cardiopatía",
@@ -291,7 +291,7 @@ tipo: ["compuesto culto", "compuesta"]
 explicacion: "cardio- es un formante relacionado con el corazón."
 },
 
-{
+{id:"EP-S-010",
 tipo: "analisis",
 pregunta: "Analiza «libros».",
 palabra: "libros",
@@ -310,7 +310,7 @@ tipo: ["simple"]
 explicacion: "libr- es el lexema; -o indica género y -s número."
 },
 
-{
+{id:"EP-S-011",
 tipo: "analisis",
 pregunta: "Analiza «desafortunado».",
 palabra: "desafortunado",
@@ -333,7 +333,7 @@ explicacion: "La palabra contiene un prefijo y un sufijo derivativos."
 
 const reto = [
 
-{
+{id:"EP-S-012",
 tipo: "analisis",
 pregunta: "🏆 Reto de examen: realiza un análisis completo.",
 palabra: "desigualdades",
@@ -354,7 +354,7 @@ tipo: ["derivada"]
 explicacion: "des- y -dad son derivativos; -es es flexivo de número."
 },
 
-{
+{id:"EP-S-013",
 tipo: "analisis",
 pregunta: "🏆 Reto de examen: realiza un análisis completo.",
 palabra: "reblandecer",
@@ -373,7 +373,7 @@ tipo: ["parasintética", "parasintetica"]
 explicacion: "Es parasintética porque presenta elementos a ambos lados del lexema y *blandecer no existe."
 },
 
-{
+{id:"EP-S-014",
 tipo: "analisis",
 pregunta: "🏆 Reto de examen: realiza un análisis completo.",
 palabra: "geología",
@@ -392,7 +392,7 @@ tipo: ["compuesto culto", "compuesta"]
 explicacion: "geo- significa tierra y -logía se relaciona con estudio."
 },
 
-{
+{id:"EP-S-015",
 tipo: "analisis",
 pregunta: "🏆 Reto de examen: realiza un análisis completo.",
 palabra: "panecillos",
@@ -413,7 +413,7 @@ tipo: ["infijo", "elemento de enlace"]
 explicacion: "pan- es el lexema; -ec- es un elemento de enlace o infijo."
 },
 
-{
+{id:"EP-S-016",
 tipo: "mcq",
 pregunta: "Un alumno afirma: «reblandecer es derivada porque tiene un prefijo y un sufijo». ¿Qué debemos añadir para justificar que es parasintética?",
 opciones: [
@@ -426,7 +426,7 @@ correcta: 1,
 explicacion: "Para reconocer la parasíntesis hay que comprobar que aparecen elementos a ambos lados del lexema y que, al eliminar el prefijo, la forma resultante no existe como palabra independiente."
 },
 
-{
+{id:"EP-S-017",
 tipo: "mcq",
 pregunta: "¿Cuál de estas parejas contiene dos alomorfos del mismo lexema?",
 opciones: [
@@ -439,7 +439,7 @@ correcta: 0,
 explicacion: "sueñ- y soñ- son dos formas diferentes de un mismo lexema; por eso son alomorfos."
 },
 
-{
+{id:"EP-S-018",
 tipo: "texto",
 pregunta: "¿Qué significa el formante «cardio-»?",
 palabra: "cardiopatía",
@@ -447,7 +447,7 @@ soluciones: ["corazon", "corazón"],
 explicacion: "cardio- es un formante relacionado con el corazón."
 },
 
-{
+{id:"EP-S-019",
 tipo: "texto",
 pregunta: "¿Qué significa «geo-» en «geología»?",
 palabra: "geología",
@@ -455,7 +455,7 @@ soluciones: ["tierra"],
 explicacion: "geo- significa tierra."
 },
 
-{
+{id:"EP-S-020",
 tipo: "mcq",
 pregunta: "¿Cuál es el análisis correcto de «rojiblanco»?",
 opciones: [
@@ -468,7 +468,7 @@ correcta: 1,
 explicacion: "rojiblanco se forma mediante la unión de dos lexemas."
 },
 
-{
+{id:"EP-S-021",
 tipo: "mcq",
 pregunta: "¿Cuál de estas afirmaciones distingue correctamente una sigla de un acrónimo?",
 opciones: [
@@ -481,7 +481,7 @@ correcta: 0,
 explicacion: "La diferencia se aprecia en la pronunciación: las siglas suelen leerse letra por letra, como «ONG» («o-ene-ge»), mientras que los acrónimos pueden pronunciarse como palabras, como «ONU» («onu»)."
 },
 
-{
+{id:"EP-S-022",
 tipo: "mcq",
 pregunta: "¿Por qué «ONG» es una sigla?",
 opciones: [
@@ -494,7 +494,7 @@ correcta: 1,
 explicacion: "ONG procede de «Organización No Gubernamental» y se pronuncia letra por letra: «o-ene-ge». Por eso es una sigla."
 },
 
-{
+{id:"EP-S-023",
 tipo: "mcq",
 pregunta: "¿Por qué «ONU» puede considerarse un acrónimo?",
 opciones: [
@@ -507,7 +507,7 @@ correcta: 0,
 explicacion: "ONU procede de «Organización de las Naciones Unidas» y se pronuncia como una palabra: «onu». Por eso funciona como acrónimo."
 },
 
-{
+{id:"EP-S-024",
 tipo: "mcq",
 pregunta: "¿Qué diferencia fundamental hay entre un morfema flexivo y uno derivativo?",
 opciones: [
@@ -520,7 +520,7 @@ correcta: 0,
 explicacion: "Los flexivos expresan valores gramaticales; los derivativos son afijos no flexivos."
 },
 
-{
+{id:"EP-S-025",
 tipo: "analisis",
 pregunta: "🏆 Reto de examen: analiza «inutilidad».",
 palabra: "inutilidad",
