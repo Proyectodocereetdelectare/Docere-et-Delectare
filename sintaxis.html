@@ -131,6 +131,7 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 </div>
 </div>
 
+<script src="assets/js/core.js"></script>
 <script>
 const BANCO = {
 unidades: [
@@ -249,7 +250,7 @@ reto: [
 
 let seccionActual='', partida=[], indice=0, aciertos=0, respondida=false, preguntaActual=null;
 
-function getAlias(){return localStorage.getItem('docereAlias')||'Invitado'}
+
 function asegurarIdentidad(){
  let id=localStorage.getItem('docerePlayerId');
  if(!id){id=crypto.randomUUID?crypto.randomUUID():'p_'+Date.now()+'_'+Math.random().toString(36).slice(2,10);localStorage.setItem('docerePlayerId',id)}
@@ -261,17 +262,8 @@ function actualizarAlias(){
  document.getElementById('aliasActividad').textContent=a;
  document.getElementById('aliasResultado').textContent=a;
 }
-function abrirPerfil(desdeActividad=false){
- document.getElementById('aliasInput').value=getAlias()==='Invitado'?'':getAlias();
- document.getElementById('perfilModal').style.display='flex';
- document.getElementById('aliasInput').focus();
-}
-function guardarPerfil(){
- const v=document.getElementById('aliasInput').value.trim().replace(/[<>]/g,'').slice(0,20);
- if(v)localStorage.setItem('docereAlias',v);
- document.getElementById('perfilModal').style.display='none';
- actualizarAlias();
-}
+
+
 function normalizar(v){
  return String(v||'').replace(/<[^>]*>/g,'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[¡!¿?.,;:()"'”“]/g,' ').replace(/\s+/g,' ').trim();
 }
@@ -494,11 +486,7 @@ function volverMenu(){
  document.getElementById('menu').style.display='block';
  actualizarAlias();
 }
-function irInicio(){
- const enPartida=document.getElementById('actividad').style.display!=='none';
- if(enPartida && !confirm('Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?'))return;
- window.location.href='index.html';
-}
+
 asegurarIdentidad();actualizarAlias();
 </script>
 </body>
