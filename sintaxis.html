@@ -102,6 +102,7 @@ h1{font-size:44px;margin:0 0 10px}h2{font-size:28px;margin:0 0 18px}h3{margin-to
 <div id="feedback" class="feedback"></div>
 <button id="comprobar" class="boton boton-principal" onclick="comprobar()">Comprobar</button>
 <button id="siguiente" class="boton" onclick="siguiente()">Siguiente →</button>
+<button id="adelante" class="boton" onclick="adelante()">Adelante →</button>
 <br>
 <button class="boton" onclick="volverMenu()">← Volver a Sintaxis</button>
 </section>
@@ -422,6 +423,11 @@ function comprobar(){
 }
 function mostrarFeedback(t,c){
  const fb=document.getElementById('feedback');fb.className='feedback '+c;fb.innerHTML=t;
+}
+function adelante(){
+ if(indice>=partida.length-1){terminar();return}
+ indice++;
+ render();
 }
 function siguiente(){
  if(!respondida)return;
