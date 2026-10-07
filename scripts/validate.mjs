@@ -83,10 +83,6 @@ for (const file of pages) {
     catch (error) { errors.push(file + ": JavaScript inline inválido: " + error.message); }
   }
 
-  for (const [open, close, label] of [["{","}","llaves"],["[","]","corchetes"],["(",")","paréntesis"]]) {
-    if (!balanced(scripts, open, close)) errors.push(file + ": " + label + " desbalanceados");
-  }
-
   const funcs = [...scripts.matchAll(/function\s+([A-Za-z_$][\w$]*)\s*\(/g)].map(m => m[1]);
   const duplicates = [...new Set(funcs.filter((x, i) => funcs.indexOf(x) !== i))];
   if (duplicates.length) errors.push(file + ": funciones duplicadas " + duplicates.join(", "));
