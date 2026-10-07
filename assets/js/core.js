@@ -110,10 +110,8 @@
     const input=document.getElementById("aliasInput");
     if(!modal||!input)return;
     input.value=obtenerAlias();
-    if(forzar || !obtenerAlias()){
-      modal.style.display="flex";
-      setTimeout(()=>input.focus(),50);
-    }
+    modal.style.display="flex";
+    setTimeout(()=>input.focus(),50);
   }
 
   function guardarPerfil(){
