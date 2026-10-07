@@ -1490,9 +1490,7 @@ function crearPartida(tipo) {
     if (tipo === "identifica") {
 
         const usadas =
-            JSON.parse(
-                localStorage.getItem("identificaUsadas") || "[]"
-            );
+            leerJSON("identificaUsadas",[]);
 
         const seleccion = [];
         const indicesSeleccionados = new Set();
@@ -1557,9 +1555,7 @@ function crearPartida(tipo) {
     if (tipo === "clasifica") {
 
         const usadas =
-            JSON.parse(
-                localStorage.getItem("clasificaUsadas") || "[]"
-            );
+            leerJSON("clasificaUsadas",[]);
 
         const seleccion = [];
         const indicesSeleccionados = new Set();
