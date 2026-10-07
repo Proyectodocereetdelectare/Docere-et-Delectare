@@ -168,7 +168,7 @@ function iniciarSeccion(s){
  document.getElementById('menu').style.display='none';
  document.getElementById('resultado').style.display='none';
  document.getElementById('actividad').style.display='block';
- actualizarAlias(); render();
+ actualizarAliases(); render();
 }
 function render(){
  preguntaActual=partida[indice]; respondida=false; arrastreSeleccionado=null; construccion=[];
@@ -357,7 +357,7 @@ function volverMenu(){
  document.getElementById('actividad').style.display='none';
  document.getElementById('resultado').style.display='none';
  document.getElementById('menu').style.display='block';
- actualizarAlias();
+ actualizarAliases();
 }
 
 obtenerPlayerId();actualizarAliases();
