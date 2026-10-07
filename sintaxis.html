@@ -209,7 +209,8 @@ function render(){
  else renderAnalysis(c);
 }
 function renderMcq(c){
- c.innerHTML='<div class="opciones">'+preguntaActual.o.map((x,i)=>'<button type="button" class="opcion" data-i="'+i+'" onclick="elegir('+i+')">'+x+'</button>').join('')+'</div>';
+ const opciones=mezclar(preguntaActual.o.map((x,i)=>({x,i})));
+ c.innerHTML='<div class="opciones">'+opciones.map((op,j)=>'<button type="button" class="opcion" data-i="'+op.i+'" data-orden="'+j+'" onclick="elegir('+op.i+')">'+op.x+'</button>').join('')+'</div>';
 }
 function renderText(c){
  c.innerHTML='<label class="etiqueta-campo" for="respuesta">Escribe tu respuesta</label><input id="respuesta" class="campo" autocomplete="off" onkeydown="if(event.key===\'Enter\')comprobar()" placeholder="Escribe aquí...">';
@@ -257,7 +258,10 @@ function renderTransform(c){
  setTimeout(()=>document.getElementById('respuesta')?.focus(),50);
 }
 function renderChain(c){
- c.innerHTML='<div>'+preguntaActual.pasos.map((p,i)=>'<div class="paso-actividad"><div class="paso-titulo">'+(i+1)+'. '+p.label+'</div><div class="opciones">'+p.o.map((x,j)=>'<button type="button" class="opcion paso-opcion" data-paso="'+i+'" data-i="'+j+'" onclick="elegirPaso('+i+','+j+')">'+x+'</button>').join('')+'</div></div>').join('')+'</div>';
+ c.innerHTML='<div>'+preguntaActual.pasos.map((p,i)=>{
+   const opciones=mezclar(p.o.map((x,j)=>({x,j})));
+   return '<div class="paso-actividad"><div class="paso-titulo">'+(i+1)+'. '+p.label+'</div><div class="opciones">'+opciones.map(op=>'<button type="button" class="opcion paso-opcion" data-paso="'+i+'" data-i="'+op.j+'" onclick="elegirPaso('+i+','+op.j+')">'+op.x+'</button>').join('')+'</div></div>';
+ }).join('')+'</div>';
 }
 function elegirPaso(paso,i){
  if(respondida)return;
