@@ -201,7 +201,7 @@ explicacion: "pan- es el lexema; -ec- funciona como elemento de enlace o infijo.
 {id:"EP-S-005",
 tipo: "analisis",
 pregunta: "Realiza un análisis completo.",
-palabra: "reblandecer",
+palabra: "aterrizar",
 campos: [
 ["segmentacion", "Segmentación"],
 ["lexema", "Lexema"],
@@ -209,12 +209,12 @@ campos: [
 ["tipo", "Tipo de palabra"]
 ],
 soluciones: {
-segmentacion: ["re- + bland- + -ec- + -er", "re + bland + ec + er"],
+segmentacion: ["a- + terr- + -iz- + -ar", "a + terr + iz + ar"],
 lexema: ["bland", "bland-"],
 derivativos: ["re- + -ec-", "re + ec"],
 tipo: ["parasintética", "parasintetica"]
 },
-explicacion: "reblandecer presenta afijos delante y detrás del lexema y *blandecer no existe en castellano."
+explicacion: "aterrizar presenta afijos delante y detrás del lexema y *terrizar no existe en castellano."
 },
 
 {id:"EP-S-006",
@@ -357,7 +357,7 @@ explicacion: "des- y -dad son derivativos; -es es flexivo de número."
 {id:"EP-S-013",
 tipo: "analisis",
 pregunta: "🏆 Reto de examen: realiza un análisis completo.",
-palabra: "reblandecer",
+palabra: "aterrizar",
 campos: [
 ["segmentacion", "Segmentación"],
 ["lexema", "Lexema"],
@@ -365,12 +365,12 @@ campos: [
 ["tipo", "Tipo de palabra"]
 ],
 soluciones: {
-segmentacion: ["re- + bland- + -ec- + -er", "re + bland + ec + er"],
+segmentacion: ["a- + terr- + -iz- + -ar", "a + terr + iz + ar"],
 lexema: ["bland", "bland-"],
 derivativos: ["re- + -ec-", "re + ec"],
 tipo: ["parasintética", "parasintetica"]
 },
-explicacion: "Es parasintética porque presenta elementos a ambos lados del lexema y *blandecer no existe."
+explicacion: "Es parasintética porque presenta elementos a ambos lados del lexema y *terrizar no existe."
 },
 
 {id:"EP-S-014",
@@ -415,10 +415,10 @@ explicacion: "pan- es el lexema; -ec- es un elemento de enlace o infijo."
 
 {id:"EP-S-016",
 tipo: "mcq",
-pregunta: "Un alumno afirma: «reblandecer es derivada porque tiene un prefijo y un sufijo». ¿Qué debemos añadir para justificar que es parasintética?",
+pregunta: "Un alumno afirma: «aterrizar es derivada porque tiene un prefijo y un sufijo». ¿Qué debemos añadir para justificar que es parasintética?",
 opciones: [
 "Que tiene dos lexemas",
-"Que al eliminar el prefijo, *blandecer no existe",
+"Que al eliminar el prefijo, *terrizar no existe",
 "Que tiene un morfema de plural",
 "Que contiene un infijo"
 ],
