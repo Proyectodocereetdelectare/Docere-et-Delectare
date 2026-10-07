@@ -64,8 +64,8 @@ h2{margin-top:0}
 function cargar(){
 const playerId=obtenerPlayerId();
 const alias=obtenerAlias()||"Invitado";
-let p=leerJSON("docereProgreso",{partidas:0,mejor:0,puntos:0,historial:[]});
-if(Array.isArray(p)){p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};localStorage.setItem("docereProgreso",JSON.stringify(p));}
+let p=leerJSON(DOCERE_STORAGE.PROGRESO,{partidas:0,mejor:0,puntos:0,historial:[]});
+if(Array.isArray(p)){p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};localStorage.setItem(DOCERE_STORAGE.PROGRESO,JSON.stringify(p));}
 if(!p||typeof p!=="object")p={partidas:0,puntos:0,mejor:0,historial:[]};
 document.getElementById("alias").textContent=alias;
 document.getElementById("partidas").textContent=p.partidas;
@@ -80,15 +80,15 @@ p.historial.map(x=>'<tr><td>'+escapeHtml(x.bloque||"Actividad")+'</td><td>'+x.ac
 function cargarRanking(){
 const actualId=obtenerPlayerId();
 const actualAlias=obtenerAlias()||"Invitado";
-let ranking=leerJSON("docereRanking",[]);
-const p=leerJSON("docereProgreso",{mejor:0,puntos:0});
+let ranking=leerJSON(DOCERE_STORAGE.RANKING,[]);
+const p=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
 if(!Array.isArray(ranking))ranking=[];
 const idx=ranking.findIndex(x=>x.playerId===actualId);
 const registro={playerId:actualId,alias:actualAlias,mejor:Number(p.mejor||0),puntos:Number(p.puntos||0)};
 if(idx>=0)ranking[idx]=registro;else ranking.push(registro);
 ranking.sort((a,b)=>Number(b.mejor||0)-Number(a.mejor||0)||Number(b.puntos||0)-Number(a.puntos||0));
 ranking=ranking.slice(0,20);
-localStorage.setItem("docereRanking",JSON.stringify(ranking));
+localStorage.setItem(DOCERE_STORAGE.RANKING,JSON.stringify(ranking));
 const el=document.getElementById("rankingLocal");
 el.innerHTML='<table class="tabla"><thead><tr><th>#</th><th>Jugador/a</th><th>Mejor nota</th><th>Puntos</th></tr></thead><tbody>'+
 ranking.map((x,i)=>'<tr><td>'+(i+1)+'</td><td>'+escapeHtml(x.alias||"Invitado")+(x.playerId===actualId?' <strong>· tú</strong>':'')+'</td><td>'+Number(x.mejor||0).toFixed(1).replace(".",",")+'</td><td>'+Number(x.puntos||0)+'</td></tr>').join("")+
