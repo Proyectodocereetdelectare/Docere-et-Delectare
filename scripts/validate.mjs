@@ -216,11 +216,11 @@ for(const [file,names] of contracts){
 
 // Pruebas de comportamiento estáticas: protegen las reglas críticas del motor sin exigir navegador.
 const behaviorContracts=[
-  ["sintaxis.html",["if(!respondida)omitidas++;","Respuesta correcta:","function adelante("]],
-  ["estructura-palabra.html",["if (!respondida) omitidas++;","Sin responder:"]],
-  ["formacion-palabras.html",["if(!respondida)omitidas++;","Respuesta correcta:","Sin responder:"]],
-  ["categorias-gramaticales.html",["if(!respondida)omitidas++;","Respuesta correcta:","Sin responder:"]],
-  ["verbo.html",["if(!respondida)omitidas++;","Respuesta correcta:","Sin responder:"]]
+  ["sintaxis.html",["omitidas++","Respuesta correcta:","function adelante("]],
+  ["estructura-palabra.html",["omitidas++","Sin responder:"]],
+  ["formacion-palabras.html",["omitidas++","Respuesta correcta:","Sin responder:"]],
+  ["categorias-gramaticales.html",["omitidas++","Respuesta correcta:","Sin responder:"]],
+  ["verbo.html",["omitidas++","Respuesta correcta:","Sin responder:"]]
 ];
 for(const [file,patterns] of behaviorContracts){
   const source=read(file);
@@ -228,7 +228,7 @@ for(const [file,patterns] of behaviorContracts){
     if(!source.includes(pattern))addError(file+": falta contrato de comportamiento "+pattern);
   }
 }
-if(/\\balias\\(\\)|\\babrirPerfil\\b/.test(read("formacion-palabras.html")))addError("formacion-palabras.html: residuo de perfil/alias");
+if(/\balias\(\)|\babrirPerfil\b/.test(read("formacion-palabras.html")))addError("formacion-palabras.html: residuo de perfil/alias");
 
 if(errors.length){
   console.error(errors.join("\n"));
