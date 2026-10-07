@@ -125,6 +125,15 @@ for (const contract of dataContracts) {
     if (new Set(ids).size !== ids.length) {
       errors.push(contract.file + ": hay identificadores de actividad duplicados");
     }
+    activities.forEach(a => {
+      if (!a || !a.q || !a.e) errors.push(contract.file + ": actividad incompleta " + (a && a.id || "sin-id"));
+      if (a && a.n != null && (!Number.isInteger(Number(a.n)) || Number(a.n) < 1 || Number(a.n) > 6)) {
+        errors.push(contract.file + ": nivel fuera de 1-6 en " + (a.id || "sin-id"));
+      }
+      if (a && a.t === "mcq" && (!Array.isArray(a.o) || a.o.length < 2 || !a.o.includes(a.r))) {
+        errors.push(contract.file + ": MCQ inválido " + (a.id || "sin-id"));
+      }
+    });
   } catch (error) {
     errors.push(contract.file + ": banco inválido: " + error.message);
   }
