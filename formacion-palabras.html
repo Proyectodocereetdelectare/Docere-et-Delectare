@@ -31,6 +31,7 @@
 <section id="resultado"><h2>🌱 Partida terminada</h2><div id="nota" class="resultado-nota">0/10</div><p id="detalle"></p><button class="boton boton-principal" onclick="repetir()">🔄 Nueva partida</button><a class="boton" href="morfologia.html">← Morfología</a></section>
 </div></div>
 <div id="perfilModal"><div class="modal"><h2>👤 Tu alias</h2><p>Usa un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni proporcionar datos personales.</p><input id="aliasInput" maxlength="24" placeholder="Ej.: Laura, Lector27..." onkeydown="if(event.key==='Enter')guardarPerfil()"><button onclick="guardarPerfil()">Guardar alias</button></div></div>
+<script src="assets/js/core.js"></script>
 <script>
 const A=[
 {n:1,t:'mcq',q:'¿Qué procedimiento aparece en <b>panadero</b>?',o:['Derivación','Composición','Parasíntesis','Acronimia'],r:'Derivación',e:'Se añade un sufijo derivativo a la base pan-.'},
@@ -242,14 +243,14 @@ const A=[
 let partida=[],i=0,puntos=0,respondida=false;
 const dist={1:4,2:4,3:4,4:3,5:3,6:2};
 // La partida avanza por niveles: no se mezclan entre sí para que la dificultad sea visible y progresiva.
-function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
+
 function ok(v,r){r=Array.isArray(r)?r:[r];return r.some(x=>norm(v)===norm(x))}
-function mix(a){return [...a].sort(()=>Math.random()-.5)}
-function alias(){return localStorage.getItem('docereAlias')||''}
-function player(){let x=localStorage.getItem('docerePlayerId');if(!x){x=crypto.randomUUID?crypto.randomUUID():'player-'+Date.now()+'-'+Math.random().toString(36).slice(2);localStorage.setItem('docerePlayerId',x)}return x}
-function mostrarAlias(){document.getElementById('aliasInicio').textContent=alias()||'Sin alias';document.getElementById('aliasActividad').textContent=alias()||'Sin alias'}
-function abrirPerfil(){document.getElementById('aliasInput').value=alias();document.getElementById('perfilModal').style.display='flex';setTimeout(()=>document.getElementById('aliasInput').focus(),50)}
-function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias()}
+
+
+
+
+
+
 function iniciarBloque(){if(!alias()){abrirPerfil();return}crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 function crear(){let usados=JSON.parse(localStorage.getItem('formacionUsadas')||'[]'),sel=[];Object.keys(dist).forEach(n=>{let base=A.map((a,j)=>({a:a,j:j})).filter(x=>x.a.n===+n&&!usados.includes(x.j));if(base.length<dist[n])base=A.map((a,j)=>({a:a,j:j})).filter(x=>x.a.n===+n);let preferidas=base.filter(x=>+n>=5&&x.a.t==='analysis');let resto=base.filter(x=>!(+n>=5&&x.a.t==='analysis'));let elegidas=[];if(preferidas.length){elegidas.push(...mix(preferidas).slice(0,Math.min(1,dist[n])))}elegidas.push(...mix(resto).slice(0,dist[n]-elegidas.length));if(elegidas.length<dist[n])elegidas.push(...mix(base.filter(x=>!elegidas.includes(x))).slice(0,dist[n]-elegidas.length));sel=sel.concat(elegidas.map(x=>x.j))});localStorage.setItem('formacionUsadas',JSON.stringify(usados.concat(sel).slice(-40)));partida=sel.map(x=>A[x])}
 function mostrar(){respondida=false;let a=partida[i],c=document.getElementById('contenido');document.getElementById('numero').textContent='Actividad '+(i+1)+' de 20';document.getElementById('aciertos').textContent=puntos+' aciertos';document.getElementById('barra').style.width=Math.max(5,(i+1)/20*100)+'%';document.getElementById('feedback').innerHTML='';document.getElementById('siguiente').style.display='none';let h='<div class="etiqueta">Nivel '+a.n+' · Formación de palabras</div><div id="pregunta">'+a.q+'</div>';
@@ -274,11 +275,6 @@ function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').sty
 mostrarAlias();if(!alias())setTimeout(abrirPerfil,300);
 
 window.norm=norm;window.ok=ok;window.mix=mix;window.alias=alias;window.player=player;window.mostrarAlias=mostrarAlias;window.abrirPerfil=abrirPerfil;window.guardarPerfil=guardarPerfil;window.iniciarBloque=iniciarBloque;window.crear=crear;window.mostrar=mostrar;window.feedback=feedback;window.mcq=mcq;window.texto=texto;window.analisis=analisis;window.siguiente=siguiente;window.resultado=resultado;window.repetir=repetir;
-function irInicio(){
-    const actividad=document.getElementById("actividad");
-    const enPartida=actividad && getComputedStyle(actividad).display!=="none";
-    if(enPartida && !confirm("Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?")) return;
-    window.location.href="index.html";
-}
+
 </script>
 </body></html>
