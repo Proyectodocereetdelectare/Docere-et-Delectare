@@ -164,7 +164,13 @@ function seleccionar(){
  return salida;
 }
 function iniciarSeccion(s){
- seccionActual=s; partida=seleccionar(); indice=0; aciertos=0;
+ seccionActual=s;
+ if(!obtenerAlias()){
+  globalThis.accionPerfilPendiente=()=>iniciarSeccion(s);
+  abrirPerfil();
+  return;
+ }
+ partida=seleccionar(); indice=0; aciertos=0;
  document.getElementById('menu').style.display='none';
  document.getElementById('resultado').style.display='none';
  document.getElementById('actividad').style.display='block';
