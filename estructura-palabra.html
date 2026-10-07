@@ -773,39 +773,6 @@ function guardarProgreso(progreso) {
 
 
 
-function guardarPerfil() {
-    const input = document.getElementById("aliasInput");
-    const alias = limpiarAlias(input.value);
-
-    if (!alias) {
-        input.focus();
-        return;
-    }
-
-    // El alias es solo el nombre visible.
-    // La identidad anónima real es un ID aleatorio del dispositivo.
-    obtenerPlayerId();
-
-    localStorage.setItem("docereAlias", alias);
-
-    document.getElementById("perfilModal").style.display = "none";
-
-    actualizarAliasInterfaz();
-
-    if (window.bloquePendiente) {
-        const pendiente = window.bloquePendiente;
-        window.bloquePendiente = null;
-        iniciarBloque(pendiente);
-    }
-}
-
-function actualizarAliasInterfaz() {
-    const alias = obtenerAlias() || "Invitado";
-
-    document.getElementById("aliasActividad").textContent = alias;
-    document.getElementById("aliasResultado").textContent = alias;
-}
-
 function asegurarPerfil() {
     if (!obtenerAlias()) {
         abrirPerfil(false);
