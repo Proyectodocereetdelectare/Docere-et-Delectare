@@ -7,11 +7,12 @@
 
   function normalizar(texto){
     return String(texto ?? "")
+      .replace(/<[^>]*>/g,"")
       .toLowerCase()
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g,"")
-      .replace(/[+\-_|/]/g,"")
-      .replace(/\s+/g,"")
+      .replace(/[¡!¿?.,;:()"'“”+\-_|/]/g," ")
+      .replace(/\s+/g," ")
       .trim();
   }
 
@@ -34,6 +35,25 @@
 
   function guardarJSON(clave,valor){
     localStorage.setItem(clave,JSON.stringify(valor));
+  }
+
+  function actualizarRankingLocal(){
+    const id=obtenerPlayerId();
+    const alias=obtenerAlias() || "Invitado";
+    const progreso=leerJSON("docereProgreso",{mejor:0,puntos:0});
+    let ranking=leerJSON("docereRanking",[]);
+    if(!Array.isArray(ranking))ranking=[];
+    const registro={
+      playerId:id,
+      alias,
+      mejor:Number(progreso.mejor||0),
+      puntos:Number(progreso.puntos||0)
+    };
+    const indice=ranking.findIndex(x=>x.playerId===id);
+    if(indice>=0)ranking[indice]=registro;
+    else ranking.push(registro);
+    ranking.sort((a,b)=>Number(b.mejor||0)-Number(a.mejor||0)||Number(b.puntos||0)-Number(a.puntos||0));
+    guardarJSON("docereRanking",ranking.slice(0,20));
   }
 
   function obtenerPlayerId(){
@@ -85,8 +105,13 @@
     actualizarAliases();
     if(typeof actualizarAliasInterfaz==="function")actualizarAliasInterfaz();
     if(typeof actualizarAlias==="function")actualizarAlias();
-    if(typeof mostrarAlias==="function")mostrarAlias();
+    actualizarAliases();
     if(modal)modal.style.display="none";
+    if(globalThis.bloquePendiente && typeof globalThis.iniciarBloque==="function"){
+      const pendiente=globalThis.bloquePendiente;
+      globalThis.bloquePendiente=null;
+      globalThis.iniciarBloque(pendiente);
+    }
   }
 
   function irInicio(){
@@ -110,6 +135,7 @@
   globalThis.guardarPerfil=guardarPerfil;
   globalThis.leerJSON=leerJSON;
   globalThis.guardarJSON=guardarJSON;
+  globalThis.actualizarRankingLocal=actualizarRankingLocal;
   globalThis.irInicio=irInicio;
   globalThis.mostrarAlias=actualizarAliases;
   globalThis.actualizarAliases=actualizarAliases;
