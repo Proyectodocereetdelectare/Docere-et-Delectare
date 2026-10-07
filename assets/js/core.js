@@ -9,7 +9,6 @@
     PLAYER_ID:"docerePlayerId",
     ALIAS:"docereAlias",
     PROGRESO:"docereProgreso",
-    RANKING:"docereRanking",
     ESTRUCTURA_IDENTIFICA:"identificaUsadas",
     ESTRUCTURA_CLASIFICA:"clasificaUsadas",
     FORMACION:"formacionUsadas",
@@ -52,32 +51,6 @@
 
   function guardarJSON(clave,valor){
     localStorage.setItem(clave,JSON.stringify(valor));
-  }
-
-  function actualizarRankingLocal(){
-    const id=obtenerPlayerId();
-    const alias=obtenerAlias() || "Invitado";
-    let progreso=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
-    if(Array.isArray(progreso)){
-      progreso={
-        mejor:progreso.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),
-        puntos:progreso.reduce((s,x)=>s+Number(x.aciertos||0)*10,0)
-      };
-    }
-    if(!progreso||typeof progreso!=="object")progreso={mejor:0,puntos:0};
-    let ranking=leerJSON(DOCERE_STORAGE.RANKING,[]);
-    if(!Array.isArray(ranking))ranking=[];
-    const registro={
-      playerId:id,
-      alias,
-      mejor:Number(progreso.mejor||0),
-      puntos:Number(progreso.puntos||0)
-    };
-    const indice=ranking.findIndex(x=>x.playerId===id);
-    if(indice>=0)ranking[indice]=registro;
-    else ranking.push(registro);
-    ranking.sort((a,b)=>Number(b.mejor||0)-Number(a.mejor||0)||Number(b.puntos||0)-Number(a.puntos||0));
-    guardarJSON(DOCERE_STORAGE.RANKING,ranking.slice(0,20));
   }
 
   function obtenerPlayerId(){
@@ -125,7 +98,6 @@
     }
     localStorage.setItem(DOCERE_STORAGE.ALIAS,alias);
     actualizarAliases();
-    actualizarRankingLocal();
     if(modal)modal.style.display="none";
     const pendiente=globalThis.accionPerfilPendiente;
     globalThis.accionPerfilPendiente=null;
@@ -159,7 +131,6 @@
   globalThis.guardarPerfil=guardarPerfil;
   globalThis.leerJSON=leerJSON;
   globalThis.guardarJSON=guardarJSON;
-  globalThis.actualizarRankingLocal=actualizarRankingLocal;
   globalThis.irInicio=irInicio;
   globalThis.mostrarAlias=actualizarAliases;
   globalThis.actualizarAliases=actualizarAliases;
