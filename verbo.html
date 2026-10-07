@@ -57,37 +57,37 @@ h2{font-size:28px;margin:30px 0 16px}
 <h2>¿Qué quieres practicar?</h2>
 <div class="introduccion">Practica las formas verbales mediante una progresión de reconocimiento, análisis, conjugación, transformación y detección de errores. La sección de perífrasis y locuciones añade contraste, justificación y casos difíciles.</div>
 <div class="bloques">
-<button class="bloque" onclick="iniciarSeccion('identifica')"><span class="icono">🔎</span><strong>Identifica</strong><span class="descripcion">Reconoce formas verbales y sus características básicas.</span></button>
-<button class="bloque" onclick="iniciarSeccion('analiza')"><span class="icono">🧩</span><strong>Analiza</strong><span class="descripcion">Analiza persona, número, tiempo, modo, forma y otros rasgos.</span></button>
-<button class="bloque" onclick="iniciarSeccion('conjuga')"><span class="icono">⏱️</span><strong>Conjuga</strong><span class="descripcion">Produce formas verbales correctas a partir de una indicación.</span></button>
-<button class="bloque" onclick="iniciarSeccion('transforma')"><span class="icono">🔄</span><strong>Transforma</strong><span class="descripcion">Cambia tiempos, personas y estructuras, incluida la voz pasiva.</span></button>
-<button class="bloque" onclick="iniciarSeccion('perifrasis')"><span class="icono">🔗</span><strong>Perífrasis y locuciones</strong><span class="descripcion">Distingue perífrasis, locuciones y construcciones con varios verbos y aprende a justificarlas.</span></button>
-<button class="bloque" onclick="iniciarSeccion('error')"><span class="icono">🧠</span><strong>Detecta el error</strong><span class="descripcion">Localiza, corrige y explica errores en formas y usos verbales.</span></button>
-<button class="bloque" onclick="iniciarSeccion('reto')"><span class="icono">🏆</span><strong>Reto final</strong><span class="descripcion">Resuelve actividades integradas de máxima dificultad.</span></button>
+<button type="button" class="bloque" onclick="iniciarSeccion('identifica')"><span class="icono">🔎</span><strong>Identifica</strong><span class="descripcion">Reconoce formas verbales y sus características básicas.</span></button>
+<button type="button" class="bloque" onclick="iniciarSeccion('analiza')"><span class="icono">🧩</span><strong>Analiza</strong><span class="descripcion">Analiza persona, número, tiempo, modo, forma y otros rasgos.</span></button>
+<button type="button" class="bloque" onclick="iniciarSeccion('conjuga')"><span class="icono">⏱️</span><strong>Conjuga</strong><span class="descripcion">Produce formas verbales correctas a partir de una indicación.</span></button>
+<button type="button" class="bloque" onclick="iniciarSeccion('transforma')"><span class="icono">🔄</span><strong>Transforma</strong><span class="descripcion">Cambia tiempos, personas y estructuras, incluida la voz pasiva.</span></button>
+<button type="button" class="bloque" onclick="iniciarSeccion('perifrasis')"><span class="icono">🔗</span><strong>Perífrasis y locuciones</strong><span class="descripcion">Distingue perífrasis, locuciones y construcciones con varios verbos y aprende a justificarlas.</span></button>
+<button type="button" class="bloque" onclick="iniciarSeccion('error')"><span class="icono">🧠</span><strong>Detecta el error</strong><span class="descripcion">Localiza, corrige y explica errores en formas y usos verbales.</span></button>
+<button type="button" class="bloque" onclick="iniciarSeccion('reto')"><span class="icono">🏆</span><strong>Reto final</strong><span class="descripcion">Resuelve actividades integradas de máxima dificultad.</span></button>
 </div>
 <a class="boton" href="morfologia.html">← Volver a Morfología</a>
 </section>
 
 <section class="panel" id="actividad">
-<div class="perfil"><span>👤 <span id="aliasActividad">Invitado</span></span><button class="cambiar" onclick="abrirPerfil(true)">Cambiar alias</button></div>
+<div class="perfil"><span>👤 <span id="aliasActividad">Invitado</span></span><button type="button" class="cambiar" onclick="abrirPerfil(true)">Cambiar alias</button></div>
 <div class="progreso-texto"><span id="numero">Actividad 1 de 12</span><span id="porcentaje">0%</span></div>
 <div class="barra"><div id="barraProgreso" class="progreso"></div></div>
 <div id="etiqueta" class="etiqueta"></div>
 <div id="pregunta"></div>
 <div id="contenido"></div>
 <div id="feedback" class="feedback"></div>
-<button id="siguiente" class="boton boton-principal" onclick="siguiente()" style="display:none">Siguiente →</button>
-<button id="adelante" class="boton" onclick="adelante()">Adelante →</button>
+<button type="button" id="siguiente" class="boton boton-principal" onclick="siguiente()" style="display:none">Siguiente →</button>
+<button type="button" id="adelante" class="boton" onclick="adelante()">Adelante →</button>
 <br>
-<button class="boton" onclick="volverMenu()">← Volver a los bloques</button>
+<button type="button" class="boton" onclick="volverMenu()">← Volver a los bloques</button>
 </section>
 
 <section class="panel" id="resultado">
 <h2>🎉 ¡Actividad terminada!</h2>
 <div id="nota" class="resultado-nota">0/10</div>
 <p id="detalle"></p>
-<button class="boton boton-principal" onclick="repetir()">🔄 Nueva partida</button>
-<button class="boton" onclick="volverMenu()">← Volver a los bloques</button>
+<button type="button" class="boton boton-principal" onclick="repetir()">🔄 Nueva partida</button>
+<button type="button" class="boton" onclick="volverMenu()">← Volver a los bloques</button>
 </section>
 </div>
 
@@ -96,7 +96,7 @@ h2{font-size:28px;margin:30px 0 16px}
 <h2>👋 ¡Hola!</h2>
 <p>Escribe un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni introducir ningún dato personal.</p>
 <input id="aliasInput" class="campo" maxlength="20" autocomplete="off" placeholder="Tu nombre o alias">
-<button class="boton boton-principal" onclick="guardarPerfil()">Continuar →</button>
+<button type="button" class="boton boton-principal" onclick="guardarPerfil()">Continuar →</button>
 <p class="pequeno">Puedes cambiar el alias cuando quieras.</p>
 </div>
 </div>
