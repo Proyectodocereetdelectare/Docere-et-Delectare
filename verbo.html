@@ -117,7 +117,7 @@ function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>norm(v)=
 
 
 
-function iniciarSeccion(s){seccionActual=s;if(!alias()){abrirPerfil();return}iniciarPartida()}
+function iniciarSeccion(s){seccionActual=s;if(!alias()){globalThis.accionPerfilPendiente=iniciarPartida;abrirPerfil();return}iniciarPartida()}
 function iniciarPartida(){crearPartida();i=0;puntos=0;document.getElementById('menu').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 function crearPartida(){
   let usados=leerJSON(DOCERE_STORAGE.VERBO,[]);
