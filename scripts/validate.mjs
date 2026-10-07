@@ -12,6 +12,7 @@ const dynamicIds=new Set(["respuesta","campo0","campo1","campo2","campo3","campo
 const errors=[];
 const externalScripts=new Set();
 const exportedGlobals=new Set();
+const forbiddenRuntimePatterns=[/DOCERE_STORAGE/,/localStorage/,/progreso\.html/,/ranking-local|actualizarRankingLocal/,/perfilModal|guardarPerfil|obtenerAlias|obtenerPlayerId/];
 
 function addError(message){errors.push(message);}
 
@@ -100,6 +101,10 @@ for(const file of pages){
   }
 }
 
+const coreSource=read("assets/js/core.js");
+for(const name of ["normalizar","mezclar","irInicio"]){
+  if(!coreSource.includes("globalThis."+name+"="))addError("assets/js/core.js: falta la exportación global "+name);
+}
 for(const file of externalScripts){
   try{
     const source=fs.readFileSync(file,"utf8");

@@ -282,54 +282,15 @@ h3 {
     text-align: center;
 }
 
-.perfil-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 20px;
-    padding: 10px 14px;
-    background: #f7f4ee;
-    border-radius: 12px;
-    color: #625b51;
-    font-size: 15px;
-}
 
-.alias {
-    font-weight: bold;
-    color: #2d2a26;
-}
 
-.cambiar-alias {
-    border: none;
-    background: transparent;
-    color: #625b51;
-    text-decoration: underline;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 14px;
-}
 
-#perfilModal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(45,42,38,0.45);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
 
-.modal-contenido {
-    width: 100%;
-    max-width: 480px;
-    background: white;
-    border-radius: 20px;
-    padding: 35px;
-    box-shadow: 0 12px 35px rgba(0,0,0,0.2);
-    text-align: center;
-}
+
+
+
+
+
 
 .modal-contenido h2 {
     margin-top: 0;
@@ -340,71 +301,28 @@ h3 {
     color: #625b51;
 }
 
-.perfil-input {
-    width: 100%;
-    padding: 14px;
-    border: 2px solid #ddd5c8;
-    border-radius: 10px;
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 17px;
-    text-align: center;
-}
 
-.perfil-input:focus {
-    outline: none;
-    border-color: #9b9183;
-}
 
-.estadisticas {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin: 25px 0;
-}
 
-.estadistica {
-    background: #f7f4ee;
-    border-radius: 12px;
-    padding: 14px 8px;
-}
 
-.estadistica strong {
-    display: block;
-    font-size: 21px;
-    margin-bottom: 5px;
-}
 
-.estadistica span {
-    color: #625b51;
-    font-size: 13px;
-}
 
-.ranking-local {
-    margin-top: 25px;
-    text-align: left;
-}
 
-.ranking-local table {
-    width: 100%;
-    border-collapse: collapse;
-}
 
-.ranking-local th,
-.ranking-local td {
-    padding: 9px 6px;
-    border-bottom: 1px solid #e5dfd4;
-}
 
-.ranking-local th {
-    color: #625b51;
-    font-size: 14px;
-    text-align: left;
-}
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 700px) {
-    .estadisticas {
-        grid-template-columns: 1fr;
-    }
+    
 }
 
 #nota {
@@ -575,11 +493,6 @@ onclick="volverMorfologia()">
 
 <div class="panel" id="actividad">
 
-<div class="perfil-bar">
-    <span>👤 <span class="alias" id="aliasActividad">Invitado</span></span>
-    <button type="button" class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
-</div>
-
 <div class="progreso-texto">
 
 <span id="numeroPregunta">
@@ -658,19 +571,7 @@ onclick="volverMenu()">
 
 <div class="panel" id="resultado">
 
-<div class="perfil-bar">
-    <span>👤 <span class="alias" id="aliasResultado">Invitado</span></span>
-    <button type="button" class="cambiar-alias" onclick="abrirPerfil(true)">Cambiar alias</button>
-</div>
-
-<h2>🎉 ¡Actividad terminada!</h2>
-
-<div class="estadisticas">
-    <div class="estadistica">
-        <strong id="resultadoPuntos">0</strong>
-        <span>aciertos</span>
-    </div>
-    <div class="estadistica">
+<h2>🎉 ¡Actividad terminada!</h2><div class="estadistica">
         <strong id="resultadoMejor">0,0</strong>
         <span>mejor nota</span>
     </div>
@@ -705,19 +606,6 @@ onclick="volverMenu()">
 
 </div>
 
-<div id="perfilModal">
-    <div class="modal-contenido">
-        <h2>👋 ¡Hola!</h2>
-        <p>Escribe un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni introducir ningún dato personal. Tu progreso se asocia a un identificador anónimo generado automáticamente en este dispositivo.</p>
-        <input id="aliasInput" class="perfil-input" maxlength="20" autocomplete="off" placeholder="Tu nombre o alias">
-        <br>
-        <button type="button" class="boton boton-principal" onclick="guardarPerfil()">
-            Continuar →
-        </button>
-        <p class="pequeno">Puedes cambiar el alias cuando quieras.</p>
-    </div>
-</div>
-
 
 
 <script src="assets/js/data/morfologia/estructura-palabra.js"></script>
@@ -743,51 +631,6 @@ function comparar(respuesta, soluciones) {
         s => r === normalizar(s)
     );
 
-}
-
-
-/* =====================================================
-   PERFIL Y PROGRESO
-===================================================== */;
-    }
-    if(!p||typeof p!=="object")return {partidas:0,mejor:0,puntos:0,historial:[]};
-    p.partidas=Number(p.partidas||0);
-    p.mejor=Number(p.mejor||0);
-    p.puntos=Number(p.puntos||0);
-    p.historial=Array.isArray(p.historial)?p.historial:[];
-    return p;
-}
-
-function
-}
-
-
-
-
-
-function asegurarPerfil() {
-    if (!obtenerAlias()) {
-        globalThis.accionPerfilPendiente=()=>iniciarBloque(window.bloquePendiente);
-        abrirPerfil(false);
-        return false;
-    }
-
-    obtenerPlayerId();
-    actualizarAliasInterfaz();
-    return true;
-}
-
-function actualizarEstadisticasResultado() {
-    const progreso = obtenerProgreso();
-
-    document.getElementById("resultadoPuntos").textContent =
-        puntuacion + "/" + actividadesActuales.length;
-
-    document.getElementById("resultadoMejor").textContent =
-        progreso.mejor.toFixed(1).replace(".", ",");
-
-    document.getElementById("resultadoPartidas").textContent =
-        progreso.partidas;
 }
 
 
@@ -895,239 +738,20 @@ reto: "🏆 Reto final"
    CREAR PARTIDA
 ===================================================== */
 
-function crearPartida(tipo) {
-
-    let banco;
-
-    if (tipo === "identifica") banco = identifica;
-    if (tipo === "clasifica") banco = clasifica;
-    if (tipo === "analiza") banco = analiza;
-    if (tipo === "reto") banco = reto;
-
-    /*
-       Identifica tiene una progresión fija:
-       4 actividades de nivel 1,
-       4 de nivel 2,
-       4 de nivel 3,
-       3 de nivel 4,
-       3 de nivel 5 y
-       2 de nivel 6.
-    */
-    if (tipo === "identifica") {
-
-        const usadas =
-            leerJSON(DOCERE_STORAGE.ESTRUCTURA_IDENTIFICA,[]);
-
-        const seleccion = [];
-        const indicesSeleccionados = new Set();
-
-        configuracion.identifica.forEach(
-            ([nivel, cantidad]) => {
-
-                let candidatos =
-                    banco
-                        .map((actividad, indice) => ({actividad, indice}))
-                        .filter(item =>
-                            item.actividad.nivel === nivel &&
-                            !usadas.includes(item.indice)
-                        );
-
-                /*
-                   Si ya se han usado todas las actividades
-                   de un nivel, se permite reutilizar las
-                   menos recientes para no bloquear la partida.
-                */
-                if (candidatos.length < cantidad) {
-
-                    candidatos =
-                        banco
-                            .map((actividad, indice) => ({actividad, indice}))
-                            .filter(item =>
-                                item.actividad.nivel === nivel &&
-                                !indicesSeleccionados.has(item.indice)
-                            );
-                }
-
-                candidatos = mezclar(candidatos);
-
-                candidatos
-                    .slice(0, cantidad)
-                    .forEach(item => {
-
-                        seleccion.push(item.actividad);
-                        indicesSeleccionados.add(item.indice);
-
-                    });
-
-            }
-        );
-
-        localStorage.setItem(
-            DOCERE_STORAGE.ESTRUCTURA_IDENTIFICA,
-            JSON.stringify(
-                Array.from(
-                    new Set(
-                        [...usadas, ...Array.from(indicesSeleccionados)]
-                    )
-                ).slice(-22)
-            )
-        );
-
-        return seleccion;
-    }
-
-    /* Clasifica también progresa por niveles y evita repetir
-       inmediatamente las mismas actividades. */
-    if (tipo === "clasifica") {
-
-        const usadas =
-            leerJSON(DOCERE_STORAGE.ESTRUCTURA_CLASIFICA,[]);
-
-        const seleccion = [];
-        const indicesSeleccionados = new Set();
-
-        configuracion.clasifica.forEach(
-            ([nivel, cantidad]) => {
-
-                let candidatos =
-                    banco
-                        .map((actividad, indice) => ({actividad, indice}))
-                        .filter(item =>
-                            item.actividad.nivel === nivel &&
-                            !usadas.includes(item.indice)
-                        );
-
-                if (candidatos.length < cantidad) {
-                    candidatos =
-                        banco
-                            .map((actividad, indice) => ({actividad, indice}))
-                            .filter(item =>
-                                item.actividad.nivel === nivel &&
-                                !indicesSeleccionados.has(item.indice)
-                            );
-                }
-
-                candidatos = mezclar(candidatos);
-
-                candidatos
-                    .slice(0, cantidad)
-                    .forEach(item => {
-                        seleccion.push(item.actividad);
-                        indicesSeleccionados.add(item.indice);
-                    });
-            }
-        );
-
-        localStorage.setItem(
-            DOCERE_STORAGE.ESTRUCTURA_CLASIFICA,
-            JSON.stringify(
-                Array.from(
-                    new Set(
-                        [...usadas, ...Array.from(indicesSeleccionados)]
-                    )
-                ).slice(-24)
-            )
-        );
-
-        return seleccion;
-    }
-
-    const seleccion = [];
-    const usados = new Set();
-
-    configuracion[tipo].forEach(
-        ([tipoActividad, cantidad]) => {
-
-            const candidatos =
-                mezclar(
-                    banco.filter(
-                        actividad =>
-                            actividad.tipo === tipoActividad
-                    )
-                );
-
-            let contador = 0;
-
-            for (
-                let i = 0;
-                i < candidatos.length &&
-                contador < cantidad;
-                i++
-            ) {
-
-                const actividad = candidatos[i];
-                const indice = banco.indexOf(actividad);
-
-                if (!usados.has(indice)) {
-
-                    usados.add(indice);
-                    seleccion.push(actividad);
-                    contador++;
-
-                }
-
-            }
-
-        }
-    );
-
-    if (seleccion.length < 20) {
-
-        const restantes =
-            mezclar(
-                banco.filter(
-                    actividad =>
-                        !seleccion.includes(actividad)
-                )
-            );
-
-        while (
-            seleccion.length < 20 &&
-            restantes.length > 0
-        ) {
-
-            seleccion.push(restantes.shift());
-
-        }
-
-    }
-
-    return seleccion.slice(0, 20);
-
+function crearPartida(tipo){
+ const banco={identifica,clasifica,analiza,reto}[tipo]||[],reglas=configuracion[tipo]||[],seleccion=[];
+ if(tipo==="identifica"||tipo==="clasifica")reglas.forEach(([nivel,cantidad])=>seleccion.push(...mezclar(banco.filter(a=>a.nivel===nivel)).slice(0,cantidad)));
+ else{reglas.forEach(([tipoActividad,cantidad])=>seleccion.push(...mezclar(banco.filter(a=>a.tipo===tipoActividad)).slice(0,cantidad)));if(seleccion.length<20)seleccion.push(...mezclar(banco.filter(a=>!seleccion.includes(a))).slice(0,20-seleccion.length));}
+ return mezclar(seleccion).slice(0,20);
 }
-
-
 /* =====================================================
    INICIAR BLOQUE
 ===================================================== */
 
-function iniciarBloque(tipo) {
-    window.bloquePendiente = tipo;
-    if (!asegurarPerfil()) return;
-
-    bloqueActual = tipo;
-
-    window.respuestaMCQ = undefined;
-    window.respuestaClasificacion = undefined;
-
-    actividadesActuales =
-        crearPartida(tipo);
-
-    actividadActual = 0;
-
-    puntuacion = 0;
-
-    document.getElementById("menu")
-        .style.display = "none";
-
-    document.getElementById("resultado")
-        .style.display = "none";
-
-    document.getElementById("actividad")
-        .style.display = "block";
-
-    mostrarActividad();
-
+function iniciarBloque(tipo){
+ bloqueActual=tipo;window.respuestaMCQ=undefined;window.respuestaClasificacion=undefined;
+ actividadesActuales=crearPartida(tipo);actividadActual=0;puntuacion=0;
+ document.getElementById("menu").style.display="none";document.getElementById("resultado").style.display="none";document.getElementById("actividad").style.display="block";mostrarActividad();
 }
 
 
@@ -1923,35 +1547,7 @@ function mostrarResultado() {
 
     document.getElementById("mensaje")
         .textContent =
-        mensaje;
-
-    const notaFinal =
-        Number(nota.toFixed(1));
-
-    const progreso = obtenerProgreso();
-
-    progreso.partidas += 1;
-    progreso.puntos += puntuacion * 10;
-
-    if (notaFinal > progreso.mejor) {
-        progreso.mejor = notaFinal;
-    }
-
-    progreso.historial.unshift({
-        playerId: obtenerPlayerId(),
-        alias: obtenerAlias(),
-        bloque: nombres[bloqueActual],
-        nota: notaFinal,
-        aciertos: puntuacion,
-        fecha: new Date().toISOString()
-    });
-
-    progreso.historial =
-        progreso.historial.slice(0, 10);
-
-    actualizarEstadisticasResultado();
-
-}
+        mensaje;}
 
 
 /* =====================================================
@@ -2008,7 +1604,7 @@ function volverMorfologia() {
 }
 
 
-window.mezclar=mezclar;window.normalizar=normalizar;window.comparar=comparar;window.obtenerPlayerId=obtenerPlayerId;window.obtenerAlias=obtenerAlias;window.limpiarAlias=limpiarAlias;window.abrirPerfil=abrirPerfil;window.guardarPerfil=guardarPerfil;window.actualizarAliasInterfaz=actualizarAliasInterfaz;window.asegurarPerfil=asegurarPerfil;window.actualizarEstadisticasResultado=actualizarEstadisticasResultado;window.crearPartida=crearPartida;window.iniciarBloque=iniciarBloque;window.mostrarActividad=mostrarActividad;window.construirInterfaz=construirInterfaz;window.seleccionarMCQ=seleccionarMCQ;window.comprobar=comprobar;window.obtenerSolucion=obtenerSolucion;window.mostrarFeedback=mostrarFeedback;window.mostrarAviso=mostrarAviso;window.siguientePregunta=siguientePregunta;window.mostrarResultado=mostrarResultado;window.repetirBloque=repetirBloque;window.volverMenu=volverMenu;window.volverMorfologia=volverMorfologia;
+window.comparar=comparar;window.crearPartida=crearPartida;window.iniciarBloque=iniciarBloque;window.mostrarActividad=mostrarActividad;window.construirInterfaz=construirInterfaz;window.seleccionarMCQ=seleccionarMCQ;window.comprobar=comprobar;window.obtenerSolucion=obtenerSolucion;window.mostrarFeedback=mostrarFeedback;window.mostrarAviso=mostrarAviso;window.siguientePregunta=siguientePregunta;window.mostrarResultado=mostrarResultado;window.repetirBloque=repetirBloque;window.volverMenu=volverMenu;window.volverMorfologia=volverMorfologia;
 
 </script>
 

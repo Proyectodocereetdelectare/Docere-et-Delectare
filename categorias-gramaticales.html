@@ -4,7 +4,7 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Categorías gramaticales · Docere et Delectare</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#f4efe5;color:#2d2a26;min-height:100vh;padding:30px 15px}.contenedor{width:100%;max-width:1000px;margin:auto}.panel{background:#fff;padding:40px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.12);text-align:center}h1{font-size:44px;margin:0 0 10px}.subtitulo{color:#625b51;font-size:19px;margin-bottom:28px}.intro{font-size:18px;line-height:1.6;max-width:820px;margin:0 auto 28px}.perfil{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px;padding:10px 14px;background:#f7f4ee;border-radius:12px;color:#625b51;font-size:15px}.alias{font-weight:bold;color:#2d2a26}.cambiar{border:0;background:none;text-decoration:underline;cursor:pointer;font:inherit;color:#625b51}#actividad,#resultado{display:none}.progreso-texto{display:flex;justify-content:space-between;color:#625b51;font-size:15px;margin:20px 0 8px}.barra{height:12px;background:#eee8dc;border-radius:20px;overflow:hidden}.progreso{height:100%;width:0;background:#8f8678;transition:.3s}.etiqueta{display:inline-block;padding:8px 15px;border-radius:20px;background:#eee8dc;color:#625b51;margin:25px 0 10px;font-size:14px}#pregunta{font-size:24px;line-height:1.5;margin:15px 0 25px}.opciones{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.opcion,.boton{padding:15px;border:0;border-radius:12px;background:#eee8dc;font:inherit;font-size:17px;cursor:pointer}.opcion:hover:not(:disabled),.boton:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.12)}.correcta{background:#dce8d8!important}.incorrecta{background:#ead8d5!important}.campo{width:100%;max-width:700px;padding:13px;margin:8px auto;border:2px solid #ddd5c8;border-radius:10px;font:inherit;font-size:17px;display:block}.campo:focus{outline:none;border-color:#9b9183}.etiqueta-campo{display:block;margin-top:16px;font-weight:bold}.feedback{margin-top:22px;padding:18px;border-radius:12px;background:#f7f4ee;text-align:left;line-height:1.6}.exito{background:#e2eee0}.error{background:#f0dfdc}#feedback:empty{display:none}#siguiente{display:none;margin-top:20px;background:#bcb1a0;color:#fff}.resultado-nota{font-size:44px;font-weight:bold;margin:20px}.boton{display:inline-block;margin:20px 5px;text-decoration:none;color:#2d2a26}.boton-principal{background:#bcb1a0;color:#fff}#perfilModal{display:none;position:fixed;inset:0;background:rgba(45,42,38,.55);align-items:center;justify-content:center;padding:20px;z-index:10}.modal{background:#fff;max-width:500px;width:100%;padding:30px;border-radius:18px;text-align:center}.modal p{line-height:1.5;color:#625b51}.modal input{width:100%;padding:13px;border:2px solid #ddd5c8;border-radius:10px;font:inherit}.modal button{margin-top:15px;padding:12px 25px;border:0;border-radius:10px;background:#bcb1a0;color:#fff;font:inherit;cursor:pointer}.bloques{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+*{box-sizing:border-box}body{margin:0;font-family:Georgia,"Times New Roman",serif;background:#f4efe5;color:#2d2a26;min-height:100vh;padding:30px 15px}.contenedor{width:100%;max-width:1000px;margin:auto}.panel{background:#fff;padding:40px;border-radius:20px;box-shadow:0 8px 25px rgba(0,0,0,.12);text-align:center}h1{font-size:44px;margin:0 0 10px}.subtitulo{color:#625b51;font-size:19px;margin-bottom:28px}.intro{font-size:18px;line-height:1.6;max-width:820px;margin:0 auto 28px}#actividad,#resultado{display:none}.progreso-texto{display:flex;justify-content:space-between;color:#625b51;font-size:15px;margin:20px 0 8px}.barra{height:12px;background:#eee8dc;border-radius:20px;overflow:hidden}.progreso{height:100%;width:0;background:#8f8678;transition:.3s}.etiqueta{display:inline-block;padding:8px 15px;border-radius:20px;background:#eee8dc;color:#625b51;margin:25px 0 10px;font-size:14px}#pregunta{font-size:24px;line-height:1.5;margin:15px 0 25px}.opciones{display:grid;grid-template-columns:repeat(2,1fr);gap:15px}.opcion,.boton{padding:15px;border:0;border-radius:12px;background:#eee8dc;font:inherit;font-size:17px;cursor:pointer}.opcion:hover:not(:disabled),.boton:hover{transform:translateY(-2px);box-shadow:0 5px 12px rgba(0,0,0,.12)}.correcta{background:#dce8d8!important}.incorrecta{background:#ead8d5!important}.campo{width:100%;max-width:700px;padding:13px;margin:8px auto;border:2px solid #ddd5c8;border-radius:10px;font:inherit;font-size:17px;display:block}.campo:focus{outline:none;border-color:#9b9183}.etiqueta-campo{display:block;margin-top:16px;font-weight:bold}.feedback{margin-top:22px;padding:18px;border-radius:12px;background:#f7f4ee;text-align:left;line-height:1.6}.exito{background:#e2eee0}.error{background:#f0dfdc}#feedback:empty{display:none}#siguiente{display:none;margin-top:20px;background:#bcb1a0;color:#fff}.resultado-nota{font-size:44px;font-weight:bold;margin:20px}.boton{display:inline-block;margin:20px 5px;text-decoration:none;color:#2d2a26}.boton-principal{background:#bcb1a0;color:#fff}.bloques{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .bloque{border:none;border-radius:16px;padding:28px 20px;background:#eee8dc;font-family:Georgia,"Times New Roman",serif;font-size:18px;cursor:pointer;transition:.2s}
 .bloque:hover{transform:translateY(-4px);box-shadow:0 7px 16px rgba(0,0,0,.13)}
 .bloque .icono{display:block;font-size:38px;margin-bottom:12px}
@@ -95,13 +95,11 @@ onclick="window.location.href='morfologia.html'">
 </button>
 </section>
 <section id="actividad">
-<div class="perfil"><span>👤 <span id="aliasActividad" class="alias">Invitado</span></span><button type="button" class="cambiar" onclick="abrirPerfil(true)">Cambiar alias</button></div>
 <div class="progreso-texto"><span id="numero">Actividad 1 de 12</span><span id="porcentaje">0%</span></div><div class="barra"><div id="barra" class="progreso"></div></div>
 <div id="contenido"></div><div id="feedback" class="feedback"></div><button type="button" id="siguiente" class="boton" onclick="siguiente()">Siguiente →</button><button type="button" id="adelante" class="boton" onclick="adelante()">Adelante →</button><br><button type="button" class="boton" onclick="volverMenu()">← Volver a las categorías</button>
 </section>
 <section id="resultado"><h2>🔤 Partida terminada</h2><div id="nota" class="resultado-nota">0/10</div><p id="detalle"></p><button type="button" class="boton boton-principal" onclick="repetir()">🔄 Nueva partida</button><button type="button" class="boton" onclick="volverMenu()">← Volver a las categorías</button></section>
 </div></div>
-<div id="perfilModal"><div class="modal"><h2>👤 Tu alias</h2><p>Usa un nombre o alias para identificar tu progreso. No necesitas crear una cuenta ni proporcionar datos personales.</p><input id="aliasInput" maxlength="20" placeholder="Ej.: Laura, Lector27..." onkeydown="if(event.key==='Enter')guardarPerfil()"><button type="button" onclick="guardarPerfil()">Guardar alias</button></div></div>
 <script src="assets/js/data/morfologia/categorias-gramaticales.js"></script>
 <script src="assets/js/core.js"></script>
 <script>
@@ -119,7 +117,7 @@ const DESCRIPCIONES={
 };
 
 
-function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>norm(v)===norm(x))}
+function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>normalizar(v)===normalizar(x))}
 
 
 
@@ -132,25 +130,8 @@ function elegirSeccion(s){
   iniciar();
 }
 window.elegirSeccion=elegirSeccion;
-function iniciar(){
-  if(!seccionActual)return;
-  if(!alias()){globalThis.accionPerfilPendiente=iniciar;abrirPerfil();return}
-  crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()
-}
-function crear(){
-  let usados=leerJSON(DOCERE_STORAGE.CATEGORIAS,[]);
-  const seleccion=[];
-  const usadosPartida=new Set();
-  const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};
-  for(let nivel=1;nivel<=6;nivel++){
-    const cantidad=objetivos[nivel];
-    let disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usados.includes(x.j));
-    if(disponibles.length<cantidad) disponibles=A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j));
-    mix(disponibles).slice(0,cantidad).forEach(x=>{seleccion.push(x.j);usadosPartida.add(x.j)});
-  }
-  localStorage.setItem(DOCERE_STORAGE.CATEGORIAS,JSON.stringify(usados.concat(seleccion).slice(-60)));
-  partida=seleccion.map(x=>A[x]);
-}
+function iniciar(){if(!seccionActual)return;crear();i=0;puntos=0;document.getElementById('inicio').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar();}
+function crear(){const seleccion=[];const usadosPartida=new Set();const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};for(let nivel=1;nivel<=6;nivel++){const disponibles=mezclar(A.map((a,j)=>({a,j})).filter(x=>x.a.s===seccionActual&&x.a.n===nivel&&!usadosPartida.has(x.j)));disponibles.slice(0,objetivos[nivel]).forEach(x=>{seleccion.push(x.j);usadosPartida.add(x.j)});}partida=seleccion.map(x=>A[x]);}
 function mostrar(){
   respondida=false;
   let a=partida[i];
@@ -162,7 +143,7 @@ function mostrar(){
   document.getElementById('siguiente').style.display='none';
   let nombres={sustantivos:'Tipos de sustantivos',identifica:'Identifica',analiza:'Analiza',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
   let h='<div class="etiqueta">'+nombres[seccionActual]+' · Nivel '+a.n+'</div><div id="pregunta">'+a.q+'</div>';
-  if(a.t==='mcq')h+='<div class="opciones">'+mix(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" onclick="window.mcq(this, this.dataset.respuesta)">'+x+'</button>').join('')+'</div>';
+  if(a.t==='mcq')h+='<div class="opciones">'+mezclar(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" onclick="window.mcq(this, this.dataset.respuesta)">'+x+'</button>').join('')+'</div>';
   if(a.t==='text')h+='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';
   if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Categoría y subcategoría">');h+='<button type="button" class="boton boton-principal" data-accion="analisis">Comprobar</button>'}
   document.getElementById('contenido').innerHTML=h;
@@ -171,44 +152,19 @@ const accionTexto=document.querySelector('#contenido [data-accion="texto"]');if(
 const accionAnalisis=document.querySelector('#contenido [data-accion="analisis"]');if(accionAnalisis)accionAnalisis.addEventListener('click',analisis);
 }
 function feedback(b,e){let f=document.getElementById('feedback');f.className='feedback '+(b?'exito':'error');f.innerHTML=(b?'<strong>✓ Correcto.</strong> ':'<strong>✗ No es correcto.</strong> ')+e;document.getElementById('siguiente').style.display='inline-block'}
-function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=norm(v)===norm(a.r);document.querySelectorAll('.opcion').forEach(x=>{x.disabled=true;if(norm(x.textContent)===norm(a.r))x.classList.add('correcta')});if(!b)btn.classList.add('incorrecta');else puntos++;feedback(b,a.e);document.getElementById('porcentaje').textContent=Math.round((i+1)/partida.length*100)+'%'}
+function mcq(btn,v){if(respondida)return;respondida=true;let a=partida[i],b=normalizar(v)===normalizar(a.r);document.querySelectorAll('.opcion').forEach(x=>{x.disabled=true;if(normalizar(x.textContent)===normalizar(a.r))x.classList.add('correcta')});if(!b)btn.classList.add('incorrecta');else puntos++;feedback(b,a.e);document.getElementById('porcentaje').textContent=Math.round((i+1)/partida.length*100)+'%'}
 function texto(){if(respondida)return;let v=document.getElementById('respuesta').value;if(!v.trim())return;respondida=true;let a=partida[i],b=ok(v,a.r);if(b)puntos++;document.getElementById('respuesta').disabled=true;feedback(b,a.e)}
 function analisis(){if(respondida)return;let a=partida[i],cs=[...document.querySelectorAll('.analisis')];if(cs.some(x=>!x.value.trim()))return;respondida=true;let b=true;cs.forEach((x,j)=>{let z=ok(x.value,a.r[j]);if(!z){b=false;x.classList.add('incorrecta')}else x.classList.add('correcta');x.disabled=true});if(b)puntos++;feedback(b,a.e)}
 function adelante(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let total=partida.length,nota=Number((puntos/total*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+total+' actividades.'}
 function repetir(){crear();i=0;puntos=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
-function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('inicio').style.display='block';document.querySelectorAll('.seccion-btn').forEach(b=>b.classList.remove('activa'));seccionActual=''}
-
-mostrarAlias();
-
-/* Navegación de secciones: se gestiona desde JavaScript para evitar problemas
+function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('inicio').style.display='block';document.querySelectorAll('.seccion-btn').forEach(b=>b.classList.remove('activa'));seccionActual=''}/* Navegación de secciones: se gestiona desde JavaScript para evitar problemas
    con handlers inline y garantizar que todos los bloques funcionen igual. */
 document.querySelectorAll('.bloque[data-seccion]').forEach(function(boton){
   boton.addEventListener('click',function(){
     elegirSeccion(this.dataset.seccion);
   });
-});
-
-window.norm=norm;
-window.ok=ok;
-window.mix=mix;
-window.alias=alias;
-window.player=player;
-window.mostrarAlias=mostrarAlias;
-window.abrirPerfil=abrirPerfil;
-window.guardarPerfil=guardarPerfil;
-window.iniciar=iniciar;
-window.crear=crear;
-window.mostrar=mostrar;
-window.feedback=feedback;
-window.mcq=mcq;
-window.texto=texto;
-window.analisis=analisis;
-window.siguiente=siguiente;
-window.resultado=resultado;
-window.repetir=repetir;
-window.volverMenu=volverMenu;
-window.irInicio=irInicio;
+});window.ok=ok;window.elegirSeccion=elegirSeccion;window.iniciar=iniciar;window.crear=crear;window.mostrar=mostrar;window.feedback=feedback;window.mcq=mcq;window.texto=texto;window.analisis=analisis;window.siguiente=siguiente;window.resultado=resultado;window.repetir=repetir;window.volverMenu=volverMenu;
 
 </script></body></html>
