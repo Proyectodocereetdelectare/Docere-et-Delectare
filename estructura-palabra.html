@@ -642,6 +642,8 @@ Siguiente →
 <br>
 
 
+<button class="boton" id="adelante" onclick="adelante()">Adelante →</button>
+<br>
 <button class="boton"
 onclick="volverMenu()">
 
@@ -2451,6 +2453,18 @@ function mostrarAviso(texto) {
 /* =====================================================
    SIGUIENTE
 ===================================================== */
+
+function adelante() {
+    if (respondida) return;
+    actividadActual++;
+    if (actividadActual < actividadesActuales.length) {
+        window.respuestaMCQ = undefined;
+        window.respuestaClasificacion = undefined;
+        mostrarActividad();
+    } else {
+        mostrarResultado();
+    }
+}
 
 function siguientePregunta() {
 
