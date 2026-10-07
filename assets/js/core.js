@@ -115,6 +115,7 @@
     }
     localStorage.setItem(DOCERE_STORAGE.ALIAS,alias);
     actualizarAliases();
+    actualizarRankingLocal();
     if(typeof actualizarAliasInterfaz==="function")actualizarAliasInterfaz();
     if(typeof actualizarAlias==="function")actualizarAlias();
     actualizarAliases();
