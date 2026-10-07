@@ -100,6 +100,7 @@ h2{font-size:28px;margin:30px 0 16px}
 </div>
 </div>
 
+<script src="assets/js/core.js"></script>
 <script>
 const secciones={identifica:'Identifica',analiza:'Analiza',conjuga:'Conjuga',transforma:'Transforma',perifrasis:'Perífrasis y locuciones',error:'Detecta el error',reto:'Reto final'};
 let seccionActual='',partida=[],i=0,puntos=0,respondida=false;
@@ -246,14 +247,14 @@ const A=[
 {s:'perifrasis',n:8,t:'text',q:'Distingue «tomó el pelo» de una perífrasis verbal.',r:['locucion verbal','locución verbal','es una locución verbal'],e:'Tomar el pelo es una locución verbal: una combinación fija que funciona como un verbo, no una perífrasis.'}
 ];
 
-function norm(x){return String(x||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[+\-_–—|/]/g,'').replace(/\s+/g,'').trim()}
+
 function ok(v,r){return (Array.isArray(r)?r.flat(Infinity):[r]).some(x=>norm(v)===norm(x))}
-function mix(a){return [...a].sort(()=>Math.random()-.5)}
-function alias(){return localStorage.getItem('docereAlias')||''}
-function player(){let x=localStorage.getItem('docerePlayerId');if(!x){x=crypto.randomUUID?crypto.randomUUID():'player-'+Date.now()+'-'+Math.random().toString(36).slice(2);localStorage.setItem('docerePlayerId',x)}return x}
-function mostrarAlias(){document.getElementById('aliasActividad').textContent=alias()||'Invitado'}
-function abrirPerfil(forzar){document.getElementById('aliasInput').value=alias();document.getElementById('perfilModal').style.display='flex';setTimeout(()=>document.getElementById('aliasInput').focus(),50)}
-function guardarPerfil(){let x=document.getElementById('aliasInput').value.trim();if(!x)return;localStorage.setItem('docereAlias',x);player();document.getElementById('perfilModal').style.display='none';mostrarAlias();if(seccionActual&&document.getElementById('menu').style.display!=='none')iniciarPartida()}
+
+
+
+
+
+
 function iniciarSeccion(s){seccionActual=s;if(!alias()){abrirPerfil();return}iniciarPartida()}
 function iniciarPartida(){crearPartida();i=0;puntos=0;document.getElementById('menu').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 function crearPartida(){
@@ -281,7 +282,7 @@ function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=Number((puntos/partida.length*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').textContent='Has acertado '+puntos+' de '+partida.length+' actividades.';let h=JSON.parse(localStorage.getItem('docereProgreso')||'null');if(Array.isArray(h))h={partidas:h.length,puntos:h.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:h.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:h};if(!h||typeof h!=='object')h={partidas:0,puntos:0,mejor:0,historial:[]};h.partidas++;h.puntos+=puntos*10;h.mejor=Math.max(Number(h.mejor||0),nota);h.historial=Array.isArray(h.historial)?h.historial:[];h.historial.unshift({playerId:player(),alias:alias(),bloque:'El verbo · '+secciones[seccionActual],nota,aciertos:puntos,fecha:new Date().toISOString()});h.historial=h.historial.slice(0,10);localStorage.setItem('docereProgreso',JSON.stringify(h))}
 function repetir(){iniciarPartida()}
 function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('menu').style.display='block';seccionActual=''}
-function irInicio(){const en= document.getElementById('actividad').style.display!=='none';if(en&&!confirm('Si vuelves al inicio, perderás la partida actual. ¿Quieres continuar?'))return;window.location.href='index.html'}
+
 mostrarAlias();
 window.norm=norm;
 window.ok=ok;
