@@ -933,7 +933,7 @@ function mostrarResultado() {
 
 
     document.getElementById("mensaje")
-        .innerHTML = mensaje + "<br><br><strong>Correctas:</strong> " + puntuacion + " · <strong>Incorrectas:</strong> " + (actividadesActuales.length - puntuacion - omitidas) + " · <strong>Sin responder:</strong> " + omitidas;}
+        .innerHTML = mensaje + "<br><br><strong>Correctas:</strong> " + puntuacion + " · <strong>Incorrectas:</strong> " + (actividadesActuales.length - puntuacion - omitidas) + " · <strong>Sin responder:</strong> " + omitidas + "<br><span class=\"pequeno\">Las actividades sin responder no suman puntos.</span>";}
 
 
 /* =====================================================
