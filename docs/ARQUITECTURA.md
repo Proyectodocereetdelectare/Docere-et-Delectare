@@ -358,7 +358,17 @@ Adaptación, logros, ranking global, panel docente y backend se incorporarán co
 
 ---
 
-## 13. Regla de oro para futuras modificaciones
+## 13. Estado consolidado de la arquitectura
+
+La primera capa común está operativa y los bancos de actividades están separados de las páginas. Además:
+
+- las claves de `localStorage` están centralizadas en `DOCERE_STORAGE`;
+- todas las actividades disponen de identificadores estables;
+- la clasificación local se actualiza desde los resultados de los bloques;
+- identidad, alias, normalización, navegación y almacenamiento compartido se reutilizan desde `core.js`;
+- existe una validación automática de estructura, scripts, recursos y enlaces locales.
+
+## 14. Regla de oro para futuras modificaciones
 
 Antes de modificar código se debe determinar:
 
@@ -373,7 +383,7 @@ Si una modificación pequeña exige tocar muchas áreas no relacionadas, se cons
 
 ---
 
-## 14. Estado actual
+## 15. Estado actual
 
 La primera capa de la arquitectura ya está implantada:
 
