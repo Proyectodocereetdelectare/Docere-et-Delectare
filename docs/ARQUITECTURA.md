@@ -394,11 +394,11 @@ La primera capa de la arquitectura ya está implantada:
 - `progreso.html` reutiliza el núcleo común para identidad y almacenamiento.
 - Las rutas públicas de las páginas se mantienen para no romper enlaces existentes.
 
-La migración continuará por capas: primero responsabilidades comunes, después motores reutilizables y, cuando sea necesario, renderizadores y componentes. No se hará una reescritura masiva que obligue a modificar simultáneamente todo el proyecto.
+La capa común prevista para esta fase está implantada y validada. Los motores didácticos siguen siendo específicos de cada bloque porque sus tipos de actividad y sus necesidades de interfaz no son idénticos. Una extracción adicional solo se hará cuando reduzca realmente la duplicación sin introducir acoplamiento artificial.
 
-### Principio de compatibilidad durante la migración
+### Principio de estabilidad
 
-Durante la transición puede coexistir código específico de una página con el núcleo común. Esto es deliberado: cada extracción debe comprobarse antes de eliminar la implementación anterior. El objetivo es reducir acoplamiento progresivamente, no sustituir todo el sistema de una vez.
+El proyecto se considera en **estado estable para continuar el desarrollo de contenidos**. No queda una migración arquitectónica obligatoria pendiente. Las futuras mejoras —por ejemplo, motores reutilizables adicionales, logros, ranking global o backend— son extensiones planificadas, no deuda técnica que haya que resolver antes de seguir.
 
 El objetivo no es que el proyecto tenga más archivos por tener más archivos.
 
