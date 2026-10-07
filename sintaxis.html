@@ -167,7 +167,7 @@ function iniciarSeccion(s){
  document.getElementById('actividad').style.display='block'; render();
 }
 function render(){
- preguntaActual=partida[indice]; respondida=false; arrastreSeleccionado=null; construccion=[];
+ preguntaActual=partida[indice]; respondida=false; construccion=[];
  document.getElementById('numero').textContent='Actividad '+(indice+1)+' de '+partida.length;
  document.getElementById('aciertos').textContent=aciertos+' aciertos';
  document.getElementById('barra').style.width=((indice+1)/partida.length*100)+'%';
@@ -290,7 +290,6 @@ function solucionVisible(a){
  if(a.t==='mcq'||a.t==='text'||a.t==='transform')return Array.isArray(a.r)?a.r.join(' / '):String(a.r);
  if(a.t==='select')return String(a.r);
  if(a.t==='analysis')return a.f.map((campo,i)=>campo+': '+(Array.isArray(a.r[i])?a.r[i].join(' / '):a.r[i])).join('<br>');
- if(a.t==='drag')return a.items.map(x=>x.t+' → '+x.f).join('<br>');
  if(a.t==='build')return a.piezas.filter((_,i)=>a.r.split('|').includes(a.piezas[i])).join(' ');
  if(a.t==='chain')return a.pasos.map((p,i)=>(i+1)+'. '+p.r).join('<br>');
  return '';
