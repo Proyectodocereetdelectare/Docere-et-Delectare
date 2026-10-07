@@ -72,26 +72,31 @@ h2{margin-top:0}
 <script src="assets/js/core.js"></script>
 <script>
 function cargar(){
-const playerId=obtenerPlayerId();
 const alias=obtenerAlias()||"Invitado";
 let p=leerJSON(DOCERE_STORAGE.PROGRESO,{partidas:0,mejor:0,puntos:0,historial:[]});
-if(Array.isArray(p)){p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};localStorage.setItem(DOCERE_STORAGE.PROGRESO,JSON.stringify(p));}
-if(!p||typeof p!=="object")p={partidas:0,puntos:0,mejor:0,historial:[]};
+if(Array.isArray(p)){
+ p={partidas:p.length,puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0),mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),historial:p};
+ localStorage.setItem(DOCERE_STORAGE.PROGRESO,JSON.stringify(p));
+}
+if(!p||typeof p!=="object")p={partidas:0,mejor:0,puntos:0,historial:[]};
+p.partidas=Number(p.partidas||0);p.puntos=Number(p.puntos||0);p.mejor=Number(p.mejor||0);p.historial=Array.isArray(p.historial)?p.historial:[];
 document.getElementById("alias").textContent=alias;
 document.getElementById("partidas").textContent=p.partidas;
 document.getElementById("puntos").textContent=p.puntos;
-document.getElementById("mejor").textContent=Number(p.mejor||0).toFixed(1).replace(".",",");
+document.getElementById("mejor").textContent=p.mejor.toFixed(1).replace(".",",");
 const h=document.getElementById("historial");
-if(!p.historial||!p.historial.length){h.innerHTML='<div class="vacio">Todavía no has completado ninguna partida.</div>';return}
+if(!p.historial.length){h.innerHTML='<div class="vacio">Todavía no has completado ninguna partida.</div>';return}
 h.innerHTML='<table class="tabla"><thead><tr><th>Bloque</th><th>Aciertos</th><th>Nota</th></tr></thead><tbody>'+
-p.historial.map(x=>'<tr><td>'+escapeHtml(x.bloque||"Actividad")+'</td><td>'+x.aciertos+'</td><td>'+Number(x.nota||0).toFixed(1).replace(".",",")+'</td></tr>').join("")+
+p.historial.map(x=>'<tr><td>'+escapeHtml(x.bloque||"Actividad")+'</td><td>'+Number(x.aciertos||0)+'</td><td>'+Number(x.nota||0).toFixed(1).replace(".",",")+'</td></tr>').join("")+
 '</tbody></table>';
 }
 function cargarRanking(){
 const actualId=obtenerPlayerId();
 const actualAlias=obtenerAlias()||"Invitado";
 let ranking=leerJSON(DOCERE_STORAGE.RANKING,[]);
-const p=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
+let p=leerJSON(DOCERE_STORAGE.PROGRESO,{mejor:0,puntos:0});
+if(Array.isArray(p))p={mejor:p.reduce((m,x)=>Math.max(m,Number(x.nota||0)),0),puntos:p.reduce((s,x)=>s+Number(x.aciertos||0)*10,0)};
+if(!p||typeof p!=="object")p={mejor:0,puntos:0};
 if(!Array.isArray(ranking))ranking=[];
 const idx=ranking.findIndex(x=>x.playerId===actualId);
 const registro={playerId:actualId,alias:actualAlias,mejor:Number(p.mejor||0),puntos:Number(p.puntos||0)};
@@ -105,10 +110,7 @@ ranking.map((x,i)=>'<tr><td>'+(i+1)+'</td><td>'+escapeHtml(x.alias||"Invitado")+
 '</tbody></table>';
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function cambiarAlias(){
-const actual=localStorage.getItem(DOCERE_STORAGE.ALIAS)||"";
-const nuevo=prompt("Escribe tu nuevo alias:",actual);
-if(nuevo&&nuevo.trim()){localStorage.setItem(DOCERE_STORAGE.ALIAS,limpiarAlias(nuevo));cargar();cargarRanking();}
+cargar();cargarRanking();}
 }
 cargar();
 cargarRanking();
