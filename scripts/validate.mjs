@@ -14,6 +14,7 @@ const pages = [
 ];
 
 const errors = [];
+const externalScripts = new Set();
 
 function balanced(source, open, close) {
   let depth = 0, quote = null, escaped = false, line = false, block = false;
@@ -39,31 +40,61 @@ function balanced(source, open, close) {
 
 for (const file of pages) {
   const full = path.join(root, file);
-  if (!fs.existsSync(full)) { errors.push(`Falta ${file}`); continue; }
+  if (!fs.existsSync(full)) {
+    errors.push(file + ": archivo inexistente");
+    continue;
+  }
+
   const html = fs.readFileSync(full, "utf8");
 
   for (const src of [...html.matchAll(/<script\s+src=["']([^"']+)["']/gi)].map(m => m[1])) {
     const target = path.join(root, src);
-    if (!fs.existsSync(target)) errors.push(`${file}: script inexistente ${src}`);
+    if (!fs.existsSync(target)) errors.push(file + ": script inexistente " + src);
+    else externalScripts.add(target);
+  }
+
+  for (const href of [...html.matchAll(/<link[^>]+href=["']([^"']+)["']/gi)].map(m => m[1])) {
+    if (!/^https?:|^data:|^javascript:/i.test(href)) {
+      const target = path.join(root, href);
+      if (!fs.existsSync(target)) errors.push(file + ": recurso CSS inexistente " + href);
+    }
   }
 
   for (const href of [...html.matchAll(/href=["']([^"']+)["']/gi)].map(m => m[1])) {
-    if (href === "#") errors.push(`${file}: enlace href="#" sin destino`);
+    if (href === "#") errors.push(file + ': enlace href="#" sin destino');
+    if (!/^(https?:|mailto:|javascript:|#)/i.test(href)) {
+      const target = path.join(root, href.split("#")[0].split("?")[0]);
+      if (!fs.existsSync(target)) errors.push(file + ": destino inexistente " + href);
+    }
   }
 
-  if (/4\.?º\s*ESO/i.test(html)) errors.push(`${file}: referencia a 4.º ESO`);
+  if (/4\.?º\s*ESO/i.test(html)) errors.push(file + ": referencia a 4.º ESO");
   if (/según (la )?(presentación|material)|en el material|en la presentación/i.test(html)) {
-    errors.push(`${file}: referencia a presentación/material`);
+    errors.push(file + ": referencia a presentación/material");
   }
 
-  const scripts = [...html.matchAll(/<script>([\\s\\S]*?)<\\/script>/gi)].map(m => m[1]).join("\n");
+  const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)].map(m => m[1]).join("\n");
+  if (scripts.trim()) {
+    try { new Function(scripts); }
+    catch (error) { errors.push(file + ": JavaScript inline inválido: " + error.message); }
+  }
+
   for (const [open, close, label] of [["{","}","llaves"],["[","]","corchetes"],["(",")","paréntesis"]]) {
-    if (!balanced(scripts, open, close)) errors.push(`${file}: ${label} desbalanceados`);
+    if (!balanced(scripts, open, close)) errors.push(file + ": " + label + " desbalanceados");
   }
 
   const funcs = [...scripts.matchAll(/function\s+([A-Za-z_$][\w$]*)\s*\(/g)].map(m => m[1]);
   const duplicates = [...new Set(funcs.filter((x, i) => funcs.indexOf(x) !== i))];
-  if (duplicates.length) errors.push(`${file}: funciones duplicadas ${duplicates.join(", ")}`);
+  if (duplicates.length) errors.push(file + ": funciones duplicadas " + duplicates.join(", "));
+}
+
+for (const file of externalScripts) {
+  try {
+    const source = fs.readFileSync(file, "utf8");
+    new Function(source);
+  } catch (error) {
+    errors.push("JS externo inválido " + path.relative(root, file) + ": " + error.message);
+  }
 }
 
 if (errors.length) {
@@ -71,4 +102,4 @@ if (errors.length) {
   process.exit(1);
 }
 
-console.log(`Docere et Delectare: validación estructural OK (${pages.length} páginas).`);
+console.log("Docere et Delectare: validación estructural OK (" + pages.length + " páginas).");
