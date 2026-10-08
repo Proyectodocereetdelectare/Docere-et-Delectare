@@ -100,12 +100,12 @@ function renderChain(c){
 }
 function elegirPaso(paso,i){
  if(respondida)return;
- document.querySelectorAll('.paso-opcion[data-paso="'+paso+'"]').forEach((b,j)=>b.dataset.seleccion=(j===i?'1':'0'));
+ document.querySelectorAll('.paso-opcion[data-paso="'+paso+'"]').forEach(b=>b.dataset.seleccion=(Number(b.dataset.i)===i?'1':'0'));
 }
 function elegir(i){
  if(respondida)return;
  document.querySelectorAll('.opcion').forEach(b=>b.classList.remove('correcta','incorrecta'));
- document.querySelectorAll('.opcion').forEach((b,j)=>b.dataset.seleccion=(j===i?'1':'0'));
+ document.querySelectorAll('.opcion').forEach(b=>b.dataset.seleccion=(Number(b.dataset.i)===i?'1':'0'));
 }
 function comprobar(){
  if(respondida)return;
