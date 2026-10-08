@@ -214,6 +214,31 @@ for(const [file,names] of contracts){
   }
 }
 
+/* Contrato curricular de Sintaxis: la taxonomía es independiente del banco y debe mantenerse válida. */
+try{
+  const taxonomyFile="assets/js/data/sintaxis/taxonomia.js";
+  const taxonomy= new Function(read(taxonomyFile)+"\nreturn SINTAXIS_TAXONOMIA;")();
+  if(taxonomy.version!=="1.0.0")addError(taxonomyFile+": versión de taxonomía inesperada");
+  for(const n of [1,2,3,4,5,6]){
+    if(!taxonomy.niveles?.[n])addError(taxonomyFile+": falta definición operativa del nivel "+n);
+  }
+  const data= new Function(read("assets/js/data/sintaxis/sintaxis.js")+"\nreturn BANCO;")();
+  const expected=["unidades","simple","compuesta","error","reto"];
+  for(const section of expected){
+    if(!taxonomy.bloques?.[section])addError(taxonomyFile+": falta taxonomía para "+section);
+    const arr=data[section]||[];
+    if(!arr.length)addError("assets/js/data/sintaxis/sintaxis.js: sección vacía "+section);
+    const levels=new Set(arr.map(a=>a.nivel??a.n));
+    for(const n of [1,2,3,4,5,6])if(!levels.has(n))addError("assets/js/data/sintaxis/sintaxis.js: "+section+" no contiene nivel "+n);
+    if((arr[0]?.nivel??arr[0]?.n)!==1)addError("assets/js/data/sintaxis/sintaxis.js: "+section+" no comienza por nivel 1");
+  }
+  for(const [family,meta] of Object.entries(taxonomy.familias||{})){
+    if(!taxonomy.bloques?.[meta.bloque])addError(taxonomyFile+": familia "+family+" referencia bloque inexistente "+meta.bloque);
+  }
+}catch(error){
+  addError("assets/js/data/sintaxis/taxonomia.js: taxonomía inválida: "+error.message);
+}
+
 // Pruebas de comportamiento estáticas: protegen las reglas críticas del motor sin exigir navegador.
 const behaviorContracts=[
   ["assets/js/pages/sintaxis.js",["omitidas++","Respuesta correcta:","function adelante("]],
