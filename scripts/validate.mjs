@@ -230,6 +230,37 @@ for(const [file,patterns] of behaviorContracts){
 }
 if(/\balias\(\)|\babrirPerfil\b/.test(read("formacion-palabras.html")))addError("formacion-palabras.html: residuo de perfil/alias");
 
+
+/* Auditoría final de modularidad y accesibilidad. */
+const expectedPageModules={
+  "estructura-palabra.html":"assets/js/pages/estructura-palabra.js",
+  "formacion-palabras.html":"assets/js/pages/formacion-palabras.js",
+  "categorias-gramaticales.html":"assets/js/pages/categorias-gramaticales.js",
+  "verbo.html":"assets/js/pages/verbo.js",
+  "sintaxis.html":"assets/js/pages/sintaxis.js"
+};
+for(const [page,module] of Object.entries(expectedPageModules)){
+  const html=read(page);
+  const inlineScripts=[...html.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)]
+    .map(m=>m[1].trim()).filter(Boolean);
+  if(inlineScripts.length)addError(page+": contiene JavaScript inline");
+  if(!html.includes('href="assets/css/core.css"'))addError(page+": falta el CSS común");
+  if(!html.includes('src="'+module+'"'))addError(page+": falta su módulo de página "+module);
+
+  const ids=new Set([...html.matchAll(/\\bid=["']([^"']+)["']/gi)].map(m=>m[1]));
+  const source=fs.readFileSync(path.join(root,module),"utf8");
+  for(const m of source.matchAll(/getElementById\\(["']([^"']+)["']\\)/g)){
+    if(!ids.has(m[1])&&!dynamicIds.has(m[1]))addError(page+": módulo referencia id inexistente: "+m[1]);
+  }
+  for(const m of html.matchAll(/<button\\b([^>]*)>/gi)){
+    if(!/\\btype=["'][^"']+["']/i.test(m[1]))addError(page+": botón sin type");
+  }
+}
+for(const file of Object.values(expectedPageModules)){
+  const source=fs.readFileSync(path.join(root,file),"utf8");
+  if(/\\b(?:drag|drop|arrastr|zona-arrastre|arrastreSeleccionado)\\b/i.test(source))addError(file+": contiene residuos de arrastre");
+}
+
 if(errors.length){
   console.error(errors.join("\n"));
   process.exit(1);
