@@ -17,7 +17,7 @@ Docere-et-Delectare/
 │   ├── css/core.css
 │   └── js/
 │       ├── core.js
-│       └── pages/{estructura-palabra,formacion-palabras,categorias-gramaticales,verbo,sintaxis}.js
+│       ├── pages/{estructura-palabra,formacion-palabras,categorias-gramaticales,verbo,sintaxis}.js
 │       └── data/{morfologia,sintaxis}/
 ├── scripts/validate.mjs
 └── docs/ARQUITECTURA.md
@@ -26,7 +26,8 @@ Docere-et-Delectare/
 ## Responsabilidades
 - **core.js:** `normalizar`, `mezclar` e `irInicio`.
 - **data/:** bancos de actividades y contenido educativo.
-- **pages/*.js:** selección, renderizado, corrección y resultado de cada bloque; las páginas HTML contienen estructura y navegación, no lógica de aplicación.\n- **páginas HTML:** estructura, navegación y carga de módulos.
+- **pages/*.js:** selección, renderizado, corrección y resultado de cada bloque; las páginas HTML contienen estructura y navegación, no lógica de aplicación.
+- **páginas HTML:** estructura, navegación y carga de módulos.
 - **core.css:** componentes globales.
 
 El núcleo no contiene preguntas ni estado persistente.
@@ -42,7 +43,9 @@ Si en el futuro se necesita historial o aprendizaje adaptativo, debe añadirse c
 3. Utilidad transversal → `core.js`.
 4. Interfaz global → `core.css`.
 
-Añadir preguntas no debe exigir cambios en otras materias.\n\nCada banco admite sus alias históricos (`t`/`tipo`, `n`/`nivel`, `q`/`pregunta`, etc.) mientras el validador garantiza que los tipos realmente implementados coincidan con cada motor. No se introduce una capa de persistencia ni un contrato remoto.
+Añadir preguntas no debe exigir cambios en otras materias.
+
+Cada banco admite sus alias históricos (`t`/`tipo`, `n`/`nivel`, `q`/`pregunta`, etc.) mientras el validador garantiza que los tipos realmente implementados coincidan con cada motor. No se introduce una capa de persistencia ni un contrato remoto.
 
 ## Validación
 `scripts/validate.mjs` comprueba recursos, JavaScript, IDs, handlers, contratos de datos, niveles, respuestas, explicaciones, HTML, duplicados y cobertura de Sintaxis, además de detectar la reaparición de la infraestructura eliminada.
