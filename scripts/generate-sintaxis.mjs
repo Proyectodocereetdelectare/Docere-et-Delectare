@@ -8,7 +8,7 @@ load("assets/js/data/sintaxis/taxonomia.js");
 load("assets/js/data/sintaxis/contrato-generacion.js");
 load("assets/js/data/sintaxis/generador.js");
 
-const provider=process.env.AI_PROVIDER||"openai";
+const provider=process.env.AI_PROVIDER||"openai-compatible";
 const apiKey=process.env.AI_API_KEY;
 const apiUrl=process.env.AI_API_URL||"https://api.openai.com/v1/chat/completions";
 const model=process.env.AI_MODEL||"gpt-5-mini";
@@ -29,10 +29,7 @@ if(!spec.ok)throw new Error(spec.errores.join(" | "));
 const prompt=globalThis.DocereSintaxisGenerador.construirPrompt(spec.especificacion);
 
 async function pedir(instruccion){
-  const response=await fetch(apiUrl,{
-    method:"POST",
-    headers:{"Content-Type":"application/json","Authorization:"Bearer "+apiKey},
-    body:JSON.stringify({
+  const body={
       model,
       messages:[
         {role:"system",content:"Eres el proveedor de generación de actividades de Docere et Delectare. Cumple estrictamente el contrato recibido."},
@@ -40,8 +37,16 @@ async function pedir(instruccion){
       ],
       temperature:0.7,
       response_format:{type:"json_object"}
-    })
+    };
+  let response=await fetch(apiUrl,{
+    method:"POST",
+    headers:{"Content-Type":"application/json","Authorization:"Bearer "+apiKey},
+    body:JSON.stringify(body)
   });
+  if(!response.ok && response.status===400){
+    delete body.response_format;
+    response=await fetch(apiUrl,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},body:JSON.stringify(body)});
+  }
   if(!response.ok)throw new Error("Proveedor IA HTTP "+response.status+": "+await response.text());
   const data=await response.json();
   const content=data?.choices?.[0]?.message?.content;
