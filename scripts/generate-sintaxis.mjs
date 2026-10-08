@@ -40,7 +40,7 @@ async function pedir(instruccion){
     };
   let response=await fetch(apiUrl,{
     method:"POST",
-    headers:{"Content-Type":"application/json","Authorization:"Bearer "+apiKey},
+    headers:{"Content-Type":"application/json","Authorization":"Bearer "+apiKey},
     body:JSON.stringify(body)
   });
   if(!response.ok && response.status===400){
