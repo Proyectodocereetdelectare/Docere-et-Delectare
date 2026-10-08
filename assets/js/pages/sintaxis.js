@@ -32,7 +32,7 @@ function seleccionar(){
    }
    salida.push(...elegidas);
  }
- return mezclar(salida);
+ if(seccionActual==='reto'){ const mezclada=mezclar(salida); const i=mezclada.findIndex(a=>a.n===1); if(i>0)[mezclada[0],mezclada[i]]=[mezclada[i],mezclada[0]]; return mezclada; }\n return salida;
 }
 function iniciarSeccion(s){
  seccionActual=s;partida=seleccionar(); indice=0; aciertos=0; omitidas=0;
