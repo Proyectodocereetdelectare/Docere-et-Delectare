@@ -67,7 +67,7 @@ h2{font-size:28px;margin:0 0 18px}h3{margin-top:25px}
 .ayuda{margin-top:20px;padding:15px;background:#f7f4ee;border-radius:12px;color:#625b51;line-height:1.55;font-size:14px;text-align:left}
 .boton-inicio-global:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.16)}
 @media(max-width:700px){h1{font-size:36px}.panel{padding:25px 18px}.bloques,.opciones{grid-template-columns:1fr}#pregunta{font-size:21px}.fragmento{font-size:22px}}
-</style>
+\n.bloque-ia{border:2px solid #bcb1a0;background:#f7f4ee}\n</style>
 <link rel="stylesheet" href="assets/css/core.css">
 </head>
 <body>
@@ -85,6 +85,7 @@ h2{font-size:28px;margin:0 0 18px}h3{margin-top:25px}
 <button type="button" class="bloque" onclick="iniciarSeccion('compuesta')"><span class="icono">🔗</span><strong>Oración compuesta</strong><span class="descripcion">Coordinación, subordinación y yuxtaposición</span></button>
 <button type="button" class="bloque" onclick="iniciarSeccion('error')"><span class="icono">🧠</span><strong>Detecta el error</strong><span class="descripcion">Localiza, corrige y justifica errores de análisis sintáctico</span></button>
 <button type="button" class="bloque" onclick="iniciarSeccion('reto')"><span class="icono">🏆</span><strong>Reto sintáctico</strong><span class="descripcion">Integra unidades, funciones y relaciones en análisis completos</span></button>
+<button type="button" class="bloque bloque-ia" onclick="iniciarSeccion('generadasIA')"><span class="icono">🤖</span><strong>Laboratorio IA · Sintaxis</strong><span class="descripcion">Solo actividades generadas por el nuevo sistema de IA. Lote piloto para comprobar su calidad.</span></button>
 </div>
 <p class="ayuda"><strong>Cómo avanzar:</strong> las partidas de cada bloque progresan de los niveles 1 a 6; el reto puede mezclar contenidos de todos los bloques, pero comienza con una actividad de nivel inicial. El nivel 1 prioriza el reconocimiento; el 6 exige análisis, contraste o justificación.</p>
 </section>
@@ -119,6 +120,7 @@ h2{font-size:28px;margin:0 0 18px}h3{margin-top:25px}
 </div>
 
 <script src="assets/js/data/sintaxis/sintaxis.js"></script>
+<script src="assets/js/data/sintaxis/generadas-ia.js"></script>
 <script src="assets/js/core.js"></script>
 <script src="assets/js/pages/sintaxis.js"></script>
 </body>
