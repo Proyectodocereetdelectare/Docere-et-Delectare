@@ -17,6 +17,7 @@ Docere-et-Delectare/
 │   ├── css/core.css
 │   └── js/
 │       ├── core.js
+│       └── pages/{estructura-palabra,formacion-palabras,categorias-gramaticales,verbo,sintaxis}.js
 │       └── data/{morfologia,sintaxis}/
 ├── scripts/validate.mjs
 └── docs/ARQUITECTURA.md
