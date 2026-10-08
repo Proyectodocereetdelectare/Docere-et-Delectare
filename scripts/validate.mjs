@@ -214,6 +214,15 @@ for(const [file,names] of contracts){
   }
 }
 
+/* Núcleo del generador calibrado: sintaxis y contrato deben poder cargarse sin errores. */
+try{
+  for(const file of ["assets/js/data/sintaxis/taxonomia.js","assets/js/data/sintaxis/contrato-generacion.js","assets/js/data/sintaxis/generador.js"]){
+    new Function(read(file));
+  }
+}catch(error){
+  addError("Capa de generación de Sintaxis inválida: "+error.message);
+}
+
 /* Contrato curricular de Sintaxis: la taxonomía es independiente del banco y debe mantenerse válida. */
 try{
   const taxonomyFile="assets/js/data/sintaxis/taxonomia.js";
