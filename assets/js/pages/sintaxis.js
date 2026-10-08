@@ -68,7 +68,7 @@ function renderMcq(c){
  c.innerHTML='<div class="opciones">'+opciones.map((op,j)=>'<button type="button" class="opcion" data-i="'+op.i+'" data-orden="'+j+'" onclick="elegir('+op.i+')">'+op.x+'</button>').join('')+'</div>';
 }
 function renderText(c){
- c.innerHTML='<label class="etiqueta-campo" for="respuesta">Escribe tu respuesta</label><input id="respuesta" class="campo" autocomplete="off" onkeydown="if(event.key===\'Enter\')comprobar()" placeholder="Escribe aquí...">';
+ c.innerHTML='<label class="etiqueta-campo" for="respuesta">Escribe tu respuesta</label><input id="respuesta" class="campo" aria-label="Respuesta" autocomplete="off" onkeydown="if(event.key===\'Enter\')comprobar()" placeholder="Escribe aquí...">';
  setTimeout(()=>document.getElementById('respuesta')?.focus(),50);
 }
 function renderAnalysis(c){
