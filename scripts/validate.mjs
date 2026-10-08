@@ -7,7 +7,7 @@ const pages=[
   "formacion-palabras.html","categorias-gramaticales.html",
   "verbo.html","sintaxis.html"
 ];
-const dynamicIds=new Set(["respuesta","campo0","campo1","campo2","campo3","campo4","campo5","campo6"]);
+const dynamicIds=new Set(["respuesta","campo0","campo1","campo2","campo3","campo4","campo5","campo6","construida"]);
 
 const errors=[];
 const externalScripts=new Set();
