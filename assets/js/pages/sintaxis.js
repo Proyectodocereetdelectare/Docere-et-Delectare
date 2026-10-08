@@ -46,7 +46,7 @@ function render(){
  document.getElementById('numero').textContent='Actividad '+(indice+1)+' de '+partida.length;
  document.getElementById('aciertos').textContent=aciertos+' aciertos';
  document.getElementById('barra').style.width=((indice+1)/partida.length*100)+'%';
- const nombres={unidades:'🔎 Sintagmas y oración simple · Inicio',simple:'🏗️ Oración simple',compuesta:'🔗 Oración compuesta',error:'🧠 Detecta el error',reto:'🏆 Reto sintáctico'};
+ const nombres={unidades:'🔎 Sintagmas y oración simple · Inicio',simple:'🏗️ Oración simple',compuesta:'🔗 Oración compuesta',error:'🧠 Detecta el error',reto:'🏆 Reto sintáctico',generadasIA:'🤖 Laboratorio IA · Sintaxis'};
  document.getElementById('etiqueta').textContent=nombres[seccionActual];
  document.getElementById('nivel').textContent='Nivel '+preguntaActual.n;
  document.getElementById('pregunta').innerHTML=preguntaActual.q;
