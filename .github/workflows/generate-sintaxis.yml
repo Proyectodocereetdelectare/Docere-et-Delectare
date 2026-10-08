@@ -1,0 +1,51 @@
+name: Generar actividades de Sintaxis con IA
+
+on:
+  workflow_dispatch:
+    inputs:
+      bloque:
+        description: "Bloque curricular"
+        required: true
+        default: "simple"
+      familia:
+        description: "Familia de la taxonomía"
+        required: true
+        default: "CR"
+      nivel:
+        description: "Nivel 1-6"
+        required: true
+        default: "3"
+      cantidad:
+        description: "Número de actividades"
+        required: true
+        default: "5"
+      modelo:
+        description: "Modelo del proveedor"
+        required: true
+        default: "gpt-5-mini"
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Generar y validar lote
+        env:
+          AI_PROVIDER: openai-compatible
+          AI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AI_API_URL: https://api.openai.com/v1/chat/completions
+          AI_MODEL: ${{ inputs.modelo }}
+          AI_BLOCK: ${{ inputs.bloque }}
+          AI_FAMILY: ${{ inputs.familia }}
+          AI_LEVEL: ${{ inputs.nivel }}
+          AI_QUANTITY: ${{ inputs.cantidad }}
+        run: node scripts/generate-sintaxis.mjs
+      - name: Publicar lote como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: sintaxis-ia-validada
+          path: generated/*.json
+          if-no-files-found: error
