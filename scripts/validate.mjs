@@ -248,6 +248,35 @@ try{
   addError("assets/js/data/sintaxis/taxonomia.js: taxonomía inválida: "+error.message);
 }
 
+/* Lote piloto generado por IA: debe poder validarse de forma independiente del banco estable. */
+try{
+  const generatedFile="assets/js/data/sintaxis/generadas-ia.js";
+  const generated=new Function(read(generatedFile)+"\nreturn BANCO_GENERADO_IA;")();
+  if(!Array.isArray(generated)||generated.length!==20){
+    addError(generatedFile+": el lote piloto debe contener exactamente 20 actividades");
+  }
+  const ids=generated.map(a=>a?.id);
+  if(ids.some(id=>!/^IA-SX-\\d{3}$/.test(id||"")))addError(generatedFile+": identificador de actividad IA inválido");
+  if(new Set(ids).size!==ids.length)addError(generatedFile+": identificadores IA duplicados");
+  const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};
+  for(const [nivel,objetivo] of Object.entries(objetivos)){
+    const count=generated.filter(a=>(a.nivel??a.n)===Number(nivel)).length;
+    if(count!==objetivo)addError(generatedFile+": nivel "+nivel+" contiene "+count+" actividades; se esperaban "+objetivo);
+  }
+  for(const a of generated){
+    if(!a.q||!a.e)addError(generatedFile+": actividad IA sin enunciado o explicación en "+(a.id||"sin id"));
+    if(a.t!=="mcq")addError(generatedFile+": el piloto IA usa un formato no permitido en "+a.id);
+    if(!Array.isArray(a.o)||a.o.length!==4)addError(generatedFile+": MCQ IA sin exactamente 4 opciones en "+a.id);
+    else{
+      const opts=a.o.map(normalizarAuditoria);
+      if(new Set(opts).size!==4)addError(generatedFile+": MCQ IA con opciones duplicadas en "+a.id);
+      if(!opts.includes(normalizarAuditoria(a.r)))addError(generatedFile+": respuesta IA ausente de las opciones en "+a.id);
+    }
+  }
+}catch(error){
+  addError("assets/js/data/sintaxis/generadas-ia.js: lote piloto inválido: "+error.message);
+}
+
 // Pruebas de comportamiento estáticas: protegen las reglas críticas del motor sin exigir navegador.
 const behaviorContracts=[
   ["assets/js/pages/sintaxis.js",["omitidas++","Respuesta correcta:","function adelante("]],
