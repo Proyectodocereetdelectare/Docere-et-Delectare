@@ -19,6 +19,7 @@ Docere-et-Delectare/
 │       ├── core.js
 │       ├── pages/{estructura-palabra,formacion-palabras,categorias-gramaticales,verbo,sintaxis}.js
 │       └── data/{morfologia,sintaxis}/
+│           └── sintaxis/taxonomia.js
 ├── scripts/validate.mjs
 └── docs/ARQUITECTURA.md
 ```
@@ -46,6 +47,14 @@ Si en el futuro se necesita historial o aprendizaje adaptativo, debe añadirse c
 Añadir preguntas no debe exigir cambios en otras materias.
 
 Cada banco admite sus alias históricos (`t`/`tipo`, `n`/`nivel`, `q`/`pregunta`, etc.) mientras el validador garantiza que los tipos realmente implementados coincidan con cada motor. No se introduce una capa de persistencia ni un contrato remoto.
+
+## Taxonomía y generación futura
+
+`assets/js/data/sintaxis/taxonomia.js` define la fuente de verdad curricular de Sintaxis: propósito de cada bloque, prerrequisitos, exclusiones, progresión de niveles 1–6, familias de contenido, pruebas sintácticas y restricciones de generación. No genera actividades ni sustituye al banco actual.
+
+La futura IA generativa deberá producir actividades contra esta taxonomía, no contra instrucciones libres. El flujo previsto es: **taxonomía → generación → validación lingüística/estructural → publicación**. En particular, la taxonomía fija que los MCQ tengan una única respuesta válida, impide que el enunciado revele la respuesta y codifica las confusiones críticas (CR/CC, PVO/CC de modo, CD/CI, agente/CC, relativa/adverbial).
+
+La puerta de entrada de Sintaxis se mantiene deliberadamente separada: `unidades` trabaja sintagmas y reconocimiento básico de oración simple; `simple` trabaja funciones; `compuesta` trabaja relaciones entre proposiciones; `reto` integra todos los contenidos.
 
 ## Validación
 `scripts/validate.mjs` comprueba recursos, JavaScript, IDs, handlers, contratos de datos, niveles, respuestas, explicaciones, HTML, duplicados y cobertura de Sintaxis, además de detectar la reaparición de la infraestructura eliminada.
