@@ -40,12 +40,32 @@ function construirPrompt(especificacion){
     "","FAMILIA:",JSON.stringify(tax.familias[especificacion.familia]||{},null,2),
     "","RESTRICCIONES DE GENERACIÓN:",...tax.generacion.reglas.map(x=>"- "+x),
     "","BLOQUEOS:",...tax.generacion.bloqueos.map(x=>"- "+x),
+    "","CONTROL DE COMPLEJIDAD DE ORACIÓN COMPUESTA:",
+    "- La dificultad debe proceder del fenómeno sintáctico, no de hacer la oración innecesariamente larga o recargada.",
+    "- Niveles 1-4: normalmente máximo 3 proposiciones y una sola subordinación incrustada.",
+    "- Niveles 5-6: máximo 4 proposiciones salvo Reto específicamente diseñado para integración.",
+    "- Evita cadenas de subordinadas del tipo «dado que... que... porque... aunque...». Si para resolver la pregunta hay que construir un árbol sintáctico excesivamente profundo, simplifica la oración.",
+    "- Mantén las oraciones ordinarias por debajo de 35 palabras en niveles 1-4 y de 45 en niveles 5-6.",
     "","CONTRATO DE SALIDA:",JSON.stringify(contrato.salida,null,2),
     "","Devuelve SOLO JSON válido con una propiedad actividades que contenga un array.",
     "No añadas markdown ni explicaciones fuera del JSON."
   ].join("\n");
 }
 function textoPlano(valor){return String(valor??"").replace(/<[^>]*>/g,"").replace(/\s+/g," ").trim();}
+function analizarComplejidadCompuesta(a,e){
+  if(!["compuesta","reto"].includes(e.bloque))return [];
+  const q=textoPlano(a.q);
+  const palabras=q.split(/\s+/).filter(Boolean);
+  const maxPalabras=e.nivel<=4?35:45;
+  const maxProposiciones=e.nivel<=4?3:4;
+  const conectores=(q.match(/\b(?:que|porque|aunque|cuando|mientras|donde|como|si|para que|puesto que|ya que|a pesar de que|de modo que|por lo que|y|o|pero|ni|sino|es decir)\b/gi)||[]).length;
+  const subordinadores=(q.match(/\b(?:que|porque|aunque|cuando|mientras|donde|como|si|para que|puesto que|ya que|a pesar de que|de modo que|por lo que)\b/gi)||[]).length;
+  const errores=[];
+  if(palabras.length>maxPalabras)errores.push(`Oración demasiado larga para el nivel: ${palabras.length} palabras (máximo ${maxPalabras}).`);
+  if(conectores+1>maxProposiciones)errores.push(`Complejidad excesiva: se detectan aproximadamente ${conectores+1} relaciones/proposiciones (máximo ${maxProposiciones}).`);
+  if(e.nivel<=4&&subordinadores>=3)errores.push("Demasiadas relaciones de subordinación para un nivel ordinario.");
+  return errores;
+}
 function validarActividad(a,e){
   const errores=[];
   if(!a||typeof a!=="object")return error("La actividad no es un objeto.");
@@ -63,7 +83,7 @@ function validarActividad(a,e){
     }
   }
   if(Array.isArray(a.o)&&a.o.some(x=>!textoPlano(x)))errores.push("Hay una opción vacía.");
-  if(a.meta?.criterio&&!textoPlano(a.meta.criterio))errores.push("El criterio de solución está vacío.");
+  if(a.meta?.criterio&&!textoPlano(a.meta.criterio))errores.push("El criterio de solución está vacío.");\n  errores.push(...analizarComplejidadCompuesta(a,e));
   return errores.length?{ok:false,errores}:{ok:true,actividad:a};
 }
 function validarLote(respuesta,e){
