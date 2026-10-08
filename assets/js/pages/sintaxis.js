@@ -72,7 +72,7 @@ function renderText(c){
  setTimeout(()=>document.getElementById('respuesta')?.focus(),50);
 }
 function renderAnalysis(c){
- c.innerHTML=preguntaActual.f.map((f,i)=>'<label class="etiqueta-campo" for="campo'+i+'">'+f+'</label><input id="campo'+i+'" class="campo" autocomplete="off" onkeydown="if(event.key===\'Enter\')comprobar()">').join('');
+ c.innerHTML=preguntaActual.f.map((f,i)=>'<label class="etiqueta-campo" for="campo'+i+'">'+f+'</label><input id="campo'+i+'" class="campo" aria-label="Respuesta del apartado" autocomplete="off" onkeydown="if(event.key===\'Enter\')comprobar()">').join('');
  setTimeout(()=>document.getElementById('campo0')?.focus(),50);
 }
 function renderSelect(c){
