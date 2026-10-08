@@ -38,7 +38,7 @@ function mostrar(){
   let nombres={sustantivos:'Tipos de sustantivos',identifica:'Identifica',analiza:'Analiza',transforma:'Transforma',error:'Detecta el error',reto:'Reto final'};
   let h='<div class="etiqueta">'+nombres[seccionActual]+' · Nivel '+a.n+'</div><div id="pregunta">'+a.q+'</div>';
   if(a.t==='mcq')h+='<div class="opciones">'+mezclar(a.o).map(x=>'<button type="button" class="opcion" data-respuesta="'+x.replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'" onclick="window.mcq(this, this.dataset.respuesta)">'+x+'</button>').join('')+'</div>';
-  if(a.t==='text')h+='<input id="respuesta" class="campo" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';
+  if(a.t==='text')h+='<input id="respuesta" class="campo" aria-label="Respuesta" placeholder="Escribe tu respuesta"><button type="button" class="boton boton-principal" data-accion="texto">Comprobar</button>';
   if(a.t==='analysis'){a.f.forEach((x,j)=>h+='<label class="etiqueta-campo">'+x+'</label><input class="campo analisis" data-i="'+j+'" placeholder="Categoría y subcategoría">');h+='<button type="button" class="boton boton-principal" data-accion="analisis">Comprobar</button>'}
   document.getElementById('contenido').innerHTML=h;
   
