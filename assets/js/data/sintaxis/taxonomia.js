@@ -124,7 +124,7 @@ reglas:[
 "Las transformaciones deben conservar contenido proposicional, concordancia y relaciones sintácticas.",
 "Evitar repetir inmediatamente oración, verbo, conector, estructura y patrón de distractores.",
 "El nivel declarado debe ser demostrable por su operación cognitiva y estructura.",
-"No publicar una actividad si el análisis admite dos respuestas razonables."
+"No publicar una actividad si el análisis admite dos respuestas razonables.",
 "En Oración compuesta, la dificultad debe proceder de la relación sintáctica que se analiza, no de acumular subordinadas o alargar artificialmente la oración.",
 "En actividades ordinarias de Oración compuesta, evitar subordinación encadenada: como regla general, no más de una subordinada incrustada dentro de otra.",
 "Los niveles 1-4 de Oración compuesta deben trabajar normalmente con un máximo de 3 proposiciones; los niveles 5-6 pueden llegar a 4 solo cuando la complejidad sea el objetivo del ejercicio.",
