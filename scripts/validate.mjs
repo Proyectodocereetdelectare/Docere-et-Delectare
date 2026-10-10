@@ -304,19 +304,19 @@ const expectedPageModules={
 };
 for(const [page,module] of Object.entries(expectedPageModules)){
   const html=read(page);
-  const inlineScripts=[...html.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/gi)]
+  const inlineScripts=[...html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/gi)]
     .map(m=>m[1].trim()).filter(Boolean);
   if(inlineScripts.length)addError(page+": contiene JavaScript inline");
   if(!html.includes('href="assets/css/core.css"'))addError(page+": falta el CSS común");
   if(!html.includes('src="'+module+'"'))addError(page+": falta su módulo de página "+module);
 
-  const ids=new Set([...html.matchAll(/\\bid=["']([^"']+)["']/gi)].map(m=>m[1]));
+  const ids=new Set([...html.matchAll(/\bid=["']([^"']+)["']/gi)].map(m=>m[1]));
   const source=fs.readFileSync(path.join(root,module),"utf8");
-  for(const m of source.matchAll(/getElementById\\(["']([^"']+)["']\\)/g)){
+  for(const m of source.matchAll(/getElementById\(["']([^"']+)["']\)/g)){
     if(!ids.has(m[1])&&!dynamicIds.has(m[1]))addError(page+": módulo referencia id inexistente: "+m[1]);
   }
-  for(const m of html.matchAll(/<button\\b([^>]*)>/gi)){
-    if(!/\\btype=["'][^"']+["']/i.test(m[1]))addError(page+": botón sin type");
+  for(const m of html.matchAll(/<button\b([^>]*)>/gi)){
+    if(!/\btype=["'][^"']+["']/i.test(m[1]))addError(page+": botón sin type");
   }
 }
 for(const file of Object.values(expectedPageModules)){
