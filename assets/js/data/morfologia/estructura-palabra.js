@@ -315,18 +315,20 @@ tipo: "analisis",
 pregunta: "Analiza «desafortunado».",
 palabra: "desafortunado",
 campos: [
-["segmentacion", "Segmentación"],
+["segmentacion", "Segmentación morfológica"],
 ["lexema", "Lexema"],
-["derivativos", "Afijos derivativos"],
-["tipo", "Tipo de palabra"]
+["derivativos", "Morfemas derivativos"],
+["flexivos", "Morfemas de la forma participial"],
+["tipo", "Tipo de formación"]
 ],
 soluciones: {
-segmentacion: ["des- + afortun- + -ad- + -o", "des + afortun + ad + o"],
-lexema: ["afortun", "afortun-"],
-derivativos: ["des- + -ad-", "des + ad"],
-tipo: ["derivada"]
+segmentacion: ["des- + a- + fortun- + -a- + -d- + -o", "des + a + fortun + a + d + o"],
+lexema: ["fortun", "fortun-"],
+derivativos: ["des- + a-", "des + a"],
+flexivos: ["-a- + -d- + -o", "a + d + o"],
+tipo: ["derivada", "prefijación sobre afortunado"]
 },
-explicacion: "La palabra contiene un prefijo y un sufijo derivativos."
+explicacion: "des- se añade a afortunado; en la estructura interna de esta base, a- es prefijo, fortun- es el lexema, -a- es vocal temática, -d- marca el participio y -o expresa género masculino. Se distinguen así los niveles de formación de la palabra."
 }
 
 ,
