@@ -93,7 +93,7 @@ analiza: [
 ],
 
 reto: [
-    ["analisis", 5],
+    ["analisis", 11],
     ["mcq", 7],
     ["texto", 2]
 ]
