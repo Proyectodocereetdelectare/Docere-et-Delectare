@@ -83,7 +83,8 @@ function validarActividad(a,e){
     }
   }
   if(Array.isArray(a.o)&&a.o.some(x=>!textoPlano(x)))errores.push("Hay una opción vacía.");
-  if(a.meta?.criterio&&!textoPlano(a.meta.criterio))errores.push("El criterio de solución está vacío.");\n  errores.push(...analizarComplejidadCompuesta(a,e));
+  if(a.meta?.criterio&&!textoPlano(a.meta.criterio))errores.push("El criterio de solución está vacío.");
+  errores.push(...analizarComplejidadCompuesta(a,e));
   return errores.length?{ok:false,errores}:{ok:true,actividad:a};
 }
 function validarLote(respuesta,e){
