@@ -37,7 +37,8 @@ function texto(){if(respondida)return;let v=document.getElementById('respuesta')
 function adelante(){if(!respondida)omitidas++;if(i<partida.length-1){i++;mostrar()}else resultado()}
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let nota=Number((puntos/partida.length*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').innerHTML='Has acertado '+puntos+' de '+partida.length+' actividades.<br><strong>Correctas:</strong> '+puntos+' · <strong>Incorrectas:</strong> '+(partida.length-puntos-omitidas)+' · <strong>Sin responder:</strong> '+omitidas+'<br>Las actividades sin responder no suman puntos.'}
-function mostrarAvisoVerbo(texto){let f=document.getElementById('feedback');f.className='feedback error';f.innerHTML='⚠️ '+texto;}\nfunction repetir(){iniciarPartida()}
+function mostrarAvisoVerbo(texto){let f=document.getElementById('feedback');f.className='feedback error';f.innerHTML='⚠️ '+texto;}
+function repetir(){iniciarPartida()}
 function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('menu').style.display='block';seccionActual=''}window.ok=ok;window.iniciarSeccion=iniciarSeccion;
 window.iniciarPartida=iniciarPartida;
 window.crearPartida=crearPartida;
