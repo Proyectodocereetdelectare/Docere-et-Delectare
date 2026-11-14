@@ -52,7 +52,8 @@ function analisis(){if(respondida)return;let a=partida[i],cs=[...document.queryS
 function adelante(){if(!respondida)omitidas++;if(i<partida.length-1){i++;mostrar()}else resultado()}
 function siguiente(){if(i<partida.length-1){i++;mostrar()}else resultado()}
 function resultado(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='block';let total=partida.length,nota=Number((puntos/total*10).toFixed(1));document.getElementById('nota').textContent=nota+'/10';document.getElementById('detalle').innerHTML='Has acertado '+puntos+' de '+total+' actividades.<br><strong>Correctas:</strong> '+puntos+' · <strong>Incorrectas:</strong> '+(total-puntos-omitidas)+' · <strong>Sin responder:</strong> '+omitidas+'<br>Las actividades sin responder no suman puntos.'}
-function mostrarAvisoCategorias(texto){let f=document.getElementById('feedback');f.className='feedback error';f.innerHTML='⚠️ '+texto;}\nfunction repetir(){crear();i=0;puntos=0;omitidas=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
+function mostrarAvisoCategorias(texto){let f=document.getElementById('feedback');f.className='feedback error';f.innerHTML='⚠️ '+texto;}
+function repetir(){crear();i=0;puntos=0;omitidas=0;document.getElementById('resultado').style.display='none';document.getElementById('actividad').style.display='block';mostrar()}
 function volverMenu(){document.getElementById('actividad').style.display='none';document.getElementById('resultado').style.display='none';document.getElementById('inicio').style.display='block';document.querySelectorAll('.seccion-btn').forEach(b=>b.classList.remove('activa'));seccionActual=''}/* Navegación de secciones: se gestiona desde JavaScript para evitar problemas
    con handlers inline y garantizar que todos los bloques funcionen igual. */
 document.querySelectorAll('.bloque[data-seccion]').forEach(function(boton){
