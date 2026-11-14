@@ -110,6 +110,7 @@ for(const file of externalScripts){
     const source=fs.readFileSync(file,"utf8");
     new Function(source);
     for(const m of source.matchAll(/(?:globalThis|window)\.([A-Za-z_$][\w$]*)\s*=/g))exportedGlobals.add(m[1]);
+    for(const m of source.matchAll(/\bfunction\s+([A-Za-z_$][\w$]*)\s*\(/g))exportedGlobals.add(m[1]);
   }catch(error){
     addError("JS externo inválido "+path.relative(root,file)+": "+error.message);
   }
