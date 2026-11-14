@@ -256,7 +256,7 @@ try{
     addError(generatedFile+": el lote piloto debe contener exactamente 20 actividades");
   }
   const ids=generated.map(a=>a?.id);
-  if(ids.some(id=>!/^IA-SX-\\d{3}$/.test(id||"")))addError(generatedFile+": identificador de actividad IA inválido");
+  if(ids.some(id=>!/^IA-SX-\d{3}$/.test(id||"")))addError(generatedFile+": identificador de actividad IA inválido");
   if(new Set(ids).size!==ids.length)addError(generatedFile+": identificadores IA duplicados");
   const objetivos={1:3,2:3,3:3,4:3,5:4,6:4};
   for(const [nivel,objetivo] of Object.entries(objetivos)){
@@ -321,7 +321,7 @@ for(const [page,module] of Object.entries(expectedPageModules)){
 }
 for(const file of Object.values(expectedPageModules)){
   const source=fs.readFileSync(path.join(root,file),"utf8");
-  if(/\\b(?:drag|drop|arrastr|zona-arrastre|arrastreSeleccionado)\\b/i.test(source))addError(file+": contiene residuos de arrastre");
+  if(/\b(?:drag|drop|arrastr|zona-arrastre|arrastreSeleccionado)\b/i.test(source))addError(file+": contiene residuos de arrastre");
 }
 
 if(errors.length){
