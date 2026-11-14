@@ -68,7 +68,7 @@ const clasifica = [
 {id:"EP-A-003",nivel:1,tipo:"mcq",pregunta:"En «revivir», ¿qué elemento es un prefijo derivativo?",opciones:["re-","viv-","-ir","-s"],correcta:0,explicacion:"re- aparece delante del lexema y es derivativo."},
 {id:"EP-A-004",nivel:1,tipo:"mcq",pregunta:"¿Dónde aparece normalmente un prefijo?",opciones:["Delante del lexema","Detrás del lexema","Solo entre dos lexemas","Solo al final"],correcta:0,explicacion:"El prefijo se sitúa delante del lexema."},
 {id:"EP-A-005",nivel:1,tipo:"mcq",pregunta:"¿Dónde aparece normalmente un sufijo?",opciones:["Detrás del lexema","Delante del lexema","Solo al principio","Entre dos palabras"],correcta:0,explicacion:"El sufijo se sitúa detrás del lexema."},
-{id:"EP-A-006",nivel:1,tipo:"mcq",pregunta:"¿Qué es un morfema?",opciones:["Una unidad mínima con significado","Una palabra compuesta","Un tipo de lexema","Una palabra sin significado"],correcta:0,explicacion:"El morfema es la unidad lingüística mínima con significado."},
+{id:"EP-A-006",nivel:1,tipo:"mcq",pregunta:"¿Cuál es la definición más precisa de morfema?",opciones:["Una unidad mínima con significado","Una palabra compuesta","Un tipo de lexema","Una palabra sin significado"],correcta:0,explicacion:"El morfema es la unidad lingüística mínima con significado."},
 {id:"EP-A-007",nivel:1,tipo:"mcq",pregunta:"¿Qué elemento de «lápices» es flexivo?",opciones:["-es","lápic-","-iz-","re-"],correcta:0,explicacion:"-es expresa el número plural."},
 {id:"EP-A-008",nivel:1,tipo:"mcq",pregunta:"¿Qué elemento de «belleza» es derivativo?",opciones:["-eza","bell-","-s","-a"],correcta:0,explicacion:"-eza es un sufijo derivativo."},
 {id:"EP-A-009",nivel:2,tipo:"mcq",pregunta:"En «paredes», ¿qué elemento es el lexema?",opciones:["pared-","-es","-ed-","paredes"],correcta:0,explicacion:"pared- aporta el significado léxico."},
@@ -78,7 +78,7 @@ const clasifica = [
 {id:"EP-A-013",nivel:2,tipo:"mcq",pregunta:"¿Qué tipo de elemento es «-ura» en «blancura»?",opciones:["Sufijo derivativo","Prefijo","Morfema flexivo","Lexema"],correcta:0,explicacion:"-ura es un sufijo derivativo."},
 {id:"EP-A-014",nivel:2,tipo:"mcq",pregunta:"¿Qué tipo de elemento es «-es» en «paredes»?",opciones:["Morfema flexivo","Sufijo derivativo","Prefijo","Interfijo"],correcta:0,explicacion:"-es expresa número."},
 {id:"EP-A-015",nivel:2,tipo:"mcq",pregunta:"¿Qué es «sueñ-» frente a «soñ-»?",opciones:["Una variante del mismo lexema","Un sufijo","Un prefijo","Un morfema de plural"],correcta:0,explicacion:"Son alomorfos: variantes de un mismo morfema."},
-{id:"EP-A-016",nivel:2,tipo:"mcq",pregunta:"En «panecillo», ¿qué función cumple «-ec-»?",opciones:["Elemento de enlace o interfijo","Lexema","Prefijo","Morfema de género"],correcta:0,explicacion:"-ec- funciona como elemento de enlace."},
+{id:"EP-A-016",nivel:2,tipo:"mcq",pregunta:"¿Cómo se clasifica el segmento «-ec-» en «panecillo»?",opciones:["Elemento de enlace o interfijo","Lexema","Prefijo","Morfema de género"],correcta:0,explicacion:"-ec- funciona como elemento de enlace."},
 {id:"EP-A-017",nivel:3,tipo:"mcq",pregunta:"¿Por qué «-s» en «libros» es flexivo?",opciones:["Porque expresa número","Porque crea un lexema","Porque es un prefijo","Porque cambia la categoría"],correcta:0,explicacion:"Los morfemas flexivos expresan valores gramaticales."},
 {id:"EP-A-018",nivel:3,tipo:"mcq",pregunta:"¿Por qué «re-» en «revivir» es derivativo?",opciones:["Porque modifica el significado del lexema","Porque expresa plural","Porque indica género","Porque enlaza dos lexemas"],correcta:0,explicacion:"re- modifica el significado del lexema."},
 {id:"EP-A-019",nivel:3,tipo:"mcq",pregunta:"¿Cuál distingue correctamente derivativo y flexivo?",opciones:["re- / -s","-s / re-","-a / -s","-s / -a"],correcta:0,explicacion:"re- es derivativo y -s es flexivo."},
@@ -134,7 +134,7 @@ const analiza = [
 
 {id:"EP-S-001",
 tipo: "analisis",
-pregunta: "Realiza un análisis completo.",
+pregunta: "Analiza la estructura morfológica de «relectura».",
 palabra: "relectura",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -153,7 +153,7 @@ explicacion: "re- es un prefijo derivativo, lect- es el lexema y -ura es un sufi
 
 {id:"EP-S-002",
 tipo: "analisis",
-pregunta: "Realiza un análisis completo.",
+pregunta: "Analiza la estructura morfológica de «desigualdad».",
 palabra: "desigualdad",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -172,7 +172,7 @@ explicacion: "des- es prefijo, igual es el lexema y -dad es sufijo derivativo."
 
 {id:"EP-S-003",
 tipo: "analisis",
-pregunta: "Realiza un análisis completo.",
+pregunta: "Analiza la estructura morfológica de «inutilidad».",
 palabra: "inutilidad",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -191,7 +191,7 @@ explicacion: "in- es un prefijo derivativo, útil es el lexema y -idad es un suf
 
 {id:"EP-S-004",
 tipo: "analisis",
-pregunta: "Realiza un análisis completo.",
+pregunta: "Analiza la estructura morfológica de «panecillos».",
 palabra: "panecillos",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -210,7 +210,7 @@ explicacion: "pan- es el lexema; -ec- funciona como elemento de enlace o infijo.
 
 {id:"EP-S-005",
 tipo: "analisis",
-pregunta: "Realiza un análisis completo.",
+pregunta: "Analiza la estructura morfológica de «aterrizar».",
 palabra: "aterrizar",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -229,7 +229,7 @@ explicacion: "aterrizar presenta afijos delante y detrás del lexema y *terrizar
 
 {id:"EP-S-006",
 tipo: "analisis",
-pregunta: "Realiza un análisis completo.",
+pregunta: "Analiza la estructura morfológica de «niñas».",
 palabra: "niñas",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -396,7 +396,7 @@ const reto = [
 
 {id:"EP-S-012",
 tipo: "analisis",
-pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+pregunta: "🏆 Reto de examen: analiza «desigualdades».",
 palabra: "desigualdades",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -417,7 +417,7 @@ explicacion: "des- y -dad son derivativos; -es es flexivo de número."
 
 {id:"EP-S-013",
 tipo: "analisis",
-pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+pregunta: "🏆 Reto de examen: analiza «aterrizar».",
 palabra: "aterrizar",
 campos: [
 ["segmentacion", "Segmentación"],
@@ -436,7 +436,7 @@ explicacion: "Es parasintética porque presenta elementos a ambos lados del lexe
 
 {id:"EP-S-014",
 tipo: "analisis",
-pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+pregunta: "🏆 Reto de examen: analiza «geología».",
 palabra: "geología",
 campos: [
 ["segmentacion", "Formantes"],
@@ -455,7 +455,7 @@ explicacion: "geo- significa tierra y -logía se relaciona con estudio."
 
 {id:"EP-S-015",
 tipo: "analisis",
-pregunta: "🏆 Reto de examen: realiza un análisis completo.",
+pregunta: "🏆 Reto de examen: analiza «panecillos».",
 palabra: "panecillos",
 campos: [
 ["segmentacion", "Segmentación"],
